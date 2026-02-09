@@ -1,0 +1,36 @@
+[
+  {
+    "id": "e001",
+    "title": "Morning Yoga in the Park",
+    "description": "Start your day with mindfulness and movement in the tranquil surroundings of Central Park. Perfect for all skill levels.",
+    "category": "wellness",
+    "type": "outdoors",
+    "ageGroup": "18-35",
+    "date": "2026-02-15",
+    "time": "08:00",
+    "duration": 90,
+    "location": "Central Park",
+    "pointsReward": 50,
+    "participants": 12,
+    "maxParticipants": 20,
+    "organizerId": "org001",
+    "imageUrl": "/images/events/yoga-park.jpg"
+  },
+  {
+    "id": "e002",
+    "title": "Pottery Workshop: Mindful Creation",
+    "description": "Explore your creativity through clay. Learn pottery basics while practicing mindfulness and relaxation.",
+    "category": "creative",
+    "type": "indoors",
+    "ageGroup": "25-45",
+    "date": "2026-02-16",
+    "time": "14:00",
+    "duration": 120,
+    "location": "Creative Minds Studio",
+    "pointsReward": 75,
+    "participants": 8,
+    "maxParticipants": 12,
+    "organizerId": "org002",
+    "imageUrl": "/images/events/pottery-workshop.jpg"
+  }
+]

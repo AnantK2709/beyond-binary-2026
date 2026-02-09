@@ -1,0 +1,42 @@
+:root {
+  /* Sage Green Colors */
+  --color-sage-50: #F7FAF9;
+  --color-sage-100: #F0F4F3;
+  --color-sage-200: #E8F3F1;
+  --color-sage-300: #A8D5BA;
+  --color-sage-400: #7AB5A3;
+  --color-sage-500: #5F9C8D;
+  --color-sage-600: #4A8070;
+  --color-sage-700: #3A6659;
+  --color-sage-800: #2C4F44;
+  --color-sage-900: #1E3830;
+
+  /* Ocean Blue Colors */
+  --color-ocean-400: #89CFF0;
+  --color-ocean-500: #6B9BD1;
+  --color-ocean-600: #5587C4;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px rgba(168, 213, 186, 0.3);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "org001",
+    "name": "Wellness Hub",
+    "verified": true,
+    "verificationBadge": "gold",
+    "trustScore": 4.8,
+    "partnerSince": "2023-05",
+    "description": "Leading provider of wellness events and activities in the community",
+    "logoUrl": "/images/organizations/wellness-hub-logo.png",
+    "website": "https://wellnesshub.example.com",
+    "eventsHosted": 156
+  },
+  {
+    "id": "org002",
+    "name": "Creative Minds Collective",
+    "verified": true,
+    "verificationBadge": "gold",
+    "trustScore": 4.6,
+    "partnerSince": "2024-01",
+    "description": "Community-focused creative workshops and art experiences",
+    "logoUrl": "/images/organizations/creative-minds-logo.png",
+    "website": "https://creativeminds.example.com",
+    "eventsHosted": 89
+  }
+]

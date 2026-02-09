@@ -1,0 +1,32 @@
+[
+  {
+    "id": "u123",
+    "name": "Sarah Chen",
+    "email": "sarah.chen@email.com",
+    "points": 450,
+    "level": 3,
+    "interests": ["wellness", "yoga", "outdoors"],
+    "avatarUrl": "/images/avatars/default-avatar.png",
+    "joinedDate": "2025-09-15"
+  },
+  {
+    "id": "u456",
+    "name": "Alex Johnson",
+    "email": "alex.j@email.com",
+    "points": 780,
+    "level": 2,
+    "interests": ["fitness", "outdoors", "social"],
+    "avatarUrl": "/images/avatars/default-avatar.png",
+    "joinedDate": "2025-08-22"
+  },
+  {
+    "id": "u789",
+    "name": "Maria Garcia",
+    "email": "maria.g@email.com",
+    "points": 620,
+    "level": 2,
+    "interests": ["creative", "wellness", "learning"],
+    "avatarUrl": "/images/avatars/default-avatar.png",
+    "joinedDate": "2025-10-03"
+  }
+]

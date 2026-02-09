@@ -1,0 +1,28 @@
+[
+  {
+    "id": "rec001",
+    "type": "event",
+    "title": "Sunrise Yoga Session",
+    "reason": "Based on your interest in wellness and morning activities",
+    "confidence": 0.92,
+    "targetId": "e001",
+    "category": "wellness"
+  },
+  {
+    "id": "rec002",
+    "type": "person",
+    "name": "Jamie Lee",
+    "reason": "Shares your interests in outdoor activities and photography",
+    "confidence": 0.87,
+    "targetId": "u555",
+    "mutualInterests": ["outdoors", "photography", "wellness"]
+  },
+  {
+    "id": "rec003",
+    "type": "community",
+    "title": "Mindful Makers",
+    "reason": "Members share your creative and wellness interests",
+    "confidence": 0.85,
+    "targetId": "c003"
+  }
+]

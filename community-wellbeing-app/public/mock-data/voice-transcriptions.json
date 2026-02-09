@@ -1,0 +1,20 @@
+[
+  {
+    "id": "trans001",
+    "userId": "u123",
+    "text": "Today was tough at work but the evening run really helped clear my mind. I'm grateful for this community and the support everyone provides.",
+    "emotions": ["stressed", "relieved", "grateful"],
+    "activities": ["running"],
+    "interests": ["fitness", "wellness"],
+    "timestamp": "2026-02-09T19:30:00Z"
+  },
+  {
+    "id": "trans002",
+    "userId": "u123",
+    "text": "Attended the pottery workshop today and it was so therapeutic. Creating something with my hands helped me be more present and mindful.",
+    "emotions": ["calm", "creative", "happy"],
+    "activities": ["pottery"],
+    "interests": ["creative", "wellness"],
+    "timestamp": "2026-02-08T16:45:00Z"
+  }
+]

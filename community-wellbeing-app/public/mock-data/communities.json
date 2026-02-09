@@ -1,0 +1,31 @@
+[
+  {
+    "id": "c001",
+    "name": "Outdoor Enthusiasts",
+    "description": "For hikers, runners, and nature lovers who want to explore the great outdoors together",
+    "members": 234,
+    "interests": ["outdoors", "fitness", "wellness"],
+    "verified": true,
+    "imageUrl": "/images/communities/outdoor-enthusiasts.jpg",
+    "createdDate": "2024-06-10"
+  },
+  {
+    "id": "c002",
+    "name": "Wellness Warriors",
+    "description": "Supporting each other on our wellness journeys through mindfulness, yoga, and healthy living",
+    "members": 189,
+    "interests": ["wellness", "yoga", "meditation"],
+    "verified": true,
+    "imageUrl": "/images/communities/wellness-warriors.jpg",
+    "createdDate": "2024-08-15"
+  },
+  {
+    "id": "c003",
+    "name": "Creative Souls",
+    "description": "Artists, makers, and creative minds connecting through art and expression",
+    "members": 156,
+    "interests": ["creative", "art", "crafts"],
+    "verified": false,
+    "createdDate": "2024-11-20"
+  }
+]

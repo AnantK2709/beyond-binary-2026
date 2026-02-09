@@ -1,0 +1,33 @@
+[
+  {
+    "id": "report-jan-2026",
+    "month": "january",
+    "year": 2026,
+    "userId": "u123",
+    "eventsAttended": 12,
+    "communitiesJoined": 3,
+    "pointsEarned": 450,
+    "journalEntries": 18,
+    "moodTrend": "improving",
+    "averageMood": "happy",
+    "topMoments": [
+      "Reached Level 3! 🎉",
+      "Made 5 new connections in your communities",
+      "Attended your first pottery workshop",
+      "Completed 18 journal entries"
+    ],
+    "emotionalSummary": "Your wellbeing score improved by 23% this month. You've been consistently engaging with outdoor activities and creative workshops.",
+    "socialConnections": 15,
+    "newConnections": 5,
+    "recommendations": [
+      "Try morning yoga classes - they align with your peak energy times",
+      "Connect with the Creative Souls community",
+      "Consider joining a meditation group"
+    ],
+    "highlights": {
+      "mostAttendedCategory": "wellness",
+      "favoriteTimeOfDay": "morning",
+      "longestStreak": 7
+    }
+  }
+]

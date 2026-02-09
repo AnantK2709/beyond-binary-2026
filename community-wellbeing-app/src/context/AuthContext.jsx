@@ -23,7 +23,9 @@ export const AuthProvider = ({ children }) => {
       id: `u${Date.now()}`,
       ...userData,
       points: 0,
-      level: 1
+      level: 1,
+      // Interests will be added by your colleague's onboarding flow
+      interests: userData.interests || []
     }
     setUser(newUser)
     localStorage.setItem('user', JSON.stringify(newUser))
@@ -38,7 +40,10 @@ export const AuthProvider = ({ children }) => {
       email,
       name: 'Sarah Chen',
       points: 450,
-      level: 3
+      level: 3,
+      // Sample interests for testing matching algorithm
+      // Your colleague's signup flow can replace this with real user interests
+      interests: ['wellness', 'yoga', 'meditation', 'mindfulness', 'social', 'outdoors']
     }
     setUser(mockUser)
     localStorage.setItem('user', JSON.stringify(mockUser))

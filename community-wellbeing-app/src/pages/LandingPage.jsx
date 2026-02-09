@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 
 function LandingPage() {
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, signin } = useAuth()
   const scrollContainerRef = useRef(null)
 
   if (user) {
@@ -100,10 +100,10 @@ function LandingPage() {
               </span>
             </button>
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => signin('demo@example.com', 'password')}
               className="btn-secondary text-xl px-12 py-5"
             >
-              Sign In
+              Sign In (Demo)
             </button>
           </div>
 

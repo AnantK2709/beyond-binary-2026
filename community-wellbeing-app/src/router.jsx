@@ -6,6 +6,7 @@ import OnboardingPage from './pages/OnboardingPage'
 import DashboardPage from './pages/DashboardPage'
 import EventsPage from './pages/EventsPage'
 import EventDetailPage from './pages/EventDetailPage'
+import MyEventsPage from './pages/MyEventsPage'
 import CommunitiesPage from './pages/CommunitiesPage'
 import CommunityDetailPage from './pages/CommunityDetailPage'
 import JournalPage from './pages/JournalPage'
@@ -39,6 +40,12 @@ function AppRouter() {
       <Route path="/events/:id" element={
         <ProtectedRoute>
           <EventDetailPage />
+        </ProtectedRoute>
+      } />
+
+      <Route path="/my-events" element={
+        <ProtectedRoute>
+          <MyEventsPage />
         </ProtectedRoute>
       } />
 

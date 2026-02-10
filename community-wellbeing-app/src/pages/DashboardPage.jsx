@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-
-
 // ADD extra "components/" to ALL these imports
 import Navbar from '../components/components/common/Navbar';
 import WelcomeCard from '../components/components/dashboard/WelcomeCard';
@@ -13,8 +11,6 @@ import QuickMoodWidget from '../components/components/dashboard/QuickMoodWidget'
 import RecommendedEvents from '../components/components/dashboard/RecommendedEvents';
 import UpcomingEvents from '../components/components/dashboard/UpcomingEvents';
 import StatsCard from '../components/components/dashboard/StatsCard';
-
-
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -96,6 +92,24 @@ export default function DashboardPage() {
             value={user?.totalPoints || 0}
             color="from-purple-400 to-purple-600"
           />
+        </div>
+
+        {/* Quick Communities Access Card */}
+        <div className="mb-8">
+          <div 
+            onClick={() => navigate('/communities')}
+            className="bg-gradient-to-r from-sage-500 to-sage-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer text-white"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-bold mb-2">👥 Explore Communities</h3>
+                <p className="text-sage-100">Join communities, chat with members, create polls, and organize events</p>
+              </div>
+              <button className="px-6 py-3 bg-white text-sage-600 rounded-lg hover:bg-sage-50 transition-colors font-semibold">
+                Browse Communities →
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Main Content Grid */}

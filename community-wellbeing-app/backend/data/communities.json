@@ -1,0 +1,427 @@
+[
+  {
+    "id": "c001",
+    "name": "Outdoor Enthusiasts",
+    "description": "For hikers, runners, and nature lovers who want to explore the great outdoors together",
+    "members": 234,
+    "interests": [
+      "outdoors",
+      "fitness",
+      "hiking",
+      "nature"
+    ],
+    "verified": true,
+    "imageUrl": "/images/communities/outdoor-enthusiasts.jpg"
+  },
+  {
+    "id": "c002",
+    "name": "Wellness Warriors",
+    "description": "Supporting each other on our wellness journeys through mindfulness, yoga, and healthy living",
+    "members": 189,
+    "interests": [
+      "wellness",
+      "yoga",
+      "meditation",
+      "mental health"
+    ],
+    "verified": true,
+    "imageUrl": "/images/communities/wellness-warriors.jpg"
+  },
+  {
+    "id": "c003",
+    "name": "Creative Souls",
+    "description": "Artists, makers, and creative minds connecting through art and expression",
+    "members": 156,
+    "interests": [
+      "creative",
+      "art",
+      "crafts",
+      "photography"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c004",
+    "name": "Fitness Fanatics",
+    "description": "Get fit together! Share workouts, motivation, and fitness goals",
+    "members": 312,
+    "interests": [
+      "fitness",
+      "active",
+      "wellness"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c005",
+    "name": "Book Lovers Circle",
+    "description": "For avid readers who love discussing books, sharing recommendations, and literary discussions",
+    "members": 178,
+    "interests": [
+      "reading",
+      "intellectual",
+      "creative"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c006",
+    "name": "Mental Health Support",
+    "description": "A safe space for mental health discussions, support, and wellness practices",
+    "members": 245,
+    "interests": [
+      "mental health",
+      "meditation",
+      "wellness"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c007",
+    "name": "Foodie Adventures",
+    "description": "Food lovers unite! Share recipes, restaurant reviews, and cooking tips",
+    "members": 201,
+    "interests": [
+      "cooking",
+      "food",
+      "creative"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c008",
+    "name": "Music Makers",
+    "description": "Musicians, music lovers, and performers connecting through the power of music",
+    "members": 167,
+    "interests": [
+      "music",
+      "creative",
+      "art"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c009",
+    "name": "Tech Enthusiasts",
+    "description": "Tech professionals and enthusiasts sharing knowledge, projects, and networking",
+    "members": 298,
+    "interests": [
+      "tech",
+      "intellectual",
+      "virtual"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c010",
+    "name": "Gaming Guild",
+    "description": "Gamers unite! Share gaming experiences, organize sessions, and build friendships",
+    "members": 223,
+    "interests": [
+      "gaming",
+      "virtual",
+      "tech"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c011",
+    "name": "Travel Explorers",
+    "description": "Wanderlust souls sharing travel stories, tips, and planning adventures together",
+    "members": 189,
+    "interests": [
+      "travel",
+      "nature",
+      "outdoors"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c012",
+    "name": "Parenting Circle",
+    "description": "Supporting parents through the journey of raising children and building community",
+    "members": 156,
+    "interests": [
+      "parenting",
+      "wellness",
+      "mental health"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c013",
+    "name": "Yoga & Mindfulness",
+    "description": "Yoga practitioners and mindfulness enthusiasts sharing practices and supporting each other",
+    "members": 198,
+    "interests": [
+      "yoga",
+      "meditation",
+      "wellness",
+      "mental health"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c014",
+    "name": "Photography Enthusiasts",
+    "description": "Photographers of all levels sharing tips, organizing photo walks, and celebrating visual art",
+    "members": 167,
+    "interests": [
+      "photography",
+      "art",
+      "creative",
+      "nature"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c015",
+    "name": "Cooking & Recipes",
+    "description": "Home cooks and food enthusiasts sharing recipes, cooking tips, and culinary adventures",
+    "members": 234,
+    "interests": [
+      "cooking",
+      "food",
+      "creative"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c016",
+    "name": "Art & Crafts",
+    "description": "Artists and crafters sharing techniques, inspiration, and creative projects",
+    "members": 189,
+    "interests": [
+      "art",
+      "creative",
+      "crafts"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c017",
+    "name": "Nature Lovers",
+    "description": "Nature enthusiasts sharing outdoor experiences, conservation tips, and nature photography",
+    "members": 201,
+    "interests": [
+      "nature",
+      "outdoors",
+      "hiking",
+      "photography"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c018",
+    "name": "Hiking Adventures",
+    "description": "Hikers sharing trails, organizing group hikes, and exploring nature together",
+    "members": 178,
+    "interests": [
+      "hiking",
+      "outdoors",
+      "nature",
+      "fitness"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c019",
+    "name": "Meditation Circle",
+    "description": "Meditation practitioners sharing techniques, organizing group sessions, and supporting mindfulness",
+    "members": 156,
+    "interests": [
+      "meditation",
+      "mental health",
+      "wellness",
+      "yoga"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c020",
+    "name": "Food & Dining",
+    "description": "Food lovers exploring restaurants, sharing dining experiences, and food culture",
+    "members": 223,
+    "interests": [
+      "food",
+      "cooking",
+      "travel"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c021",
+    "name": "Music Lovers",
+    "description": "Music enthusiasts sharing favorite songs, organizing concerts, and discussing music culture",
+    "members": 245,
+    "interests": [
+      "music",
+      "creative",
+      "art"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c022",
+    "name": "Tech & Innovation",
+    "description": "Tech professionals discussing latest trends, sharing projects, and networking",
+    "members": 312,
+    "interests": [
+      "tech",
+      "intellectual",
+      "virtual"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c023",
+    "name": "Gaming Community",
+    "description": "Gamers connecting, organizing sessions, and sharing gaming experiences",
+    "members": 267,
+    "interests": [
+      "gaming",
+      "virtual",
+      "tech"
+    ],
+    "verified": false
+  },
+  {
+    "id": "c024",
+    "name": "Travel & Adventure",
+    "description": "Travelers sharing destinations, planning trips, and exploring the world together",
+    "members": 234,
+    "interests": [
+      "travel",
+      "nature",
+      "outdoors",
+      "photography"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c025",
+    "name": "Parenting Support",
+    "description": "Parents sharing experiences, advice, and supporting each other through the parenting journey",
+    "members": 189,
+    "interests": [
+      "parenting",
+      "mental health",
+      "wellness"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c026",
+    "name": "Reading Club",
+    "description": "Book lovers discussing literature, sharing recommendations, and organizing book clubs",
+    "members": 201,
+    "interests": [
+      "reading",
+      "intellectual",
+      "creative"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c027",
+    "name": "Mental Wellness",
+    "description": "A supportive community focused on mental health awareness, self-care, and wellness",
+    "members": 278,
+    "interests": [
+      "mental health",
+      "meditation",
+      "wellness",
+      "yoga"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c028",
+    "name": "Active Lifestyle",
+    "description": "People committed to an active lifestyle sharing fitness tips, workouts, and motivation",
+    "members": 256,
+    "interests": [
+      "fitness",
+      "active",
+      "outdoors",
+      "wellness"
+    ],
+    "verified": true
+  },
+  {
+    "id": "c029",
+    "name": "Prash club",
+    "description": "aesthetics of the evening",
+    "interests": [
+      "hiking",
+      "reading",
+      "art"
+    ],
+    "members": 1,
+    "verified": true,
+    "creatorId": "u008",
+    "creatorName": "Kelly Jan kalla",
+    "createdAt": "2026-02-10T16:57:23.720Z"
+  },
+  {
+    "id": "c030",
+    "name": "Prash club",
+    "description": "aesthetics",
+    "interests": [
+      "mental health",
+      "hiking",
+      "nature",
+      "gaming"
+    ],
+    "members": 2,
+    "verified": true,
+    "creatorId": "u008",
+    "creatorName": "Kelly Jan kalla",
+    "createdAt": "2026-02-10T16:58:13.955Z"
+  },
+  {
+    "id": "c031",
+    "name": "Prash club",
+    "description": "wcwc",
+    "interests": [
+      "mental health",
+      "art",
+      "tech",
+      "parenting"
+    ],
+    "members": 2,
+    "verified": true,
+    "creatorId": "u008",
+    "creatorName": "Kelly Jan kalla",
+    "createdAt": "2026-02-10T17:01:11.501Z"
+  },
+  {
+    "id": "c032",
+    "name": "wvwv",
+    "description": "wevwev",
+    "interests": [
+      "mental health",
+      "hiking"
+    ],
+    "members": 5,
+    "verified": true,
+    "creatorId": "u008",
+    "creatorName": "Kelly Jan kalla",
+    "createdAt": "2026-02-10T17:10:49.967Z"
+  },
+  {
+    "id": "c033",
+    "name": "3r",
+    "description": "13r13r",
+    "interests": [
+      "mental health",
+      "art",
+      "tech"
+    ],
+    "members": 5,
+    "verified": true,
+    "creatorId": "u008",
+    "creatorName": "Kelly Jan kalla",
+    "createdAt": "2026-02-10T17:15:17.088Z"
+  }
+]

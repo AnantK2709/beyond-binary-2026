@@ -37,7 +37,15 @@ export default {
           400: '#38BDF8',
           500: '#0EA5E9',
           600: '#0284C7'
-        }
+        },
+        // ADD THESE ACCENT COLORS:
+        warmOrange: '#FFB74D',
+        lavender: '#B8A8E8',
+        coral: '#FFB6A3',
+        mint: '#A8D5BA',
+        offWhite: '#F7FAF9',
+        lightSage: '#F0F4F3',
+        darkGray: '#2C3E3F',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif']

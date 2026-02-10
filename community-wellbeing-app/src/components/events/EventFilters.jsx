@@ -12,10 +12,11 @@ function EventFilters({ filters, onFilterChange }) {
   const categories = [
     { id: 'all', label: 'All Events', icon: '🎯' },
     { id: 'wellness', label: 'Wellness', icon: '🧘‍♀️' },
-    { id: 'fitness', label: 'Fitness', icon: '💪' },
-    { id: 'creative', label: 'Creative', icon: '🎨' },
+    { id: 'outdoors', label: 'Outdoors', icon: '🏞️' },
+    { id: 'arts', label: 'Arts', icon: '🎨' },
     { id: 'social', label: 'Social', icon: '👥' },
-    { id: 'learning', label: 'Learning', icon: '📚' }
+    { id: 'sports', label: 'Sports', icon: '⚽' },
+    { id: 'workshops', label: 'Workshops', icon: '🛠️' }
   ]
 
   const timeOfDay = [

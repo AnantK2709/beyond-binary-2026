@@ -1,12 +1,33 @@
 import { useNavigate } from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { EventContext } from '../../context/EventContext'
+import { eventService } from '../../services/eventService'
 
 function EventCard({ event }) {
   const navigate = useNavigate()
   const { rsvpEvent, cancelRsvp, isRsvped } = useContext(EventContext)
   const [isLoading, setIsLoading] = useState(false)
+  const [userReview, setUserReview] = useState(null)
   const hasRsvped = isRsvped(event.id)
+
+  useEffect(() => {
+    const loadReview = async () => {
+      if (hasRsvped && isEventPast()) {
+        try {
+          const review = await eventService.getEventReview(event.id)
+          setUserReview(review)
+        } catch (error) {
+          console.error('Error loading review:', error)
+        }
+      }
+    }
+    loadReview()
+  }, [event.id, hasRsvped])
+
+  const isEventPast = () => {
+    const eventDateTime = new Date(`${event.date}T${event.time || '00:00'}:00`)
+    return eventDateTime < new Date()
+  }
 
   const handleRsvp = async (e) => {
     e.stopPropagation()
@@ -34,10 +55,11 @@ function EventCard({ event }) {
   const getCategoryIcon = (category) => {
     const icons = {
       wellness: '🧘‍♀️',
-      fitness: '💪',
-      creative: '🎨',
+      outdoors: '🏞️',
+      arts: '🎨',
       social: '👥',
-      learning: '📚'
+      sports: '⚽',
+      workshops: '🛠️'
     }
     return icons[category] || '🎯'
   }
@@ -129,32 +151,57 @@ function EventCard({ event }) {
           )}
         </div>
 
-        {/* RSVP Button */}
-        <button
-          className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-            hasRsvped
-              ? 'bg-gradient-to-r from-gray-400/30 to-gray-500/30 text-gray-700 border border-gray-400/40 hover:from-red-400/30 hover:to-red-500/30 hover:text-red-700 hover:border-red-400/40'
-              : 'btn-primary'
-          } disabled:opacity-50 disabled:cursor-not-allowed`}
-          onClick={handleRsvp}
-          disabled={isLoading || (!hasRsvped && event.participants >= event.maxParticipants)}
-        >
-          {isLoading ? (
-            <span className="flex items-center justify-center gap-2">
-              <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
-              Processing...
-            </span>
-          ) : hasRsvped ? (
-            'Cancel RSVP'
-          ) : event.participants >= event.maxParticipants ? (
-            'Event Full'
-          ) : (
-            'Sign Up for Event'
-          )}
-        </button>
+        {/* RSVP Button or Rating Display */}
+        {hasRsvped && isEventPast() && userReview ? (
+          <div className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-semibold text-gray-700">Your Rating:</span>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg
+                      key={star}
+                      className="w-5 h-5"
+                      viewBox="0 0 24 24"
+                      fill={star <= userReview.rating ? '#F59E0B' : 'none'}
+                      stroke={star <= userReview.rating ? '#F59E0B' : '#D1D5DB'}
+                      strokeWidth="1.5"
+                    >
+                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <span className="text-sm font-medium text-amber-700">{userReview.rating}/5</span>
+            </div>
+          </div>
+        ) : (
+          <button
+            className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+              hasRsvped
+                ? 'bg-gradient-to-r from-gray-400/30 to-gray-500/30 text-gray-700 border border-gray-400/40 hover:from-red-400/30 hover:to-red-500/30 hover:text-red-700 hover:border-red-400/40'
+                : 'btn-primary'
+            } disabled:opacity-50 disabled:cursor-not-allowed`}
+            onClick={handleRsvp}
+            disabled={isLoading || (!hasRsvped && event.participants >= event.maxParticipants)}
+          >
+            {isLoading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+                Processing...
+              </span>
+            ) : hasRsvped ? (
+              'Cancel RSVP'
+            ) : event.participants >= event.maxParticipants ? (
+              'Event Full'
+            ) : (
+              'Sign Up for Event'
+            )}
+          </button>
+        )}
       </div>
     </div>
   )

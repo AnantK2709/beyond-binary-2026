@@ -6,6 +6,7 @@ import { aiService } from '../services/aiService'
 
 import StarRating from '../components/common/StarRating'
 import Toast from '../components/common/Toast'
+import Navbar from '../components/components/common/Navbar'
 
 const MOODS = [
   { value: 'happy', label: '😊 Happy' },
@@ -129,69 +130,145 @@ function PostEventPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-10">
-        <div className="text-gray-700">Loading post-event page…</div>
+      <div className="min-h-screen pb-20 md:pb-0">
+        <Navbar />
+        <div className="max-w-4xl mx-auto px-4 py-10">
+          <div className="card p-12 text-center">
+            <div className="w-16 h-16 border-4 border-sage-500/30 border-t-sage-500 rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600 text-lg">Loading post-event page...</p>
+          </div>
+        </div>
       </div>
     )
   }
 
   if (error || !event) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-10">
-        <div className="text-red-700 mb-4">{error || 'Event not found'}</div>
-        <Link to="/events" className="text-[#5F9C8D] underline">Back to Events</Link>
+      <div className="min-h-screen pb-20 md:pb-0">
+        <Navbar />
+        <div className="max-w-4xl mx-auto px-4 py-10">
+          <div className="card p-8 text-center">
+            <div className="text-6xl mb-4">😕</div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Event Not Found</h2>
+            <p className="text-gray-600 mb-6">{error || 'The event you are looking for does not exist.'}</p>
+            <Link to="/events" className="btn-primary px-6 py-3 inline-block">
+              Back to Events
+            </Link>
+          </div>
+        </div>
       </div>
     )
   }
 
   if (!eligible) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-10">
-        <div className="mb-6">
-          <button onClick={() => navigate(`/events/${event.id}`)} className="text-[#5F9C8D] underline">
-            ← Back to Event
-          </button>
-        </div>
-
-        <div className="rounded-2xl border border-[#7AB5A3]/40 bg-white p-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Post-Event Feedback</h1>
-          <p className="text-gray-600 mb-6">
-            This form unlocks after you RSVP and the event has ended.
-          </p>
-
-          <div className="space-y-3 text-gray-700">
-            <div>RSVP’d: <span className="font-semibold">{hasRsvp ? 'Yes' : 'No'}</span></div>
-            <div>Event ended: <span className="font-semibold">{isEventPast ? 'Yes' : 'Not yet'}</span></div>
-            <div>Already reviewed: <span className="font-semibold">{userReview ? 'Yes' : 'No'}</span></div>
+      <div className="min-h-screen pb-20 md:pb-0">
+        <Navbar />
+        <div className="max-w-4xl mx-auto px-4 py-10">
+          <div className="mb-6">
+            <button
+              onClick={() => navigate(`/events/${event.id}`)}
+              className="flex items-center gap-2 text-sage-600 hover:text-sage-700 font-medium transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Event
+            </button>
           </div>
 
-          {!hasRsvp && (
-            <div className="mt-6 text-sm text-gray-600">
-              RSVP first — then you can submit feedback after the event ends.
+          <div className="card p-8">
+            <div className="text-center mb-6">
+              <div className="text-6xl mb-4">🔒</div>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">Post-Event Feedback</h1>
+              <p className="text-gray-600">
+                This form unlocks after you RSVP and the event has ended.
+              </p>
             </div>
-          )}
 
-          {userReview && (
-            <div className="mt-6 text-sm text-gray-600">
-              You already submitted feedback for this event ✅
+            <div className="space-y-4 mb-6">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{hasRsvp ? '✅' : '❌'}</span>
+                  <span className="font-medium text-gray-700">RSVP Status</span>
+                </div>
+                <span className={`font-semibold ${hasRsvp ? 'text-green-600' : 'text-red-600'}`}>
+                  {hasRsvp ? 'Confirmed' : 'Not RSVP\'d'}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{isEventPast ? '✅' : '⏳'}</span>
+                  <span className="font-medium text-gray-700">Event Status</span>
+                </div>
+                <span className={`font-semibold ${isEventPast ? 'text-green-600' : 'text-orange-600'}`}>
+                  {isEventPast ? 'Ended' : 'Upcoming'}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{userReview ? '✅' : '⭐'}</span>
+                  <span className="font-medium text-gray-700">Review Status</span>
+                </div>
+                <span className={`font-semibold ${userReview ? 'text-green-600' : 'text-gray-600'}`}>
+                  {userReview ? 'Already Submitted' : 'Not Submitted'}
+                </span>
+              </div>
             </div>
+
+            {!hasRsvp && (
+              <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl mb-4">
+                <p className="text-sm text-blue-800">
+                  <strong>Next step:</strong> RSVP to this event first, then you can submit feedback after it ends.
+                </p>
+              </div>
+            )}
+
+            {hasRsvp && !isEventPast && (
+              <div className="p-4 bg-orange-50 border border-orange-200 rounded-xl mb-4">
+                <p className="text-sm text-orange-800">
+                  <strong>Almost there!</strong> This event hasn't ended yet. Come back after the event to leave your review.
+                </p>
+              </div>
+            )}
+
+            {userReview && (
+              <div className="p-4 bg-green-50 border border-green-200 rounded-xl mb-4">
+                <p className="text-sm text-green-800">
+                  <strong>Thank you!</strong> You already submitted feedback for this event. Your review helps our community grow.
+                </p>
+              </div>
+            )}
+
+            <div className="text-center">
+              <button
+                onClick={() => navigate(`/events/${event.id}`)}
+                className="btn-primary px-6 py-3"
+              >
+                Back to Event Details
+              </button>
+            </div>
+          </div>
+
+          {toast.show && (
+            <Toast
+              show={toast.show}
+              type={toast.type}
+              message={toast.message}
+              onClose={() => setToast(t => ({ ...t, show: false }))}
+            />
           )}
         </div>
-
-        {toast.show && (
-          <Toast
-            show={toast.show}
-            type={toast.type}
-            message={toast.message}
-            onClose={() => setToast(t => ({ ...t, show: false }))}
-          />
-        )}
       </div>
     )
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
+    <div className="min-h-screen pb-20 md:pb-0">
+      <Navbar />
+      <div className="max-w-4xl mx-auto px-4 py-10">
       <div className="mb-6 flex items-center justify-between">
         <button onClick={() => navigate(`/events/${event.id}`)} className="text-[#5F9C8D] underline">
           ← Back to Event
@@ -301,6 +378,7 @@ function PostEventPage() {
           onClose={() => setToast(t => ({ ...t, show: false }))}
         />
       )}
+      </div>
     </div>
   )
 }

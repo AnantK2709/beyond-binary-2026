@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { EventContext } from '../context/EventContext'
 import EventFilters from '../components/events/EventFilters'
 import EventsList from '../components/events/EventsList'
+import Navbar from '../components/components/common/Navbar'
 
 function EventsPage() {
   const navigate = useNavigate()
@@ -74,8 +75,38 @@ function EventsPage() {
       filtered = filtered.filter(e => new Date(e.date) <= endDate)
     }
 
-    // Sort by date (upcoming first)
-    filtered.sort((a, b) => new Date(a.date) - new Date(b.date))
+    // Sort events:
+    // 1. Future events first (sorted by date ascending)
+    // 2. Past events without reviews (sorted by date descending)
+    // 3. Past events with reviews at the bottom (sorted by date descending)
+    filtered.sort((a, b) => {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      const now = new Date()
+      const aIsPast = aDate < now
+      const bIsPast = bDate < now
+
+      // Check if events have reviews (from localStorage)
+      const reviews = JSON.parse(localStorage.getItem('event_reviews') || '{}')
+      const aHasReview = !!reviews[a.id]
+      const bHasReview = !!reviews[b.id]
+
+      // Both future - sort by date ascending (earliest first)
+      if (!aIsPast && !bIsPast) {
+        return aDate - bDate
+      }
+
+      // One future, one past - future comes first
+      if (!aIsPast && bIsPast) return -1
+      if (aIsPast && !bIsPast) return 1
+
+      // Both past - reviewed events go to the bottom
+      if (aHasReview && !bHasReview) return 1
+      if (!aHasReview && bHasReview) return -1
+
+      // Both past with same review status - sort by date descending (most recent first)
+      return bDate - aDate
+    })
 
     return filtered
   }
@@ -106,8 +137,10 @@ function EventsPage() {
   }
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen pb-20 md:pb-0">
+      <Navbar />
+      <div className="py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
         {/* Page Header */}
         <div className="mb-8">
           <div className="card p-8">
@@ -222,6 +255,7 @@ function EventsPage() {
             <span className="text-2xl">↑</span>
           </button>
         </div>
+      </div>
       </div>
     </div>
   )

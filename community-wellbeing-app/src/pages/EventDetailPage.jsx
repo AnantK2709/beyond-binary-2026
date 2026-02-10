@@ -156,7 +156,7 @@ const isEventPast = () => {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content - Left Column */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6 lg:max-h-[calc(100vh-12rem)] lg:overflow-y-auto lg:pr-4 scrollbar-thin scrollbar-thumb-sage-400 scrollbar-track-gray-100">
             {/* Hero Image Section */}
             <div className="card overflow-hidden p-0">
               <div className="relative h-96 bg-gradient-to-br from-sage-300/40 to-ocean-400/40">
@@ -204,21 +204,24 @@ const isEventPast = () => {
 
             {/* Review Button (if applicable) */}
             {shouldShowReviewButton() && (
-              <div className="card p-6 bg-gradient-to-r from-sage-400/20 to-ocean-400/20 border-2 border-sage-400/40">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">
-                      How was your experience?
-                    </h3>
-                    <p className="text-gray-600">
-                      Share your feedback and earn bonus points!
-                    </p>
+              <div className="card p-6 bg-gradient-to-r from-amber-400/20 to-orange-400/20 border-2 border-amber-400/50 animate-slide-up-fade">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex items-start gap-3">
+                    <span className="text-3xl">⭐</span>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">
+                        How was your experience?
+                      </h3>
+                      <p className="text-gray-600">
+                        Share your feedback and earn +50 bonus points!
+                      </p>
+                    </div>
                   </div>
                   <Link
                     to={`/events/${event.id}/post-event`}
-                    className="btn-primary px-6 py-3 whitespace-nowrap inline-block text-center"
+                    className="btn-primary px-8 py-4 whitespace-nowrap inline-block text-center font-bold shadow-lg hover:shadow-xl transition-all text-lg w-full sm:w-auto"
                   >
-                    Post-Event Feedback
+                    Leave a Review
                   </Link>
                 </div>
               </div>
@@ -357,7 +360,9 @@ const isEventPast = () => {
 
           {/* Sidebar - Right Column */}
           <div className="lg:col-span-1">
-            <EventDetailSidebar event={event} />
+            <div className="lg:sticky lg:top-24">
+              <EventDetailSidebar event={event} />
+            </div>
           </div>
         </div>
       </div>

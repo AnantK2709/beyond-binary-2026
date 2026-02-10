@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 import { eventService } from '../services/eventService'
 import EventCard from '../components/events/EventCard'
 import { formatEventDate, formatEventTime, isEventInPast } from '../utils/dateUtils'
+import Navbar from '../components/components/common/Navbar'
 
 function MyEventsPage() {
   const navigate = useNavigate()
@@ -53,12 +54,14 @@ function MyEventsPage() {
   const filteredEvents = getFilteredEvents()
 
   const handleLeaveReview = (eventId) => {
-    navigate(`/events/${eventId}?review=true`)
+    navigate(`/events/${eventId}/post-event`)
   }
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen pb-20 md:pb-0">
+      <Navbar />
+      <div className="py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
         {/* Page Header */}
         <div className="mb-8">
           <div className="card p-8 animate-slide-up-fade">
@@ -288,6 +291,7 @@ function MyEventsPage() {
             </button>
           </div>
         )}
+        </div>
       </div>
     </div>
   )

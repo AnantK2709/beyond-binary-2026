@@ -132,7 +132,7 @@ function LandingPage() {
               onClick={() => navigate('/signin')}
               className="btn-secondary text-xl px-12 py-5"
             >
-              Sign In
+              Sign In (Demo)
             </button>
           </div>
 

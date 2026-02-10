@@ -1,0 +1,170 @@
+[
+  {
+    "id": "org001",
+    "name": "Wellness Hub",
+    "description": "Leading provider of holistic wellness experiences in the city. We offer yoga, meditation, breathwork, sound healing, and journaling workshops focused on mental and physical wellbeing.",
+    "verified": true,
+    "verificationBadge": "gold",
+    "trustScore": 4.8,
+    "partnerSince": "2023-05",
+    "eventsHosted": 47,
+    "categories": ["wellness", "mindfulness", "yoga"],
+    "website": "https://wellnesshub.example.com",
+    "email": "hello@wellnesshub.example.com",
+    "phone": "(555) 123-4567",
+    "address": "123 Wellness Way, City, ST 12345",
+    "logoUrl": "/images/orgs/wellness-hub.png",
+    "socialMedia": {
+      "instagram": "@wellnesshub",
+      "facebook": "/wellnesshub",
+      "twitter": "@wellnesshub"
+    },
+    "certifications": [
+      "200-hour Yoga Alliance Certified",
+      "Certified Meditation Instructors",
+      "Licensed Wellness Practitioners"
+    ]
+  },
+  {
+    "id": "org002",
+    "name": "City Outdoor Adventures",
+    "description": "Your gateway to outdoor exploration! We organize hiking, trail running, kayaking, mountain biking, and other adventure activities for all skill levels. Safety first, fun always!",
+    "verified": true,
+    "verificationBadge": "silver",
+    "trustScore": 4.7,
+    "partnerSince": "2024-01",
+    "eventsHosted": 32,
+    "categories": ["outdoors", "hiking", "adventure", "water-sports"],
+    "website": "https://cityoutdoors.example.com",
+    "email": "adventures@cityoutdoors.example.com",
+    "phone": "(555) 234-5678",
+    "address": "456 Trail Road, City, ST 12345",
+    "logoUrl": "/images/orgs/city-outdoors.png",
+    "socialMedia": {
+      "instagram": "@cityoutdoors",
+      "facebook": "/cityoutdooradventures"
+    },
+    "certifications": [
+      "Wilderness First Aid Certified",
+      "Leave No Trace Trainers",
+      "Professional Outdoor Guides"
+    ]
+  },
+  {
+    "id": "org003",
+    "name": "Creative Minds Collective",
+    "description": "A community-driven arts organization fostering creativity through pottery, painting, photography, screenwriting, and poetry. We believe everyone is an artist!",
+    "verified": false,
+    "trustScore": 4.5,
+    "partnerSince": "2024-06",
+    "eventsHosted": 18,
+    "categories": ["arts", "creative", "workshops"],
+    "website": "https://creativeminds.example.com",
+    "email": "hello@creativeminds.example.com",
+    "phone": "(555) 345-6789",
+    "address": "789 Art Street, City, ST 12345",
+    "logoUrl": "/images/orgs/creative-minds.png",
+    "socialMedia": {
+      "instagram": "@creativemindscollective",
+      "facebook": "/creativemindscollective"
+    },
+    "certifications": []
+  },
+  {
+    "id": "org004",
+    "name": "Social Circle Events",
+    "description": "Bringing people together through wine tastings, book clubs, networking brunches, dance classes, potlucks, and storytelling circles. Building community one event at a time!",
+    "verified": false,
+    "trustScore": 4.4,
+    "partnerSince": "2024-03",
+    "eventsHosted": 12,
+    "categories": ["social", "networking", "food", "community"],
+    "website": "https://socialcircle.example.com",
+    "email": "events@socialcircle.example.com",
+    "phone": "(555) 456-7890",
+    "address": "321 Community Blvd, City, ST 12345",
+    "logoUrl": "/images/orgs/social-circle.png",
+    "socialMedia": {
+      "instagram": "@socialcircleevents",
+      "facebook": "/socialcircleevents",
+      "twitter": "@socialcircle"
+    },
+    "certifications": []
+  },
+  {
+    "id": "org005",
+    "name": "Culinary Connections",
+    "description": "Passionate about food and bringing people together through cooking! Our workshops cover cuisines from around the world, fermentation, and culinary techniques.",
+    "verified": true,
+    "verificationBadge": "gold",
+    "trustScore": 4.9,
+    "partnerSince": "2023-02",
+    "eventsHosted": 89,
+    "categories": ["cooking", "food", "workshops", "culinary"],
+    "website": "https://culinaryconnections.example.com",
+    "email": "classes@culinaryconnections.example.com",
+    "phone": "(555) 567-8901",
+    "address": "654 Kitchen Lane, City, ST 12345",
+    "logoUrl": "/images/orgs/culinary-connections.png",
+    "socialMedia": {
+      "instagram": "@culinaryconnections",
+      "facebook": "/culinaryconnections"
+    },
+    "certifications": [
+      "Professional Chef Instructors",
+      "Food Safety Certified",
+      "ServSafe Certified Kitchen"
+    ]
+  },
+  {
+    "id": "org006",
+    "name": "DIY Makers Guild",
+    "description": "Empowering people to create with their hands! Woodworking, metalworking, crafts, and maker skills taught in a safe, inclusive workshop environment.",
+    "verified": true,
+    "verificationBadge": "silver",
+    "trustScore": 4.7,
+    "partnerSince": "2023-11",
+    "eventsHosted": 28,
+    "categories": ["workshops", "diy", "crafts", "skills"],
+    "website": "https://diymakersguild.example.com",
+    "email": "make@diymakersguild.example.com",
+    "phone": "(555) 678-9012",
+    "address": "987 Maker Street, City, ST 12345",
+    "logoUrl": "/images/orgs/diy-makers.png",
+    "socialMedia": {
+      "instagram": "@diymakersguild",
+      "facebook": "/diymakersguild"
+    },
+    "certifications": [
+      "OSHA Safety Training",
+      "Power Tool Certified Instructors",
+      "First Aid/CPR Certified"
+    ]
+  },
+  {
+    "id": "org007",
+    "name": "City Sports League",
+    "description": "Making sports accessible and fun for everyone! Basketball, volleyball, ultimate frisbee, rock climbing, and bootcamp fitness. All skill levels welcome!",
+    "verified": true,
+    "verificationBadge": "silver",
+    "trustScore": 4.6,
+    "partnerSince": "2023-09",
+    "eventsHosted": 56,
+    "categories": ["sports", "fitness", "recreation", "team-sports"],
+    "website": "https://citysportsleague.example.com",
+    "email": "play@citysportsleague.example.com",
+    "phone": "(555) 789-0123",
+    "address": "147 Sports Complex, City, ST 12345",
+    "logoUrl": "/images/orgs/city-sports.png",
+    "socialMedia": {
+      "instagram": "@citysportsleague",
+      "facebook": "/citysportsleague",
+      "twitter": "@citysports"
+    },
+    "certifications": [
+      "Certified Personal Trainers",
+      "CPR/First Aid Certified",
+      "Sports Safety Certified"
+    ]
+  }
+]

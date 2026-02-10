@@ -1,40 +1,22 @@
-export const simulateVoiceRecording = async (duration = 3000) => {
+export const generateTranscript = async (recording) => {
   return new Promise((resolve) => {
+    // Simulate processing time
     setTimeout(() => {
       const transcriptions = [
-        {
-          text: "Today was a great day. I attended the morning yoga session and felt so energized afterwards. Meeting new people in the community has been wonderful.",
-          emotions: ['happy', 'energized', 'grateful'],
-          activities: ['yoga'],
-          interests: ['wellness', 'social']
-        },
-        {
-          text: "Had a tough week at work but the pottery class really helped me unwind. There's something therapeutic about working with clay.",
-          emotions: ['stressed', 'relaxed'],
-          activities: ['pottery'],
-          interests: ['creative', 'wellness']
-        },
-        {
-          text: "The trail run this morning was challenging but rewarding. I love being outdoors and pushing myself physically.",
-          emotions: ['accomplished', 'energized'],
-          activities: ['running'],
-          interests: ['fitness', 'outdoors']
-        }
-      ]
+        "Today was a great day. I attended the morning yoga session and felt so energized afterwards. Meeting new people in the community has been wonderful.",
+        "Had a tough week at work but the pottery class really helped me unwind. There's something therapeutic about working with clay.",
+        "The trail run this morning was challenging but rewarding. I love being outdoors and pushing myself physically."
+      ];
 
-      const randomTranscription = transcriptions[Math.floor(Math.random() * transcriptions.length)]
+      const randomTranscript = transcriptions[Math.floor(Math.random() * transcriptions.length)];
 
       resolve({
         success: true,
-        transcription: randomTranscription,
-        insights: [
-          "You seem to find peace in physical activities",
-          "Social connections appear to boost your mood"
-        ]
-      })
-    }, duration)
-  })
-}
+        transcript: randomTranscript
+      });
+    }, 100); // Simulated processing time
+  });
+};
 
 export const analyzeVoiceJournal = (transcription) => {
   const positiveWords = ['great', 'wonderful', 'love', 'energized', 'grateful', 'accomplished']

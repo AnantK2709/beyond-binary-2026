@@ -3,22 +3,16 @@ import "../../../styles/journal/TextJournalEntry.css"
 import { useState } from "react";
 
 function TextJournalEntry({ onSubmit, onStatusChange }) {
-  const [status, setStatus] = useState("new"); // "new" | "typing" | "submitted"
+  const [status, setStatus] = useState("new"); // "new" | "typing" | "saved"
   const [text, setText] = useState("");
 
   const handleChange = (e) => {
-    console.log("setting typing state")
     setText(e.target.value);
-    if (status !== "typing") {
-      setStatus("typing");
-      onStatusChange?.("typing");
-    }
   };
 
   const handleSubmit = () => {
-    setStatus("submitted");
-    onStatusChange?.("submitted");
-    console.log("setting submitted state")
+    setStatus("saved");
+    onStatusChange?.("saved");
     onSubmit(text);
   };
 
@@ -31,28 +25,31 @@ function TextJournalEntry({ onSubmit, onStatusChange }) {
   return (
     <div className="text-entry-card">
       <div className="text-entry-header">
-        <h3>Write your thoughts</h3>
+        <h3>{status === "saved" ? "Your entry has been saved" : "Write your thoughts"}</h3>
       </div>
 
       <textarea
         placeholder="Start writing here..."
         value={text}
         onChange={handleChange}
+        disabled={status === "saved"}
       />
 
-      <div className="text-entry-actions">
-        <button onClick={handleSubmit} disabled={!text.trim()}>
-          Analyze Entry
-        </button>
-
-        <button
-          type="button"
-          className="clear-button"
-          onClick={handleClear}
-          disabled={status === "new"}
-        >
-          Clear
-        </button>
+      <div className="action-buttons">
+        {status === "saved" ? (
+          <button className="btn-secondary" onClick={handleClear}>
+            Start New
+          </button>
+        ) : (
+          <>
+            <button className="btn-primary" onClick={handleSubmit}>
+              Save to Journal
+            </button>
+            <button className="btn-secondary" onClick={handleClear}>
+              Clear
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

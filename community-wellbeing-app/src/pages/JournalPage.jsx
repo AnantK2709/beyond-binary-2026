@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VoiceJournalRecorder from "../components/components/journal/VoiceJournalRecorder";
 import TextJournalEntry from "../components/components/journal/TextJournalEntry";
 import AIInsights from "../components/components/journal/AIInsights";
@@ -9,11 +9,35 @@ import "../styles/journal/journal.css";
 
 export default function JournalPage() {
   const [activeTab, setActiveTab] = useState("voice");
-  const [transcript, setTranscript] = useState("");
   const [recorderState, setRecorderState] = useState("new");
   const [textEntryState, setTextEntryState] = useState("new"); 
-
+  const [voiceTranscript, setVoiceTranscript] = useState("");
+  const [textContent, setTextContent] = useState("");
   const [insight, setInsight] = useState(null);
+
+  useEffect(() => {
+    const isSaved = recorderState === "saved" || textEntryState === "saved";
+    if (!isSaved) return;
+
+    const content = recorderState === "saved" ? voiceTranscript : textContent;
+    if (!content) return;
+
+    (async () => {
+      const result = await analyzeEntry(content);
+      setInsight(result);
+    })();
+  }, [recorderState, textEntryState, voiceTranscript, textContent]);
+
+  async function analyzeEntry(text) {
+    // later: call backend / OpenAI / service
+    return {
+      emotions: ["stressed", "relief"],
+      activities: ["running"],
+      recommendations: [
+        { title: "Beginner Pottery Workshop", time: "Sunday 2:00 PM" }
+      ]
+    };
+  }
 
   return (
     <div className="container">
@@ -35,32 +59,27 @@ export default function JournalPage() {
           </button>
         ))}
       </div>
+      <div style={{ display: activeTab === "voice" ? "block" : "none" }}>
+        <VoiceJournalRecorder
+          onTranscript={setVoiceTranscript}
+          onStatusChange={setRecorderState}
+        />
 
-      {activeTab === "voice" && (
-        <>
-          <VoiceJournalRecorder
-            onComplete={setTranscript}
-            onStatusChange={setRecorderState}
-          />
+        {recorderState === "saved" && insight && (
+          <AIInsights insight={insight} />
+        )}
+      </div>
 
-          {recorderState === "complete" && transcript && (
-            <AIInsights transcript={transcript} />
-          )}
-        </>
-      )}
+      <div style={{ display: activeTab === "text" ? "block" : "none" }}>
+        <TextJournalEntry
+          onSubmit={setTextContent}
+          onStatusChange={setTextEntryState}
+        />
 
-      {activeTab === "text" && (
-        <>
-          <TextJournalEntry
-            onSubmit={setTranscript}
-            onStatusChange={setTextEntryState}
-          />
-
-          {textEntryState === "submitted" && transcript && (
-            <AIInsights transcript={transcript} />
-          )}
-        </>
-      )}
+        {textEntryState === "saved" && insight && (
+          <AIInsights insight={insight} />
+        )}
+      </div>
 
       {activeTab === "past" && <JournalEntriesList />}
     </div>

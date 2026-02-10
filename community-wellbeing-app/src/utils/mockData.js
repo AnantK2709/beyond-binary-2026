@@ -1,12 +1,168 @@
+// ============================================
+// USERS - For Authentication & Onboarding Demo
+// ============================================
+
+export const MOCK_USERS = [
+  {
+    id: 'u001',
+    email: 'sarah.chen@email.com',
+    password: 'password123',
+    name: 'Sarah Chen',
+    age: 28,
+    ageRange: '26-35',
+    location: 'Singapore',
+    pronouns: 'she/her',
+    personalityType: 'ambivert',
+    bio: "Tech professional looking to balance work stress with mindful activities. Love yoga, reading, and meeting creative people.",
+    interests: ['mental health', 'yoga', 'reading', 'tech', 'meditation'],
+    activityPreferences: {
+      outdoors: true,
+      indoors: true,
+      virtual: true,
+      active: true,
+      creative: false,
+      intellectual: true,
+    },
+    interactionPreferences: {
+      energyLevel: 'moderate',
+      groupSize: 'small',
+      conversationDepth: 'meaningful',
+    },
+    preferredModes: ['virtual', 'in-person'],
+    timePreferences: {
+      preferredDays: ['monday', 'wednesday', 'thursday', 'saturday'],
+      preferredTimes: ['evening'],
+      frequency: '1-2 times a week',
+    },
+    goals: ['make friends', 'manage stress', 'build support network'],
+    currentStreak: 12,
+    totalPoints: 450,
+    level: 3,
+    joinedCircles: [
+      { id: 'c002', name: 'Wellness Warriors', role: 'member' },
+      { id: 'c001', name: 'Outdoor Enthusiasts', role: 'member' },
+    ],
+    attendedEvents: ['e001', 'e004'],
+    moodHistory: [
+      { date: '2026-02-09', score: 4, state: 'calm' },
+      { date: '2026-02-08', score: 3, state: 'seeking_connection' },
+      { date: '2026-02-07', score: 2, state: 'anxious' },
+      { date: '2026-02-06', score: 4, state: 'calm' },
+      { date: '2026-02-05', score: 3, state: 'reflective' },
+    ],
+    created_at: '2026-01-25T10:00:00Z',
+  },
+  {
+    id: 'u002',
+    email: 'marcus.johnson@email.com',
+    password: 'password123',
+    name: 'Marcus Johnson',
+    age: 42,
+    ageRange: '36-45',
+    location: 'Singapore',
+    pronouns: 'he/him',
+    personalityType: 'introvert',
+    bio: "Father of two, recently moved to Singapore. Passionate about photography and nature. Looking for authentic connections.",
+    interests: ['photography', 'nature', 'parenting', 'hiking', 'coffee'],
+    activityPreferences: {
+      outdoors: true,
+      indoors: false,
+      virtual: false,
+      active: true,
+      creative: true,
+      intellectual: true,
+    },
+    interactionPreferences: {
+      energyLevel: 'low-key',
+      groupSize: 'intimate',
+      conversationDepth: 'deep',
+    },
+    preferredModes: ['in-person', 'walk-talk'],
+    timePreferences: {
+      preferredDays: ['saturday', 'sunday'],
+      preferredTimes: ['morning', 'afternoon'],
+      frequency: 'once a week',
+    },
+    goals: ['make friends', 'find activity partners', 'combat loneliness'],
+    currentStreak: 7,
+    totalPoints: 280,
+    level: 2,
+    joinedCircles: [
+      { id: 'c001', name: 'Outdoor Enthusiasts', role: 'member' },
+      { id: 'c003', name: 'Creative Souls', role: 'organizer' },
+    ],
+    attendedEvents: ['e003'],
+    moodHistory: [
+      { date: '2026-02-09', score: 4, state: 'reflective' },
+      { date: '2026-02-08', score: 4, state: 'calm' },
+      { date: '2026-02-07', score: 3, state: 'calm' },
+    ],
+    created_at: '2026-02-01T14:30:00Z',
+  },
+  {
+    id: 'u003',
+    email: 'priya.kumar@email.com',
+    password: 'password123',
+    name: 'Priya Kumar',
+    age: 24,
+    ageRange: '18-25',
+    location: 'Singapore',
+    pronouns: 'she/her',
+    personalityType: 'extrovert',
+    bio: "Recent grad navigating adulting! Love fitness, trying new restaurants, and making spontaneous plans. Always up for an adventure!",
+    interests: ['fitness', 'food', 'travel', 'music', 'social events', 'mental health'],
+    activityPreferences: {
+      outdoors: true,
+      indoors: true,
+      virtual: true,
+      active: true,
+      creative: true,
+      intellectual: false,
+    },
+    interactionPreferences: {
+      energyLevel: 'high-energy',
+      groupSize: 'medium',
+      conversationDepth: 'casual',
+    },
+    preferredModes: ['in-person', 'virtual'],
+    timePreferences: {
+      preferredDays: ['tuesday', 'thursday', 'friday', 'saturday'],
+      preferredTimes: ['evening'],
+      frequency: '2+ times a week',
+    },
+    goals: ['make friends', 'find activity partners', 'professional networking'],
+    currentStreak: 18,
+    totalPoints: 620,
+    level: 4,
+    joinedCircles: [
+      { id: 'c002', name: 'Wellness Warriors', role: 'member' },
+      { id: 'c001', name: 'Outdoor Enthusiasts', role: 'member' },
+    ],
+    attendedEvents: ['e001', 'e003', 'e004'],
+    moodHistory: [
+      { date: '2026-02-09', score: 5, state: 'joyful' },
+      { date: '2026-02-08', score: 4, state: 'energetic' },
+      { date: '2026-02-07', score: 5, state: 'joyful' },
+      { date: '2026-02-06', score: 4, state: 'energetic' },
+    ],
+    created_at: '2026-01-15T09:00:00Z',
+  },
+];
+
+// ============================================
+// EVENTS - Your existing events (kept as is)
+// ============================================
+
 export const MOCK_EVENTS = [
   {
     id: 'e001',
     title: 'Morning Yoga in the Park',
     description: 'Start your day with mindfulness and movement in the tranquil surroundings of Central Park. Perfect for all skill levels.',
+    fullDescription: 'Join us for an invigorating morning yoga session in the heart of Central Park. Our experienced instructors will guide you through a series of poses designed to awaken your body and center your mind. Whether you\'re a beginner or an experienced yogi, you\'ll find this session both challenging and restorative. The outdoor setting provides a perfect backdrop for connecting with nature while deepening your practice. We\'ll focus on breath work, gentle stretches, and building strength through foundational poses.',
     category: 'wellness',
     type: 'outdoors',
     ageGroup: '18-35',
-    date: '2026-02-15',
+    date: '2025-02-15',
     time: '08:00',
     duration: 90,
     location: 'Central Park',
@@ -19,16 +175,25 @@ export const MOCK_EVENTS = [
       verified: true,
       verificationBadge: 'gold'
     },
-    imageUrl: '/images/events/yoga-park.jpg'
+    imageUrl: '/images/events/yoga-park.jpg',
+    tags: ['yoga', 'mindfulness', 'outdoor', 'morning', 'fitness', 'wellness'],
+    whatToBring: [
+      'Yoga mat (rentals available)',
+      'Water bottle',
+      'Comfortable workout clothing',
+      'Sunscreen',
+      'Towel (optional)'
+    ]
   },
   {
     id: 'e002',
     title: 'Pottery Workshop: Mindful Creation',
     description: 'Explore your creativity through clay. Learn pottery basics while practicing mindfulness and relaxation.',
+    fullDescription: 'Discover the therapeutic art of pottery in this hands-on workshop designed for beginners. You\'ll learn the fundamentals of working with clay, including centering, shaping, and glazing techniques. This workshop combines creativity with mindfulness, allowing you to focus on the present moment while crafting beautiful, functional pieces. Our expert instructors will guide you through each step of the process, from wedging clay to creating your first bowl or vase. All materials are provided, and you\'ll take home your finished creations after they\'ve been fired and glazed.',
     category: 'creative',
     type: 'indoors',
     ageGroup: '25-45',
-    date: '2026-02-16',
+    date: '2025-02-16',
     time: '14:00',
     duration: 120,
     location: 'Creative Minds Studio',
@@ -41,12 +206,20 @@ export const MOCK_EVENTS = [
       verified: true,
       verificationBadge: 'gold'
     },
-    imageUrl: '/images/events/pottery-workshop.jpg'
+    imageUrl: '/images/events/pottery-workshop.jpg',
+    tags: ['pottery', 'art', 'creative', 'mindfulness', 'crafts', 'beginner-friendly'],
+    whatToBring: [
+      'Apron or old clothes (clay can be messy)',
+      'Small towel',
+      'Enthusiasm and creativity!',
+      'Note: All pottery materials and tools provided'
+    ]
   },
   {
     id: 'e003',
     title: 'Community Trail Run',
     description: 'Join fellow runners for an energizing trail run. All paces welcome!',
+    fullDescription: 'Lace up your running shoes and hit the trails with our supportive community of runners! This weekly trail run welcomes participants of all fitness levels and paces. We\'ll explore scenic mountain trails while building endurance and connecting with nature. Our experienced run leaders will guide the group and ensure everyone stays together at key points along the route. The trail features moderate elevation gain and stunning views, making it perfect for those looking to take their running off the pavement and into nature. Post-run refreshments and socializing included!',
     category: 'fitness',
     type: 'outdoors',
     ageGroup: '18-55',
@@ -63,12 +236,21 @@ export const MOCK_EVENTS = [
       verified: true,
       verificationBadge: 'gold'
     },
-    imageUrl: '/images/events/trail-run.jpg'
+    imageUrl: '/images/events/trail-run.jpg',
+    tags: ['running', 'fitness', 'outdoor', 'community', 'nature', 'cardio'],
+    whatToBring: [
+      'Trail running shoes or athletic shoes with good grip',
+      'Water bottle or hydration pack',
+      'Sunscreen and hat',
+      'Light snack for after the run',
+      'Phone for emergencies'
+    ]
   },
   {
     id: 'e004',
     title: 'Evening Meditation Circle',
     description: 'Wind down your day with guided meditation and breathing exercises in a peaceful setting.',
+    fullDescription: 'End your day on a peaceful note with our guided meditation circle. This gentle evening practice is designed to help you release the stress and tension accumulated throughout the day. Our certified meditation instructor will lead you through various mindfulness techniques, including breath awareness, body scanning, and loving-kindness meditation. The session takes place in our serene meditation room, complete with cushions, soft lighting, and calming music. Whether you\'re new to meditation or have an established practice, this circle provides a supportive space for inner peace and reflection. Perfect for anyone looking to improve sleep quality, reduce anxiety, or simply find moments of calm in their busy lives.',
     category: 'wellness',
     type: 'indoors',
     ageGroup: '25-65',
@@ -85,9 +267,40 @@ export const MOCK_EVENTS = [
       verified: true,
       verificationBadge: 'gold'
     },
-    imageUrl: '/images/events/meditation.jpg'
+    imageUrl: '/images/events/meditation.jpg',
+    tags: ['meditation', 'mindfulness', 'wellness', 'relaxation', 'evening', 'stress-relief'],
+    whatToBring: [
+      'Comfortable clothing',
+      'Light shawl or blanket (optional)',
+      'Water bottle',
+      'Open mind and willingness to relax',
+      'Note: Meditation cushions provided'
+    ]
   }
-]
+];
+
+// ============================================
+// CIRCLES - Simplified for dashboard (combines with events)
+// ============================================
+
+export const MOCK_CIRCLES = MOCK_EVENTS.map(event => ({
+  id: event.id,
+  name: event.title,
+  description: event.description,
+  mode: event.type === 'outdoors' || event.type === 'indoors' ? 'in-person' : 'virtual',
+  location: event.location,
+  scheduledTime: `${event.date}T${event.time}:00Z`,
+  recurring: true,
+  maxParticipants: event.maxParticipants,
+  currentParticipants: event.participants,
+  tags: event.tags || [],
+  isVerified: event.organizer?.verified || false,
+  matchScore: event.matchScore || 70,
+}));
+
+// ============================================
+// COMMUNITIES - Your existing (kept as is)
+// ============================================
 
 export const MOCK_COMMUNITIES = [
   {
@@ -116,7 +329,11 @@ export const MOCK_COMMUNITIES = [
     interests: ['creative', 'art', 'crafts'],
     verified: false
   }
-]
+];
+
+// ============================================
+// ORGANIZATIONS - Your existing (kept as is)
+// ============================================
 
 export const MOCK_ORGANIZATIONS = [
   {
@@ -139,32 +356,48 @@ export const MOCK_ORGANIZATIONS = [
     description: 'Community-focused creative workshops and art experiences',
     logoUrl: '/images/organizations/creative-minds-logo.png'
   }
-]
+];
+
+// ============================================
+// CHAT MESSAGES - Your existing (kept as is)
+// ============================================
 
 export const MOCK_CHAT_MESSAGES = [
   {
     id: 'msg001',
     communityId: 'c001',
-    userId: 'u456',
-    userName: 'Alex Johnson',
+    userId: 'u002',
+    userName: 'Marcus Johnson',
     text: 'Hey everyone! Who\'s up for the morning hike this Saturday?',
     timestamp: '2026-02-10T09:30:00Z'
   },
   {
     id: 'msg002',
     communityId: 'c001',
-    userId: 'u789',
-    userName: 'Maria Garcia',
+    userId: 'u003',
+    userName: 'Priya Kumar',
     text: 'I\'m in! What time are we meeting?',
     timestamp: '2026-02-10T09:35:00Z'
+  },
+  {
+    id: 'msg003',
+    communityId: 'c001',
+    userId: 'u001',
+    userName: 'Sarah Chen',
+    text: '7 AM at the trail head? I can bring some snacks!',
+    timestamp: '2026-02-10T09:40:00Z'
   }
-]
+];
+
+// ============================================
+// RECOMMENDATIONS - Updated with real user references
+// ============================================
 
 export const MOCK_RECOMMENDATIONS = [
   {
     id: 'rec001',
     type: 'event',
-    title: 'Sunrise Yoga Session',
+    title: 'Morning Yoga in the Park',
     reason: 'Based on your interest in wellness and morning activities',
     confidence: 0.92,
     targetId: 'e001'
@@ -172,12 +405,24 @@ export const MOCK_RECOMMENDATIONS = [
   {
     id: 'rec002',
     type: 'person',
-    name: 'Jamie Lee',
+    name: 'Marcus Johnson',
     reason: 'Shares your interests in outdoor activities and photography',
     confidence: 0.87,
-    targetId: 'u555'
+    targetId: 'u002'
+  },
+  {
+    id: 'rec003',
+    type: 'community',
+    title: 'Wellness Warriors',
+    reason: 'Perfect match for your wellness journey',
+    confidence: 0.91,
+    targetId: 'c002'
   }
-]
+];
+
+// ============================================
+// MONTHLY REPORTS - Your existing (kept as is)
+// ============================================
 
 export const MOCK_MONTHLY_REPORTS = [
   {
@@ -199,7 +444,11 @@ export const MOCK_MONTHLY_REPORTS = [
       'Connect with the Creative Souls community'
     ]
   }
-]
+];
+
+// ============================================
+// VOICE TRANSCRIPTIONS - Your existing (kept as is)
+// ============================================
 
 export const MOCK_VOICE_TRANSCRIPTIONS = [
   {
@@ -209,4 +458,78 @@ export const MOCK_VOICE_TRANSCRIPTIONS = [
     activities: ['running'],
     interests: ['fitness', 'wellness']
   }
-]
+];
+
+// ============================================
+// COMMUNITY POSTS - Added for social feed
+// ============================================
+
+export const MOCK_POSTS = [
+  {
+    id: 'post001',
+    authorId: 'u003',
+    authorName: 'Priya Kumar',
+    type: 'milestone',
+    content: 'Just completed my 10th circle session! 🎉 This community has changed my life.',
+    reactions: { heart: 42, celebrate: 18 },
+    comments: [
+      { userId: 'u001', userName: 'Sarah Chen', text: 'So proud of you! 🎉' },
+      { userId: 'u002', userName: 'Marcus Johnson', text: "You've come so far!" },
+    ],
+    timestamp: '2026-02-09T14:00:00Z',
+  },
+  {
+    id: 'post002',
+    authorId: 'u001',
+    authorName: 'Sarah Chen',
+    type: 'reflection',
+    content: 'The morning yoga session was exactly what I needed. Feeling so centered! 🧘‍♀️',
+    reactions: { heart: 28, celebrate: 12 },
+    comments: [],
+    timestamp: '2026-02-08T10:30:00Z',
+  }
+];
+
+// ============================================
+// ONBOARDING CONSTANTS - For my components
+// ============================================
+
+export const MOCK_MOOD_STATES = [
+  { value: 'anxious', label: 'Anxious', emoji: '😰' },
+  { value: 'calm', label: 'Calm', emoji: '😌' },
+  { value: 'energetic', label: 'Energetic', emoji: '⚡' },
+  { value: 'seeking_connection', label: 'Seeking Connection', emoji: '🤗' },
+  { value: 'reflective', label: 'Reflective', emoji: '🤔' },
+  { value: 'joyful', label: 'Joyful', emoji: '😊' },
+  { value: 'stressed', label: 'Stressed', emoji: '😣' },
+  { value: 'sad', label: 'Sad', emoji: '😢' },
+  { value: 'overwhelmed', label: 'Overwhelmed', emoji: '😵' },
+];
+
+export const INTEREST_OPTIONS = [
+  { value: 'mental health', label: 'Mental Health', icon: '🧠' },
+  { value: 'fitness', label: 'Fitness', icon: '💪' },
+  { value: 'yoga', label: 'Yoga', icon: '🧘' },
+  { value: 'meditation', label: 'Meditation', icon: '🕉️' },
+  { value: 'reading', label: 'Reading', icon: '📚' },
+  { value: 'hiking', label: 'Hiking', icon: '🥾' },
+  { value: 'photography', label: 'Photography', icon: '📷' },
+  { value: 'cooking', label: 'Cooking', icon: '🍳' },
+  { value: 'music', label: 'Music', icon: '🎵' },
+  { value: 'art', label: 'Art', icon: '🎨' },
+  { value: 'tech', label: 'Tech', icon: '💻' },
+  { value: 'gaming', label: 'Gaming', icon: '🎮' },
+  { value: 'food', label: 'Food', icon: '🍔' },
+  { value: 'travel', label: 'Travel', icon: '✈️' },
+  { value: 'nature', label: 'Nature', icon: '🌿' },
+  { value: 'parenting', label: 'Parenting', icon: '👶' },
+];
+
+export const ACTIVITY_TYPES = [
+  { value: 'outdoors', label: 'Outdoors', icon: '🌳', description: 'Parks, hiking, nature' },
+  { value: 'indoors', label: 'Indoors', icon: '🏠', description: 'Cafes, studios, homes' },
+  { value: 'virtual', label: 'Virtual', icon: '💻', description: 'Video calls, online' },
+  { value: 'active', label: 'Active', icon: '🏃', description: 'Sports, exercise' },
+  { value: 'creative', label: 'Creative', icon: '🎨', description: 'Art, music, crafts' },
+  { value: 'intellectual', label: 'Intellectual', icon: '📚', description: 'Learning, discussions' },
+];

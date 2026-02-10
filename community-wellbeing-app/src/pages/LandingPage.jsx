@@ -1,62 +1,91 @@
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
-import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useEffect, useRef } from 'react';
 
 function LandingPage() {
-  const navigate = useNavigate()
-  const { user } = useAuth()
-  const scrollContainerRef = useRef(null)
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const scrollContainerRef = useRef(null);
 
-  if (user) {
-    navigate('/dashboard')
-    return null
-  }
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     // Parallax effect on scroll
     const handleScroll = () => {
-      const scrolled = window.scrollY
-      const parallaxElements = document.querySelectorAll('.parallax')
+      const scrolled = window.scrollY;
+      const parallaxElements = document.querySelectorAll('.parallax');
       parallaxElements.forEach((el, index) => {
-        const speed = (index + 1) * 0.5
-        el.style.transform = `translateY(${scrolled * speed * 0.1}px)`
-      })
-    }
+        const speed = (index + 1) * 0.5;
+        el.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+      });
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const features = [
     {
-      icon: '🎯',
-      title: 'Discover Events',
-      description: 'Find wellness events, workshops, and activities that match your interests',
+      icon: '🎤',
+      title: 'Voice Journaling',
+      description: 'Express yourself naturally. Our AI analyzes your reflections and suggests personalized events.',
       color: 'from-sage-400/20 to-sage-600/20',
-      delay: '0s'
+      delay: '0s',
+      isNew: true,
     },
     {
-      icon: '👥',
-      title: 'Build Connections',
-      description: 'Join communities of like-minded individuals on similar wellness journeys',
+      icon: '✓',
+      title: 'Verified Events',
+      description: 'Join activities organized by trusted partners. Every event is vetted for safety and quality.',
       color: 'from-ocean-400/20 to-ocean-600/20',
-      delay: '0.2s'
+      delay: '0.2s',
+      isNew: false,
     },
     {
-      icon: '📈',
-      title: 'Track Progress',
-      description: 'Monitor your wellbeing journey with insights, achievements, and monthly reports',
+      icon: '🤖',
+      title: 'AI Recommendations',
+      description: 'Get personalized suggestions based on your interests, mood, and behavior patterns.',
       color: 'from-calm-400/20 to-calm-600/20',
-      delay: '0.4s'
+      delay: '0.4s',
+      isNew: true,
     },
     {
-      icon: '🌟',
-      title: 'Earn Rewards',
-      description: 'Get recognized for your participation and growth in the community',
+      icon: '💬',
+      title: 'Real-Time Chat',
+      description: 'Connect instantly with community members. Organize events and build relationships.',
       color: 'from-sage-500/20 to-ocean-500/20',
-      delay: '0.6s'
-    }
-  ]
+      delay: '0.6s',
+      isNew: true,
+    },
+    {
+      icon: '🎮',
+      title: 'Gamified Journey',
+      description: 'Earn points, unlock badges, and level up as you attend events and build connections.',
+      color: 'from-ocean-500/20 to-calm-500/20',
+      delay: '0.8s',
+      isNew: false,
+    },
+    {
+      icon: '📊',
+      title: 'Monthly Reports',
+      description: 'Track your emotional journey and social growth with personalized insights.',
+      color: 'from-calm-500/20 to-sage-500/20',
+      delay: '1s',
+      isNew: true,
+    },
+  ];
+
+  const stats = [
+    { value: '35%', label: 'Average Mood Improvement' },
+    { value: '88%', label: 'Recommendation Accuracy' },
+    { value: '4.8/5', label: 'User Trust Score' },
+    { value: '78%', label: 'Circle Retention Rate' },
+  ];
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -73,37 +102,37 @@ function LandingPage() {
         <div className="relative z-10 text-center max-w-5xl mx-auto">
           {/* Animated Icon Cluster */}
           <div className="mb-12 relative h-32 flex items-center justify-center">
-            <span className="absolute text-7xl animate-float inline-block" style={{ animationDelay: '0s' }}>🌿</span>
+            <span className="absolute text-7xl animate-float inline-block" style={{ animationDelay: '0s' }}>🌸</span>
             <span className="absolute text-5xl animate-float inline-block opacity-60" style={{ left: '-60px', top: '20px', animationDelay: '0.5s' }}>✨</span>
             <span className="absolute text-5xl animate-float inline-block opacity-60" style={{ right: '-60px', top: '20px', animationDelay: '1s' }}>💚</span>
           </div>
 
           <h1 className="text-6xl md:text-8xl font-bold mb-8 animate-scale-in">
-            <span className="text-gradient block">Community</span>
-            <span className="text-gradient block mt-2">Wellbeing</span>
+            <span className="text-gradient block">Your Journey to</span>
+            <span className="text-gradient block mt-2">Meaningful Connections</span>
           </h1>
 
           <p className="text-2xl md:text-3xl mb-16 animate-slide-up-fade font-light" style={{ animationDelay: '0.2s', color: 'rgba(60, 102, 89, 0.8)' }}>
-            Connect, grow, and thrive through
+            Reduce isolation and foster well-being through
             <br />
-            <span className="text-gradient font-semibold">meaningful community experiences</span>
+            <span className="text-gradient font-semibold">mood-adaptive matching and personalized circles</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up-fade items-center" style={{ animationDelay: '0.4s' }}>
             <button
-              onClick={() => navigate('/onboarding')}
+              onClick={() => navigate('/signup')}
               className="btn-primary text-xl px-12 py-5 group"
             >
               <span className="flex items-center gap-3">
-                Get Started
+                Get Started Free
                 <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
               </span>
             </button>
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/signin')}
               className="btn-secondary text-xl px-12 py-5"
             >
-              Sign In
+              Sign In (Demo)
             </button>
           </div>
 
@@ -144,7 +173,7 @@ function LandingPage() {
               className="flex-shrink-0 w-[350px] md:w-[420px] snap-center group"
               style={{ animationDelay: feature.delay }}
             >
-              {/* Unique Feature Display - Not a Card! */}
+              {/* Unique Feature Display */}
               <div className="relative h-[500px] perspective-1000">
                 {/* Background Glow */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-[3rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
@@ -160,6 +189,13 @@ function LandingPage() {
                 >
                   {/* Animated Top Border */}
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-60"></div>
+
+                  {/* NEW Badge */}
+                  {feature.isNew && (
+                    <div className="absolute top-6 right-6">
+                      <span className="badge-new text-xs px-3 py-1">NEW</span>
+                    </div>
+                  )}
 
                   {/* Icon with animated ring */}
                   <div className="relative mb-8 flex justify-center">
@@ -215,23 +251,53 @@ function LandingPage() {
         </div>
       </div>
 
+      {/* Stats Section */}
+      <section className="py-20 px-4 relative">
+        <div className="max-w-6xl mx-auto">
+          <div className="card p-12">
+            <h2 className="text-4xl font-bold text-center mb-12 text-gradient">
+              Trusted by Thousands
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {stats.map((stat, index) => (
+                <div key={index} className="animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <h3 className="text-5xl font-extrabold text-gradient mb-2">
+                    {stat.value}
+                  </h3>
+                  <p className="text-gray-600 text-lg">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Bottom CTA Section */}
       <div className="py-32 px-4 text-center relative">
         <div className="max-w-4xl mx-auto animate-slide-up-fade">
           <h2 className="text-5xl md:text-6xl font-bold mb-8">
-            <span className="text-gradient">Ready to Begin?</span>
+            <span className="text-gradient">Ready to Begin Your Journey?</span>
           </h2>
           <p className="text-2xl mb-12 text-gray-600">
-            Join thousands thriving in their wellness journey
+            Join thousands finding meaningful connections through MindfulCircles
           </p>
           <button
-            onClick={() => navigate('/onboarding')}
+            onClick={() => navigate('/signup')}
             className="btn-primary text-xl px-16 py-6 animate-glow-pulse"
           >
-            Start Your Journey
+            Start Your Journey Today
           </button>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 text-center relative">
+        <div className="card py-6">
+          <p className="text-gray-600">
+            &copy; 2026 MindfulCircles. Building support networks, one circle at a time.
+          </p>
+        </div>
+      </footer>
 
       <style jsx>{`
         .hide-scrollbar::-webkit-scrollbar {
@@ -242,7 +308,7 @@ function LandingPage() {
         }
       `}</style>
     </div>
-  )
+  );
 }
 
-export default LandingPage
+export default LandingPage;

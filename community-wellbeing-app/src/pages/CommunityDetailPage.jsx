@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { communityService } from '../services/communityService'
+import Navbar from '../components/components/common/Navbar'
 import GroupChat from '../components/components/communities/GroupChat'
 import CommunityDetail from '../components/components/communities/CommunityDetail'
 import CommunityEvents from '../components/components/communities/CommunityEvents'
@@ -56,8 +57,10 @@ function CommunityDetailPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-50 to-ocean-50 py-8 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-sage-50 to-ocean-50">
+      <Navbar />
+      <div className="py-8 px-4">
+        <div className="max-w-7xl mx-auto">
         {/* Community Header */}
         <div className="bg-white rounded-lg shadow-sm border border-sage-200 p-6 mb-6">
           <div className="flex items-start justify-between">
@@ -109,6 +112,7 @@ function CommunityDetailPage() {
             {activeTab === 'events' && <CommunityEvents communityId={id} />}
             {activeTab === 'members' && <CommunityMembers communityId={id} />}
           </div>
+        </div>
         </div>
       </div>
     </div>

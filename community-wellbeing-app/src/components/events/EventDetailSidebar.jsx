@@ -1,10 +1,18 @@
 import { useContext, useState } from 'react'
 import { EventContext } from '../../context/EventContext'
+import { eventService } from '../../services/eventService'
+import Toast from '../common/Toast'
 
 function EventDetailSidebar({ event }) {
   const { rsvpEvent, cancelRsvp, isRsvped } = useContext(EventContext)
   const [isLoading, setIsLoading] = useState(false)
+  const [toast, setToast] = useState({ show: false, type: 'info', message: '' })
   const hasRsvped = isRsvped(event.id)
+
+  const showToast = (type, message) => {
+    setToast({ show: true, type, message })
+    setTimeout(() => setToast(t => ({ ...t, show: false })), 3000)
+  }
 
   const handleRsvp = async () => {
     setIsLoading(true)
@@ -12,16 +20,22 @@ function EventDetailSidebar({ event }) {
       if (hasRsvped) {
         const result = await cancelRsvp(event.id)
         if (result.success) {
-          console.log('RSVP cancelled')
+          showToast('success', 'RSVP cancelled successfully')
         }
       } else {
         const result = await rsvpEvent(event.id)
         if (result.success) {
-          console.log('RSVP successful')
+          showToast('success', 'RSVP successful! Calendar file downloaded.')
+
+          // Download ICS calendar file
+          setTimeout(() => {
+            eventService.downloadICS(event)
+          }, 500)
         }
       }
     } catch (error) {
       console.error('RSVP error:', error)
+      showToast('error', error.message || 'Failed to process RSVP')
     } finally {
       setIsLoading(false)
     }
@@ -299,6 +313,16 @@ function EventDetailSidebar({ event }) {
           </button>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {toast.show && (
+        <Toast
+          show={toast.show}
+          type={toast.type}
+          message={toast.message}
+          onClose={() => setToast(t => ({ ...t, show: false }))}
+        />
+      )}
     </div>
   )
 }

@@ -42,7 +42,12 @@ function EventCard({ event }) {
       } else {
         const result = await rsvpEvent(event.id)
         if (result.success) {
-          console.log('RSVP successful')
+          console.log('RSVP successful - downloading calendar file')
+
+          // Download ICS calendar file
+          setTimeout(() => {
+            eventService.downloadICS(event)
+          }, 500)
         }
       }
     } catch (error) {

@@ -12,6 +12,7 @@ export default function Navbar() {
   const navItems = [
     { path: '/dashboard', label: 'Home', icon: '🏠' },
     { path: '/events', label: 'Events', icon: '🗓️' },
+    { path: '/momentum', label: 'Momentum', icon: '🚀' },
     { path: '/communities', label: 'Communities', icon: '👥' },
     { path: '/journal', label: 'Journal', icon: '📔' },
     { path: '/profile', label: 'Profile', icon: '👤' },

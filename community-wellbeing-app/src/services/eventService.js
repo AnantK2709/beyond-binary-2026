@@ -7,6 +7,78 @@ import { MOCK_EVENTS } from '../utils/mockData'
 const API_BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5001'
 
 /**
+ * Generate ICS calendar file content
+ * @param {Object} event - Event data
+ * @returns {string} ICS file content
+ */
+const generateICS = (event) => {
+  const formatICSDate = (dateStr, timeStr) => {
+    const date = new Date(`${dateStr}T${timeStr}:00`)
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+  }
+
+  const startDateTime = formatICSDate(event.date, event.time)
+
+  // Calculate end time (add duration in minutes)
+  const endDate = new Date(`${event.date}T${event.time}:00`)
+  endDate.setMinutes(endDate.getMinutes() + (event.duration || 60))
+  const endDateTime = endDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+
+  // Escape special characters for ICS format
+  const escapeICS = (str) => {
+    if (!str) return ''
+    return str.replace(/\\/g, '\\\\')
+              .replace(/,/g, '\\,')
+              .replace(/;/g, '\\;')
+              .replace(/\n/g, '\\n')
+  }
+
+  const icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Community Wellbeing App//Event Calendar//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `UID:${event.id}@community-wellbeing-app.com`,
+    `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+    `DTSTART:${startDateTime}`,
+    `DTEND:${endDateTime}`,
+    `SUMMARY:${escapeICS(event.title)}`,
+    `DESCRIPTION:${escapeICS(event.description || '')}`,
+    `LOCATION:${escapeICS(event.location || '')}`,
+    `CATEGORIES:${escapeICS(event.category || '').toUpperCase()}`,
+    `STATUS:CONFIRMED`,
+    `SEQUENCE:0`,
+    event.organizer?.name ? `ORGANIZER;CN=${escapeICS(event.organizer.name)}:MAILTO:noreply@community-wellbeing-app.com` : '',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].filter(line => line).join('\r\n')
+
+  return icsContent
+}
+
+/**
+ * Download ICS calendar file
+ * @param {Object} event - Event data
+ */
+const downloadICS = (event) => {
+  const icsContent = generateICS(event)
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `${event.title.replace(/[^a-z0-9]/gi, '_')}.ics`
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+
+  // Clean up the URL object
+  setTimeout(() => URL.revokeObjectURL(url), 100)
+}
+
+/**
  * Get all events with optional filters
  * @param {Object} filters - Filter criteria (category, timeOfDay, date, search)
  * @returns {Promise<Object>} Events list and metadata
@@ -210,12 +282,6 @@ const getEventById = async (id) => {
  * @returns {Promise<Object>} RSVP confirmation
  */
 const rsvpEvent = async (eventId, userId = 'current-user') => {
-  const event = MOCK_EVENTS.find(e => e.id === eventId)
-
-  if (!event) {
-    throw new Error('Event not found')
-  }
-
   // Get current RSVPs
   const rsvps = JSON.parse(localStorage.getItem('rsvp_events') || '[]')
 
@@ -224,9 +290,23 @@ const rsvpEvent = async (eventId, userId = 'current-user') => {
     throw new Error('Already RSVP\'d to this event')
   }
 
+  // Try to fetch event details from API or fallback to MOCK_EVENTS
+  let event = null
+  try {
+    event = await getEventById(eventId)
+  } catch (error) {
+    console.warn('[rsvpEvent] Could not fetch event details:', error.message)
+    event = MOCK_EVENTS.find(e => e.id === eventId)
+  }
+
+  if (!event) {
+    throw new Error('Event not found')
+  }
+
   // Check if event is full
-  const currentAttendees = event.attendees || 0
-  if (currentAttendees >= event.maxAttendees) {
+  const currentAttendees = event.attendees || event.participants || 0
+  const maxAttendees = event.maxAttendees || event.maxParticipants || 999
+  if (currentAttendees >= maxAttendees) {
     throw new Error('Event is full')
   }
 
@@ -242,6 +322,7 @@ const rsvpEvent = async (eventId, userId = 'current-user') => {
   return mockApiCall({
     success: true,
     eventId,
+    event,
     message: `Successfully RSVP'd to ${event.title}`,
     pointsEarned: 10
   })
@@ -285,7 +366,17 @@ const getRsvpEvents = async (userId = 'current-user') => {
   const rsvps = JSON.parse(localStorage.getItem('rsvp_events') || '[]')
   const rsvpTimestamps = JSON.parse(localStorage.getItem('rsvp_timestamps') || '{}')
 
-  const events = MOCK_EVENTS
+  // Try to fetch all events from API first
+  let allEvents = []
+  try {
+    const response = await getEvents({})
+    allEvents = response.events || []
+  } catch (error) {
+    console.warn('[getRsvpEvents] Could not fetch events from API, using MOCK_EVENTS:', error.message)
+    allEvents = MOCK_EVENTS
+  }
+
+  const events = allEvents
     .filter(event => rsvps.includes(event.id))
     .map(event => ({
       ...event,
@@ -315,7 +406,15 @@ const isRsvpd = async (eventId, userId = 'current-user') => {
  * @returns {Promise<Object>} Review submission result with points and insights
  */
 const submitReview = async (eventId, review, userId = 'current-user') => {
-  const event = MOCK_EVENTS.find(e => e.id === eventId)
+  // Try to fetch event from API or fallback to MOCK_EVENTS
+  let event = null
+  try {
+    event = await getEventById(eventId)
+  } catch (error) {
+    console.warn('[submitReview] Could not fetch event details:', error.message)
+    event = MOCK_EVENTS.find(e => e.id === eventId)
+  }
+
   if (!event) throw new Error('Event not found')
 
   if (!review.rating || review.rating < 1 || review.rating > 5) {
@@ -462,5 +561,6 @@ export const eventService = {
   markAsAttended,
   getAttendedEvents,
   getEventsByCategory,
-  getUpcomingEvents
+  getUpcomingEvents,
+  downloadICS
 }

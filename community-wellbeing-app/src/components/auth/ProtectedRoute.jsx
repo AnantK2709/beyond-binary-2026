@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import Spinner from '../common/Spinner'
+import Layout from '../common/Layout'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -13,11 +14,13 @@ function ProtectedRoute({ children }) {
     )
   }
 
+  // Auto-login is handled in AuthContext, so user should always exist
+  // But keep this check for safety
   if (!user) {
     return <Navigate to="/" replace />
   }
 
-  return children
+  return <Layout>{children}</Layout>
 }
 
 export default ProtectedRoute

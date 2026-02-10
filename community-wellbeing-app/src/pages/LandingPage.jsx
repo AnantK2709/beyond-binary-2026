@@ -4,12 +4,17 @@ import { useEffect, useRef } from 'react'
 
 function LandingPage() {
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, signin } = useAuth()
   const scrollContainerRef = useRef(null)
 
   if (user) {
     navigate('/dashboard')
     return null
+  }
+
+  const handleSignIn = async () => {
+    // Quick sign-in with any email/password for testing
+    await signin('test@example.com', 'password')
   }
 
   useEffect(() => {
@@ -100,7 +105,7 @@ function LandingPage() {
               </span>
             </button>
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={handleSignIn}
               className="btn-secondary text-xl px-12 py-5"
             >
               Sign In
@@ -224,12 +229,20 @@ function LandingPage() {
           <p className="text-2xl mb-12 text-gray-600">
             Join thousands thriving in their wellness journey
           </p>
-          <button
-            onClick={() => navigate('/onboarding')}
-            className="btn-primary text-xl px-16 py-6 animate-glow-pulse"
-          >
-            Start Your Journey
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => navigate('/onboarding')}
+              className="btn-primary text-xl px-16 py-6 animate-glow-pulse"
+            >
+              Start Your Journey
+            </button>
+            <button
+              onClick={() => navigate('/communities/c001')}
+              className="btn-secondary text-xl px-16 py-6"
+            >
+              🚀 Go to Chat (Test)
+            </button>
+          </div>
         </div>
       </div>
 

@@ -13,8 +13,21 @@ export const AuthProvider = ({ children }) => {
     const storedUser = localStorage.getItem('user')
     if (storedUser) {
       setUser(JSON.parse(storedUser))
+      setLoading(false)
+    } else {
+      // Auto-login for testing (bypass auth)
+      const mockUser = {
+        id: 'u123',
+        email: 'test@example.com',
+        name: 'Test User',
+        points: 450,
+        level: 3
+      }
+      setUser(mockUser)
+      localStorage.setItem('user', JSON.stringify(mockUser))
+      localStorage.setItem('token', 'mock-token-123')
+      setLoading(false)
     }
-    setLoading(false)
   }, [])
 
   const signup = async (userData) => {

@@ -15,10 +15,14 @@ export const ChatProvider = ({ children }) => {
       const data = await chatService.getMessages(communityId)
       setMessages(prev => ({
         ...prev,
-        [communityId]: data.messages
+        [communityId]: data.messages || []
       }))
     } catch (error) {
       console.error('Error loading messages:', error)
+      setMessages(prev => ({
+        ...prev,
+        [communityId]: []
+      }))
     } finally {
       setLoading(false)
     }
@@ -26,12 +30,19 @@ export const ChatProvider = ({ children }) => {
 
   const sendMessage = async (communityId, message) => {
     try {
-      const newMessage = await chatService.sendMessage(communityId, message)
-      setMessages(prev => ({
-        ...prev,
-        [communityId]: [...(prev[communityId] || []), newMessage]
-      }))
-      return newMessage
+      // If message is already a message object, use it directly
+      // Otherwise, it's a new message that needs to be added
+      if (message && message.id) {
+        setMessages(prev => ({
+          ...prev,
+          [communityId]: [...(prev[communityId] || []), message]
+        }))
+        return message
+      } else {
+        // This shouldn't happen, but handle it gracefully
+        console.warn('Invalid message format:', message)
+        return null
+      }
     } catch (error) {
       console.error('Error sending message:', error)
       return null

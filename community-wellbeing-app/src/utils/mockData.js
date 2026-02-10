@@ -148,7 +148,8 @@ export const MOCK_CHAT_MESSAGES = [
     userId: 'u456',
     userName: 'Alex Johnson',
     text: 'Hey everyone! Who\'s up for the morning hike this Saturday?',
-    timestamp: '2026-02-10T09:30:00Z'
+    timestamp: '2026-02-10T09:30:00Z',
+    type: 'message'
   },
   {
     id: 'msg002',
@@ -156,7 +157,78 @@ export const MOCK_CHAT_MESSAGES = [
     userId: 'u789',
     userName: 'Maria Garcia',
     text: 'I\'m in! What time are we meeting?',
-    timestamp: '2026-02-10T09:35:00Z'
+    timestamp: '2026-02-10T09:35:00Z',
+    type: 'message'
+  },
+  {
+    id: 'msg003',
+    communityId: 'c001',
+    userId: 'system',
+    userName: 'System',
+    text: '📢 New event announced: Morning Yoga in the Park - Saturday, Feb 15 at 8:00 AM',
+    timestamp: '2026-02-10T10:00:00Z',
+    type: 'announcement',
+    eventId: 'e001'
+  },
+  {
+    id: 'msg004',
+    communityId: 'c001',
+    userId: 'u456',
+    userName: 'Alex Johnson',
+    text: 'Who wants to organize a hike?',
+    timestamp: '2026-02-10T10:15:00Z',
+    type: 'event_proposal',
+    proposal: {
+      title: 'Community Hike',
+      description: 'Weekend hiking adventure',
+      status: 'discussion'
+    }
+  },
+  {
+    id: 'msg005',
+    communityId: 'c001',
+    userId: 'u456',
+    userName: 'Alex Johnson',
+    text: 'Poll: Best time for the hike?',
+    timestamp: '2026-02-10T10:20:00Z',
+    type: 'poll',
+    poll: {
+      question: 'Best time for the hike?',
+      options: [
+        { id: 'opt1', text: '7:00 AM', votes: 5, voters: ['u789', 'u101', 'u102', 'u103', 'u456'] },
+        { id: 'opt2', text: '8:00 AM', votes: 3, voters: ['u104', 'u105', 'u106'] },
+        { id: 'opt3', text: '9:00 AM', votes: 2, voters: ['u107', 'u108'] }
+      ],
+      totalVotes: 10
+    }
+  },
+  {
+    id: 'msg006',
+    communityId: 'c001',
+    userId: 'system',
+    userName: 'System',
+    text: '🎉 Welcome Emma Wilson to the community!',
+    timestamp: '2026-02-10T10:30:00Z',
+    type: 'system'
+  },
+  {
+    id: 'msg007',
+    communityId: 'c002',
+    userId: 'u123',
+    userName: 'Sarah Chen',
+    text: 'Just finished an amazing yoga session! Feeling so energized! 🧘‍♀️',
+    timestamp: '2026-02-10T08:45:00Z',
+    type: 'message'
+  },
+  {
+    id: 'msg008',
+    communityId: 'c002',
+    userId: 'system',
+    userName: 'System',
+    text: '📢 New event: Evening Meditation Circle - Thursday, Feb 18 at 6:30 PM',
+    timestamp: '2026-02-10T11:00:00Z',
+    type: 'announcement',
+    eventId: 'e004'
   }
 ]
 

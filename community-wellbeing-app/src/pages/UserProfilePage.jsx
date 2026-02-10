@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/components/common/Navbar';
 import { searchService } from '../services/searchService';
+import { connectionService } from '../services/connectionService';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../hooks/useToast';
 
@@ -12,6 +13,8 @@ export default function UserProfilePage() {
   const { showToast } = useToast();
   const [profileUser, setProfileUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [connectionStatus, setConnectionStatus] = useState('none'); // none, pending, connected
+  const [isSendingRequest, setIsSendingRequest] = useState(false);
 
   useEffect(() => {
     const loadUserProfile = async () => {
@@ -23,6 +26,12 @@ export default function UserProfilePage() {
           return;
         }
         setProfileUser(user);
+
+        // Load connection status
+        if (currentUser?.id) {
+          const status = await connectionService.getConnectionStatus(currentUser.id, user.id);
+          setConnectionStatus(status.status);
+        }
       } catch (error) {
         console.error('Error loading user profile:', error);
         showToast('Failed to load profile', 'error');
@@ -35,7 +44,67 @@ export default function UserProfilePage() {
     if (id) {
       loadUserProfile();
     }
-  }, [id, navigate, showToast]);
+  }, [id, navigate, showToast, currentUser]);
+
+  // Poll for connection status updates (for auto-acceptance)
+  useEffect(() => {
+    if (!currentUser?.id || !profileUser?.id) return;
+
+    const checkStatus = async () => {
+      const status = await connectionService.getConnectionStatus(currentUser.id, profileUser.id);
+      if (status.status !== connectionStatus) {
+        const wasPending = connectionStatus === 'pending';
+        setConnectionStatus(status.status);
+        
+        if (wasPending && status.status === 'connected') {
+          showToast('Connection request accepted! You can now message each other. 🤝', 'success');
+        }
+      }
+    };
+
+    // Check immediately
+    checkStatus();
+
+    // Then check every 2 seconds if pending
+    if (connectionStatus === 'pending') {
+      const interval = setInterval(checkStatus, 2000);
+      return () => clearInterval(interval);
+    }
+
+    // Also listen for storage events (for cross-tab updates)
+    const handleStorageChange = () => {
+      checkStatus();
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [currentUser, profileUser, connectionStatus, showToast]);
+
+  const handleReachOut = async () => {
+    if (!currentUser?.id) {
+      showToast('Please sign in to send connection requests', 'error');
+      return;
+    }
+
+    setIsSendingRequest(true);
+    try {
+      const result = await connectionService.sendConnectionRequest(currentUser.id, profileUser.id);
+      if (result.success) {
+        setConnectionStatus('pending');
+        showToast('Connection request sent! They will receive it shortly.', 'success');
+      } else {
+        showToast(result.message || 'Failed to send request', 'error');
+      }
+    } catch (error) {
+      console.error('Error sending connection request:', error);
+      showToast('Failed to send connection request', 'error');
+    } finally {
+      setIsSendingRequest(false);
+    }
+  };
+
+  const handleMessage = () => {
+    navigate(`/messages/${profileUser.id}`);
+  };
 
   if (loading) {
     return (
@@ -73,7 +142,39 @@ export default function UserProfilePage() {
 
             {/* User Info */}
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">{profileUser.name}</h1>
+              <div className="flex items-start justify-between mb-2">
+                <h1 className="text-3xl font-bold text-gray-800">{profileUser.name}</h1>
+                
+                {/* Connection & Message Actions */}
+                <div className="flex gap-2 ml-4">
+                  {connectionStatus === 'connected' ? (
+                    <button
+                      onClick={handleMessage}
+                      className="px-4 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors font-medium flex items-center gap-2"
+                    >
+                      <span>💬</span>
+                      <span>Message</span>
+                    </button>
+                  ) : connectionStatus === 'pending' ? (
+                    <button
+                      disabled
+                      className="px-4 py-2 bg-gray-300 text-gray-600 rounded-lg font-medium flex items-center gap-2 cursor-not-allowed"
+                    >
+                      <span>⏳</span>
+                      <span>Request Pending...</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleReachOut}
+                      disabled={isSendingRequest}
+                      className="px-4 py-2 bg-gradient-to-r from-sage-500 to-sage-600 text-white rounded-lg hover:from-sage-600 hover:to-sage-700 transition-all font-medium flex items-center gap-2 shadow-md disabled:opacity-50"
+                    >
+                      <span>🤝</span>
+                      <span>{isSendingRequest ? 'Sending...' : 'Reach Out'}</span>
+                    </button>
+                  )}
+                </div>
+              </div>
               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
                 <span>📍 {profileUser.location || 'Singapore'}</span>
                 <span>•</span>

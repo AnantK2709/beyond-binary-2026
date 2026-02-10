@@ -17,6 +17,7 @@ import CommunityDetailPage from './pages/CommunityDetailPage';
 import JournalPage from './pages/JournalPage';
 import ProfilePage from './pages/ProfilePage';
 import UserProfilePage from './pages/UserProfilePage';
+import DirectMessagePage from './pages/DirectMessagePage';
 import MonthlyReportPage from './pages/MonthlyReportPage';
 import RecommendationsPage from './pages/RecommendationsPage';
 import OrganizationPage from './pages/OrganizationPage';
@@ -136,6 +137,15 @@ function AppRouter() {
         element={
           <ProtectedRoute>
             <UserProfilePage />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route 
+        path="/messages/:userId" 
+        element={
+          <ProtectedRoute>
+            <DirectMessagePage />
           </ProtectedRoute>
         } 
       />

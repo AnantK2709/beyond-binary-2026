@@ -8,7 +8,8 @@
   }
 
   body {
-    @apply min-h-screen font-sans text-gray-800 relative overflow-x-hidden;
+    /* @apply min-h-screen font-sans text-gray-800 relative overflow-x-hidden; */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #F7FAF9 0%, #E8F3F1 25%, #F0F8FF 50%, #E0F2FE 75%, #F7FAF9 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;

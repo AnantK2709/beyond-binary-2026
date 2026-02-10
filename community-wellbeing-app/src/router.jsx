@@ -16,6 +16,7 @@ import CommunitiesPage from './pages/CommunitiesPage';
 import CommunityDetailPage from './pages/CommunityDetailPage';
 import JournalPage from './pages/JournalPage';
 import ProfilePage from './pages/ProfilePage';
+import UserProfilePage from './pages/UserProfilePage';
 import MonthlyReportPage from './pages/MonthlyReportPage';
 import RecommendationsPage from './pages/RecommendationsPage';
 import OrganizationPage from './pages/OrganizationPage';
@@ -126,6 +127,15 @@ function AppRouter() {
         element={
           <ProtectedRoute>
             <ProfilePage />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route 
+        path="/users/:id" 
+        element={
+          <ProtectedRoute>
+            <UserProfilePage />
           </ProtectedRoute>
         } 
       />

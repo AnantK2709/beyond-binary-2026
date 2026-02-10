@@ -94,14 +94,22 @@ function AppRouter() {
         } 
       />
 
-      <Route 
-        path="/communities" 
-        element={
-          <ProtectedRoute>
-            <CommunitiesPage />
-          </ProtectedRoute>
-        } 
-      />
+      <Route path="/my-events" element={
+        <ProtectedRoute>
+          <MyEventsPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/events/:id/post-event" element={
+        <ProtectedRoute>
+          <PostEventPage />
+        </ProtectedRoute>
+      } />
+
+      <Route path="/communities" element={
+        <ProtectedRoute>
+          <CommunitiesPage />
+        </ProtectedRoute>
+      } />
 
       <Route 
         path="/communities/:id" 

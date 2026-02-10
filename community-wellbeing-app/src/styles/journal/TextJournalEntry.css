@@ -4,7 +4,17 @@
     padding: 2.5rem;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
+    text-align: center;
 }
+
+.text-entry-header {
+    text-align: center;
+}
+
+.text-entry-header h3 {
+    color: #2C3E3F;
+}
+
 
 .text-entry-card textarea {
     width: 100%;
@@ -17,7 +27,23 @@
     margin: 1.5rem 0;
 }
 
-.text-entry-card button {
+.text-entry-card textarea:focus {
+    background: #F7FAF9;
+    /* ← keeps same color on focus */
+    box-shadow: 0 0 0 2px rgba(95, 156, 141, 0.2);
+    /* ← optional subtle focus indicator */
+}
+
+
+.text-entry-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.text-entry-actions button {
     background: linear-gradient(135deg, #5F9C8D, #7AB5A3);
     border: none;
     padding: 1rem;

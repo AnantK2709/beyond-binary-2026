@@ -1,10 +1,11 @@
 .voice-recorder-card {
     background: white;
     border-radius: 20px;
-    padding: 3rem;
-    text-align: center;
+    padding: 2.5rem;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
+    background: white;
+    text-align: center;
 }
 
 .voice-recorder-header {
@@ -21,30 +22,6 @@
 .voice-recorder-header p {
     color: #5A6F6F;
     font-size: 1.1rem;
-}
-
-
-
-.record-button {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: none;
-    background: linear-gradient(135deg, #5F9C8D, #7AB5A3);
-    color: white;
-    font-size: 2.5rem;
-    cursor: pointer;
-    margin-top: 1.5rem;
-}
-
-.voice-recorder-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    margin-bottom: 2rem;
-    background: white;
-    text-align: center;
 }
 
 /* ---------- Recorder ---------- */

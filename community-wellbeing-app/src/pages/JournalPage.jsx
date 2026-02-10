@@ -11,6 +11,8 @@ export default function JournalPage() {
   const [activeTab, setActiveTab] = useState("voice");
   const [transcript, setTranscript] = useState("");
   const [recorderState, setRecorderState] = useState("new");
+  const [textEntryState, setTextEntryState] = useState("new"); 
+
   const [insight, setInsight] = useState(null);
 
   return (
@@ -49,8 +51,14 @@ export default function JournalPage() {
 
       {activeTab === "text" && (
         <>
-          <TextJournalEntry onSubmit={setTranscript} />
-          {transcript && <AIInsights transcript={transcript} />}
+          <TextJournalEntry
+            onSubmit={setTranscript}
+            onStatusChange={setTextEntryState}
+          />
+
+          {textEntryState === "submitted" && transcript && (
+            <AIInsights transcript={transcript} />
+          )}
         </>
       )}
 

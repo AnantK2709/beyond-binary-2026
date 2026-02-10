@@ -1,7 +1,9 @@
 import "../../../styles/journal/VoiceJournalRecorder.css"
 
 import TranscriptSection from "./TranscriptionSection";
-import { generateTranscript } from "../../../utils/voiceJournalSimulator";
+import { useAudioRecorder } from "../../../hooks/useAudioRecorder";
+import { uploadAudioForTranscription } from "../../../services/transcriptionService";
+
 
 import { useState, useEffect } from "react"
 
@@ -11,6 +13,17 @@ function VoiceJournalRecorder({ onTranscript, onStatusChange }) {
   const [seconds, setSeconds] = useState(0);
   const [transcript, setTranscript] = useState("");
   const [finalDuration, setFinalDuration] = useState(0);
+
+  const {
+    startAudioRecording,
+    pauseAudioRecording,
+    resumeAudioRecording,
+    stopAudioRecording,
+    isRecording,
+    isPaused,
+    error
+  } = useAudioRecorder();
+
 
   useEffect(() => {
     onStatusChange?.(status);
@@ -28,19 +41,20 @@ function VoiceJournalRecorder({ onTranscript, onStatusChange }) {
 
   const startRecording = () => {
     if (status == "paused") {
+      resumeAudioRecording();
       setStatus("recording");
     }
     if (status == "new" || status == "saved") {
+      startAudioRecording();
       setStatus("recording");
       setSeconds(0);
     }
   };
 
   const stopRecording = async () => {
+    pauseAudioRecording();
     setFinalDuration(seconds);
 
-    const result = await generateTranscript(/* recording data */);
-    setTranscript(result.transcript);
     setStatus("paused");
   };
 
@@ -48,12 +62,30 @@ function VoiceJournalRecorder({ onTranscript, onStatusChange }) {
     return `${String(Math.floor(secs / 60)).padStart(2, "0")}:${String(secs % 60).padStart(2, "0")}`;
   };
 
-  const saveToJournal = () => {
-    onTranscript?.(transcript)
+  const saveToJournal = async () => {
+    const audioBlob = await stopAudioRecording();
+    console.log(audioBlob);
+
+    const result = await uploadAudioForTranscription(audioBlob);
+    console.log("Transcription result:", result);
+
+
+    /* purely for debugging
+    console.log(audioBlob); // you’ll see size + type
+    const url = URL.createObjectURL(audioBlob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "debug-recording.webm";
+    a.click();
+
+    URL.revokeObjectURL(url); */
+
+    setTranscript(result.text);
+    onTranscript?.(result.text);
+
     setStatus("saved");
     setSeconds(0);
     onStatusChange?.("saved");
-    // implement saving logic
   };
 
 
@@ -125,7 +157,7 @@ function VoiceJournalRecorder({ onTranscript, onStatusChange }) {
           >
             ⚪️
           </button>
-          <TranscriptSection transcript={transcript} />
+          {/* <TranscriptSection transcript={transcript} /> */}
 
           <div className="action-buttons">
             <button

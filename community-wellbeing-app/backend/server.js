@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const multer = require('multer');
+const OpenAI = require('openai');
+
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
@@ -13,6 +18,13 @@ app.use(express.json());
 // Load data
 const EVENTS = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'events.json'), 'utf8'));
 const ORGANIZATIONS = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'organizations.json'), 'utf8'));
+
+// Speech to text consts
+const upload = multer({ dest: 'uploads/' });
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 // ============================================
 // EVENTS API ENDPOINTS
@@ -198,6 +210,59 @@ app.get('/api/events/:id', (req, res) => {
     similarEvents
   });
 });
+
+// ============================================
+// TRANSCRIPTION API ENDPOINTS
+// ============================================
+const { toFile } = require('openai/uploads');
+
+app.post('/api/transcribe', upload.single('audio'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No audio file provided' });
+    }
+
+    console.log('File received:', {
+      originalname: req.file.originalname,
+      mimetype: req.file.mimetype,
+      size: req.file.size
+    });
+
+    // Create a File object that OpenAI expects
+    const file = await toFile(
+      fs.createReadStream(req.file.path),
+      req.file.originalname || 'audio.webm'
+    );
+
+    const transcription = await openai.audio.transcriptions.create({
+      file: file,
+      model: "whisper-1"
+    });
+
+    console.log('Transcription:', transcription.text);
+
+    // Cleanup
+    fs.unlinkSync(req.file.path);
+
+    res.json({ text: transcription.text });
+
+  } catch (error) {
+    console.error('Transcription error:', error);
+
+    // Cleanup on error
+    if (req.file?.path) {
+      try { fs.unlinkSync(req.file.path); } catch { }
+    }
+
+    res.status(500).json({
+      error: 'Transcription failed',
+      details: error.message
+    });
+  }
+});
+
+
+
 
 // ============================================
 // ORGANIZATIONS API ENDPOINTS

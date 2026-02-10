@@ -54,14 +54,11 @@ function AppRouter() {
         </ProtectedRoute>
       } />
 
-      {/* <Route path="/journal" element={
+      <Route path="/journal" element={
         <ProtectedRoute>
           <JournalPage />
         </ProtectedRoute>
-      } />   */}
-      <Route path="/journal" element={
-          <JournalPage />
-      } />
+      } />  
 
       <Route path="/profile" element={
         <ProtectedRoute>

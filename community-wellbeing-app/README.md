@@ -1,4 +1,4 @@
-# Community Wellbeing App 🌿
+# Mindful Circles: A Community Wellbeing App 🌿
 
 A React-based web application focused on fostering community wellbeing through events, connections, and personal growth.
 

@@ -1,129 +1,130 @@
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
-function DashboardPage() {
-  const navigate = useNavigate()
-  const { user } = useAuth()
+// ADD extra "components/" to ALL these imports
+import Navbar from '../components/components/common/Navbar';
+import WelcomeCard from '../components/components/dashboard/WelcomeCard';
+import PointsProgress from '../components/components/dashboard/PointsProgress';
+import AIInsightBanner from '../components/components/dashboard/AIInsightBanner';
+import QuickMoodWidget from '../components/components/dashboard/QuickMoodWidget';
+import RecommendedEvents from '../components/components/dashboard/RecommendedEvents';
+import UpcomingEvents from '../components/components/dashboard/UpcomingEvents';
+import StatsCard from '../components/components/dashboard/StatsCard';
+
+export default function DashboardPage() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [showMoodWidget, setShowMoodWidget] = useState(false);
+
+  // Redirect if not authenticated
+  useEffect(() => {
+    if (!user) {
+      navigate('/signin');
+    }
+  }, [user, navigate]);
+
+  // Check if user checked in today
+  useEffect(() => {
+    if (user) {
+      const lastCheckin = user?.moodHistory?.[0];
+      const today = new Date().toISOString().split('T')[0];
+      
+      if (!lastCheckin || lastCheckin.date !== today) {
+        setShowMoodWidget(true);
+      }
+    }
+  }, [user]);
+
+  if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-50 to-ocean-50 p-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            Welcome back, {user?.name || 'User'}! 👋
-          </h1>
-          <p className="text-gray-600">Your wellbeing journey dashboard</p>
+    <div className="min-h-screen pb-20 md:pb-0">
+      <Navbar />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Welcome Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <div className="lg:col-span-2">
+            <WelcomeCard user={user} />
+          </div>
+          <div>
+            <PointsProgress user={user} />
+          </div>
         </div>
 
-        {/* Quick Navigation Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {/* Chat - Featured */}
+        {/* AI Insight Banner */}
+        <AIInsightBanner user={user} />
+
+        {/* Quick Mood Check-in */}
+        {showMoodWidget && (
+          <QuickMoodWidget 
+            user={user} 
+            onComplete={() => setShowMoodWidget(false)}
+          />
+        )}
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <StatsCard
+            icon="👥"
+            label="Circles Joined"
+            value={user?.joinedCircles?.length || 0}
+            color="from-sage-400 to-sage-600"
+          />
+          <StatsCard
+            icon="📅"
+            label="Sessions Attended"
+            value={user?.attendedEvents?.length || 0}
+            color="from-ocean-400 to-ocean-600"
+          />
+          <StatsCard
+            icon="😊"
+            label="Avg Mood"
+            value={user?.moodHistory?.length > 0
+              ? (user.moodHistory.reduce((sum, m) => sum + m.score, 0) / user.moodHistory.length).toFixed(1)
+              : '0'}
+            color="from-orange-400 to-orange-600"
+          />
+          <StatsCard
+            icon="🎯"
+            label="Total Points"
+            value={user?.totalPoints || 0}
+            color="from-purple-400 to-purple-600"
+          />
+        </div>
+
+        {/* Quick Chat Access Card */}
+        <div className="mb-8">
           <div 
             onClick={() => navigate('/communities/c001')}
-            className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer border-2 border-sage-200 hover:border-sage-400"
+            className="bg-gradient-to-r from-sage-500 to-sage-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer text-white"
           >
-            <div className="text-4xl mb-4">💬</div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">Group Chat</h3>
-            <p className="text-gray-600 mb-4">Join community discussions</p>
-            <button className="w-full px-4 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors">
-              Go to Chat →
-            </button>
-          </div>
-
-          {/* Communities */}
-          <div 
-            onClick={() => navigate('/communities')}
-            className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer"
-          >
-            <div className="text-4xl mb-4">👥</div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">Communities</h3>
-            <p className="text-gray-600 mb-4">Explore communities</p>
-            <button className="w-full px-4 py-2 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors">
-              Browse →
-            </button>
-          </div>
-
-          {/* Events */}
-          <div 
-            onClick={() => navigate('/events')}
-            className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer"
-          >
-            <div className="text-4xl mb-4">📅</div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">Events</h3>
-            <p className="text-gray-600 mb-4">Discover events</p>
-            <button className="w-full px-4 py-2 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors">
-              Explore →
-            </button>
-          </div>
-
-          {/* Journal */}
-          <div 
-            onClick={() => navigate('/journal')}
-            className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer"
-          >
-            <div className="text-4xl mb-4">📔</div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">Journal</h3>
-            <p className="text-gray-600 mb-4">Voice & text journaling</p>
-            <button className="w-full px-4 py-2 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors">
-              Open →
-            </button>
-          </div>
-
-          {/* Profile */}
-          <div 
-            onClick={() => navigate('/profile')}
-            className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer"
-          >
-            <div className="text-4xl mb-4">👤</div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">Profile</h3>
-            <p className="text-gray-600 mb-4">View your profile</p>
-            <button className="w-full px-4 py-2 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors">
-              View →
-            </button>
-          </div>
-
-          {/* Recommendations */}
-          <div 
-            onClick={() => navigate('/recommendations')}
-            className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer"
-          >
-            <div className="text-4xl mb-4">🤖</div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">AI Recommendations</h3>
-            <p className="text-gray-600 mb-4">Personalized suggestions</p>
-            <button className="w-full px-4 py-2 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors">
-              View →
-            </button>
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-bold mb-2">💬 Join Community Chat</h3>
+                <p className="text-sage-100">Connect with your community, create polls, and organize events</p>
+              </div>
+              <button className="px-6 py-3 bg-white text-sage-600 rounded-lg hover:bg-sage-50 transition-colors font-semibold">
+                Go to Chat →
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div className="bg-white rounded-xl p-6 shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Quick Links</h2>
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => navigate('/communities/c001')}
-              className="px-4 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors"
-            >
-              💬 Test Group Chat (c001)
-            </button>
-            <button
-              onClick={() => navigate('/communities/c002')}
-              className="px-4 py-2 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors"
-            >
-              💬 Test Chat (c002)
-            </button>
-            <button
-              onClick={() => navigate('/communities/c003')}
-              className="px-4 py-2 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors"
-            >
-              💬 Test Chat (c003)
-            </button>
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+          {/* Left Column - Recommended Events */}
+          <div className="lg:col-span-2">
+            <RecommendedEvents user={user} />
+          </div>
+
+          {/* Right Column - Upcoming Events */}
+          <div>
+            <UpcomingEvents user={user} />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
-export default DashboardPage

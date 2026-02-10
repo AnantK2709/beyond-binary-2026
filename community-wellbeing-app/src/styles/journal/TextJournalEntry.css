@@ -1,0 +1,28 @@
+.text-entry-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.text-entry-card textarea {
+    width: 100%;
+    min-height: 150px;
+    border: none;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: #F7FAF9;
+    font-size: 1rem;
+    margin: 1.5rem 0;
+}
+
+.text-entry-card button {
+    background: linear-gradient(135deg, #5F9C8D, #7AB5A3);
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}

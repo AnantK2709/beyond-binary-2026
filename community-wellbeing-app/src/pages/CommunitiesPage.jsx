@@ -7,7 +7,7 @@ import { communityService } from '../services/communityService';
 import { useToast } from '../hooks/useToast';
 
 export default function CommunitiesPage() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const navigate = useNavigate();
   const { showToast } = useToast();
   const [allCommunities, setAllCommunities] = useState([]);
@@ -41,10 +41,16 @@ export default function CommunitiesPage() {
     try {
       await communityService.joinCommunity(communityId);
       showToast('Successfully joined community!', 'success');
+      
+      // Reload user from localStorage to get updated joinedCircles
+      const updatedUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      if (updatedUser.id && updateUser) {
+        updateUser({ joinedCircles: updatedUser.joinedCircles });
+      }
+      
       // Reload communities
       const data = await communityService.getCommunities();
       setAllCommunities(data.communities || []);
-      // Update user context would be handled by the service
     } catch (error) {
       console.error('Error joining community:', error);
       showToast('Failed to join community', 'error');

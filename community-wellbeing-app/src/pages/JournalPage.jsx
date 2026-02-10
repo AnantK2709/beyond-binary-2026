@@ -10,6 +10,7 @@ import "../styles/journal/journal.css";
 export default function JournalPage() {
   const [activeTab, setActiveTab] = useState("voice");
   const [transcript, setTranscript] = useState("");
+  const [recorderState, setRecorderState] = useState("new");
   const [insight, setInsight] = useState(null);
 
   return (
@@ -35,8 +36,14 @@ export default function JournalPage() {
 
       {activeTab === "voice" && (
         <>
-          <VoiceJournalRecorder onComplete={setTranscript} />
-          {transcript && <AIInsights transcript={transcript} />}
+          <VoiceJournalRecorder
+            onComplete={setTranscript}
+            onStatusChange={setRecorderState}
+          />
+
+          {recorderState === "complete" && transcript && (
+            <AIInsights transcript={transcript} />
+          )}
         </>
       )}
 

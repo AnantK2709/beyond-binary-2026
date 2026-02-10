@@ -60,11 +60,12 @@ function EventDetailPage() {
     setShowReviewModal(false)
   }
 
-  const isEventPast = () => {
-    if (!event) return false
-    const eventDate = new Date(event.date)
-    return eventDate < new Date()
-  }
+const isEventPast = () => {
+  if (!event) return false
+  const eventDateTime = new Date(`${event.date}T${event.time || '00:00'}:00`)
+  return eventDateTime < new Date()
+}
+
 
   const shouldShowReviewButton = () => {
     return isEventPast() && hasRsvped && !userReview
@@ -213,12 +214,12 @@ function EventDetailPage() {
                       Share your feedback and earn bonus points!
                     </p>
                   </div>
-                  <button
-                    onClick={handleLeaveReview}
-                    className="btn-primary px-6 py-3 whitespace-nowrap"
+                  <Link
+                    to={`/events/${event.id}/post-event`}
+                    className="btn-primary px-6 py-3 whitespace-nowrap inline-block text-center"
                   >
-                    Leave Review
-                  </button>
+                    Post-Event Feedback
+                  </Link>
                 </div>
               </div>
             )}

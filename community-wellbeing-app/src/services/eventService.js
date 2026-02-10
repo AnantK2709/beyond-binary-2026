@@ -316,38 +316,34 @@ const isRsvpd = async (eventId, userId = 'current-user') => {
  */
 const submitReview = async (eventId, review, userId = 'current-user') => {
   const event = MOCK_EVENTS.find(e => e.id === eventId)
+  if (!event) throw new Error('Event not found')
 
-  if (!event) {
-    throw new Error('Event not found')
-  }
-
-  // Validate review data
   if (!review.rating || review.rating < 1 || review.rating > 5) {
     throw new Error('Invalid rating')
   }
 
-  // Store review
+  // Store review (NO attended logic)
   const reviews = JSON.parse(localStorage.getItem('event_reviews') || '{}')
+
   reviews[eventId] = {
-    ...review,
     eventId,
     userId,
     timestamp: new Date().toISOString(),
     eventTitle: event.title,
-    eventCategory: event.category
+    eventCategory: event.category,
+
+    rating: review.rating,
+    mood: review.mood || 'neutral',
+    text: review.text ?? review.reviewText ?? '',
+    wouldRecommend:
+      typeof review.wouldRecommend === 'boolean'
+        ? review.wouldRecommend
+        : (typeof review.recommend === 'boolean' ? review.recommend : undefined),
   }
+
   localStorage.setItem('event_reviews', JSON.stringify(reviews))
 
-  // Mark as attended if review submitted
-  if (review.attended !== false) {
-    const attended = JSON.parse(localStorage.getItem('attended_events') || '[]')
-    if (!attended.includes(eventId)) {
-      attended.push(eventId)
-      localStorage.setItem('attended_events', JSON.stringify(attended))
-    }
-  }
-
-  // Generate AI insight based on review
+  // Basic AI insight text (you can later replace with aiService.generateEventInsight)
   let aiInsight = ''
   if (review.rating >= 4) {
     aiInsight = `Great to see you enjoyed ${event.title}! Your positive experience helps us recommend similar events.`
@@ -366,6 +362,7 @@ const submitReview = async (eventId, review, userId = 'current-user') => {
     review: reviews[eventId]
   })
 }
+
 
 /**
  * Get a user's review for a specific event

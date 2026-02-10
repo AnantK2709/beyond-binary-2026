@@ -16,6 +16,7 @@ import RecommendationsPage from './pages/RecommendationsPage'
 import OrganizationPage from './pages/OrganizationPage'
 import SearchPage from './pages/SearchPage'
 import NotFoundPage from './pages/NotFoundPage'
+import PostEventPage from './pages/PostEventPage'
 
 function AppRouter() {
   return (
@@ -46,6 +47,11 @@ function AppRouter() {
       <Route path="/my-events" element={
         <ProtectedRoute>
           <MyEventsPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/events/:id/post-event" element={
+        <ProtectedRoute>
+          <PostEventPage />
         </ProtectedRoute>
       } />
 

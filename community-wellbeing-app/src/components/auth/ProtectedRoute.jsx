@@ -1,7 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import Spinner from '../common/Spinner'
-import Layout from '../common/Layout'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -20,7 +19,7 @@ function ProtectedRoute({ children }) {
     return <Navigate to="/" replace />
   }
 
-  return <Layout>{children}</Layout>
+  return children
 }
 
 export default ProtectedRoute

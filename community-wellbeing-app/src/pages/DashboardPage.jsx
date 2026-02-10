@@ -94,19 +94,19 @@ export default function DashboardPage() {
           />
         </div>
 
-        {/* Quick Chat Access Card */}
+        {/* Quick Communities Access Card */}
         <div className="mb-8">
           <div 
-            onClick={() => navigate('/communities/c001')}
+            onClick={() => navigate('/communities')}
             className="bg-gradient-to-r from-sage-500 to-sage-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer text-white"
           >
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-2xl font-bold mb-2">💬 Join Community Chat</h3>
-                <p className="text-sage-100">Connect with your community, create polls, and organize events</p>
+                <h3 className="text-2xl font-bold mb-2">👥 Explore Communities</h3>
+                <p className="text-sage-100">Join communities, chat with members, create polls, and organize events</p>
               </div>
               <button className="px-6 py-3 bg-white text-sage-600 rounded-lg hover:bg-sage-50 transition-colors font-semibold">
-                Go to Chat →
+                Browse Communities →
               </button>
             </div>
           </div>

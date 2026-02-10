@@ -58,15 +58,6 @@ export default function Navbar() {
                   <span>{item.label}</span>
                 </Link>
               ))}
-              
-              {/* Chat Button */}
-              <button
-                onClick={() => navigate('/communities/c001')}
-                className="flex items-center gap-2 px-4 py-2 bg-sage-500 text-white rounded-xl font-medium hover:bg-sage-600 transition-colors shadow-sm"
-              >
-                <span>💬</span>
-                <span>Chat</span>
-              </button>
             </div>
 
             {/* User Menu */}
@@ -149,7 +140,7 @@ export default function Navbar() {
         }}
       >
         <div className="flex justify-around items-center py-2">
-          {navItems.slice(0, 5).map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
@@ -163,18 +154,6 @@ export default function Navbar() {
               <span className="text-xs font-medium">{item.label}</span>
             </Link>
           ))}
-          {/* Mobile Chat Button */}
-          <button
-            onClick={() => navigate('/communities/c001')}
-            className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-              location.pathname.startsWith('/communities/')
-                ? 'text-sage-700'
-                : 'text-gray-500'
-            }`}
-          >
-            <span className="text-xl">💬</span>
-            <span className="text-xs font-medium">Chat</span>
-          </button>
         </div>
       </div>
     </>

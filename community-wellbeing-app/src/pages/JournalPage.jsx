@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from '../context/AuthContext';
 import { journalService } from '../services/journalService.js';
+import { askQuestion } from "../services/aiInsightService.js"; 
 
 import Navbar from "../components/components/common/Navbar";
 import VoiceJournalRecorder from "../components/components/journal/VoiceJournalRecorder";
@@ -39,22 +40,14 @@ export default function JournalPage() {
         content: content
       });
 
+      console.log(content)
       // Then analyze
-      const result = await analyzeEntry(content);
-      setInsight(result);
+      const result = await askQuestion(content);
+      console.log("Response from API:", result);
+      setInsight(result.answer);
     })();
   }, [recorderState, textEntryState, voiceTranscript, textContent]);
 
-  async function analyzeEntry(text) {
-    // later: call backend / OpenAI / service
-    return {
-      emotions: ["stressed", "relief"],
-      activities: ["running"],
-      recommendations: [
-        { title: "Beginner Pottery Workshop", time: "Sunday 2:00 PM" }
-      ]
-    };
-  }
 
   return (
     <>      

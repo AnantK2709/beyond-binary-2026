@@ -1,3 +1,4 @@
+// import { SYSTEM_PROMPTS} from "./prompts.js"
 require('dotenv').config();
 
 const multer = require('multer');
@@ -261,7 +262,43 @@ app.post('/api/transcribe', upload.single('audio'), async (req, res) => {
   }
 });
 
+const SYSTEM_PROMPTS = require('./prompts.js');
+console.log("MYTHILI SYSTEM PROMPT")
+console.log(SYSTEM_PROMPTS.general)
 
+app.post("/api/ask", express.json(), async (req, res) => {
+
+  try {
+    
+    const { question } = req.body;
+    if (!question) {
+      return res.status(400).json({ error: "Question is required" });
+    }
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: SYSTEM_PROMPTS.general // Use the appropriate prompt
+        },
+        {
+          role: "user",
+          content: question
+        }
+      ],
+    });
+
+    console.log("OpenAI Response:", response.choices[0].message.content);
+
+    res.json({
+      answer: response.choices[0].message.content,
+    });
+  } catch (error) {
+    console.error("Text model error:", error);
+    res.status(500).json({ error: "Text generation failed" });
+  }
+});
 
 
 // ============================================

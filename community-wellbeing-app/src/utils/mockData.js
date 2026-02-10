@@ -342,7 +342,8 @@ export const MOCK_CHAT_MESSAGES = [
     userId: 'u002',
     userName: 'Marcus Johnson',
     text: 'Hey everyone! Who\'s up for the morning hike this Saturday?',
-    timestamp: '2026-02-10T09:30:00Z'
+    timestamp: '2026-02-10T09:30:00Z',
+    type: 'message'
   },
   {
     id: 'msg002',
@@ -350,7 +351,8 @@ export const MOCK_CHAT_MESSAGES = [
     userId: 'u003',
     userName: 'Priya Kumar',
     text: 'I\'m in! What time are we meeting?',
-    timestamp: '2026-02-10T09:35:00Z'
+    timestamp: '2026-02-10T09:35:00Z',
+    type: 'message'
   },
   {
     id: 'msg003',
@@ -358,7 +360,45 @@ export const MOCK_CHAT_MESSAGES = [
     userId: 'u001',
     userName: 'Sarah Chen',
     text: '7 AM at the trail head? I can bring some snacks!',
-    timestamp: '2026-02-10T09:40:00Z'
+    timestamp: '2026-02-10T09:40:00Z',
+    type: 'message'
+  },
+  {
+    id: 'msg004',
+    communityId: 'c001',
+    userId: 'system',
+    userName: 'System',
+    text: '📢 New event announced: Morning Yoga in the Park - Saturday, Feb 15 at 8:00 AM',
+    timestamp: '2026-02-10T10:00:00Z',
+    type: 'announcement',
+    eventId: 'e001'
+  },
+  {
+    id: 'msg005',
+    communityId: 'c001',
+    userId: 'u002',
+    userName: 'Marcus Johnson',
+    text: 'Poll: Best time for the hike?',
+    timestamp: '2026-02-10T10:20:00Z',
+    type: 'poll',
+    poll: {
+      question: 'Best time for the hike?',
+      options: [
+        { id: 'opt1', text: '7:00 AM', votes: 5, voters: ['u003', 'u001'] },
+        { id: 'opt2', text: '8:00 AM', votes: 3, voters: ['u002'] },
+        { id: 'opt3', text: '9:00 AM', votes: 2, voters: [] }
+      ],
+      totalVotes: 10
+    }
+  },
+  {
+    id: 'msg006',
+    communityId: 'c001',
+    userId: 'system',
+    userName: 'System',
+    text: '🎉 Welcome Emma Wilson to the community!',
+    timestamp: '2026-02-10T10:30:00Z',
+    type: 'system'
   }
 ];
 

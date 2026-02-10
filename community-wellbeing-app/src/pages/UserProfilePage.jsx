@@ -28,9 +28,14 @@ export default function UserProfilePage() {
         setProfileUser(user);
 
         // Load connection status
-        if (currentUser?.id) {
-          const status = await connectionService.getConnectionStatus(currentUser.id, user.id);
-          setConnectionStatus(status.status);
+        if (currentUser?.id && user.id) {
+          try {
+            const status = await connectionService.getConnectionStatus(currentUser.id, user.id);
+            setConnectionStatus(status.status || 'none');
+          } catch (error) {
+            console.error('Error loading connection status:', error);
+            setConnectionStatus('none');
+          }
         }
       } catch (error) {
         console.error('Error loading user profile:', error);

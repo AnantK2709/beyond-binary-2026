@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import SearchBar from './SearchBar';
 
 export default function Navbar() {
   const { user, signOut } = useAuth();
@@ -34,17 +35,22 @@ export default function Navbar() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16 gap-4">
             {/* Logo */}
-            <Link to="/dashboard" className="flex items-center gap-2">
+            <Link to="/dashboard" className="flex items-center gap-2 flex-shrink-0">
               <span className="text-3xl">🌸</span>
               <span className="text-xl font-bold text-gradient hidden sm:inline">
                 MindfulCircles
               </span>
             </Link>
 
+            {/* Search Bar */}
+            <div className="hidden md:block flex-1 max-w-md">
+              <SearchBar />
+            </div>
+
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-6 flex-shrink-0">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
@@ -141,7 +147,7 @@ export default function Navbar() {
         }}
       >
         <div className="flex justify-around items-center py-2">
-          {navItems.slice(0, 5).map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}

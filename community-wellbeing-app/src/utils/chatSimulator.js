@@ -40,10 +40,97 @@ export const simulateChatActivity = (communityId, onNewMessage) => {
         userId: randomUser.id,
         userName: randomUser.name,
         text: randomMessage,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        type: 'message'
       })
     }
   }, 10000) // Check every 10 seconds
 
   return () => clearInterval(interval)
+}
+
+/**
+ * Simulates timed message appearance for demo purposes
+ * Messages appear with delays to create a realistic chat experience
+ */
+export const simulateTimedMessages = (messages, onMessageAppear, delayBetweenMessages = 2000) => {
+  let currentIndex = 0
+  const timeouts = []
+
+  const showNextMessage = () => {
+    if (currentIndex < messages.length) {
+      const message = messages[currentIndex]
+      onMessageAppear(message)
+      currentIndex++
+      
+      if (currentIndex < messages.length) {
+        const timeout = setTimeout(showNextMessage, delayBetweenMessages)
+        timeouts.push(timeout)
+      }
+    }
+  }
+
+  // Start showing messages
+  showNextMessage()
+
+  // Return cleanup function
+  return () => {
+    timeouts.forEach(timeout => clearTimeout(timeout))
+  }
+}
+
+/**
+ * Generates demo messages for a community chat
+ */
+export const generateDemoMessages = (communityId, count = 5) => {
+  const messageTemplates = [
+    { text: "Hey everyone! Who's up for the morning hike this Saturday?", type: 'message' },
+    { text: "I'm in! What time are we meeting?", type: 'message' },
+    { text: "📢 New event announced: Morning Yoga in the Park", type: 'announcement' },
+    { text: "Who wants to organize a hike?", type: 'event_proposal' },
+    { text: "Poll: Best time for the hike?", type: 'poll' },
+    { text: "🎉 Welcome to the community!", type: 'system' },
+    { text: "Just finished an amazing yoga session! 🧘‍♀️", type: 'message' },
+    { text: "Looking for a running buddy, anyone interested?", type: 'message' }
+  ]
+
+  const users = [
+    { id: 'u101', name: 'Emma Wilson' },
+    { id: 'u102', name: 'Jake Morrison' },
+    { id: 'u103', name: 'Lisa Chen' },
+    { id: 'u104', name: 'Mike Davis' },
+    { id: 'u105', name: 'Sarah Johnson' }
+  ]
+
+  const messages = []
+  const now = Date.now()
+
+  for (let i = 0; i < count; i++) {
+    const template = messageTemplates[i % messageTemplates.length]
+    const user = users[i % users.length]
+    const timestamp = new Date(now - (count - i) * 60000).toISOString() // Spread over time
+
+    messages.push({
+      id: `msg${now + i}`,
+      communityId,
+      userId: template.type === 'system' ? 'system' : user.id,
+      userName: template.type === 'system' ? 'System' : user.name,
+      text: template.text,
+      timestamp,
+      type: template.type,
+      ...(template.type === 'poll' && {
+        poll: {
+          question: 'Best time for the hike?',
+          options: [
+            { id: 'opt1', text: '7:00 AM', votes: Math.floor(Math.random() * 5), voters: [] },
+            { id: 'opt2', text: '8:00 AM', votes: Math.floor(Math.random() * 5), voters: [] },
+            { id: 'opt3', text: '9:00 AM', votes: Math.floor(Math.random() * 5), voters: [] }
+          ],
+          totalVotes: 0
+        }
+      })
+    })
+  }
+
+  return messages
 }

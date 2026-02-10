@@ -13,6 +13,8 @@ function ProtectedRoute({ children }) {
     )
   }
 
+  // Auto-login is handled in AuthContext, so user should always exist
+  // But keep this check for safety
   if (!user) {
     return <Navigate to="/" replace />
   }

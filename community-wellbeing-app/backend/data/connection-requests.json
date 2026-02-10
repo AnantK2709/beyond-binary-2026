@@ -1,0 +1,50 @@
+[
+  {
+    "id": "req_1770727532408",
+    "fromUserId": "u004",
+    "toUserId": "u002",
+    "status": "accepted",
+    "createdAt": "2026-02-10T12:45:32.408Z",
+    "acceptedAt": "2026-02-10T12:45:38.975Z"
+  },
+  {
+    "id": "req_1770728505483",
+    "fromUserId": "u004",
+    "toUserId": "u005",
+    "status": "accepted",
+    "createdAt": "2026-02-10T13:01:45.483Z",
+    "acceptedAt": "2026-02-10T13:01:50.483Z"
+  },
+  {
+    "id": "req_1770742663656",
+    "fromUserId": "u008",
+    "toUserId": "u002",
+    "status": "accepted",
+    "createdAt": "2026-02-10T16:57:43.656Z",
+    "acceptedAt": "2026-02-10T16:57:50.384Z"
+  },
+  {
+    "id": "req_1770743386736",
+    "fromUserId": "u008",
+    "toUserId": "u001",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:09:46.736Z",
+    "acceptedAt": "2026-02-10T17:09:48.871Z"
+  },
+  {
+    "id": "req_1770743402254",
+    "fromUserId": "u008",
+    "toUserId": "u003",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:10:02.254Z",
+    "acceptedAt": "2026-02-10T17:10:10.823Z"
+  },
+  {
+    "id": "req_1770743438410",
+    "fromUserId": "u008",
+    "toUserId": "u004",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:10:38.410Z",
+    "acceptedAt": "2026-02-10T17:10:45.123Z"
+  }
+]

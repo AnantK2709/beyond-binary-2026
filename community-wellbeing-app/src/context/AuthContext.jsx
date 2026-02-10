@@ -26,6 +26,14 @@ export const AuthProvider = ({ children }) => {
         console.error('Error parsing stored user:', error);
         localStorage.removeItem('currentUser');
       }
+    } else {
+      // Auto-login for testing (bypass auth) - Remove in production
+      const mockUser = MOCK_USERS[0]; // Use first mock user
+      if (mockUser) {
+        const { password: _, ...userWithoutPassword } = mockUser;
+        setUser(userWithoutPassword);
+        localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
+      }
     }
     setLoading(false);
   }, []);

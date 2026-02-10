@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import { useAuth } from '../context/AuthContext';
+import { journalService } from '../services/journalService.js';
+
+import Navbar from "../components/components/common/Navbar";
 import VoiceJournalRecorder from "../components/components/journal/VoiceJournalRecorder";
 import TextJournalEntry from "../components/components/journal/TextJournalEntry";
 import AIInsights from "../components/components/journal/AIInsights";
@@ -6,14 +10,18 @@ import JournalEntriesList from "../components/components/journal/JournalEntriesL
 
 import "../styles/journal/journal.css";
 
-
 export default function JournalPage() {
+
+  const { user } = useAuth();
+  const userId = user?.id;
+
   const [activeTab, setActiveTab] = useState("voice");
   const [recorderState, setRecorderState] = useState("new");
   const [textEntryState, setTextEntryState] = useState("new"); 
   const [voiceTranscript, setVoiceTranscript] = useState("");
   const [textContent, setTextContent] = useState("");
   const [insight, setInsight] = useState(null);
+
 
   useEffect(() => {
     const isSaved = recorderState === "saved" || textEntryState === "saved";
@@ -23,6 +31,15 @@ export default function JournalPage() {
     if (!content) return;
 
     (async () => {
+      const entryType = recorderState === "saved" ? "voice" : "text";
+
+      // Save to localStorage
+      await journalService.addEntry(userId, {
+        type: entryType,
+        content: content
+      });
+
+      // Then analyze
       const result = await analyzeEntry(content);
       setInsight(result);
     })();
@@ -40,6 +57,8 @@ export default function JournalPage() {
   }
 
   return (
+    <>      
+    <Navbar />
     <div className="container">
       <header className="header">
         <h1>🎤 Journal</h1>
@@ -81,7 +100,8 @@ export default function JournalPage() {
         )}
       </div>
 
-      {activeTab === "past" && <JournalEntriesList />}
+        {activeTab === "past" && <JournalEntriesList userId={userId} />}
     </div>
+    </>
   );
 }

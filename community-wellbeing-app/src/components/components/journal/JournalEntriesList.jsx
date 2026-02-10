@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JournalEntryCard from "./JournalEntryCard";
+import { journalService } from "../../../services/journalService.js"; 
 
 const MOCK_ENTRIES = [
   {
@@ -16,13 +17,24 @@ const MOCK_ENTRIES = [
   }
 ];
 
-function JournalEntriesList() {
-return (
+function JournalEntriesList({ userId }) {
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    if (!userId) return;
+
+    journalService.getEntries(userId).then(res => {
+      setEntries(res.entries);
+    });
+  }, [userId]);
+
+  return (
     <div>
-      {MOCK_ENTRIES.map(entry => (
+      {entries.map(entry => (
         <JournalEntryCard key={entry.id} entry={entry} />
       ))}
     </div>
   );
 }
-export default JournalEntriesList
+
+export default JournalEntriesList;

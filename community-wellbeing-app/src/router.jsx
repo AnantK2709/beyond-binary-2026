@@ -13,6 +13,7 @@ import DashboardPage from './pages/DashboardPage';
 import EventsPage from './pages/EventsPage';
 import EventDetailPage from './pages/EventDetailPage';
 import MyEventsPage from './pages/MyEventsPage'
+import MomentumPage from './pages/MomentumPage'
 import CommunitiesPage from './pages/CommunitiesPage';
 import CommunityDetailPage from './pages/CommunityDetailPage';
 import JournalPage from './pages/JournalPage';
@@ -104,6 +105,12 @@ function AppRouter() {
       <Route path="/events/:id/post-event" element={
         <ProtectedRoute>
           <PostEventPage />
+        </ProtectedRoute>
+      } />
+
+      <Route path="/momentum" element={
+        <ProtectedRoute>
+          <MomentumPage />
         </ProtectedRoute>
       } />
 

@@ -1,3 +1,9 @@
+// import { SYSTEM_PROMPTS} from "./prompts.js"
+require('dotenv').config();
+
+const multer = require('multer');
+const OpenAI = require('openai');
+
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
@@ -49,6 +55,13 @@ try {
   COMMUNITY_INVITATIONS = [];
   writeJsonFile('community-invitations.json', COMMUNITY_INVITATIONS);
 }
+
+// Speech to text consts
+const upload = multer({ dest: 'uploads/' });
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 // ============================================
 // EVENTS API ENDPOINTS
@@ -234,6 +247,95 @@ app.get('/api/events/:id', (req, res) => {
     similarEvents
   });
 });
+
+// ============================================
+// TRANSCRIPTION API ENDPOINTS
+// ============================================
+const { toFile } = require('openai/uploads');
+
+app.post('/api/transcribe', upload.single('audio'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No audio file provided' });
+    }
+
+    console.log('File received:', {
+      originalname: req.file.originalname,
+      mimetype: req.file.mimetype,
+      size: req.file.size
+    });
+
+    // Create a File object that OpenAI expects
+    const file = await toFile(
+      fs.createReadStream(req.file.path),
+      req.file.originalname || 'audio.webm'
+    );
+
+    const transcription = await openai.audio.transcriptions.create({
+      file: file,
+      model: "whisper-1"
+    });
+
+    console.log('Transcription:', transcription.text);
+
+    // Cleanup
+    fs.unlinkSync(req.file.path);
+
+    res.json({ text: transcription.text });
+
+  } catch (error) {
+    console.error('Transcription error:', error);
+
+    // Cleanup on error
+    if (req.file?.path) {
+      try { fs.unlinkSync(req.file.path); } catch { }
+    }
+
+    res.status(500).json({
+      error: 'Transcription failed',
+      details: error.message
+    });
+  }
+});
+
+const SYSTEM_PROMPTS = require('./prompts.js');
+console.log("MYTHILI SYSTEM PROMPT")
+console.log(SYSTEM_PROMPTS.general)
+
+app.post("/api/ask", express.json(), async (req, res) => {
+
+  try {
+    
+    const { question } = req.body;
+    if (!question) {
+      return res.status(400).json({ error: "Question is required" });
+    }
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: SYSTEM_PROMPTS.general // Use the appropriate prompt
+        },
+        {
+          role: "user",
+          content: question
+        }
+      ],
+    });
+
+    console.log("OpenAI Response:", response.choices[0].message.content);
+
+    res.json({
+      answer: response.choices[0].message.content,
+    });
+  } catch (error) {
+    console.error("Text model error:", error);
+    res.status(500).json({ error: "Text generation failed" });
+  }
+});
+
 
 // ============================================
 // ORGANIZATIONS API ENDPOINTS

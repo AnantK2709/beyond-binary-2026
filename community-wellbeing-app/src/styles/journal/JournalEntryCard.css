@@ -1,0 +1,82 @@
+/* ---------- Card Container ---------- */
+.journal-entry-card {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+.journal-entry-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Summary (Collapsed) ---------- */
+.journal-entry-summary {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.journal-entry-summary h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2C3E3F;
+}
+
+.entry-time {
+    font-size: 0.85rem;
+    color: #5A6F6F;
+}
+
+/* ---------- Expanded Content ---------- */
+.journal-entry-expanded {
+    border-top: 1px solid #E6ECEA;
+    padding: 1.5rem;
+    animation: expandFade 0.25s ease;
+}
+
+/* ---------- Meta ---------- */
+.entry-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.entry-meta h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.entry-meta span {
+    font-size: 0.85rem;
+    color: #5A6F6F;
+}
+
+/* ---------- Entry Text ---------- */
+.entry-text {
+    background: #F7FAF9;
+    padding: 1.5rem;
+    border-radius: 12px;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    color: #2C3E3F;
+    margin-bottom: 1.5rem;
+}
+
+/* ---------- Animation ---------- */
+@keyframes expandFade {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

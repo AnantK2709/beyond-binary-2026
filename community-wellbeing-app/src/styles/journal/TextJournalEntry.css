@@ -1,0 +1,83 @@
+.text-entry-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.text-entry-header {
+    text-align: center;
+}
+
+.text-entry-header h3 {
+    color: #2C3E3F;
+}
+
+.text-entry-card textarea {
+    width: 100%;
+    min-height: 150px;
+    border: none;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: #F7FAF9;
+    font-size: 1rem;
+    margin: 1.5rem 0;
+}
+
+.text-entry-card textarea:focus {
+    background: #F7FAF9;
+    /* ← keeps same color on focus */
+    box-shadow: 0 0 0 2px rgba(95, 156, 141, 0.2);
+    /* ← optional subtle focus indicator */
+}
+
+.text-entry-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.text-entry-actions button {
+    background: linear-gradient(135deg, #5F9C8D, #7AB5A3);
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* save buttons */
+
+/* the saving buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-primary{
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #5F9C8D, #7AB5A3);
+    color: white;
+    box-shadow: 0 4px 12px rgba(95, 156, 141, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(95, 156, 141, 0.4);
+}

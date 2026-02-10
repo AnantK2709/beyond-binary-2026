@@ -56,7 +56,7 @@ function SearchBar() {
   };
 
   const handleUserClick = (userId) => {
-    navigate(`/users/${userId}`);
+    navigate(`/users/${userId}`, { state: { fromSearch: true } });
     setSearchQuery('');
     setIsOpen(false);
   };

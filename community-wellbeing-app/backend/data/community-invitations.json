@@ -1,0 +1,102 @@
+[
+  {
+    "id": "inv_1770742713421_ol8sd4u84",
+    "communityId": "c030",
+    "communityName": "Prash club",
+    "inviterId": "u008",
+    "userId": "u002",
+    "status": "accepted",
+    "createdAt": "2026-02-10T16:58:33.421Z",
+    "acceptedAt": "2026-02-10T16:58:36.946Z"
+  },
+  {
+    "id": "inv_1770742872882_56eomg2ha",
+    "communityId": "c031",
+    "communityName": "Prash club",
+    "inviterId": "u008",
+    "userId": "u002",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:01:12.882Z",
+    "acceptedAt": "2026-02-10T17:01:22.854Z"
+  },
+  {
+    "id": "inv_1770743455034_p4ve9orq0",
+    "communityId": "c032",
+    "communityName": "wvwv",
+    "inviterId": "u008",
+    "userId": "u002",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:10:55.034Z",
+    "acceptedAt": "2026-02-10T17:11:00.326Z"
+  },
+  {
+    "id": "inv_1770743455034_4y7ub7rgf",
+    "communityId": "c032",
+    "communityName": "wvwv",
+    "inviterId": "u008",
+    "userId": "u001",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:10:55.034Z",
+    "acceptedAt": "2026-02-10T17:10:58.944Z"
+  },
+  {
+    "id": "inv_1770743455034_j6c43rmid",
+    "communityId": "c032",
+    "communityName": "wvwv",
+    "inviterId": "u008",
+    "userId": "u003",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:10:55.034Z",
+    "acceptedAt": "2026-02-10T17:10:58.444Z"
+  },
+  {
+    "id": "inv_1770743455034_rgx70lxu6",
+    "communityId": "c032",
+    "communityName": "wvwv",
+    "inviterId": "u008",
+    "userId": "u004",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:10:55.034Z",
+    "acceptedAt": "2026-02-10T17:10:58.263Z"
+  },
+  {
+    "id": "inv_1770743719517_0rcy8yq4i",
+    "communityId": "c033",
+    "communityName": "3r",
+    "inviterId": "u008",
+    "userId": "u002",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:15:19.517Z",
+    "acceptedAt": "2026-02-10T17:15:26.521Z"
+  },
+  {
+    "id": "inv_1770743719517_nr0cbn89p",
+    "communityId": "c033",
+    "communityName": "3r",
+    "inviterId": "u008",
+    "userId": "u001",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:15:19.517Z",
+    "acceptedAt": "2026-02-10T17:15:26.889Z"
+  },
+  {
+    "id": "inv_1770743719517_usitgaedv",
+    "communityId": "c033",
+    "communityName": "3r",
+    "inviterId": "u008",
+    "userId": "u003",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:15:19.517Z",
+    "acceptedAt": "2026-02-10T17:15:28.956Z"
+  },
+  {
+    "id": "inv_1770743719517_rwyvxl1zi",
+    "communityId": "c033",
+    "communityName": "3r",
+    "inviterId": "u008",
+    "userId": "u004",
+    "status": "accepted",
+    "createdAt": "2026-02-10T17:15:19.517Z",
+    "acceptedAt": "2026-02-10T17:15:23.616Z"
+  }
+]

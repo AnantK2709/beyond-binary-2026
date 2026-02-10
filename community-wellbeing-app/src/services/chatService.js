@@ -1,77 +1,112 @@
-import { mockApiCall } from './api'
-import { MOCK_CHAT_MESSAGES } from '../utils/mockData'
+import { apiClient } from './api'
+
+const messageCallTracker = new Map();
 
 export const chatService = {
   getMessages: async (communityId) => {
-    const messages = MOCK_CHAT_MESSAGES.filter(m => m.communityId === communityId)
-    return mockApiCall({ messages })
+    const callId = `getMessages-${communityId}-${Date.now()}`;
+    const stackTrace = new Error().stack;
+    
+    console.log(`[chatService] 📞 getMessages(${communityId}) called`, {
+      callId,
+      timestamp: new Date().toISOString(),
+      stackTrace: stackTrace.split('\n').slice(1, 4).join('\n')
+    });
+
+    // Check for recent duplicate calls
+    const recentCall = Array.from(messageCallTracker.values()).find(
+      call => call.communityId === communityId && Date.now() - call.timestamp < 100
+    );
+
+    if (recentCall) {
+      console.warn(`[chatService] ⚠️ Duplicate getMessages call detected! Previous call was ${Date.now() - recentCall.timestamp}ms ago`, {
+        previousCallId: recentCall.callId,
+        currentCallId: callId
+      });
+    }
+
+    messageCallTracker.set(callId, {
+      communityId,
+      timestamp: Date.now(),
+      callId
+    });
+
+    setTimeout(() => {
+      messageCallTracker.delete(callId);
+    }, 1000);
+
+    const response = await apiClient.get(`/communities/${communityId}/messages`)
+    
+    console.log(`[chatService] ✅ getMessages(${communityId}) completed`, {
+      callId,
+      messagesCount: response.data?.messages?.length || 0
+    });
+
+    return response.data
   },
 
-  sendMessage: async (communityId, messageText, userId, userName) => {
-    const newMessage = {
-      id: `msg${Date.now()}`,
-      communityId,
-      userId: userId || 'u123',
-      userName: userName || 'You',
+  sendMessage: async (communityId, messageText, userId, userName, type = 'message', extraData = {}) => {
+    const response = await apiClient.post(`/communities/${communityId}/messages`, {
+      userId,
+      userName,
       text: messageText,
-      timestamp: new Date().toISOString(),
-      type: 'message'
-    }
-    return mockApiCall(newMessage)
+      type,
+      ...extraData
+    })
+    return response.data
   },
 
   createPoll: async (communityId, question, options, userId, userName) => {
-    const pollMessage = {
-      id: `msg${Date.now()}`,
-      communityId,
-      userId: userId || 'u123',
-      userName: userName || 'You',
-      text: `Poll: ${question}`,
-      timestamp: new Date().toISOString(),
-      type: 'poll',
-      poll: {
-        question,
-        options: options.map((opt, idx) => ({
-          id: `opt${idx + 1}`,
-          text: opt,
-          votes: 0,
-          voters: []
-        })),
-        totalVotes: 0
-      }
+    const pollData = {
+      question,
+      options: options.map((opt, idx) => ({
+        id: `opt${idx + 1}`,
+        text: opt,
+        votes: 0,
+        voters: []
+      })),
+      totalVotes: 0
     }
-    return mockApiCall(pollMessage)
+    
+    const response = await apiClient.post(`/communities/${communityId}/messages`, {
+      userId,
+      userName,
+      text: `Poll: ${question}`,
+      type: 'poll',
+      poll: pollData
+    })
+    return response.data
   },
 
-  voteOnPoll: async (messageId, optionId, userId) => {
-    // In a real app, this would update the poll on the server
-    // For now, we'll return the updated poll structure
-    return mockApiCall({ success: true, messageId, optionId, userId })
+  voteOnPoll: async (communityId, messageId, optionId, userId) => {
+    const response = await apiClient.post(
+      `/communities/${communityId}/messages/${messageId}/vote`,
+      { optionId, userId }
+    )
+    return response.data
   },
 
   createEventProposal: async (communityId, proposalData, userId, userName) => {
-    const proposalMessage = {
-      id: `msg${Date.now()}`,
-      communityId,
-      userId: userId || 'u123',
-      userName: userName || 'You',
+    const response = await apiClient.post(`/communities/${communityId}/messages`, {
+      userId,
+      userName,
       text: proposalData.title || 'Event Proposal',
-      timestamp: new Date().toISOString(),
       type: 'event_proposal',
-      proposal: {
+      eventProposal: {
         ...proposalData,
-        status: 'discussion'
+        status: 'pending'
       }
-    }
-    return mockApiCall(proposalMessage)
+    })
+    return response.data
   },
 
-  createEventFromProposal: async (proposalId, eventData) => {
-    // Convert proposal to actual event
-    return mockApiCall({ 
+  createEventFromProposal: async (communityId, messageId, eventDetails) => {
+    // Note: This might need a separate endpoint in the backend
+    // For now, we'll return success
+    return { 
       success: true, 
       eventId: `e${Date.now()}`,
-      ...eventData 
-    })
+      ...eventDetails 
+    }
   }
 }

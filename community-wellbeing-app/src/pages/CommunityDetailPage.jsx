@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import { communityService } from '../services/communityService'
 import Navbar from '../components/components/common/Navbar'
 import GroupChat from '../components/components/communities/GroupChat'
@@ -10,28 +11,91 @@ import { useToast } from '../hooks/useToast'
 
 function CommunityDetailPage() {
   const { id } = useParams()
+  const { user } = useAuth()
   const { showToast } = useToast()
   const [community, setCommunity] = useState(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('chat') // 'chat', 'details', 'events', 'members'
+  const [isMember, setIsMember] = useState(false)
 
+  const loadedCommunityRef = useRef(null)
+  const componentIdRef = useRef(Math.random().toString(36).substr(2, 9))
+  
+  console.log(`[CommunityDetailPage-${componentIdRef.current}] Component render`, {
+    id,
+    loadedId: loadedCommunityRef.current,
+    hasCommunity: !!community,
+    loading
+  });
+  
   useEffect(() => {
-    const loadCommunity = async () => {
-      try {
-        const data = await communityService.getCommunityById(id)
-        setCommunity(data)
-      } catch (error) {
-        console.error('Error loading community:', error)
-        showToast('Failed to load community', 'error')
-      } finally {
-        setLoading(false)
+    console.log(`[CommunityDetailPage-${componentIdRef.current}] useEffect triggered`, {
+      id,
+      loadedId: loadedCommunityRef.current,
+      timestamp: new Date().toISOString()
+    });
+
+    // Only load if we don't have this community loaded or if id changed
+    if (id && loadedCommunityRef.current !== id) {
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] ✅ Loading community ${id}`, {
+        previousId: loadedCommunityRef.current
+      });
+      loadedCommunityRef.current = id
+      
+      const loadCommunity = async () => {
+        try {
+          console.log(`[CommunityDetailPage-${componentIdRef.current}] 📡 Calling getCommunityById(${id})`)
+          const data = await communityService.getCommunityById(id)
+          console.log(`[CommunityDetailPage-${componentIdRef.current}] ✅ Received community data:`, {
+            name: data?.name,
+            id: data?.id
+          })
+          if (data && data.error) {
+            console.error(`[CommunityDetailPage-${componentIdRef.current}] ❌ API returned error:`, data.error)
+            setCommunity(null)
+            setIsMember(false)
+          } else {
+            setCommunity(data)
+            
+            // Check if current user is a member
+            if (user?.id) {
+              const joinedCircles = user.joinedCircles || []
+              const joinedIds = joinedCircles.map(c => typeof c === 'string' ? c : c.id)
+              setIsMember(joinedIds.includes(id))
+            } else {
+              setIsMember(false)
+            }
+          }
+        } catch (error) {
+          console.error(`[CommunityDetailPage-${componentIdRef.current}] ❌ Error loading community:`, error)
+          console.error('Error details:', {
+            message: error.message,
+            stack: error.stack,
+            id
+          })
+          showToast(`Failed to load community: ${error.message}. Make sure the backend server is running on port 5001.`, 'error')
+          setCommunity(null)
+        } finally {
+          setLoading(false)
+        }
       }
+
+      loadCommunity()
+    } else if (id && loadedCommunityRef.current === id) {
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] ⚠️ Community ${id} already loaded, skipping`)
+    } else if (!id) {
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] 🧹 Resetting (no id)`)
+      // Reset if no id
+      loadedCommunityRef.current = null
+      setCommunity(null)
+      setLoading(false)
     }
 
-    if (id) {
-      loadCommunity()
-    }
-  }, [id, showToast])
+    return () => {
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] 🧹 Cleanup function called`, { id })
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, user]) // Depend on id and user to check membership when user changes
 
   if (loading) {
     return (
@@ -43,8 +107,19 @@ function CommunityDetailPage() {
 
   if (!community) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-gray-500">Community not found</div>
+      <div className="min-h-screen">
+        <Navbar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-gray-500 text-xl mb-2">Community not found</div>
+            <div className="text-gray-400 text-sm">
+              Make sure the backend server is running on port 5001
+            </div>
+            <div className="text-gray-400 text-xs mt-2">
+              Check the browser console for more details
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -105,7 +180,7 @@ function CommunityDetailPage() {
           <div className="p-6">
             {activeTab === 'chat' && (
               <div className="h-[600px]">
-                <GroupChat communityId={id} />
+                <GroupChat communityId={id} isMember={isMember} />
               </div>
             )}
             {activeTab === 'details' && <CommunityDetail community={community} />}

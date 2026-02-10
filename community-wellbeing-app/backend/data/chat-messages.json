@@ -1,0 +1,411 @@
+[
+  {
+    "id": "msg1770731577760",
+    "communityId": "c001",
+    "userId": "u004",
+    "userName": "Kaustav",
+    "text": "hello",
+    "timestamp": "2026-02-10T13:52:57.760Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770731591787",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-10T13:53:11.787Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 3,
+          "voters": [
+            "u006",
+            "u002",
+            "u003"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 1,
+          "voters": [
+            "u007"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 4,
+          "voters": [
+            "u004",
+            "u005",
+            "u001",
+            "u008"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 8
+    }
+  },
+  {
+    "id": "msg1770736118608",
+    "communityId": "c001",
+    "userId": "u004",
+    "userName": "Kaustav",
+    "text": "hello",
+    "timestamp": "2026-02-10T15:08:38.609Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770736132663",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-10T15:08:52.663Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 1,
+          "voters": [
+            "u007"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 0,
+          "voters": []
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 7,
+          "voters": [
+            "u004",
+            "u001",
+            "u008",
+            "u003",
+            "u006",
+            "u002",
+            "u005"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 8
+    }
+  },
+  {
+    "id": "msg1770736441799",
+    "communityId": "c002",
+    "userId": "u004",
+    "userName": "Kaustav",
+    "text": "hello",
+    "timestamp": "2026-02-10T15:14:01.799Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770736455819",
+    "communityId": "c002",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Poll: What type of wellness session should we have next?",
+    "timestamp": "2026-02-10T15:14:15.819Z",
+    "type": "poll",
+    "poll": {
+      "question": "What type of wellness session should we have next?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Yoga Flow 🧘",
+          "votes": 2,
+          "voters": [
+            "u005",
+            "u008"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Meditation 🧘‍♀️",
+          "votes": 4,
+          "voters": [
+            "u004",
+            "u001",
+            "u003",
+            "u007"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "Breathwork 🌬️",
+          "votes": 2,
+          "voters": [
+            "u006",
+            "u002"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Mindful Walking 🚶",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 8
+    }
+  },
+  {
+    "id": "msg1770739915042",
+    "communityId": "c001",
+    "userId": "u008",
+    "userName": "Kelly ",
+    "text": "hello",
+    "timestamp": "2026-02-10T16:11:55.042Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770739931457",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-10T16:12:11.457Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 2,
+          "voters": [
+            "u007",
+            "u005"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 2,
+          "voters": [
+            "u002",
+            "u003"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 3,
+          "voters": [
+            "u001",
+            "u008",
+            "u006"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
+  },
+  {
+    "id": "msg1770742022641",
+    "communityId": "c023",
+    "userId": "u008",
+    "userName": "Kelly Jan kalla",
+    "text": "hello",
+    "timestamp": "2026-02-10T16:47:02.641Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770742036668",
+    "communityId": "c023",
+    "userId": "u007",
+    "userName": "Jake Morrison",
+    "text": "Poll: What type of game should we play?",
+    "timestamp": "2026-02-10T16:47:16.668Z",
+    "type": "poll",
+    "poll": {
+      "question": "What type of game should we play?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Co-op Games 🤝",
+          "votes": 3,
+          "voters": [
+            "u005",
+            "u007",
+            "u008"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Battle Royale 🎯",
+          "votes": 2,
+          "voters": [
+            "u008",
+            "u006"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "RPG Adventure ⚔️",
+          "votes": 3,
+          "voters": [
+            "u002",
+            "u003",
+            "u001"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Puzzle Games 🧩",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 8
+    }
+  },
+  {
+    "id": "msg1770742890617",
+    "communityId": "c031",
+    "userId": "u008",
+    "userName": "Kelly Jan kalla",
+    "text": "hello",
+    "timestamp": "2026-02-10T17:01:30.617Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770742904648",
+    "communityId": "c031",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-10T17:01:44.648Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 2,
+          "voters": [
+            "u005",
+            "u003"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 2,
+          "voters": [
+            "u006",
+            "u001"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 3,
+          "voters": [
+            "u007",
+            "u002",
+            "u008"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
+  },
+  {
+    "id": "msg1770743728595",
+    "communityId": "c033",
+    "userId": "u008",
+    "userName": "Kelly Jan kalla",
+    "text": "hello",
+    "timestamp": "2026-02-10T17:15:28.595Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770743742627",
+    "communityId": "c033",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-10T17:15:42.627Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 3,
+          "voters": [
+            "u005",
+            "u001",
+            "u007"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 2,
+          "voters": [
+            "u002",
+            "u003"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 2,
+          "voters": [
+            "u008",
+            "u006"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
+  }
+]

@@ -4,7 +4,7 @@ import { ChatContext } from '../../../context/ChatContext'
 import { chatService } from '../../../services/chatService'
 import { useToast } from '../../../hooks/useToast'
 
-function ChatInput({ communityId, onCreatePoll, onCreateEventProposal }) {
+function ChatInput({ communityId, isMember = false, onCreatePoll, onCreateEventProposal, onMessageSent }) {
   const { user } = useContext(AuthContext)
   const { sendMessage } = useContext(ChatContext)
   const { showToast } = useToast()
@@ -16,6 +16,12 @@ function ChatInput({ communityId, onCreatePoll, onCreateEventProposal }) {
     e.preventDefault()
     
     if (!messageText.trim() || isSending || !user) return
+    
+    // Check if user is a member
+    if (!isMember) {
+      showToast('You must be a member of this community to send messages', 'error')
+      return
+    }
 
     setIsSending(true)
     try {
@@ -26,8 +32,12 @@ function ChatInput({ communityId, onCreatePoll, onCreateEventProposal }) {
         user.name || 'You'
       )
       
-      // Send message through context
-      if (newMessage) {
+      // Call onMessageSent callback if provided (for triggering conversation flows)
+      // This callback handles adding to displayedMessages, updating context, and triggering flows
+      if (newMessage && onMessageSent) {
+        await onMessageSent(newMessage)
+      } else if (newMessage) {
+        // Fallback: if no callback, just send through context
         await sendMessage(communityId, newMessage)
       }
       setMessageText('')
@@ -96,14 +106,17 @@ function ChatInput({ communityId, onCreatePoll, onCreateEventProposal }) {
           value={messageText}
           onChange={(e) => setMessageText(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="Type a message..."
-          className="flex-1 px-4 py-2 border border-sage-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400 resize-none"
+          placeholder={isMember ? "Type a message..." : "Join this community to send messages..."}
+          disabled={!isMember}
+          className={`flex-1 px-4 py-2 border border-sage-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400 resize-none ${
+            !isMember ? 'bg-gray-100 cursor-not-allowed' : ''
+          }`}
           rows="1"
           style={{ minHeight: '40px', maxHeight: '120px' }}
         />
         <button
           type="submit"
-          disabled={!messageText.trim() || isSending}
+          disabled={!messageText.trim() || isSending || !isMember}
           className="px-6 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
         >
           {isSending ? 'Sending...' : 'Send'}

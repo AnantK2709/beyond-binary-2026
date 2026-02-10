@@ -3,7 +3,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import PollWidget from './PollWidget'
 import EventProposal from './EventProposal'
 
-function ChatMessage({ message }) {
+function ChatMessage({ message, communityId }) {
   const { user } = useContext(AuthContext)
   const isOwnMessage = message.userId === user?.id
   const isSystem = message.type === 'system' || message.userId === 'system'
@@ -16,6 +16,23 @@ function ChatMessage({ message }) {
 
   // Render different message types
   if (message.type === 'poll') {
+    // Guard against missing poll data
+    if (!message.poll) {
+      console.warn('[ChatMessage] Poll message missing poll data:', message)
+      return (
+        <div className="w-full mb-4">
+          <div className="bg-white rounded-lg p-4 shadow-sm border border-sage-200">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">📊</span>
+              <span className="font-semibold text-gray-800">{message.userName}</span>
+              <span className="text-xs text-gray-500">{formatTime(message.timestamp)}</span>
+            </div>
+            <p className="text-sm text-gray-600">{message.text || 'Poll data unavailable'}</p>
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className="w-full mb-4">
         <div className="bg-white rounded-lg p-4 shadow-sm border border-sage-200">
@@ -24,7 +41,7 @@ function ChatMessage({ message }) {
             <span className="font-semibold text-gray-800">{message.userName}</span>
             <span className="text-xs text-gray-500">{formatTime(message.timestamp)}</span>
           </div>
-          <PollWidget poll={message.poll} messageId={message.id} />
+          <PollWidget poll={message.poll} messageId={message.id} communityId={communityId || message.communityId} />
         </div>
       </div>
     )

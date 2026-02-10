@@ -1,27 +1,66 @@
 import { mockApiCall } from './api'
 
+const STORAGE_KEY = 'journal_entries'
+
+const loadAll = () =>
+  JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')
+
+const saveAll = (data) =>
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+
 export const journalService = {
-  getEntries: async () => {
-    const entries = JSON.parse(localStorage.getItem('journal_entries') || '[]')
-    return mockApiCall({ entries })
+  getEntries: async (userId) => {
+    const allEntries = loadAll();
+    const rawEntries = allEntries[userId] || [];
+
+    const entries = rawEntries.map(e => {
+      const d = new Date(e.createdAt);
+
+      return {
+        id: e.id,
+        date: d.toLocaleDateString("en-US", {
+          weekday: "long",
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        }),
+        time: d.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit"
+        }),
+        text: e.content
+      };
+    });
+
+    return mockApiCall({ entries });
   },
 
-  addEntry: async (entry) => {
-    const entries = JSON.parse(localStorage.getItem('journal_entries') || '[]')
+
+  addEntry: async (userId, entry) => {
+    console.log("entry called")
+    const allEntries = loadAll()
+
     const newEntry = {
       id: `je${Date.now()}`,
       ...entry,
+      userId,
       createdAt: new Date().toISOString()
     }
-    entries.unshift(newEntry)
-    localStorage.setItem('journal_entries', JSON.stringify(entries))
+
+    const userEntries = allEntries[userId] || []
+    allEntries[userId] = [newEntry, ...userEntries]
+
+    saveAll(allEntries)
     return mockApiCall(newEntry)
   },
 
-  deleteEntry: async (entryId) => {
-    const entries = JSON.parse(localStorage.getItem('journal_entries') || '[]')
-    const updated = entries.filter(e => e.id !== entryId)
-    localStorage.setItem('journal_entries', JSON.stringify(updated))
+  deleteEntry: async (userId, entryId) => {
+    const allEntries = loadAll()
+    const userEntries = allEntries[userId] || []
+
+    allEntries[userId] = userEntries.filter(e => e.id !== entryId)
+    saveAll(allEntries)
+
     return mockApiCall({ success: true })
   },
 
@@ -37,3 +76,4 @@ export const journalService = {
     })
   }
 }
+

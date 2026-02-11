@@ -7,7 +7,16 @@
     background: white;
     text-align: center;
     justify-content: center;
-}
+
+        border-radius: 1.5rem;
+            /* rounded-3xl */
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(174, 212, 202, 0.9);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
 .recorder-core {
     min-height: 450px;
@@ -165,12 +174,16 @@
 }
 
 .recorder-status h3 {
+    font-weight: 600;
     color: #2C3E3F;
     margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+    /* slightly larger */
 }
 
 .recorder-status p {
     color: #5A6F6F;
+    
 }
 
 /* the saving buttons */

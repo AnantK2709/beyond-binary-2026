@@ -67,31 +67,38 @@ export default function BadgeGrid() {
               ? '2px solid rgba(168, 213, 186, 0.3)'
               : '2px dashed rgba(200, 200, 200, 0.3)',
           }}
-          title={badge.description}
+          title={badge.unlocked ? badge.description : 'Locked badge'}
         >
           <div
             className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-md ${
               badge.unlocked
                 ? `bg-gradient-to-br ${badge.color}`
-                : 'bg-gray-200/40'
+                : 'bg-white/40 ring-1 ring-gray-200/70'
             }`}
           >
             {badge.unlocked ? (
               <IconRenderer name={badge.icon} size={28} className="text-white" />
             ) : (
-              <Lock size={20} className="text-gray-400/60" />
+              <div className="w-6 h-6 rounded-full border border-gray-300/70 bg-white/60" aria-hidden="true" />
             )}
           </div>
-          <div className={`font-semibold text-xs mb-1 ${badge.unlocked ? 'text-gray-900' : 'text-gray-400'}`}>
-            {badge.name}
-          </div>
-          <div className={`text-xs ${badge.unlocked ? 'text-gray-600' : 'text-gray-400'}`}>
-            {badge.description}
-          </div>
-          {badge.unlocked && (
-            <div className="mt-2">
-              <span className="badge-verified text-xs">Unlocked</span>
-            </div>
+          {badge.unlocked ? (
+            <>
+              <div className="font-semibold text-xs mb-1 text-gray-900">
+                {badge.name}
+              </div>
+              <div className="text-xs text-gray-600">
+                {badge.description}
+              </div>
+              <div className="mt-2">
+                <span className="badge-verified text-xs">Unlocked</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="sr-only">Locked badge</span>
+              <div className="h-9" aria-hidden="true" />
+            </>
           )}
         </div>
       ))}

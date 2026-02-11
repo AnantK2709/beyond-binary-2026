@@ -41,7 +41,7 @@ export default function ConnectionsList({ user }) {
                 {circle.name}
               </div>
               <div className="text-xs text-gray-600">
-                {circle.role === 'organizer' ? '👑 Organizer' : '👤 Member'}
+                {circle.role === 'organizer' ? 'Organizer' : 'Member'}
               </div>
             </div>
             <div className="text-sage-600">→</div>

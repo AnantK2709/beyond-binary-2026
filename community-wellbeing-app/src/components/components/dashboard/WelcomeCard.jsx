@@ -37,8 +37,8 @@ export default function WelcomeCard({ user }) {
         </div>
         <div className="text-right">
           <div className="text-sm text-white/80 mb-1">Current Streak</div>
-          <div className="text-4xl font-bold flex items-center justify-end gap-2">
-            {user?.currentStreak || 0} <Flame size={28} className="text-orange-300" />
+          <div className="text-4xl font-bold">
+            {user?.currentStreak || 0} 🔥
           </div>
         </div>
       </div>

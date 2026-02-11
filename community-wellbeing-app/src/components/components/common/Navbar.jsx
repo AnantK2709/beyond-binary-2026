@@ -48,7 +48,7 @@ export default function Navbar() {
             </Link>
 
             {/* Search Bar */}
-            <div className="hidden md:block flex-1 max-w-md">
+            <div className="hidden md:block flex-1 max-w-md relative z-50">
               <SearchBar />
             </div>
 
@@ -121,7 +121,7 @@ export default function Navbar() {
                       <User size={16} strokeWidth={2.5} />
                       Profile
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/recommendations"
                       className="flex items-center gap-2 px-4 py-2 text-gray-900 hover:bg-sage-500/10 transition-colors rounded-xl mx-2"
                       onClick={() => setShowUserMenu(false)}

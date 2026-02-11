@@ -18,7 +18,7 @@ export default function ProfileInterests({ user }) {
   return (
     <div className="card">
       <h3 className="text-xl font-bold text-gray-900 mb-6">
-        ✨ Interests & Activities
+        Interests & Activities
       </h3>
 
       {/* Activity Types */}
@@ -59,7 +59,7 @@ export default function ProfileInterests({ user }) {
                 key={interest.value}
                 className="px-4 py-2 bg-sage-600 text-white rounded-full text-sm font-medium hover:bg-sage-700 transition-colors cursor-pointer"
               >
-                {interest.icon} {interest.label}
+                {interest.label}
               </span>
             ))}
           </div>
@@ -68,7 +68,7 @@ export default function ProfileInterests({ user }) {
 
       {selectedActivities.length === 0 && selectedInterestTags.length === 0 && (
         <div className="text-center py-8">
-          <div className="text-4xl mb-3">🎯</div>
+          {/* <div className="text-4xl mb-3">🎯</div> */}
           <p className="text-gray-500">No interests selected yet</p>
         </div>
       )}

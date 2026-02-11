@@ -39,7 +39,7 @@ export default function EditProfile({ user, onClose }) {
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
-          className="card max-w-lg w-full max-h-[90vh] overflow-y-auto animate-scale-in"
+          className="bg-white rounded-2xl shadow-2xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto animate-scale-in"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}

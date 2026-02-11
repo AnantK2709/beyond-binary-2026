@@ -184,7 +184,6 @@ function HabitTracker({ onUpdate }) {
             onClick={() => setShowAddModal(true)}
             className="btn-primary px-4 py-2 text-sm flex items-center gap-2"
           >
-            <Plus size={16} />
             Add Habit
           </button>
         </div>
@@ -271,10 +270,10 @@ function HabitTracker({ onUpdate }) {
         )}
       </div>
 
-      {/* Add Habit Modal */}
+      {/* Add Habit Modal
       {showAddModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="card max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Add New Habit</h2>
               <button
@@ -285,7 +284,7 @@ function HabitTracker({ onUpdate }) {
               </button>
             </div>
 
-            {/* Preset Habits */}
+            {/* Preset Habits }
             <div className="mb-6">
               <h3 className="font-semibold text-gray-900 mb-3">Popular Habits</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -303,7 +302,7 @@ function HabitTracker({ onUpdate }) {
               </div>
             </div>
 
-            {/* Custom Habit */}
+            {/* Custom Habit }
             <div className="pt-6 border-t">
               <h3 className="font-semibold text-gray-900 mb-3">Or Create Custom</h3>
               <div className="space-y-4">
@@ -349,7 +348,102 @@ function HabitTracker({ onUpdate }) {
             </div>
           </div>
         </div>
+      )} */}
+
+
+      {/* Add Habit Modal */}
+      {showAddModal && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/80  z-60 animate-fade-in"
+            onClick={() => setShowAddModal(false)}
+          />
+
+          {/* Modal */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div
+              className="bg-white rounded-2xl shadow-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto animate-scale-in "
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Add New Habit</h2>
+                <button
+                  onClick={() => setShowAddModal(false)}
+                  className="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-700 text-2xl transition-colors"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Preset Habits */}
+              <div className="mb-6">
+                <h3 className="font-semibold text-gray-900 mb-3">Popular Habits</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {PRESET_HABITS.map((habit, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => addHabit(habit)}
+                      className="p-4 rounded-xl border-2 border-gray-200 hover:border-sage-400 hover:bg-sage-50 transition-all duration-300 text-left"
+                    >
+                      <div className="text-2xl mb-2">{habit.icon}</div>
+                      <div className="font-semibold text-gray-900 text-sm">{habit.name}</div>
+                      <div className="text-xs text-gray-600 mt-1">+{habit.points} pts</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Custom Habit */}
+              <div className="pt-6 border-t">
+                <h3 className="font-semibold text-gray-900 mb-3">Or Create Custom</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Habit Name
+                    </label>
+                    <input
+                      type="text"
+                      value={newHabitName}
+                      onChange={(e) => setNewHabitName(e.target.value)}
+                      placeholder="E.g., Practice guitar, Call a friend..."
+                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sage-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Icon (optional)
+                    </label>
+                    <div className="flex gap-2 flex-wrap">
+                      {['✅', '🎯', '💡', '🎨', '🎵', '📱', '💼', '🏃', '🎮', '📷'].map((icon) => (
+                        <button
+                          key={icon}
+                          onClick={() => setSelectedIcon(icon)}
+                          className={`w-12 h-12 rounded-xl border-2 text-2xl transition-all ${selectedIcon === icon
+                              ? 'border-sage-500 bg-sage-50'
+                              : 'border-gray-200 hover:border-sage-300'
+                            }`}
+                        >
+                          {icon}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => addHabit()}
+                    className="w-full btn-primary py-3"
+                  >
+                    Create Habit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
+
+      
 
       {/* Toast */}
       {toast.show && (

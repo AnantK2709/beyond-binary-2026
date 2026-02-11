@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Flame, Sparkles, ThumbsUp, Calendar, Monitor, MapPin, Users } from 'lucide-react';
 
 export default function EventCard({ circle, index }) {
   const navigate = useNavigate();
 
   const getMatchBadge = (score) => {
-    if (score >= 80) return { label: '🔥 Excellent Match', color: 'badge-new' };
-    if (score >= 60) return { label: '✨ Good Match', color: 'badge-verified' };
-    return { label: '👍 Worth Checking', color: 'badge-primary' };
+    if (score >= 80) return { label: 'Excellent Match', icon: Flame, color: 'badge-new' };
+    if (score >= 60) return { label: 'Good Match', icon: Sparkles, color: 'badge-verified' };
+    return { label: 'Worth Checking', icon: ThumbsUp, color: 'badge-primary' };
   };
 
   const formatDate = (dateString) => {
@@ -18,11 +19,11 @@ export default function EventCard({ circle, index }) {
 
     if (date.toDateString() === today.toDateString()) return 'Today';
     if (date.toDateString() === tomorrow.toDateString()) return 'Tomorrow';
-    
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric' 
+
+    return date.toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
     });
   };
 
@@ -34,6 +35,7 @@ export default function EventCard({ circle, index }) {
   };
 
   const matchBadge = getMatchBadge(circle.matchScore || 50);
+  const MatchIcon = matchBadge.icon;
 
   return (
     <div
@@ -43,8 +45,8 @@ export default function EventCard({ circle, index }) {
     >
       {/* Match Badge */}
       {circle.matchScore && (
-        <div className={`${matchBadge.color} mb-3`}>
-          {matchBadge.label}
+        <div className={`${matchBadge.color} mb-3 inline-flex items-center gap-1`}>
+          <MatchIcon size={14} /> {matchBadge.label}
         </div>
       )}
 
@@ -60,7 +62,7 @@ export default function EventCard({ circle, index }) {
         {circle.isVerified && (
           <div className="ml-3">
             <div className="badge-verified text-xs">
-              ✓ Verified
+              Verified
             </div>
           </div>
         )}
@@ -69,17 +71,17 @@ export default function EventCard({ circle, index }) {
       {/* Circle Info */}
       <div className="space-y-2 mb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600">
-          <span>📅</span>
+          <Calendar size={14} className="text-gray-400" />
           <span className="font-medium">
             {formatDate(circle.scheduledTime)} • {formatTime(circle.scheduledTime)}
           </span>
         </div>
         <div className="flex items-center gap-2 text-sm text-gray-600">
-          <span>{circle.mode === 'virtual' ? '💻' : '📍'}</span>
+          {circle.mode === 'virtual' ? <Monitor size={14} className="text-gray-400" /> : <MapPin size={14} className="text-gray-400" />}
           <span>{circle.mode === 'virtual' ? 'Virtual' : circle.location}</span>
         </div>
         <div className="flex items-center gap-2 text-sm text-gray-600">
-          <span>👥</span>
+          <Users size={14} className="text-gray-400" />
           <span>
             {circle.currentParticipants}/{circle.maxParticipants} joined
           </span>

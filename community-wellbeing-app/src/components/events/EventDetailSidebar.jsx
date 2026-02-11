@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { Check, PartyPopper, Star, Calendar, Clock, MapPin, Target, Tag, Building2, Users, Share2, Smartphone, Mail, MessageSquare, Link2 } from 'lucide-react'
 import { EventContext } from '../../context/EventContext'
 import { GamificationContext } from '../../context/GamificationContext'
 import { eventService } from '../../services/eventService'
@@ -79,22 +80,22 @@ function EventDetailSidebar({ event }) {
 
   // Mock attendees data
   const mockAttendees = [
-    { id: 1, name: 'Sarah J.', avatar: '👩' },
-    { id: 2, name: 'Mike T.', avatar: '👨' },
-    { id: 3, name: 'Lisa K.', avatar: '👩' },
-    { id: 4, name: 'David R.', avatar: '👨' },
-    { id: 5, name: 'Emma W.', avatar: '👩' }
+    { id: 1, name: 'Sarah J.', avatar: 'S' },
+    { id: 2, name: 'Mike T.', avatar: 'M' },
+    { id: 3, name: 'Lisa K.', avatar: 'L' },
+    { id: 4, name: 'David R.', avatar: 'D' },
+    { id: 5, name: 'Emma W.', avatar: 'E' }
   ]
 
   return (
     <div className="space-y-6">
       {/* RSVP Card */}
-      <div className="card p-6 sticky top-6 space-y-6">
+      <div className="card p-6 static top-6 space-y-6">
         {/* Event Status */}
         <div className="flex items-center justify-between">
           {hasRsvped ? (
             <div className="badge badge-success px-4 py-2">
-              <span className="mr-2">✓</span>
+              <Check size={14} className="mr-1 inline" />
               You're Going!
             </div>
           ) : (
@@ -133,7 +134,7 @@ function EventDetailSidebar({ event }) {
             'Event Full'
           ) : (
             <>
-              <span className="mr-2"></span>
+              <PartyPopper size={18} className="mr-2 inline" />
               RSVP for Event
             </>
           )}
@@ -143,7 +144,7 @@ function EventDetailSidebar({ event }) {
         <div className="bg-gradient-to-r from-sage-400/20 to-ocean-400/20 rounded-2xl p-4 border border-sage-300/30">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">⭐</span>
+              <Star size={24} className="text-amber-400" />
               <span className="font-semibold text-gray-800">Points Reward</span>
             </div>
             <span className="text-2xl font-bold text-sage-700">+{event.pointsReward}</span>
@@ -157,7 +158,7 @@ function EventDetailSidebar({ event }) {
           <h3 className="font-bold text-gray-900 text-lg mb-4">Event Details</h3>
 
           <div className="flex items-start gap-3">
-            {/* <span className="text-2xl">📅</span> */}
+            <Calendar size={24} className="text-gray-500" />
             <div>
               <p className="text-sm text-gray-500">Date & Time</p>
               <p className="font-semibold text-gray-900">{formatDate(event.date)}</p>
@@ -166,7 +167,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            {/* <span className="text-2xl">⏱️</span> */}
+            <Clock size={24} className="text-gray-500" />
             <div>
               <p className="text-sm text-gray-500">Duration</p>
               <p className="font-semibold text-gray-900">{formatDuration(event.duration)}</p>
@@ -174,7 +175,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            {/* <span className="text-2xl">📍</span> */}
+            <MapPin size={24} className="text-gray-500" />
             <div className="flex-1">
               <p className="text-sm text-gray-500">Location</p>
               <p className="font-semibold text-gray-900">{event.location}</p>
@@ -185,7 +186,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            {/* <span className="text-2xl">🎯</span> */}
+            <Target size={24} className="text-gray-500" />
             <div>
               <p className="text-sm text-gray-500">Category</p>
               <span className="badge badge-primary text-sm px-3 py-1.5 mt-1 capitalize">
@@ -195,7 +196,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            {/* <span className="text-2xl">🏷️</span> */}
+            <Tag size={24} className="text-gray-500" />
             <div>
               <p className="text-sm text-gray-500">Age Group</p>
               <p className="font-semibold text-gray-900">{event.ageGroup}</p>
@@ -231,18 +232,18 @@ function EventDetailSidebar({ event }) {
       {event.organizer && (
         <div className="card p-6 space-y-4">
           <h3 className="font-bold text-gray-900 text-lg flex items-center gap-2">
-            <span>🏢</span>
+            <Building2 size={20} />
             Organizer
           </h3>
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sage-300 to-sage-400 flex items-center justify-center text-3xl">
-              🏢
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sage-300 to-sage-400 flex items-center justify-center">
+              <Building2 size={28} className="text-white" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
                 <h4 className="font-bold text-gray-900">{event.organizer.name}</h4>
                 {event.organizer.verified && (
-                  <span className="text-green-600 text-sm">✓</span>
+                  <Check size={14} className="text-green-600" />
                 )}
               </div>
               {event.organizer.verificationBadge && (
@@ -261,7 +262,7 @@ function EventDetailSidebar({ event }) {
       {/* Attendees Preview */}
       <div className="card p-6 space-y-4">
         <h3 className="font-bold text-gray-900 text-lg flex items-center gap-2">
-          <span>👥</span>
+          <Users size={20} />
           Who's Going
         </h3>
         <div className="flex items-center gap-3">
@@ -294,24 +295,24 @@ function EventDetailSidebar({ event }) {
       {/* Share Card */}
       <div className="card p-6 space-y-4">
         <h3 className="font-bold text-gray-900 text-lg flex items-center gap-2">
-          <span>📤</span>
+          <Share2 size={20} />
           Share Event
         </h3>
         <div className="grid grid-cols-4 gap-3">
           <button className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/30 hover:bg-white/50 transition-all duration-300 border border-transparent hover:border-sage-300/50">
-            <span className="text-2xl">📱</span>
+            <Smartphone size={24} className="text-gray-600" />
             <span className="text-xs font-medium text-gray-700">Copy</span>
           </button>
           <button className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/30 hover:bg-white/50 transition-all duration-300 border border-transparent hover:border-sage-300/50">
-            <span className="text-2xl">✉️</span>
+            <Mail size={24} className="text-gray-600" />
             <span className="text-xs font-medium text-gray-700">Email</span>
           </button>
           <button className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/30 hover:bg-white/50 transition-all duration-300 border border-transparent hover:border-sage-300/50">
-            <span className="text-2xl">💬</span>
+            <MessageSquare size={24} className="text-gray-600" />
             <span className="text-xs font-medium text-gray-700">SMS</span>
           </button>
           <button className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/30 hover:bg-white/50 transition-all duration-300 border border-transparent hover:border-sage-300/50">
-            <span className="text-2xl">🔗</span>
+            <Link2 size={24} className="text-gray-600" />
             <span className="text-xs font-medium text-gray-700">More</span>
           </button>
         </div>

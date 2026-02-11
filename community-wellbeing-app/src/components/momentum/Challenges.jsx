@@ -1,4 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
+import { Target, Flame, Star, CheckCircle, Trophy, PartyPopper, Users } from 'lucide-react'
+import IconRenderer from '../common/IconRenderer'
 import { GamificationContext } from '../../context/GamificationContext'
 import Toast from '../common/Toast'
 
@@ -7,7 +9,7 @@ const COMMUNITY_CHALLENGES = [
     id: '30day-meditation',
     title: '30-Day Meditation Challenge',
     description: 'Meditate for at least 10 minutes every day for 30 days',
-    icon: '🧘',
+    icon: 'HeartPulse',
     category: 'wellness',
     duration: 30,
     pointsPerDay: 15,
@@ -19,7 +21,7 @@ const COMMUNITY_CHALLENGES = [
     id: '30day-fitness',
     title: '30-Day Fitness Challenge',
     description: 'Exercise for at least 30 minutes daily for 30 days',
-    icon: '💪',
+    icon: 'Dumbbell',
     category: 'fitness',
     duration: 30,
     pointsPerDay: 20,
@@ -31,7 +33,7 @@ const COMMUNITY_CHALLENGES = [
     id: '30day-reading',
     title: '30-Day Reading Challenge',
     description: 'Read for at least 20 minutes every day for 30 days',
-    icon: '📚',
+    icon: 'BookOpen',
     category: 'learning',
     duration: 30,
     pointsPerDay: 10,
@@ -43,7 +45,7 @@ const COMMUNITY_CHALLENGES = [
     id: '30day-gratitude',
     title: '30-Day Gratitude Challenge',
     description: 'Write 3 things you\'re grateful for each day for 30 days',
-    icon: '✨',
+    icon: 'Sparkles',
     category: 'wellness',
     duration: 30,
     pointsPerDay: 10,
@@ -55,7 +57,7 @@ const COMMUNITY_CHALLENGES = [
     id: '30day-hydration',
     title: '30-Day Hydration Challenge',
     description: 'Drink 8 glasses of water every day for 30 days',
-    icon: '💧',
+    icon: 'Droplets',
     category: 'health',
     duration: 30,
     pointsPerDay: 5,
@@ -67,7 +69,7 @@ const COMMUNITY_CHALLENGES = [
     id: '30day-early-riser',
     title: '30-Day Early Riser Challenge',
     description: 'Wake up before 7 AM every day for 30 days',
-    icon: '🌅',
+    icon: 'Sunrise',
     category: 'productivity',
     duration: 30,
     pointsPerDay: 15,
@@ -130,7 +132,7 @@ function Challenges({ onUpdate }) {
     localStorage.setItem('challenge_progress', JSON.stringify(updatedProgress))
 
     setShowBrowseModal(false)
-    showToast('success', `Joined ${challenge.title}! Let's go! 🎉`)
+    showToast('success', `Joined ${challenge.title}! Let's go!`)
     onUpdate?.()
   }
 
@@ -188,7 +190,7 @@ function Challenges({ onUpdate }) {
     localStorage.setItem('active_challenges', JSON.stringify(updatedActive))
     localStorage.setItem('completed_challenges', JSON.stringify(updatedCompleted))
 
-    showToast('success', `🎊 Congratulations! You completed ${challenge.title}! +${challenge.totalPoints} bonus points!`)
+    showToast('success', `Congratulations! You completed ${challenge.title}! +${challenge.totalPoints} bonus points!`)
     onUpdate?.()
   }
 
@@ -242,14 +244,14 @@ function Challenges({ onUpdate }) {
             onClick={() => setShowBrowseModal(true)}
             className="btn-primary px-4 py-2 text-sm flex items-center gap-2"
           >
-            <span>🎯</span>
+            <Target size={16} />
             Browse Challenges
           </button>
         </div>
 
         {activeChallenges.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">🎯</div>
+            <div className="mb-4"><Target size={56} className="text-gray-300 mx-auto" /></div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">No Active Challenges</h3>
             <p className="text-gray-600 mb-6">
               Join a 30-day challenge to level up your wellness journey!
@@ -276,7 +278,7 @@ function Challenges({ onUpdate }) {
                   {/* Challenge Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-start gap-4 flex-1">
-                      <div className="text-5xl">{challenge.icon}</div>
+                      <div><IconRenderer name={challenge.icon} size={48} /></div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-gray-900 mb-1">{challenge.title}</h3>
                         <p className="text-gray-600 text-sm mb-2">{challenge.description}</p>
@@ -285,9 +287,9 @@ function Challenges({ onUpdate }) {
                             {challenge.category}
                           </span>
                           <span className="badge bg-orange-100 text-orange-700 px-3 py-1 text-xs font-bold">
-                            🔥 {streak} day streak
+                            <Flame size={12} className="inline" /> {streak} day streak
                           </span>
-                          <span className="text-sm text-gray-600">⭐ {challenge.pointsPerDay} pts/day</span>
+                          <span className="text-sm text-gray-600 flex items-center gap-1"><Star size={12} className="text-amber-400" /> {challenge.pointsPerDay} pts/day</span>
                         </div>
                       </div>
                     </div>
@@ -348,7 +350,7 @@ function Challenges({ onUpdate }) {
       {/* Completed Challenges */}
       {completedChallenges.length > 0 && (
         <div className="card p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Completed Challenges 🏆</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">Completed Challenges <Trophy size={24} className="text-amber-500" /></h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {completedChallenges.map((challenge) => (
               <div
@@ -356,15 +358,15 @@ function Challenges({ onUpdate }) {
                 className="p-4 rounded-xl border-2 border-green-300/50 bg-gradient-to-br from-green-50 to-emerald-50"
               >
                 <div className="flex items-center gap-3">
-                  <div className="text-3xl">{challenge.icon}</div>
+                  <div><IconRenderer name={challenge.icon} size={28} /></div>
                   <div className="flex-1">
                     <h4 className="font-bold text-gray-900">{challenge.title}</h4>
                     <div className="flex items-center gap-2 text-xs text-gray-600 mt-1">
-                      <span>✅ Completed</span>
-                      <span>⭐ +{challenge.totalPoints} pts</span>
+                      <span className="flex items-center gap-1"><CheckCircle size={12} /> Completed</span>
+                      <span className="flex items-center gap-1"><Star size={12} className="text-amber-400" /> +{challenge.totalPoints} pts</span>
                     </div>
                   </div>
-                  <div className="text-2xl">🏆</div>
+                  <div><Trophy size={24} className="text-amber-500" /></div>
                 </div>
               </div>
             ))}
@@ -374,8 +376,10 @@ function Challenges({ onUpdate }) {
 
       {/* Browse Challenges Modal */}
       {showBrowseModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="card max-w-4xl w-full p-6 max-h-[90vh] overflow-y-auto">
+        <>
+          <div className="fixed inset-0 bg-black/80  z-60 animate-fade-in" />
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-[75vh] w-full max-h-[80vh] overflow-y-auto animate-scale-in ">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">Browse 30-Day Challenges</h2>
@@ -391,7 +395,7 @@ function Challenges({ onUpdate }) {
 
             {availableChallenges.length === 0 ? (
               <div className="text-center py-12">
-                {/* <div className="text-6xl mb-4">🎉</div> */}
+                <div className="mb-4"><PartyPopper size={56} className="text-sage-500 mx-auto" /></div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">All Challenges Joined!</h3>
                 <p className="text-gray-600">You're already participating in all available challenges.</p>
               </div>
@@ -403,7 +407,7 @@ function Challenges({ onUpdate }) {
                     className="p-5 rounded-2xl border-2 border-gray-200 hover:border-sage-400 hover:shadow-lg transition-all duration-300"
                   >
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="text-4xl">{challenge.icon}</div>
+                      <div><IconRenderer name={challenge.icon} size={36} /></div>
                       <div className="flex-1">
                         <h3 className="font-bold text-gray-900 mb-1">{challenge.title}</h3>
                         <p className="text-sm text-gray-600 mb-3">{challenge.description}</p>
@@ -414,7 +418,7 @@ function Challenges({ onUpdate }) {
                           <span className="badge bg-amber-100 text-amber-700 px-2 py-1 text-xs">
                             {challenge.difficulty}
                           </span>
-                          <span className="text-xs text-gray-600">👥 {challenge.participants} joined</span>
+                          <span className="text-xs text-gray-600 flex items-center gap-1"><Users size={12} /> {challenge.participants} joined</span>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="text-sm">
@@ -436,6 +440,7 @@ function Challenges({ onUpdate }) {
             )}
           </div>
         </div>
+        </>
       )}
 
       {/* Toast */}

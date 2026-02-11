@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
+import { Loader2 } from 'lucide-react';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 // Public Pages
@@ -35,7 +36,7 @@ function PublicRoute({ children }) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          {/* <div className="text-6xl mb-4 animate-bounce-gentle">🌸</div> */}
+          <Loader2 className="w-12 h-12 text-sage-500 animate-spin mx-auto mb-4" />
           <div className="text-xl font-semibold text-sage-600">Loading...</div>
         </div>
       </div>

@@ -35,6 +35,15 @@
   --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
   --shadow-glow: 0 0 20px rgba(168, 213, 186, 0.3);
 
+  /* Fonts */
+  --font-heading: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+
+  /* Pop Shadows */
+  --shadow-pop: 4px 4px 0px 0px rgba(30, 56, 48, 0.15);
+  --shadow-pop-hover: 6px 6px 0px 0px rgba(30, 56, 48, 0.2);
+  --shadow-pop-active: 2px 2px 0px 0px rgba(30, 56, 48, 0.15);
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 300ms ease;

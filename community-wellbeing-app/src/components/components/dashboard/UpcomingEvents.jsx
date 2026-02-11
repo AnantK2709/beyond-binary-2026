@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Flower2, Calendar, Crown, User } from 'lucide-react';
 
 export default function UpcomingEvents({ user }) {
   const upcomingCircles = user?.joinedCircles || [];
@@ -7,7 +8,9 @@ export default function UpcomingEvents({ user }) {
   if (upcomingCircles.length === 0) {
     return (
       <div className="card text-center animate-fade-in">
-        <div className="text-6xl mb-4 animate-float">🌸</div>
+        <div className="mb-4 animate-float">
+          <Flower2 size={48} className="text-sage-400 mx-auto" />
+        </div>
         <h3 className="text-lg font-bold text-gray-900 mb-2">
           No Upcoming Circles
         </h3>
@@ -42,16 +45,16 @@ export default function UpcomingEvents({ user }) {
               {circle.name}
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-              <span>📅</span>
+              <Calendar size={14} className="text-gray-400" />
               <span>Next: Wed 7:00 PM</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className={`badge text-xs ${
-                circle.role === 'organizer' 
-                  ? 'badge-new' 
+              <span className={`badge text-xs flex items-center gap-1 ${
+                circle.role === 'organizer'
+                  ? 'badge-new'
                   : 'badge-verified'
               }`}>
-                {circle.role === 'organizer' ? '👑 Organizer' : '👤 Member'}
+                {circle.role === 'organizer' ? <><Crown size={12} /> Organizer</> : <><User size={12} /> Member</>}
               </span>
             </div>
           </Link>

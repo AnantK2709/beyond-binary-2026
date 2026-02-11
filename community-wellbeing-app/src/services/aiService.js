@@ -130,7 +130,7 @@ const generateActivityInsights = async (attendedEvents, reviews) => {
     insights.push({
       type: 'milestone',
       message: `You've attended ${totalEvents} events! You're building great habits for community connection.`,
-      icon: '🎉'
+      icon: 'PartyPopper'
     })
   }
 
@@ -138,7 +138,7 @@ const generateActivityInsights = async (attendedEvents, reviews) => {
     insights.push({
       type: 'preference',
       message: `${favoriteCategory[0]} events seem to be your favorite, with ${favoriteCategory[1]} attended.`,
-      icon: '⭐'
+      icon: 'Star'
     })
   }
 
@@ -146,7 +146,7 @@ const generateActivityInsights = async (attendedEvents, reviews) => {
     insights.push({
       type: 'satisfaction',
       message: `You rate ${bestRatedCategory.category} events highly (${bestRatedCategory.avgRating.toFixed(1)}/5). Great match!`,
-      icon: '💚'
+      icon: 'Heart'
     })
   }
 
@@ -156,7 +156,7 @@ const generateActivityInsights = async (attendedEvents, reviews) => {
     insights.push({
       type: 'suggestion',
       message: 'Try exploring new event categories to discover more interests!',
-      icon: '🔍'
+      icon: 'Search'
     })
   }
 
@@ -272,14 +272,14 @@ const analyzeMoodTrends = async (moodEntries) => {
     insights.push({
       type: 'positive',
       message: 'Your mood has been trending positively! Keep up the great work with your wellness activities.',
-      icon: '📈'
+      icon: 'TrendingUp'
     })
   } else if (recentNegative > recentPositive * 1.5) {
     trend = 'declining'
     insights.push({
       type: 'concern',
       message: 'We notice you\'ve been feeling down lately. Consider reaching out to community support or attending wellness events.',
-      icon: '💙'
+      icon: 'HeartHandshake'
     })
   }
 
@@ -287,7 +287,7 @@ const analyzeMoodTrends = async (moodEntries) => {
     insights.push({
       type: 'recommendation',
       message: 'Mindfulness and meditation events might help manage stress. We have several available this week.',
-      icon: '🧘'
+      icon: 'Brain'
     })
   }
 

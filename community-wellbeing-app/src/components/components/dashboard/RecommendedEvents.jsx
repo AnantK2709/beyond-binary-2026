@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Calendar, MapPin, Users, Search, Sparkles } from 'lucide-react';
+import IconRenderer from '../../common/IconRenderer';
 import { EventContext } from '../../../context/EventContext';
 
 export default function RecommendedEvents({ user }) {
@@ -96,14 +98,14 @@ export default function RecommendedEvents({ user }) {
 
   const getCategoryIcon = (category) => {
     const icons = {
-      wellness: '🧘‍♀️',
-      outdoors: '🏞️',
-      arts: '🎨',
-      social: '👥',
-      sports: '⚽',
-      workshops: '🛠️'
+      wellness: 'HeartPulse',
+      outdoors: 'Mountain',
+      arts: 'Palette',
+      social: 'Users',
+      sports: 'Trophy',
+      workshops: 'Wrench'
     };
-    return icons[category] || '🎯';
+    return icons[category] || 'Target';
   };
 
   return (
@@ -112,8 +114,8 @@ export default function RecommendedEvents({ user }) {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-sage-600 to-ocean-600 bg-clip-text text-transparent">
-              ✨ Recommended for You
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-sage-600 to-ocean-600 bg-clip-text text-transparent flex items-center gap-2">
+              <Sparkles size={22} className="text-sage-600" /> Recommended for You
             </h2>
             <p className="text-gray-600 text-sm mt-1">
               Personalized picks based on your interests
@@ -137,7 +139,7 @@ export default function RecommendedEvents({ user }) {
             onChange={(e) => setSearchKeyword(e.target.value)}
             className="w-full px-4 py-3 pl-12 rounded-2xl border border-sage-300/40 focus:outline-none focus:ring-2 focus:ring-sage-500/50 bg-white/80 backdrop-blur-sm transition-all"
           />
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">🔍</span>
+          <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
           {searchKeyword && (
             <button
               onClick={() => setSearchKeyword('')}
@@ -169,8 +171,8 @@ export default function RecommendedEvents({ user }) {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-6xl">
-                      {getCategoryIcon(event.category)}
+                    <div className="w-full h-full flex items-center justify-center">
+                      <IconRenderer name={getCategoryIcon(event.category)} size={64} className="text-sage-500/60" />
                     </div>
                   )}
 
@@ -195,15 +197,15 @@ export default function RecommendedEvents({ user }) {
 
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <span className="text-base">📅</span>
+                      <Calendar size={16} className="text-gray-400" />
                       <span>{formatDate(event.date)} at {formatTime(event.time)}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <span className="text-base">📍</span>
+                      <MapPin size={16} className="text-gray-400" />
                       <span className="line-clamp-1">{event.location}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <span className="text-base">👥</span>
+                      <Users size={16} className="text-gray-400" />
                       <span>{event.participants}/{event.maxParticipants} attending</span>
                     </div>
                   </div>
@@ -227,7 +229,7 @@ export default function RecommendedEvents({ user }) {
                     <div className="flex items-center gap-2">
                       {event.organizer?.verified && (
                         <span className="text-xs badge badge-success px-2 py-1">
-                          ✓ Verified
+                          Verified
                         </span>
                       )}
                       <span className="text-xs text-gray-500 font-medium">
@@ -245,7 +247,9 @@ export default function RecommendedEvents({ user }) {
         </div>
       ) : (
         <div className="card p-12 text-center">
-          <div className="text-6xl mb-4">🔍</div>
+          <div className="mb-4">
+            <Search size={48} className="text-gray-300 mx-auto" />
+          </div>
           <h3 className="text-xl font-bold text-gray-900 mb-2">
             {searchKeyword ? 'No events found' : 'No recommendations yet'}
           </h3>

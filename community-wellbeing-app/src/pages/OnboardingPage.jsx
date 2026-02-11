@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Flower2 } from 'lucide-react';
 
 import Step1InterestSelector from '../components/components/onboarding/Step1InterestSelector';
 import Step2AvailabilityForm from '../components/components/onboarding/Step2AvailabilityForm';
@@ -92,7 +93,7 @@ export default function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-8 animate-scale-in">
           <div className="inline-flex items-center gap-2 mb-4">
-            <span className="text-4xl">🌸</span>
+            <Flower2 size={36} strokeWidth={1.5} className="text-pink-400" />
             <span className="text-3xl font-bold text-gradient">MindfulCircles</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">

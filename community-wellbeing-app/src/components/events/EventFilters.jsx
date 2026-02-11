@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Search, ChevronDown, ShieldCheck } from 'lucide-react'
+import IconRenderer from '../common/IconRenderer'
 
 function EventFilters({ filters, onFilterChange }) {
   const [isExpanded, setIsExpanded] = useState({
@@ -10,20 +12,20 @@ function EventFilters({ filters, onFilterChange }) {
   })
 
   const categories = [
-    { id: 'all', label: 'All Events', icon: '🎯' },
-    { id: 'wellness', label: 'Wellness', icon: '🧘‍♀️' },
-    { id: 'outdoors', label: 'Outdoors', icon: '🏞️' },
-    { id: 'arts', label: 'Arts', icon: '🎨' },
-    { id: 'social', label: 'Social', icon: '👥' },
-    { id: 'sports', label: 'Sports', icon: '⚽' },
-    { id: 'workshops', label: 'Workshops', icon: '🛠️' }
+    { id: 'all', label: 'All Events', icon: 'Target' },
+    { id: 'wellness', label: 'Wellness', icon: 'HeartPulse' },
+    { id: 'outdoors', label: 'Outdoors', icon: 'Mountain' },
+    { id: 'arts', label: 'Arts', icon: 'Palette' },
+    { id: 'social', label: 'Social', icon: 'Users' },
+    { id: 'sports', label: 'Sports', icon: 'Trophy' },
+    { id: 'workshops', label: 'Workshops', icon: 'Wrench' }
   ]
 
   const timeOfDay = [
-    { id: 'all', label: 'Any Time', icon: '🕐' },
-    { id: 'morning', label: 'Morning (6AM-12PM)', icon: '🌅' },
-    { id: 'afternoon', label: 'Afternoon (12PM-5PM)', icon: '☀️' },
-    { id: 'evening', label: 'Evening (5PM-10PM)', icon: '🌆' }
+    { id: 'all', label: 'Any Time', icon: 'Clock' },
+    { id: 'morning', label: 'Morning (6AM-12PM)', icon: 'Sunrise' },
+    { id: 'afternoon', label: 'Afternoon (12PM-5PM)', icon: 'Sun' },
+    { id: 'evening', label: 'Evening (5PM-10PM)', icon: 'Sunset' }
   ]
 
   const ageGroups = [
@@ -90,7 +92,7 @@ function EventFilters({ filters, onFilterChange }) {
             onChange={handleSearchChange}
             className="input-field w-full pl-12 pr-4"
           />
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">🔍</span>
+          <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
         </div>
       </div>
 
@@ -113,9 +115,7 @@ function EventFilters({ filters, onFilterChange }) {
             className="flex items-center justify-between w-full mb-3 text-left"
           >
             <h4 className="font-semibold text-gray-800">Category</h4>
-            <span className={`transform transition-transform ${isExpanded.category ? 'rotate-180' : ''}`}>
-              ▼
-            </span>
+            <ChevronDown size={16} className={`transform transition-transform ${isExpanded.category ? 'rotate-180' : ''}`} />
           </button>
           {isExpanded.category && (
             <div className="space-y-2">
@@ -136,7 +136,7 @@ function EventFilters({ filters, onFilterChange }) {
                     onChange={() => handleCategoryChange(cat.id)}
                     className="hidden"
                   />
-                  {/* <span className="text-xl">{cat.icon}</span> */}
+                  <IconRenderer name={cat.icon} size={20} />
                   <span className="text-sm font-medium text-gray-700">{cat.label}</span>
                 </label>
               ))}
@@ -151,9 +151,7 @@ function EventFilters({ filters, onFilterChange }) {
             className="flex items-center justify-between w-full mb-3 text-left"
           >
             <h4 className="font-semibold text-gray-800">Date Range</h4>
-            <span className={`transform transition-transform ${isExpanded.date ? 'rotate-180' : ''}`}>
-              ▼
-            </span>
+            <ChevronDown size={16} className={`transform transition-transform ${isExpanded.date ? 'rotate-180' : ''}`} />
           </button>
           {isExpanded.date && (
             <div className="space-y-3">
@@ -186,9 +184,7 @@ function EventFilters({ filters, onFilterChange }) {
             className="flex items-center justify-between w-full mb-3 text-left"
           >
             <h4 className="font-semibold text-gray-800">Time of Day</h4>
-            <span className={`transform transition-transform ${isExpanded.time ? 'rotate-180' : ''}`}>
-              ▼
-            </span>
+            <ChevronDown size={16} className={`transform transition-transform ${isExpanded.time ? 'rotate-180' : ''}`} />
           </button>
           {isExpanded.time && (
             <div className="space-y-2">
@@ -209,7 +205,7 @@ function EventFilters({ filters, onFilterChange }) {
                     onChange={() => handleTimeChange(time.id)}
                     className="hidden"
                   />
-                  {/* <span className="text-xl">{time.icon}</span> */}
+                  <IconRenderer name={time.icon} size={20} />
                   <span className="text-sm font-medium text-gray-700">{time.label}</span>
                 </label>
               ))}
@@ -224,9 +220,7 @@ function EventFilters({ filters, onFilterChange }) {
             className="flex items-center justify-between w-full mb-3 text-left"
           >
             <h4 className="font-semibold text-gray-800">Age Group</h4>
-            <span className={`transform transition-transform ${isExpanded.ageGroup ? 'rotate-180' : ''}`}>
-              ▼
-            </span>
+            <ChevronDown size={16} className={`transform transition-transform ${isExpanded.ageGroup ? 'rotate-180' : ''}`} />
           </button>
           {isExpanded.ageGroup && (
             <div className="space-y-2">
@@ -261,14 +255,12 @@ function EventFilters({ filters, onFilterChange }) {
             className="flex items-center justify-between w-full mb-3 text-left"
           >
             <h4 className="font-semibold text-gray-800">Verified Only</h4>
-            <span className={`transform transition-transform ${isExpanded.verified ? 'rotate-180' : ''}`}>
-              ▼
-            </span>
+            <ChevronDown size={16} className={`transform transition-transform ${isExpanded.verified ? 'rotate-180' : ''}`} />
           </button>
           {isExpanded.verified && (
             <label className="flex items-center justify-between p-4 rounded-xl bg-white/20 hover:bg-white/40 cursor-pointer transition-all duration-300 border border-transparent hover:border-sage-300/50">
               <div className="flex items-center gap-3">
-                <span className="text-xl">✓</span>
+                <ShieldCheck size={20} className="text-sage-600" />
                 <span className="text-sm font-medium text-gray-700">Show only verified events</span>
               </div>
               <div className="relative">

@@ -13,7 +13,7 @@ export const ChatProvider = ({ children }) => {
     const callId = `loadMessages-${communityId}-${Date.now()}`;
     const stackTrace = new Error().stack;
     
-    console.log(`[ChatContext] 🔍 loadMessages(${communityId}) called`, {
+    console.log(`[ChatContext] loadMessages(${communityId}) called`, {
       callId,
       isCurrentlyLoading: loadingRef.current[communityId],
       isAlreadyLoaded: loadedRef.current.has(communityId),
@@ -23,13 +23,13 @@ export const ChatProvider = ({ children }) => {
 
     // Prevent duplicate calls for the same community
     if (loadingRef.current[communityId]) {
-      console.log(`[ChatContext] ⚠️ Already loading messages for ${communityId}, skipping`, { callId })
+      console.log(`[ChatContext] Already loading messages for ${communityId}, skipping`, { callId })
       return // Already loading
     }
 
     // Always reload for fresh start (clear previous loaded state)
     if (loadedRef.current.has(communityId)) {
-      console.log(`[ChatContext] 🔄 Clearing previous loaded state for fresh start`, { callId })
+      console.log(`[ChatContext] Clearing previous loaded state for fresh start`, { callId })
       loadedRef.current.delete(communityId)
       // Clear messages for this community
       setMessages(prev => {
@@ -39,25 +39,25 @@ export const ChatProvider = ({ children }) => {
       })
     }
 
-    console.log(`[ChatContext] ✅ Proceeding to load messages for ${communityId}`, { callId });
+    console.log(`[ChatContext] Proceeding to load messages for ${communityId}`, { callId });
     loadingRef.current[communityId] = true
     setLoading(true)
     
     try {
-      console.log(`[ChatContext] 📡 Calling chatService.getMessages(${communityId})`, { callId })
+      console.log(`[ChatContext] Calling chatService.getMessages(${communityId})`, { callId })
       const data = await chatService.getMessages(communityId)
       
       // Filter out invalid poll messages on frontend as well (safety check)
       const validMessages = (data.messages || []).filter(msg => {
         if (msg.type === 'poll' && !msg.poll) {
-          console.warn(`[ChatContext] ⚠️ Filtering out invalid poll message ${msg.id}`)
+          console.warn(`[ChatContext] Filtering out invalid poll message ${msg.id}`)
           return false
         }
         return true
       })
       
       setMessages(prev => {
-        console.log(`[ChatContext] ✅ Setting messages for ${communityId}: ${validMessages.length} valid messages`, { callId })
+        console.log(`[ChatContext] Setting messages for ${communityId}: ${validMessages.length} valid messages`, { callId })
         loadedRef.current.add(communityId) // Mark as loaded
         return {
           ...prev,
@@ -65,7 +65,7 @@ export const ChatProvider = ({ children }) => {
         }
       })
     } catch (error) {
-      console.error(`[ChatContext] ❌ Error loading messages:`, error, { callId })
+      console.error(`[ChatContext] Error loading messages:`, error, { callId })
       setMessages(prev => ({
         ...prev,
         [communityId]: []
@@ -74,7 +74,7 @@ export const ChatProvider = ({ children }) => {
     } finally {
       loadingRef.current[communityId] = false
       setLoading(false)
-      console.log(`[ChatContext] 🏁 loadMessages(${communityId}) completed`, { callId })
+      console.log(`[ChatContext] loadMessages(${communityId}) completed`, { callId })
     }
   }, []) // Empty dependency array - function is stable
 

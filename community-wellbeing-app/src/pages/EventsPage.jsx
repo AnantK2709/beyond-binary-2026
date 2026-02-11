@@ -4,6 +4,7 @@ import { EventContext } from '../context/EventContext'
 import EventFilters from '../components/events/EventFilters'
 import EventsList from '../components/events/EventsList'
 import Navbar from '../components/components/common/Navbar'
+import { Calendar, Search, PartyPopper, ArrowUp } from 'lucide-react'
 
 function EventsPage() {
   const navigate = useNavigate()
@@ -139,57 +140,46 @@ function EventsPage() {
   return (
     <div className="min-h-screen pb-20 md:pb-0">
       <Navbar />
-      <div className="py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-        {/* Page Header */}
-        <div className="mb-8">
-          <div className="card p-8">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h1 className="text-4xl font-bold text-gradient mb-3">Discover Events</h1>
-                <p className="text-gray-600 text-lg">
-                  Join activities, connect with your community, and boost your wellbeing
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={() => navigate('/my-events')}
-                  className="btn-secondary px-6 py-3 flex items-center gap-2"
-                >
-                  {/* <span>📅</span> */}
-                  <span className="hidden sm:inline">My Events</span>
-                </button>
-                {/* <div className="hidden lg:block text-6xl animate-float"> */}
-                  {/* 🎉
-                </div> */}
-              </div>
-            </div>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-              <div className="bg-gradient-to-br from-sage-400/20 to-sage-500/20 rounded-2xl p-4 border border-sage-300/30">
-                <div className="text-3xl font-bold text-sage-700">{events.length}</div>
-                <div className="text-sm text-gray-600 mt-1">Total Events</div>
-              </div>
-              <div className="bg-gradient-to-br from-ocean-400/20 to-ocean-500/20 rounded-2xl p-4 border border-ocean-300/30">
-                <div className="text-3xl font-bold text-ocean-600">
-                  {events.filter(e => new Date(e.date) > new Date()).length}
-                </div>
-                <div className="text-sm text-gray-600 mt-1">Upcoming</div>
-              </div>
-              <div className="bg-gradient-to-br from-sage-300/20 to-ocean-400/20 rounded-2xl p-4 border border-sage-300/30">
-                <div className="text-3xl font-bold text-sage-700">
-                  {events.filter(e => e.organizer?.verified).length}
-                </div>
-                <div className="text-sm text-gray-600 mt-1">Verified</div>
-              </div>
-              <div className="bg-gradient-to-br from-sage-400/20 to-ocean-400/20 rounded-2xl p-4 border border-sage-300/30">
-                <div className="text-3xl font-bold text-sage-700">
-                  {new Set(events.map(e => e.category)).size}
-                </div>
-                <div className="text-sm text-gray-600 mt-1">Categories</div>
-              </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Page Header */}
+        <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-800 mb-2 font-heading">Discover Events</h1>
+            <p className="text-gray-600">Join activities, connect with your community, and boost your wellbeing</p>
+          </div>
+          <button
+            onClick={() => navigate('/my-events')}
+            className="px-6 py-3 bg-sage-600 text-white rounded-lg hover:bg-sage-700 transition-colors font-semibold flex items-center gap-2 shadow-md"
+          >
+            <Calendar size={18} />
+            <span>My Events</span>
+          </button>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div className="card p-5">
+            <div className="text-3xl font-bold text-sage-600 mb-1 font-heading">{events.length}</div>
+            <div className="text-sm text-gray-600">Total Events</div>
+          </div>
+          <div className="card p-5">
+            <div className="text-3xl font-bold text-ocean-500 mb-1 font-heading">
+              {events.filter(e => new Date(e.date) > new Date()).length}
             </div>
+            <div className="text-sm text-gray-600">Upcoming</div>
+          </div>
+          <div className="card p-5">
+            <div className="text-3xl font-bold text-sage-500 mb-1 font-heading">
+              {events.filter(e => e.organizer?.verified).length}
+            </div>
+            <div className="text-sm text-gray-600">Verified</div>
+          </div>
+          <div className="card p-5">
+            <div className="text-3xl font-bold text-sage-400 mb-1 font-heading">
+              {new Set(events.map(e => e.category)).size}
+            </div>
+            <div className="text-sm text-gray-600">Categories</div>
           </div>
         </div>
 
@@ -197,13 +187,15 @@ function EventsPage() {
         <div className="lg:hidden mb-6">
           <button
             onClick={toggleSidebar}
-            className="btn-primary w-full py-3 flex items-center justify-center gap-2"
+            className="w-full px-6 py-3 bg-sage-600 text-white rounded-lg hover:bg-sage-700 transition-colors font-semibold flex items-center justify-center gap-2 shadow-md"
           >
-            <span>🔍</span>
+            <Search size={18} />
             <span>Filters & Search</span>
-            <span className="ml-2 badge bg-white/30 text-white px-2 py-1 text-xs">
-              {Object.values(localFilters).filter(v => v && v !== 'all' && v !== false).length || '0'}
-            </span>
+            {Object.values(localFilters).filter(v => v && v !== 'all' && v !== false).length > 0 && (
+              <span className="ml-2 bg-white/30 text-white px-2 py-0.5 rounded-full text-xs font-bold">
+                {Object.values(localFilters).filter(v => v && v !== 'all' && v !== false).length}
+              </span>
+            )}
           </button>
         </div>
 
@@ -216,7 +208,7 @@ function EventsPage() {
               <div className="lg:hidden mb-4">
                 <button
                   onClick={toggleSidebar}
-                  className="btn-secondary w-full py-3"
+                  className="w-full px-6 py-3 bg-white text-gray-700 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors font-semibold"
                 >
                   Close Filters
                 </button>
@@ -231,7 +223,7 @@ function EventsPage() {
               <div className="lg:hidden mt-4">
                 <button
                   onClick={toggleSidebar}
-                  className="btn-primary w-full py-3"
+                  className="w-full px-6 py-3 bg-sage-600 text-white rounded-lg hover:bg-sage-700 transition-colors font-semibold"
                 >
                   Apply Filters
                 </button>
@@ -244,18 +236,6 @@ function EventsPage() {
             <EventsList events={filteredEvents} loading={loading} />
           </main>
         </div>
-
-        {/* Back to Top Button */}
-        <div className="fixed bottom-8 right-8 z-50">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="btn-primary w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl"
-            aria-label="Back to top"
-          >
-            <span className="text-2xl">↑</span>
-          </button>
-        </div>
-      </div>
       </div>
     </div>
   )

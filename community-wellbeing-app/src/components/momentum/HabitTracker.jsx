@@ -1,18 +1,20 @@
 import { useState, useEffect, useContext } from 'react'
+import { Plus, Target, Flame, Star, CheckCircle } from 'lucide-react'
+import IconRenderer from '../common/IconRenderer'
 import { GamificationContext } from '../../context/GamificationContext'
 import Toast from '../common/Toast'
 
 const PRESET_HABITS = [
-  { icon: '🧘', name: 'Meditation', category: 'wellness', points: 10 },
-  { icon: '💪', name: 'Exercise', category: 'fitness', points: 15 },
-  { icon: '📚', name: 'Reading', category: 'learning', points: 10 },
-  { icon: '💧', name: 'Drink 8 Glasses of Water', category: 'health', points: 5 },
-  { icon: '🌅', name: 'Wake Up Early', category: 'productivity', points: 10 },
-  { icon: '📝', name: 'Journaling', category: 'wellness', points: 10 },
-  { icon: '🥗', name: 'Healthy Eating', category: 'health', points: 10 },
-  { icon: '😴', name: 'Sleep 8 Hours', category: 'health', points: 10 },
-  { icon: '🚶', name: '10,000 Steps', category: 'fitness', points: 15 },
-  { icon: '🧠', name: 'Learn Something New', category: 'learning', points: 15 }
+  { icon: 'HeartPulse', name: 'Meditation', category: 'wellness', points: 10 },
+  { icon: 'Dumbbell', name: 'Exercise', category: 'fitness', points: 15 },
+  { icon: 'BookOpen', name: 'Reading', category: 'learning', points: 10 },
+  { icon: 'Droplets', name: 'Drink 8 Glasses of Water', category: 'health', points: 5 },
+  { icon: 'Sunrise', name: 'Wake Up Early', category: 'productivity', points: 10 },
+  { icon: 'PenLine', name: 'Journaling', category: 'wellness', points: 10 },
+  { icon: 'Salad', name: 'Healthy Eating', category: 'health', points: 10 },
+  { icon: 'Moon', name: 'Sleep 8 Hours', category: 'health', points: 10 },
+  { icon: 'Footprints', name: '10,000 Steps', category: 'fitness', points: 15 },
+  { icon: 'Brain', name: 'Learn Something New', category: 'learning', points: 15 }
 ]
 
 function HabitTracker({ onUpdate }) {
@@ -21,7 +23,7 @@ function HabitTracker({ onUpdate }) {
   const [completions, setCompletions] = useState({})
   const [showAddModal, setShowAddModal] = useState(false)
   const [newHabitName, setNewHabitName] = useState('')
-  const [selectedIcon, setSelectedIcon] = useState('✅')
+  const [selectedIcon, setSelectedIcon] = useState('CheckCircle')
   const [toast, setToast] = useState({ show: false, type: 'info', message: '' })
 
   useEffect(() => {
@@ -188,7 +190,7 @@ function HabitTracker({ onUpdate }) {
 
         {habits.length === 0 ? (
           <div className="text-center py-12">
-            {/* <div className="text-6xl mb-4">✅</div> */}
+            <div className="mb-4"><Target size={56} className="text-gray-300 mx-auto" /></div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">No Habits Yet</h3>
             <p className="text-gray-600 mb-6">
               Start building positive habits to track your progress!
@@ -226,7 +228,7 @@ function HabitTracker({ onUpdate }) {
                           : 'bg-white border-gray-300 hover:border-sage-400'
                       }`}
                     >
-                      {completed ? '✓' : habit.icon}
+                      {completed ? <CheckCircle size={24} /> : <IconRenderer name={habit.icon} size={24} />}
                     </button>
 
                     {/* Habit Info */}
@@ -234,14 +236,14 @@ function HabitTracker({ onUpdate }) {
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-bold text-gray-900">{habit.name}</h3>
                         {streak > 0 && (
-                          <span className="badge bg-orange-100 text-orange-700 px-2 py-1 text-xs font-bold">
-                            🔥 {streak} day{streak !== 1 ? 's' : ''}
+                          <span className="badge bg-orange-100 text-orange-700 px-2 py-1 text-xs font-bold flex items-center gap-1">
+                            <Flame size={12} /> {streak} day{streak !== 1 ? 's' : ''}
                           </span>
                         )}
                       </div>
                       <div className="flex items-center gap-4 text-sm text-gray-600">
-                        <span>⭐ {habit.points} pts</span>
-                        <span>✅ {totalCompletions} total</span>
+                        <span className="flex items-center gap-1"><Star size={12} className="text-amber-400" /> {habit.points} pts</span>
+                        <span className="flex items-center gap-1"><CheckCircle size={12} className="text-sage-500" /> {totalCompletions} total</span>
                         {habit.category && (
                           <span className="badge badge-primary px-2 py-1 text-xs capitalize">
                             {habit.category}
@@ -292,7 +294,7 @@ function HabitTracker({ onUpdate }) {
                     onClick={() => addHabit(habit)}
                     className="p-4 rounded-xl border-2 border-gray-200 hover:border-sage-400 hover:bg-sage-50 transition-all duration-300 text-left"
                   >
-                    <div className="text-2xl mb-2">{habit.icon}</div>
+                    <div className="mb-2"><IconRenderer name={habit.icon} size={24} /></div>
                     <div className="font-semibold text-gray-900 text-sm">{habit.name}</div>
                     <div className="text-xs text-gray-600 mt-1">+{habit.points} pts</div>
                   </button>
@@ -321,17 +323,17 @@ function HabitTracker({ onUpdate }) {
                     Icon (optional)
                   </label>
                   <div className="flex gap-2 flex-wrap">
-                    {['✅', '🎯', '💡', '🎨', '🎵', '📱', '💼', '🏃', '🎮', '📷'].map((icon) => (
+                    {['CheckCircle', 'Target', 'Lightbulb', 'Palette', 'Music', 'Smartphone', 'Briefcase', 'PersonStanding', 'Gamepad2', 'Camera'].map((icon) => (
                       <button
                         key={icon}
                         onClick={() => setSelectedIcon(icon)}
-                        className={`w-12 h-12 rounded-xl border-2 text-2xl transition-all ${
+                        className={`w-12 h-12 rounded-xl border-2 flex items-center justify-center transition-all ${
                           selectedIcon === icon
                             ? 'border-sage-500 bg-sage-50'
                             : 'border-gray-200 hover:border-sage-300'
                         }`}
                       >
-                        {icon}
+                        <IconRenderer name={icon} size={24} />
                       </button>
                     ))}
                   </div>
@@ -361,7 +363,7 @@ function HabitTracker({ onUpdate }) {
           {/* Modal */}
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div
-              className="bg-white rounded-2xl shadow-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto animate-scale-in "
+              className="bg-white rounded-2xl shadow-2xl p-6 max-w-[75vh] w-full max-h-[80vh] overflow-y-auto animate-scale-in "
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
@@ -385,7 +387,7 @@ function HabitTracker({ onUpdate }) {
                       onClick={() => addHabit(habit)}
                       className="p-4 rounded-xl border-2 border-gray-200 hover:border-sage-400 hover:bg-sage-50 transition-all duration-300 text-left"
                     >
-                      <div className="text-2xl mb-2">{habit.icon}</div>
+                      <div className="mb-2"><IconRenderer name={habit.icon} size={24} /></div>
                       <div className="font-semibold text-gray-900 text-sm">{habit.name}</div>
                       <div className="text-xs text-gray-600 mt-1">+{habit.points} pts</div>
                     </button>
@@ -414,16 +416,16 @@ function HabitTracker({ onUpdate }) {
                       Icon (optional)
                     </label>
                     <div className="flex gap-2 flex-wrap">
-                      {['✅', '🎯', '💡', '🎨', '🎵', '📱', '💼', '🏃', '🎮', '📷'].map((icon) => (
+                      {['CheckCircle', 'Target', 'Lightbulb', 'Palette', 'Music', 'Smartphone', 'Briefcase', 'PersonStanding', 'Gamepad2', 'Camera'].map((icon) => (
                         <button
                           key={icon}
                           onClick={() => setSelectedIcon(icon)}
-                          className={`w-12 h-12 rounded-xl border-2 text-2xl transition-all ${selectedIcon === icon
+                          className={`w-12 h-12 rounded-xl border-2 flex items-center justify-center transition-all ${selectedIcon === icon
                               ? 'border-sage-500 bg-sage-50'
                               : 'border-gray-200 hover:border-sage-300'
                             }`}
                         >
-                          {icon}
+                          <IconRenderer name={icon} size={24} />
                         </button>
                       ))}
                     </div>

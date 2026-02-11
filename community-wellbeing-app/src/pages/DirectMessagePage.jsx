@@ -5,6 +5,7 @@ import { messageService } from '../services/messageService';
 import { searchService } from '../services/searchService';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../hooks/useToast';
+import { ArrowLeft, MessageCircle } from 'lucide-react';
 
 export default function DirectMessagePage() {
   const { userId } = useParams();
@@ -131,7 +132,7 @@ export default function DirectMessagePage() {
               onClick={() => navigate(-1)}
               className="text-gray-600 hover:text-gray-800 transition-colors"
             >
-              ←
+              <ArrowLeft size={20} strokeWidth={2} />
             </button>
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sage-500 to-sage-600 flex items-center justify-center text-white font-bold text-lg">
               {otherUser.name?.charAt(0).toUpperCase()}
@@ -155,7 +156,7 @@ export default function DirectMessagePage() {
             {messages.length === 0 ? (
               <div className="flex items-center justify-center h-full text-gray-500">
                 <div className="text-center">
-                  <p className="text-lg mb-2">💬</p>
+                  <p className="mb-2"><MessageCircle size={24} strokeWidth={1.5} className="mx-auto" /></p>
                   <p>No messages yet. Start the conversation!</p>
                 </div>
               </div>

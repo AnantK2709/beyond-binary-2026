@@ -7,7 +7,7 @@ export const communityService = {
     const callId = `getCommunities-${Date.now()}-${Math.random()}`;
     const stackTrace = new Error().stack;
     
-    console.log(`[communityService] 📞 getCommunities() called`, {
+    console.log(`[communityService] getCommunities() called`, {
       callId,
       timestamp: new Date().toISOString(),
       stackTrace: stackTrace.split('\n').slice(1, 4).join('\n') // Show first 3 stack frames
@@ -19,7 +19,7 @@ export const communityService = {
     );
 
     if (recentCall) {
-      console.warn(`[communityService] ⚠️ Duplicate call detected! Previous call was ${Date.now() - recentCall.timestamp}ms ago`, {
+      console.warn(`[communityService] Duplicate call detected! Previous call was ${Date.now() - recentCall.timestamp}ms ago`, {
         previousCallId: recentCall.callId,
         currentCallId: callId
       });
@@ -38,7 +38,7 @@ export const communityService = {
 
     const response = await apiClient.get('/communities')
     
-    console.log(`[communityService] ✅ getCommunities() completed`, {
+    console.log(`[communityService] getCommunities() completed`, {
       callId,
       communitiesCount: response.data?.communities?.length || 0
     });
@@ -48,14 +48,14 @@ export const communityService = {
 
   getCommunityById: async (id) => {
     const callId = `getCommunityById-${id}-${Date.now()}`;
-    console.log(`[communityService] 📞 getCommunityById(${id}) called`, {
+    console.log(`[communityService] getCommunityById(${id}) called`, {
       callId,
       timestamp: new Date().toISOString()
     });
 
     const response = await apiClient.get(`/communities/${id}`)
     
-    console.log(`[communityService] ✅ getCommunityById(${id}) completed`, {
+    console.log(`[communityService] getCommunityById(${id}) completed`, {
       callId,
       communityName: response.data?.name || 'N/A'
     });

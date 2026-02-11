@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Users, Leaf, Target, MessageCircle } from 'lucide-react';
 
 function CommunityCard({ community, isJoined = false, onChatClick, onJoinClick }) {
   const navigate = useNavigate();
@@ -11,13 +12,13 @@ function CommunityCard({ community, isJoined = false, onChatClick, onJoinClick }
   return (
     <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all overflow-hidden border border-sage-200">
       {/* Community Image/Icon */}
-      <div 
+      <div
         className="h-48 bg-gradient-to-br from-sage-400 to-sage-600 flex items-center justify-center cursor-pointer"
         onClick={handleViewDetails}
       >
         {community.imageUrl ? (
-          <img 
-            src={community.imageUrl} 
+          <img
+            src={community.imageUrl}
             alt={community.name}
             className="w-full h-full object-cover"
             onError={(e) => {
@@ -26,8 +27,8 @@ function CommunityCard({ community, isJoined = false, onChatClick, onJoinClick }
             }}
           />
         ) : null}
-        <div className="text-6xl" style={{ display: community.imageUrl ? 'none' : 'flex' }}>
-          {isJoined ? '👥' : '🌿'}
+        <div className="flex items-center justify-center" style={{ display: community.imageUrl ? 'none' : 'flex' }}>
+          {isJoined ? <Users size={48} className="text-white/80" /> : <Leaf size={48} className="text-white/80" />}
         </div>
       </div>
 
@@ -37,20 +38,20 @@ function CommunityCard({ community, isJoined = false, onChatClick, onJoinClick }
           <h3 className="text-xl font-bold text-gray-800">{community.name}</h3>
           {community.verified && (
             <span className="px-2 py-1 bg-sage-100 text-sage-700 rounded-full text-xs font-semibold flex-shrink-0 ml-2">
-              ✓ Verified
+              Verified
             </span>
           )}
         </div>
-        
+
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{community.description}</p>
-        
+
         <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
           <span className="flex items-center gap-1">
-            👥 {community.members || 0} members
+            <Users size={14} className="text-gray-400" /> {community.members || 0} members
           </span>
           {community.interests && community.interests.length > 0 && (
             <span className="flex items-center gap-1">
-              🎯 {community.interests.slice(0, 2).join(', ')}
+              <Target size={14} className="text-gray-400" /> {community.interests.slice(0, 2).join(', ')}
             </span>
           )}
         </div>
@@ -63,7 +64,7 @@ function CommunityCard({ community, isJoined = false, onChatClick, onJoinClick }
                 onClick={onChatClick}
                 className="flex-1 px-4 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors font-medium flex items-center justify-center gap-2"
               >
-                <span>💬</span>
+                <MessageCircle size={16} />
                 <span>Chat</span>
               </button>
               <button

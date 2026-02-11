@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react'
+import { BarChart3, CalendarPlus } from 'lucide-react'
 import { AuthContext } from '../../../context/AuthContext'
 import { ChatContext } from '../../../context/ChatContext'
 import { chatService } from '../../../services/chatService'
@@ -14,9 +15,9 @@ function ChatInput({ communityId, isMember = false, onCreatePoll, onCreateEventP
 
   const handleSend = async (e) => {
     e.preventDefault()
-    
+
     if (!messageText.trim() || isSending || !user) return
-    
+
     // Check if user is a member
     if (!isMember) {
       showToast('You must be a member of this community to send messages', 'error')
@@ -31,7 +32,7 @@ function ChatInput({ communityId, isMember = false, onCreatePoll, onCreateEventP
         user.id,
         user.name || 'You'
       )
-      
+
       // Call onMessageSent callback if provided (for triggering conversation flows)
       // This callback handles adding to displayedMessages, updating context, and triggering flows
       if (newMessage && onMessageSent) {
@@ -85,15 +86,15 @@ function ChatInput({ communityId, isMember = false, onCreatePoll, onCreateEventP
           <div className="flex gap-2">
             <button
               onClick={handleCreatePoll}
-              className="flex-1 px-4 py-2 bg-white border border-sage-300 rounded-lg hover:bg-sage-100 transition-colors text-sm font-medium text-gray-700"
+              className="flex-1 px-4 py-2 bg-white border border-sage-300 rounded-lg hover:bg-sage-100 transition-colors text-sm font-medium text-gray-700 flex items-center justify-center gap-2"
             >
-              📊 Create Poll
+              <BarChart3 size={14} /> Create Poll
             </button>
             <button
               onClick={handleCreateEventProposal}
-              className="flex-1 px-4 py-2 bg-white border border-sage-300 rounded-lg hover:bg-sage-100 transition-colors text-sm font-medium text-gray-700"
+              className="flex-1 px-4 py-2 bg-white border border-sage-300 rounded-lg hover:bg-sage-100 transition-colors text-sm font-medium text-gray-700 flex items-center justify-center gap-2"
             >
-              📅 Propose Event
+              <CalendarPlus size={14} /> Propose Event
             </button>
           </div>
         </div>

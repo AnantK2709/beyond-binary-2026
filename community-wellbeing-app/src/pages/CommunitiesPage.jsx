@@ -6,6 +6,7 @@ import CommunityCard from '../components/components/communities/CommunityCard';
 import CreateCommunityModal from '../components/components/communities/CreateCommunityModal';
 import { communityService } from '../services/communityService';
 import { useToast } from '../hooks/useToast';
+import { Plus, Users, Sparkle, Sparkles, PartyPopper } from 'lucide-react';
 
 export default function CommunitiesPage() {
   const { user, updateUser } = useAuth();
@@ -33,21 +34,21 @@ export default function CommunitiesPage() {
     // Prevent duplicate calls (React StrictMode causes double renders in dev)
     // Set flag immediately to prevent race conditions
     if (hasLoadedRef.current) {
-      console.log(`[CommunitiesPage-${componentIdRef.current}] ⚠️ Already loaded, skipping duplicate call`);
+      console.log(`[CommunitiesPage-${componentIdRef.current}] Already loaded, skipping duplicate call`);
       return;
     }
     
-    console.log(`[CommunitiesPage-${componentIdRef.current}] ✅ Setting hasLoadedRef to true`);
+    console.log(`[CommunitiesPage-${componentIdRef.current}] Setting hasLoadedRef to true`);
     hasLoadedRef.current = true; // Set immediately before async call
 
     const loadCommunities = async () => {
       try {
-        console.log(`[CommunitiesPage-${componentIdRef.current}] 📡 Calling API: getCommunities()`);
+        console.log(`[CommunitiesPage-${componentIdRef.current}] Calling API: getCommunities()`);
         const data = await communityService.getCommunities();
-        console.log(`[CommunitiesPage-${componentIdRef.current}] ✅ Received ${data.communities?.length || 0} communities`);
+        console.log(`[CommunitiesPage-${componentIdRef.current}] Received ${data.communities?.length || 0} communities`);
         setAllCommunities(data.communities || []);
       } catch (error) {
-        console.error(`[CommunitiesPage-${componentIdRef.current}] ❌ Error loading communities:`, error);
+        console.error(`[CommunitiesPage-${componentIdRef.current}] Error loading communities:`, error);
         showToast('Failed to load communities', 'error');
         hasLoadedRef.current = false; // Reset on error so it can retry
       } finally {
@@ -58,7 +59,7 @@ export default function CommunitiesPage() {
     loadCommunities();
 
     return () => {
-      console.log(`[CommunitiesPage-${componentIdRef.current}] 🧹 Cleanup function called`);
+      console.log(`[CommunitiesPage-${componentIdRef.current}] Cleanup function called`);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run once on mount
@@ -138,7 +139,7 @@ export default function CommunitiesPage() {
 
       // Only log if there's a match (to reduce console noise)
       if (matchCount > 0) {
-        console.log(`[CommunitiesPage] ✓ "${community.name}" matched:`, {
+        console.log(`[CommunitiesPage] "${community.name}" matched:`, {
           matchedInterests,
           matchCount,
           communityInterests
@@ -244,7 +245,7 @@ export default function CommunitiesPage() {
             onClick={() => setShowCreateModal(true)}
             className="px-6 py-3 bg-sage-600 text-white rounded-lg hover:bg-sage-700 transition-colors font-semibold flex items-center gap-2 shadow-md"
           >
-            <span>➕</span>
+            <Plus size={18} strokeWidth={2.5} />
             <span>Create Community</span>
           </button>
         </div>
@@ -260,7 +261,7 @@ export default function CommunitiesPage() {
                   : 'text-gray-500 border-transparent hover:text-sage-600'
               }`}
             >
-              👥 My Communities
+              My Communities
             </button>
             <button
               onClick={() => setActiveTab('all')}
@@ -270,7 +271,7 @@ export default function CommunitiesPage() {
                   : 'text-gray-500 border-transparent hover:text-sage-600'
               }`}
             >
-              ✨ All Communities
+              All Communities
             </button>
           </div>
         </div>
@@ -303,7 +304,7 @@ export default function CommunitiesPage() {
             {recommendedCommunities.length > 0 && (
               <div className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <span>🌟</span>
+                  <Sparkle size={24} strokeWidth={2} />
                   <span>Recommended for You</span>
                 </h2>
                 <p className="text-gray-600 mb-6 text-sm">

@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { BarChart3, Megaphone, PartyPopper } from 'lucide-react'
 import { AuthContext } from '../../../context/AuthContext'
 import PollWidget from './PollWidget'
 import EventProposal from './EventProposal'
@@ -23,7 +24,7 @@ function ChatMessage({ message, communityId }) {
         <div className="w-full mb-4">
           <div className="bg-white rounded-lg p-4 shadow-sm border border-sage-200">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg">📊</span>
+              <BarChart3 size={18} className="text-gray-600" />
               <span className="font-semibold text-gray-800">{message.userName}</span>
               <span className="text-xs text-gray-500">{formatTime(message.timestamp)}</span>
             </div>
@@ -37,7 +38,7 @@ function ChatMessage({ message, communityId }) {
       <div className="w-full mb-4">
         <div className="bg-white rounded-lg p-4 shadow-sm border border-sage-200">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg">📊</span>
+            <BarChart3 size={18} className="text-gray-600" />
             <span className="font-semibold text-gray-800">{message.userName}</span>
             <span className="text-xs text-gray-500">{formatTime(message.timestamp)}</span>
           </div>
@@ -58,12 +59,12 @@ function ChatMessage({ message, communityId }) {
   if (isSystem || isAnnouncement) {
     return (
       <div className="w-full mb-3 flex justify-center">
-        <div className={`px-4 py-2 rounded-full text-sm ${
-          isAnnouncement 
-            ? 'bg-orange-100 text-orange-800 border border-orange-200' 
+        <div className={`px-4 py-2 rounded-full text-sm flex items-center gap-2 ${
+          isAnnouncement
+            ? 'bg-orange-100 text-orange-800 border border-orange-200'
             : 'bg-sage-100 text-sage-700 border border-sage-200'
         }`}>
-          <span className="mr-2">{isAnnouncement ? '📢' : '🎉'}</span>
+          {isAnnouncement ? <Megaphone size={14} /> : <PartyPopper size={14} />}
           <span>{message.text}</span>
         </div>
       </div>
@@ -79,8 +80,8 @@ function ChatMessage({ message, communityId }) {
           </div>
         )}
         <div className={`rounded-2xl px-4 py-2 ${
-          isOwnMessage 
-            ? 'bg-sage-500 text-white rounded-br-sm' 
+          isOwnMessage
+            ? 'bg-sage-500 text-white rounded-br-sm'
             : 'bg-white text-gray-800 rounded-bl-sm shadow-sm border border-sage-100'
         }`}>
           <p className="text-sm whitespace-pre-wrap break-words">{message.text}</p>

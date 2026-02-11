@@ -1,4 +1,5 @@
 import React from 'react';
+import { Flame } from 'lucide-react';
 
 export default function WelcomeCard({ user }) {
   const getGreeting = () => {
@@ -11,9 +12,9 @@ export default function WelcomeCard({ user }) {
   const getMotivationalMessage = () => {
     const messages = [
       "You're building meaningful connections!",
-      "Every step counts towards wellness ",
-      "Your community is growing stronger! ",
-      "Keep showing up for yourself! ",
+      "Every step counts towards wellness",
+      "Your community is growing stronger!",
+      "Keep showing up for yourself!",
     ];
     return messages[Math.floor(Math.random() * messages.length)];
   };
@@ -37,7 +38,7 @@ export default function WelcomeCard({ user }) {
         <div className="text-right">
           <div className="text-sm text-white/80 mb-1">Current Streak</div>
           <div className="text-4xl font-bold">
-            {user?.currentStreak || 0}
+            {user?.currentStreak || 0} 🔥
           </div>
         </div>
       </div>

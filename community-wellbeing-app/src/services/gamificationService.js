@@ -202,7 +202,7 @@ const getAchievements = async (userId = DEFAULT_USER_ID) => {
       id: 'first-event',
       name: 'First Steps',
       description: 'Attend your first event',
-      icon: '🎯',
+      icon: 'Target',
       pointsRequired: 0,
       category: 'events'
     },
@@ -210,7 +210,7 @@ const getAchievements = async (userId = DEFAULT_USER_ID) => {
       id: 'connector',
       name: 'Community Connector',
       description: 'Reach Level 2',
-      icon: '🤝',
+      icon: 'HeartHandshake',
       pointsRequired: 500,
       category: 'levels',
       level: 2
@@ -219,7 +219,7 @@ const getAchievements = async (userId = DEFAULT_USER_ID) => {
       id: 'explorer',
       name: 'Event Explorer',
       description: 'Reach Level 3',
-      icon: '🔍',
+      icon: 'Search',
       pointsRequired: 1000,
       category: 'levels',
       level: 3
@@ -228,7 +228,7 @@ const getAchievements = async (userId = DEFAULT_USER_ID) => {
       id: '5-events',
       name: 'Social Butterfly',
       description: 'Attend 5 events',
-      icon: '🦋',
+      icon: 'Sparkles',
       pointsRequired: 0,
       category: 'events'
     },
@@ -236,7 +236,7 @@ const getAchievements = async (userId = DEFAULT_USER_ID) => {
       id: 'champion',
       name: 'Wellness Champion',
       description: 'Reach Level 5',
-      icon: '🏆',
+      icon: 'Trophy',
       pointsRequired: 2000,
       category: 'levels',
       level: 5
@@ -245,7 +245,7 @@ const getAchievements = async (userId = DEFAULT_USER_ID) => {
       id: 'master',
       name: 'Wellbeing Master',
       description: 'Reach Level 10',
-      icon: '⭐',
+      icon: 'Star',
       pointsRequired: 4500,
       category: 'levels',
       level: 10

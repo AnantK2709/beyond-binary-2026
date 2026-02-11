@@ -11,7 +11,7 @@
       "nature"
     ],
     "verified": true,
-    "imageUrl": "/images/communities/outdoor-enthusiasts.jpg"
+    "imageUrl": "/community/1.jpeg"
   },
   {
     "id": "c002",
@@ -25,7 +25,7 @@
       "mental health"
     ],
     "verified": true,
-    "imageUrl": "/images/communities/wellness-warriors.jpg"
+    "imageUrl": "/community/2.jpeg"
   },
   {
     "id": "c003",
@@ -38,7 +38,8 @@
       "crafts",
       "photography"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/3.jpeg"
   },
   {
     "id": "c004",
@@ -50,7 +51,8 @@
       "active",
       "wellness"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/4.jpeg"
   },
   {
     "id": "c005",
@@ -62,7 +64,8 @@
       "intellectual",
       "creative"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/5.jpeg"
   },
   {
     "id": "c006",
@@ -74,19 +77,21 @@
       "meditation",
       "wellness"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/6.jpeg"
   },
   {
     "id": "c007",
     "name": "Foodie Adventures",
     "description": "Food lovers unite! Share recipes, restaurant reviews, and cooking tips",
-    "members": 202,
+    "members": 201,
     "interests": [
       "cooking",
       "food",
       "creative"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/7.jpeg"
   },
   {
     "id": "c008",
@@ -98,7 +103,8 @@
       "creative",
       "art"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/8.jpeg"
   },
   {
     "id": "c009",
@@ -110,7 +116,8 @@
       "intellectual",
       "virtual"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/9.jpeg"
   },
   {
     "id": "c010",
@@ -122,7 +129,8 @@
       "virtual",
       "tech"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/10.jpeg"
   },
   {
     "id": "c011",
@@ -134,7 +142,8 @@
       "nature",
       "outdoors"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/11.jpeg"
   },
   {
     "id": "c012",
@@ -146,7 +155,8 @@
       "wellness",
       "mental health"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/12.jpeg"
   },
   {
     "id": "c013",
@@ -159,7 +169,8 @@
       "wellness",
       "mental health"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/13.jpeg"
   },
   {
     "id": "c014",
@@ -172,7 +183,8 @@
       "creative",
       "nature"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/14.jpeg"
   },
   {
     "id": "c015",
@@ -184,7 +196,8 @@
       "food",
       "creative"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/15.jpeg"
   },
   {
     "id": "c016",
@@ -196,20 +209,22 @@
       "creative",
       "crafts"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/16.jpeg"
   },
   {
     "id": "c017",
     "name": "Nature Lovers",
     "description": "Nature enthusiasts sharing outdoor experiences, conservation tips, and nature photography",
-    "members": 202,
+    "members": 201,
     "interests": [
       "nature",
       "outdoors",
       "hiking",
       "photography"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/17.jpeg"
   },
   {
     "id": "c018",
@@ -222,7 +237,8 @@
       "nature",
       "fitness"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/18.jpeg"
   },
   {
     "id": "c019",
@@ -235,7 +251,8 @@
       "wellness",
       "yoga"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/19.jpeg"
   },
   {
     "id": "c020",
@@ -247,7 +264,8 @@
       "cooking",
       "travel"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/20.jpeg"
   },
   {
     "id": "c021",
@@ -259,19 +277,21 @@
       "creative",
       "art"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/21.jpeg"
   },
   {
     "id": "c022",
     "name": "Tech & Innovation",
     "description": "Tech professionals discussing latest trends, sharing projects, and networking",
-    "members": 313,
+    "members": 312,
     "interests": [
       "tech",
       "intellectual",
       "virtual"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/22.jpeg"
   },
   {
     "id": "c023",
@@ -283,20 +303,22 @@
       "virtual",
       "tech"
     ],
-    "verified": false
+    "verified": false,
+    "imageUrl": "/community/23.jpeg"
   },
   {
     "id": "c024",
     "name": "Travel & Adventure",
     "description": "Travelers sharing destinations, planning trips, and exploring the world together",
-    "members": 235,
+    "members": 234,
     "interests": [
       "travel",
       "nature",
       "outdoors",
       "photography"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/24.jpeg"
   },
   {
     "id": "c025",
@@ -308,7 +330,8 @@
       "mental health",
       "wellness"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/25.jpeg"
   },
   {
     "id": "c026",
@@ -320,7 +343,8 @@
       "intellectual",
       "creative"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/26.jpeg"
   },
   {
     "id": "c027",
@@ -333,110 +357,22 @@
       "wellness",
       "yoga"
     ],
-    "verified": true
+    "verified": true,
+    "imageUrl": "/community/27.jpeg"
   },
   {
     "id": "c028",
     "name": "Active Lifestyle",
     "description": "People committed to an active lifestyle sharing fitness tips, workouts, and motivation",
-    "members": 257,
+    "members": 256,
     "interests": [
       "fitness",
       "active",
       "outdoors",
       "wellness"
     ],
-    "verified": true
-  },
-  {
-    "id": "c029",
-    "name": "Prash club",
-    "description": "aesthetics of the evening",
-    "interests": [
-      "hiking",
-      "reading",
-      "art"
-    ],
-    "members": 1,
     "verified": true,
-    "creatorId": "u008",
-    "creatorName": "Kelly Jan kalla",
-    "createdAt": "2026-02-10T16:57:23.720Z"
-  },
-  {
-    "id": "c030",
-    "name": "Prash club",
-    "description": "aesthetics",
-    "interests": [
-      "mental health",
-      "hiking",
-      "nature",
-      "gaming"
-    ],
-    "members": 2,
-    "verified": true,
-    "creatorId": "u008",
-    "creatorName": "Kelly Jan kalla",
-    "createdAt": "2026-02-10T16:58:13.955Z"
-  },
-  {
-    "id": "c031",
-    "name": "Prash club",
-    "description": "wcwc",
-    "interests": [
-      "mental health",
-      "art",
-      "tech",
-      "parenting"
-    ],
-    "members": 2,
-    "verified": true,
-    "creatorId": "u008",
-    "creatorName": "Kelly Jan kalla",
-    "createdAt": "2026-02-10T17:01:11.501Z"
-  },
-  {
-    "id": "c032",
-    "name": "wvwv",
-    "description": "wevwev",
-    "interests": [
-      "mental health",
-      "hiking"
-    ],
-    "members": 5,
-    "verified": true,
-    "creatorId": "u008",
-    "creatorName": "Kelly Jan kalla",
-    "createdAt": "2026-02-10T17:10:49.967Z"
-  },
-  {
-    "id": "c033",
-    "name": "3r",
-    "description": "13r13r",
-    "interests": [
-      "mental health",
-      "art",
-      "tech"
-    ],
-    "members": 5,
-    "verified": true,
-    "creatorId": "u008",
-    "creatorName": "Kelly Jan kalla",
-    "createdAt": "2026-02-10T17:15:17.088Z"
-  },
-  {
-    "id": "c034",
-    "name": "qd",
-    "description": "qdqd",
-    "interests": [
-      "photography",
-      "art",
-      "hiking"
-    ],
-    "members": 2,
-    "verified": true,
-    "creatorId": "u001",
-    "creatorName": "Sarah Chen",
-    "createdAt": "2026-02-11T06:57:08.873Z"
+    "imageUrl": "/community/28.jpeg"
   }
+
 ]

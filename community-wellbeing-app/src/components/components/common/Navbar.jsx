@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import { Home, Calendar, TrendingUp, Users, BookOpen, User, Sparkles, LogOut } from 'lucide-react';
 import SearchBar from './SearchBar';
 
 export default function Navbar() {
@@ -8,14 +9,15 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [searchExpanded, setSearchExpanded] = useState(false);
 
   const navItems = [
-    { path: '/dashboard', label: 'Home'},
-    { path: '/events', label: 'Events' },
-    { path: '/momentum', label: 'Momentum' },
-    { path: '/communities', label: 'Communities'},
-    { path: '/journal', label: 'Journal'},
-    { path: '/profile', label: 'Profile'},
+    { path: '/dashboard', label: 'Home', icon: Home },
+    { path: '/events', label: 'Events', icon: Calendar },
+    { path: '/momentum', label: 'Momentum', icon: TrendingUp },
+    { path: '/communities', label: 'Communities', icon: Users },
+    { path: '/journal', label: 'Journal', icon: BookOpen },
+    { path: '/profile', label: 'Profile', icon: User },
   ];
 
   const handleSignOut = () => {
@@ -38,33 +40,37 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-16 gap-4">
             {/* Logo */}
             <Link to="/dashboard" className="flex items-center gap-2 flex-shrink-0">
-              <span className="text-3xl">🌸</span>
-              <span className="text-xl font-bold text-gradient hidden sm:inline">
+              <img src="/logo.png" alt="MindfulCircles" className="h-9 w-9 rounded-xl object-contain" />
+              <span className="text-xl font-bold text-gradient hidden sm:inline font-heading">
                 MindfulCircles
               </span>
             </Link>
 
             {/* Search Bar */}
             <div className="hidden md:block flex-1 max-w-md relative z-50">
-              <SearchBar />
+              <SearchBar onExpandChange={setSearchExpanded} />
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-6 flex-shrink-0">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-xl font-medium transition-all ${
-                    location.pathname === item.path
-                      ? 'text-sage-700 bg-sage-500/10 shadow-sm'
-                      : 'text-gray-600 hover:text-sage-700 hover:bg-sage-500/5'
-                  }`}
-                >
-                  {/* <span>{item.icon}</span> */}
-                  <span>{item.label}</span>
-                </Link>
-              ))}
+            <div className={`hidden md:flex items-center flex-shrink-0 transition-all duration-300 ${searchExpanded ? 'gap-2' : 'gap-6'}`}>
+              {navItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    title={item.label}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-xl font-medium transition-all ${
+                      location.pathname === item.path
+                        ? 'text-sage-700 bg-sage-500/10 shadow-sm'
+                        : 'text-gray-600 hover:text-sage-700 hover:bg-sage-500/5'
+                    }`}
+                  >
+                    <IconComponent size={18} strokeWidth={2.5} />
+                    {!searchExpanded && <span>{item.label}</span>}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* User Menu */}
@@ -109,26 +115,26 @@ export default function Navbar() {
                   >
                     <Link
                       to="/profile"
-                      className="block px-4 py-2 text-gray-900 hover:bg-sage-500/10 transition-colors rounded-xl mx-2"
+                      className="flex items-center gap-2 px-4 py-2 text-gray-900 hover:bg-sage-500/10 transition-colors rounded-xl mx-2"
                       onClick={() => setShowUserMenu(false)}
                     >
-                      {/* <span className="mr-2">👤</span> */}
+                      <User size={16} strokeWidth={2.5} />
                       Profile
                     </Link>
                     {/* <Link
                       to="/recommendations"
-                      className="block px-4 py-2 text-gray-900 hover:bg-sage-500/10 transition-colors rounded-xl mx-2"
+                      className="flex items-center gap-2 px-4 py-2 text-gray-900 hover:bg-sage-500/10 transition-colors rounded-xl mx-2"
                       onClick={() => setShowUserMenu(false)}
                     >
-                      {/* <span className="mr-2">✨</span> */}
-                      {/* Recommendations }
+                      <Sparkles size={16} strokeWidth={2.5} />
+                      Recommendations
                     </Link> */}
                     <div className="border-t border-gray-200/50 my-2 mx-2" />
                     <button
                       onClick={handleSignOut}
-                      className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition-colors rounded-xl mx-2"
+                      className="flex items-center gap-2 w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition-colors rounded-xl mx-2"
                     >
-                      {/* <span className="mr-2">🚪</span> */}
+                      <LogOut size={16} strokeWidth={2.5} />
                       Sign Out
                     </button>
                   </div>
@@ -149,19 +155,23 @@ export default function Navbar() {
         }}
       >
         <div className="flex justify-around items-center py-2">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                location.pathname === item.path
-                  ? 'text-sage-700'
-                  : 'text-gray-500'
-              }`}
-            >
-              <span className="text-xs font-medium">{item.label}</span>
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${
+                  location.pathname === item.path
+                    ? 'text-sage-700'
+                    : 'text-gray-500'
+                }`}
+              >
+                <IconComponent size={20} strokeWidth={2.5} />
+                <span className="text-xs font-medium">{item.label}</span>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </>

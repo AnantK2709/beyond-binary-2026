@@ -7,7 +7,7 @@ export const chatService = {
     const callId = `getMessages-${communityId}-${Date.now()}`;
     const stackTrace = new Error().stack;
     
-    console.log(`[chatService] 📞 getMessages(${communityId}) called`, {
+    console.log(`[chatService] getMessages(${communityId}) called`, {
       callId,
       timestamp: new Date().toISOString(),
       stackTrace: stackTrace.split('\n').slice(1, 4).join('\n')
@@ -19,7 +19,7 @@ export const chatService = {
     );
 
     if (recentCall) {
-      console.warn(`[chatService] ⚠️ Duplicate getMessages call detected! Previous call was ${Date.now() - recentCall.timestamp}ms ago`, {
+      console.warn(`[chatService] Duplicate getMessages call detected! Previous call was ${Date.now() - recentCall.timestamp}ms ago`, {
         previousCallId: recentCall.callId,
         currentCallId: callId
       });
@@ -37,7 +37,7 @@ export const chatService = {
 
     const response = await apiClient.get(`/communities/${communityId}/messages`)
     
-    console.log(`[chatService] ✅ getMessages(${communityId}) completed`, {
+    console.log(`[chatService] getMessages(${communityId}) completed`, {
       callId,
       messagesCount: response.data?.messages?.length || 0
     });

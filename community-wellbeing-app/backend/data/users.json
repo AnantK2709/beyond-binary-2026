@@ -64,11 +64,6 @@
         "id": "c001",
         "name": "Outdoor Enthusiasts",
         "role": "member"
-      },
-      {
-        "id": "c022",
-        "name": "Tech & Innovation",
-        "role": "member"
       }
     ],
     "attendedEvents": [

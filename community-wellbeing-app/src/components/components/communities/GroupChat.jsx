@@ -1346,10 +1346,80 @@ function GroupChat({ communityId, isMember = false }) {
   const triggerConversationFlow = async (userId, userName) => {
     const config = getCommunityConfig(communityId)
     // Replace {userName} placeholder in conversation messages
-    const conversationMessages = config.conversation.map(msg => ({
-      ...msg,
-      text: msg.text.replace(/{userName}/g, userName || 'there')
-    }))
+    // Filter out messages from the current logged-in user to avoid them talking to themselves
+    const conversationMessages = config.conversation
+      .filter(msg => msg.userId !== userId) // Exclude messages from current user
+      .map(msg => ({
+        ...msg,
+        text: msg.text.replace(/{userName}/g, userName || 'there')
+      }))
+
+    // If all messages were filtered out, use a default welcome message
+    if (conversationMessages.length === 0) {
+      console.log(`[GroupChat-${componentIdRef.current}] ⚠️ All conversation messages filtered out (user ${userId} is in conversation), using default welcome`)
+      // Find a user who is NOT the current user for the welcome message
+      const allUserIds = ['u001', 'u002', 'u003', 'u005', 'u006', 'u007', 'u008']
+      const welcomeUserId = allUserIds.find(id => id !== userId) || 'u001'
+      const welcomeUserNames = {
+        'u001': 'Sarah Chen',
+        'u002': 'Marcus Johnson',
+        'u003': 'Priya Kumar',
+        'u005': 'Alex Rivera',
+        'u006': 'Emma Wilson',
+        'u007': 'Jake Morrison',
+        'u008': 'Lisa Chen'
+      }
+      
+      const welcomeMessage = {
+        id: `conv-msg-${Date.now()}-welcome`,
+        communityId,
+        userId: welcomeUserId,
+        userName: welcomeUserNames[welcomeUserId] || 'Sarah Chen',
+        text: `Welcome ${userName || 'there'}! Great to have you here! 👋`,
+        timestamp: new Date().toISOString(),
+        type: 'message',
+        isSimulated: true
+      }
+      displayedMessageIdsRef.current.add(welcomeMessage.id)
+      setDisplayedMessages(prev => [...prev, welcomeMessage])
+      // Send via chatService with isSimulated flag to bypass membership check
+      const sentWelcomeMessage = await chatService.sendMessage(
+        communityId,
+        welcomeMessage.text,
+        welcomeMessage.userId,
+        welcomeMessage.userName,
+        welcomeMessage.type,
+        { id: welcomeMessage.id, isSimulated: true }
+      )
+      await sendMessage(communityId, sentWelcomeMessage || welcomeMessage)
+      
+      // Still create the poll, but with a different creator if needed
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      let pollCreatorId = config.poll.creatorId === userId ? welcomeUserId : config.poll.creatorId
+      let pollCreatorName = config.poll.creatorId === userId ? welcomeUserNames[welcomeUserId] : config.poll.creatorName
+      
+      try {
+        const pollMessage = await chatService.createPoll(
+          communityId,
+          config.poll.question,
+          config.poll.options,
+          pollCreatorId,
+          pollCreatorName,
+          true // isSimulated - allow poll creation from conversation flow
+        )
+        if (pollMessage && pollMessage.poll) {
+          displayedMessageIdsRef.current.add(pollMessage.id)
+          setDisplayedMessages(prev => [...prev, pollMessage])
+          await sendMessage(communityId, pollMessage)
+          setTimeout(() => {
+            simulatePollVotes(pollMessage.id, pollMessage.poll)
+          }, 3000)
+        }
+      } catch (error) {
+        console.error(`[GroupChat-${componentIdRef.current}] ❌ Error creating poll:`, error)
+      }
+      return
+    }
 
     // Show conversation messages with delays
     for (let i = 0; i < conversationMessages.length; i++) {
@@ -1362,26 +1432,54 @@ function GroupChat({ communityId, isMember = false }) {
         userName: conversationMessages[i].userName,
         text: conversationMessages[i].text,
         timestamp: new Date().toISOString(),
-        type: 'message'
+        type: 'message',
+        isSimulated: true // Mark as simulated to bypass membership check
       }
 
       // Mark as displayed and add to context
       displayedMessageIdsRef.current.add(conversationMessage.id)
       setDisplayedMessages(prev => [...prev, conversationMessage])
-      await sendMessage(communityId, conversationMessage)
+      // Send via chatService with isSimulated flag to bypass membership check
+      const sentMessage = await chatService.sendMessage(
+        communityId,
+        conversationMessage.text,
+        conversationMessage.userId,
+        conversationMessage.userName,
+        conversationMessage.type,
+        { id: conversationMessage.id, isSimulated: true }
+      )
+      await sendMessage(communityId, sentMessage || conversationMessage)
     }
 
     // After conversation, create and show a poll
+    // Make sure poll creator is not the current user
     await new Promise(resolve => setTimeout(resolve, 2000))
     
     try {
       console.log(`[GroupChat-${componentIdRef.current}] 📊 Creating poll for community ${communityId}...`)
+      // If poll creator is the current user, use a different user from the conversation
+      let pollCreatorId = config.poll.creatorId
+      let pollCreatorName = config.poll.creatorName
+      if (pollCreatorId === userId) {
+        // Use the first user from conversation who is not the current user
+        const alternativeCreator = conversationMessages.find(msg => msg.userId !== userId)
+        if (alternativeCreator) {
+          pollCreatorId = alternativeCreator.userId
+          pollCreatorName = alternativeCreator.userName
+        } else {
+          // Fallback to u001 (Sarah Chen)
+          pollCreatorId = 'u001'
+          pollCreatorName = 'Sarah Chen'
+        }
+      }
+      
       const pollMessage = await chatService.createPoll(
         communityId,
         config.poll.question,
         config.poll.options,
-        config.poll.creatorId,
-        config.poll.creatorName
+        pollCreatorId,
+        pollCreatorName,
+        true // isSimulated - allow poll creation from conversation flow
       )
 
       console.log(`[GroupChat-${componentIdRef.current}] 📊 Poll creation response:`, JSON.stringify(pollMessage, null, 2))

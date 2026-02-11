@@ -407,5 +407,399 @@
       ],
       "totalVotes": 7
     }
+  },
+  {
+    "id": "msg1770793045051",
+    "communityId": "c034",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "hello",
+    "timestamp": "2026-02-11T06:57:25.051Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770793075112",
+    "communityId": "c001",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "hello",
+    "timestamp": "2026-02-11T06:57:55.112Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770793089138",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-11T06:58:09.138Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 0,
+          "voters": []
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 1,
+          "voters": [
+            "u008"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 0,
+          "voters": []
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 1
+    }
+  },
+  {
+    "id": "msg1770798007507",
+    "communityId": "c028",
+    "userId": "u008",
+    "userName": "Kaustav",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:20:07.507Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770798045822",
+    "communityId": "c028",
+    "userId": "u008",
+    "userName": "Kaustav",
+    "text": "ok thanks",
+    "timestamp": "2026-02-11T08:20:45.822Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770798182324",
+    "communityId": "c017",
+    "userId": "u008",
+    "userName": "Kaustav",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:23:02.324Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770798507261",
+    "communityId": "c017",
+    "userId": "u008",
+    "userName": "Kaustav",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:28:27.261Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770798520743",
+    "communityId": "c017",
+    "userId": "u008",
+    "userName": "Kaustav",
+    "text": "thank you",
+    "timestamp": "2026-02-11T08:28:40.743Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770798812604",
+    "communityId": "c002",
+    "userId": "u007",
+    "userName": "Mike Davis",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:33:32.604Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770798814624-0",
+    "communityId": "c002",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Hello Mike Davis! Welcome to our wellness circle! 🧘‍♀️",
+    "timestamp": "2026-02-11T08:33:34.635Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770798817149-1",
+    "communityId": "c002",
+    "userId": "u003",
+    "userName": "Priya Kumar",
+    "text": "We were just discussing our next wellness session!",
+    "timestamp": "2026-02-11T08:33:37.153Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770798820166-2",
+    "communityId": "c002",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Perfect timing! We need help deciding what to focus on next.",
+    "timestamp": "2026-02-11T08:33:40.171Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770798822182-3",
+    "communityId": "c002",
+    "userId": "u003",
+    "userName": "Priya Kumar",
+    "text": "I think we should vote on the type of session!",
+    "timestamp": "2026-02-11T08:33:42.187Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770798824702-4",
+    "communityId": "c002",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Great idea! Let me create a poll for everyone to vote.",
+    "timestamp": "2026-02-11T08:33:44.706Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770798826725",
+    "communityId": "c002",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Poll: What type of wellness session should we have next?",
+    "timestamp": "2026-02-11T08:33:46.726Z",
+    "type": "poll",
+    "poll": {
+      "question": "What type of wellness session should we have next?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Yoga Flow 🧘",
+          "votes": 3,
+          "voters": [
+            "u007",
+            "u001",
+            "u006"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Meditation 🧘‍♀️",
+          "votes": 1,
+          "voters": [
+            "u008"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "Breathwork 🌬️",
+          "votes": 3,
+          "voters": [
+            "u007",
+            "u002",
+            "u003"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Mindful Walking 🚶",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
+  },
+  {
+    "id": "msg1770799837095",
+    "communityId": "c024",
+    "userId": "u008",
+    "userName": "KCCC",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:50:37.095Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770799839112-0",
+    "communityId": "c024",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Hello KCCC! Welcome to our travel community! ✈️",
+    "timestamp": "2026-02-11T08:50:39.117Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770799841631-1",
+    "communityId": "c024",
+    "userId": "u003",
+    "userName": "Priya Kumar",
+    "text": "We were just planning our next group trip!",
+    "timestamp": "2026-02-11T08:50:41.641Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770799844657-2",
+    "communityId": "c024",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Help us decide on the destination type.",
+    "timestamp": "2026-02-11T08:50:44.662Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770799846678-3",
+    "communityId": "c024",
+    "userId": "u003",
+    "userName": "Priya Kumar",
+    "text": "Let's vote on where to go!",
+    "timestamp": "2026-02-11T08:50:46.682Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770799849194-4",
+    "communityId": "c024",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Perfect! Let me create a poll.",
+    "timestamp": "2026-02-11T08:50:49.200Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770799851220",
+    "communityId": "c024",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: What type of destination should we visit?",
+    "timestamp": "2026-02-11T08:50:51.220Z",
+    "type": "poll",
+    "poll": {
+      "question": "What type of destination should we visit?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Tropical Beach 🏖️",
+          "votes": 2,
+          "voters": [
+            "u001",
+            "u007"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain Retreat ⛰️",
+          "votes": 2,
+          "voters": [
+            "u008",
+            "u006"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "Historic City 🏛️",
+          "votes": 2,
+          "voters": [
+            "u002",
+            "u008"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Adventure Park 🎢",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 6
+    }
+  },
+  {
+    "id": "msg1770800022177",
+    "communityId": "c001",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:53:42.177Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800024195-0",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Hey Sarah Chen! Great to see you here! 👋",
+    "timestamp": "2026-02-11T08:53:44.203Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800027216-1",
+    "communityId": "c001",
+    "userId": "u003",
+    "userName": "Priya Kumar",
+    "text": "We were just discussing our next group activity. Want to help us decide?",
+    "timestamp": "2026-02-11T08:53:47.224Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800029742-2",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "That sounds like a great idea! Let me create a poll for everyone.",
+    "timestamp": "2026-02-11T08:53:49.749Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770800031766",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-11T08:53:51.766Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 1,
+          "voters": [
+            "u003"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 5,
+          "voters": [
+            "u006",
+            "u005",
+            "u008",
+            "u001",
+            "u002"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 1,
+          "voters": [
+            "u001"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
   }
 ]

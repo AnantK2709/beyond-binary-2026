@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Step4Preferences({ data, updateData, onComplete, onBack }) {
+export default function Step4Preferences({ data, updateData, onComplete, onBack, isCompleting = false }) {
   const [personalityType, setPersonalityType] = useState(data.personalityType || '');
   const [goals, setGoals] = useState(data.goals || []);
   const [bio, setBio] = useState(data.bio || '');
@@ -257,10 +257,10 @@ export default function Step4Preferences({ data, updateData, onComplete, onBack 
         </button>
         <button
           onClick={handleComplete}
-          disabled={!personalityType || goals.length === 0}
+          disabled={!personalityType || goals.length === 0 || isCompleting}
           className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Complete Setup →
+          {isCompleting ? 'Completing...' : 'Complete Setup →'}
         </button>
       </div>
     </div>

@@ -202,7 +202,7 @@
     "id": "c017",
     "name": "Nature Lovers",
     "description": "Nature enthusiasts sharing outdoor experiences, conservation tips, and nature photography",
-    "members": 201,
+    "members": 202,
     "interests": [
       "nature",
       "outdoors",
@@ -289,7 +289,7 @@
     "id": "c024",
     "name": "Travel & Adventure",
     "description": "Travelers sharing destinations, planning trips, and exploring the world together",
-    "members": 234,
+    "members": 235,
     "interests": [
       "travel",
       "nature",
@@ -339,7 +339,7 @@
     "id": "c028",
     "name": "Active Lifestyle",
     "description": "People committed to an active lifestyle sharing fitness tips, workouts, and motivation",
-    "members": 256,
+    "members": 257,
     "interests": [
       "fitness",
       "active",
@@ -423,5 +423,20 @@
     "creatorId": "u008",
     "creatorName": "Kelly Jan kalla",
     "createdAt": "2026-02-10T17:15:17.088Z"
+  },
+  {
+    "id": "c034",
+    "name": "qd",
+    "description": "qdqd",
+    "interests": [
+      "photography",
+      "art",
+      "hiking"
+    ],
+    "members": 2,
+    "verified": true,
+    "creatorId": "u001",
+    "creatorName": "Sarah Chen",
+    "createdAt": "2026-02-11T06:57:08.873Z"
   }
 ]

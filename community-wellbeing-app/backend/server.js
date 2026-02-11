@@ -435,20 +435,44 @@ app.get('/api/communities/:id', (req, res) => {
  * Join a community
  */
 app.post('/api/communities/:id/join', (req, res) => {
-  console.log(`POST /api/communities/${req.params.id}/join`);
+  const { id } = req.params;
   const { userId } = req.body;
+  console.log(`POST /api/communities/${id}/join by user ${userId}`);
 
   if (!userId) {
     return res.status(400).json({ error: 'userId is required' });
   }
 
-  const community = COMMUNITIES.find(c => c.id === req.params.id);
-  if (!community) {
-    return res.status(404).json({ error: 'Community not found' });
+  // Reload USERS to get latest data
+  USERS = readJsonFile('users.json');
+  let user = USERS.find(u => u.id === userId);
+  const community = COMMUNITIES.find(c => c.id === id);
+
+  if (!user || !community) {
+    return res.status(404).json({ success: false, message: 'User or Community not found' });
   }
 
-  // In a real app, you'd update user's joinedCircles here
-  // For now, just return success
+  // Ensure joinedCircles is an array of objects
+  let joinedCircles = user.joinedCircles || [];
+  const isAlreadyJoined = joinedCircles.some(c => 
+    (typeof c === 'string' ? c : c.id) === id
+  );
+
+  if (isAlreadyJoined) {
+    return res.status(400).json({ success: false, message: 'Already a member of this community' });
+  }
+
+  // Add community to user's joinedCircles
+  joinedCircles.push({ id: community.id, name: community.name, role: 'member' });
+  user.joinedCircles = joinedCircles;
+  writeJsonFile('users.json', USERS); // Persist updated user data
+  USERS = readJsonFile('users.json'); // Reload USERS after update
+
+  // Update community members count
+  community.members = (community.members || 0) + 1;
+  writeJsonFile('communities.json', COMMUNITIES);
+
+  console.log(`User ${userId} joined community ${id}. Updated joinedCircles:`, user.joinedCircles);
   res.json({ success: true, pointsEarned: 25 });
 });
 
@@ -625,6 +649,55 @@ app.get('/api/users/search', (req, res) => {
 });
 
 /**
+ * POST /api/users
+ * Create or update a user
+ */
+app.post('/api/users', (req, res) => {
+  console.log('POST /api/users');
+  const userData = req.body;
+
+  if (!userData.id) {
+    return res.status(400).json({ error: 'User ID is required' });
+  }
+
+  // Reload USERS to get latest data
+  USERS = readJsonFile('users.json');
+
+  // Check if user already exists
+  const existingUserIndex = USERS.findIndex(u => u.id === userData.id);
+  
+  if (existingUserIndex !== -1) {
+    // Update existing user
+    USERS[existingUserIndex] = { ...USERS[existingUserIndex], ...userData };
+    console.log(`Updated user ${userData.id} in backend`);
+  } else {
+    // Create new user
+    const newUser = {
+      ...userData,
+      password: userData.password || 'password123', // Default password if not provided
+      joinedCircles: userData.joinedCircles || [],
+      currentStreak: userData.currentStreak || 0,
+      totalPoints: userData.totalPoints || 0,
+      level: userData.level || 1,
+      attendedEvents: userData.attendedEvents || [],
+      moodHistory: userData.moodHistory || [],
+      created_at: userData.created_at || new Date().toISOString()
+    };
+    USERS.push(newUser);
+    console.log(`Created new user ${userData.id} in backend`);
+  }
+
+  // Save to file
+  writeJsonFile('users.json', USERS);
+  USERS = readJsonFile('users.json'); // Reload after save
+
+  // Return user without password
+  const savedUser = USERS.find(u => u.id === userData.id);
+  const { password, ...safeUser } = savedUser;
+  res.status(existingUserIndex !== -1 ? 200 : 201).json(safeUser);
+});
+
+/**
  * GET /api/users/:id
  * Fetch a single user by ID (without password)
  */
@@ -674,7 +747,7 @@ app.post('/api/communities/:id/messages', (req, res) => {
   console.log(`POST /api/communities/${req.params.id}/messages`);
   console.log('Request body:', JSON.stringify(req.body, null, 2));
 
-  const { userId, userName, text, type = 'message', poll, eventProposal, ...extraData } = req.body;
+  const { userId, userName, text, type = 'message', poll, eventProposal, isSimulated, ...extraData } = req.body;
 
   if (!userId || !userName || !text) {
     return res.status(400).json({ error: 'userId, userName, and text are required' });
@@ -683,34 +756,44 @@ app.post('/api/communities/:id/messages', (req, res) => {
   // Reload USERS to ensure we have the latest data (in case it was updated)
   USERS = readJsonFile('users.json');
   
-  // Check if user is a member of the community
-  let user = USERS.find(u => u.id === userId);
+  // Check if this is a simulated message (handle both boolean true and string "true")
+  const isSimulatedMessage = isSimulated === true || isSimulated === 'true' || (extraData.id && String(extraData.id).startsWith('conv-msg-'));
   
-  // If user doesn't exist, check if they're the creator of the community
-  if (!user) {
-    const community = COMMUNITIES.find(c => c.id === req.params.id);
-    if (community && community.creatorId === userId) {
-      // Creator should be able to send messages even if not in users.json yet
-      console.log(`User ${userId} is creator of community ${req.params.id}, allowing message`);
+  console.log(`[Membership Check] userId: ${userId}, isSimulated: ${isSimulated}, isSimulatedMessage: ${isSimulatedMessage}, messageId: ${extraData.id}`);
+  
+  // Skip membership check for simulated conversation flow messages
+  if (!isSimulatedMessage) {
+    // Check if user is a member of the community
+    let user = USERS.find(u => u.id === userId);
+    
+    // If user doesn't exist, check if they're the creator of the community
+    if (!user) {
+      const community = COMMUNITIES.find(c => c.id === req.params.id);
+      if (community && community.creatorId === userId) {
+        // Creator should be able to send messages even if not in users.json yet
+        console.log(`User ${userId} is creator of community ${req.params.id}, allowing message`);
+      } else {
+        console.log(`User ${userId} not found in backend and not creator of community ${req.params.id}`);
+        return res.status(404).json({ error: 'User not found. Please ensure you are logged in and a member of this community.' });
+      }
     } else {
-      console.log(`User ${userId} not found in backend and not creator of community ${req.params.id}`);
-      return res.status(404).json({ error: 'User not found. Please ensure you are logged in and a member of this community.' });
+      const joinedCircles = user.joinedCircles || [];
+      const joinedIds = joinedCircles.map(c => typeof c === 'string' ? c : c.id);
+      const isMember = joinedIds.includes(req.params.id);
+      
+      // Also check if user is the creator
+      const community = COMMUNITIES.find(c => c.id === req.params.id);
+      const isCreator = community && community.creatorId === userId;
+
+      if (!isMember && !isCreator) {
+        console.log(`User ${userId} attempted to send message to community ${req.params.id} but is not a member`);
+        console.log(`User joinedCircles:`, joinedCircles);
+        console.log(`Community ID: ${req.params.id}`);
+        return res.status(403).json({ error: 'You must be a member of this community to send messages' });
+      }
     }
   } else {
-    const joinedCircles = user.joinedCircles || [];
-    const joinedIds = joinedCircles.map(c => typeof c === 'string' ? c : c.id);
-    const isMember = joinedIds.includes(req.params.id);
-    
-    // Also check if user is the creator
-    const community = COMMUNITIES.find(c => c.id === req.params.id);
-    const isCreator = community && community.creatorId === userId;
-
-    if (!isMember && !isCreator) {
-      console.log(`User ${userId} attempted to send message to community ${req.params.id} but is not a member`);
-      console.log(`User joinedCircles:`, joinedCircles);
-      console.log(`Community ID: ${req.params.id}`);
-      return res.status(403).json({ error: 'You must be a member of this community to send messages' });
-    }
+    console.log(`✅ Allowing simulated message from ${userName} (${userId}) in community ${req.params.id} - bypassing membership check`);
   }
 
   const newMessage = {

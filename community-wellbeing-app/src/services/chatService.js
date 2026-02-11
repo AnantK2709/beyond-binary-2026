@@ -46,17 +46,20 @@ export const chatService = {
   },
 
   sendMessage: async (communityId, messageText, userId, userName, type = 'message', extraData = {}) => {
+    // Check if this is a simulated conversation message (ID starts with 'conv-msg-')
+    const isSimulated = extraData.id && extraData.id.startsWith('conv-msg-')
     const response = await apiClient.post(`/communities/${communityId}/messages`, {
       userId,
       userName,
       text: messageText,
       type,
+      isSimulated: isSimulated || extraData.isSimulated, // Allow simulated messages to bypass membership check
       ...extraData
     })
     return response.data
   },
 
-  createPoll: async (communityId, question, options, userId, userName) => {
+  createPoll: async (communityId, question, options, userId, userName, isSimulated = false) => {
     const pollData = {
       question,
       options: options.map((opt, idx) => ({
@@ -73,7 +76,8 @@ export const chatService = {
       userName,
       text: `Poll: ${question}`,
       type: 'poll',
-      poll: pollData
+      poll: pollData,
+      isSimulated: isSimulated // Allow simulated polls to bypass membership check
     })
     return response.data
   },

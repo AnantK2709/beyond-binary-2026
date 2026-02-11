@@ -64,16 +64,6 @@
         "id": "c001",
         "name": "Outdoor Enthusiasts",
         "role": "member"
-      },
-      {
-        "id": "c032",
-        "name": "wvwv",
-        "role": "member"
-      },
-      {
-        "id": "c033",
-        "name": "3r",
-        "role": "member"
       }
     ],
     "attendedEvents": [
@@ -651,14 +641,55 @@
   },
   {
     "id": "u008",
-    "name": "Kelly Jan kalla",
-    "email": "u008@example.com",
+    "name": "KCCC",
+    "email": "kaustav.chakrabarti@sse.com",
     "joinedCircles": [
       {
-        "id": "c033",
-        "name": "3r",
-        "role": "admin"
+        "id": "c024",
+        "name": "Travel & Adventure",
+        "role": "member"
       }
-    ]
+    ],
+    "password": "1111111111",
+    "age": 30,
+    "ageRange": "26-35",
+    "location": "Singapore",
+    "pronouns": "they/them",
+    "personalityType": "ambivert",
+    "bio": "",
+    "interests": [
+      "photography",
+      "tech"
+    ],
+    "activityPreferences": {
+      "outdoors": true,
+      "creative": true
+    },
+    "interactionPreferences": {},
+    "preferredModes": [
+      "virtual"
+    ],
+    "timePreferences": {
+      "preferredDays": [
+        "wednesday"
+      ],
+      "preferredTimes": [
+        "morning"
+      ],
+      "frequency": "2+ times a week"
+    },
+    "goals": [],
+    "currentStreak": 0,
+    "totalPoints": 0,
+    "level": 1,
+    "attendedEvents": [],
+    "moodHistory": [
+      {
+        "date": "2026-02-11",
+        "score": 3,
+        "state": "anxious"
+      }
+    ],
+    "created_at": "2026-02-11T08:50:27.116Z"
   }
 ]

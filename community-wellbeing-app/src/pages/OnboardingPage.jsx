@@ -11,6 +11,7 @@ export default function OnboardingPage() {
   const navigate = useNavigate();
   const { signUp } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isCompleting, setIsCompleting] = useState(false);
   const [onboardingData, setOnboardingData] = useState({
     interests: [],
     activityPreferences: {},
@@ -42,23 +43,46 @@ export default function OnboardingPage() {
     }
   };
 
-  const handleComplete = () => {
-    // Get signup data from localStorage
-    const signupData = JSON.parse(localStorage.getItem('signupData'));
+  const handleComplete = async () => {
+    if (isCompleting) return; // Prevent multiple clicks
     
-    // Combine signup data with onboarding data
-    const completeUserData = {
-      ...signupData,
-      ...onboardingData,
-      pronouns: 'they/them', // Can add this to onboarding if needed
-    };
+    setIsCompleting(true);
+    try {
+      // Get signup data from localStorage
+      const signupDataStr = localStorage.getItem('signupData');
+      if (!signupDataStr) {
+        console.error('No signup data found in localStorage');
+        alert('Please complete sign up first');
+        navigate('/signup');
+        return;
+      }
+      
+      const signupData = JSON.parse(signupDataStr);
+      
+      // Combine signup data with onboarding data
+      const completeUserData = {
+        ...signupData,
+        ...onboardingData,
+        pronouns: 'they/them', // Can add this to onboarding if needed
+      };
 
-    // Create user account
-    const result = signUp(completeUserData);
+      console.log('Completing onboarding with data:', completeUserData);
 
-    if (result.success) {
-      localStorage.removeItem('signupData');
-      navigate('/dashboard');
+      // Create user account (signUp is now async)
+      const result = await signUp(completeUserData);
+
+      if (result.success) {
+        localStorage.removeItem('signupData');
+        navigate('/dashboard');
+      } else {
+        console.error('Sign up failed:', result.error);
+        alert(result.error || 'Failed to complete setup. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error completing onboarding:', error);
+      alert('An error occurred while completing setup. Please try again.');
+    } finally {
+      setIsCompleting(false);
     }
   };
 
@@ -137,6 +161,7 @@ export default function OnboardingPage() {
               updateData={updateData}
               onComplete={handleComplete}
               onBack={prevStep}
+              isCompleting={isCompleting}
             />
           )}
         </div>

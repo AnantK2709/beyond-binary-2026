@@ -261,7 +261,7 @@ export default function CommunitiesPage() {
                   : 'text-gray-500 border-transparent hover:text-sage-600'
               }`}
             >
-              👥 My Communities
+              My Communities
             </button>
             <button
               onClick={() => setActiveTab('all')}
@@ -271,7 +271,7 @@ export default function CommunitiesPage() {
                   : 'text-gray-500 border-transparent hover:text-sage-600'
               }`}
             >
-              ✨ All Communities
+              All Communities
             </button>
           </div>
         </div>

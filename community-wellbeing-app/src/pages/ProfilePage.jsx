@@ -57,7 +57,7 @@ export default function ProfilePage() {
             onClick={() => setShowEditModal(true)}
             className="btn-secondary w-full md:w-auto"
           >
-            ✏️ Edit Profile
+            Edit Profile
           </button>
         </div>
 
@@ -91,7 +91,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📊 Overview
+            Overview
           </button>
           <button
             onClick={() => setActiveTab('activity')}
@@ -101,7 +101,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📅 Activity
+            Activity
           </button>
           <button
             onClick={() => setActiveTab('settings')}
@@ -111,7 +111,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            ⚙️ Settings
+            Settings
           </button>
         </div>
 

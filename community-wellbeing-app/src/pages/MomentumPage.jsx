@@ -127,7 +127,7 @@ function MomentumPage() {
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  <span className="mr-2">✅</span>
+                  {/* <span className="mr-2">✅</span> */}
                   Daily Habits
                 </button>
                 <button
@@ -138,7 +138,7 @@ function MomentumPage() {
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  <span className="mr-2">🎯</span>
+                  {/* <span className="mr-2">🎯</span> */}
                   30-Day Challenges
                 </button>
                 <button
@@ -149,7 +149,7 @@ function MomentumPage() {
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  <span className="mr-2">📊</span>
+                  {/* <span className="mr-2">📊</span> */}
                   Growth Analytics
                 </button>
               </div>

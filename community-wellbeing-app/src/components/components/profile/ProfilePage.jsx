@@ -54,7 +54,7 @@ export default function ProfilePage() {
             onClick={() => setShowEditModal(true)}
             className="btn-secondary w-full md:w-auto"
           >
-            ✏️ Edit Profile
+           Edit Profile
           </button>
         </div>
 

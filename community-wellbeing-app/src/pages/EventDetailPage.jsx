@@ -283,7 +283,7 @@ const isEventPast = () => {
             {event.whatToBring && event.whatToBring.length > 0 && (
               <div className="card p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <span>🎒</span>
+                  {/* <span>🎒</span> */}
                   What to Bring
                 </h2>
                 <ul className="space-y-3">

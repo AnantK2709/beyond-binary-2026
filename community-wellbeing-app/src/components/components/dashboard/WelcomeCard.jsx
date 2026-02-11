@@ -10,10 +10,10 @@ export default function WelcomeCard({ user }) {
 
   const getMotivationalMessage = () => {
     const messages = [
-      "You're building meaningful connections! 🌟",
-      "Every step counts towards wellness 💙",
-      "Your community is growing stronger! 🌱",
-      "Keep showing up for yourself! ✨",
+      "You're building meaningful connections!",
+      "Every step counts towards wellness ",
+      "Your community is growing stronger! ",
+      "Keep showing up for yourself! ",
     ];
     return messages[Math.floor(Math.random() * messages.length)];
   };

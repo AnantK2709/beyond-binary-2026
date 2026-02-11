@@ -69,7 +69,7 @@ function EventsList({ events, loading }) {
         <div className="card p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">🎉</span>
+              <span className="text-2xl"></span>
               <div>
                 <h3 className="font-bold text-gray-900">
                   {events.length} {events.length === 1 ? 'Event' : 'Events'} Found

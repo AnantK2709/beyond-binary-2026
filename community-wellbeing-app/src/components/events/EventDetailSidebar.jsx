@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react'
 import { EventContext } from '../../context/EventContext'
+import { GamificationContext } from '../../context/GamificationContext'
 import { eventService } from '../../services/eventService'
 import Toast from '../common/Toast'
 
 function EventDetailSidebar({ event }) {
   const { rsvpEvent, cancelRsvp, isRsvped } = useContext(EventContext)
+  const { awardPoints } = useContext(GamificationContext)
   const [isLoading, setIsLoading] = useState(false)
   const [toast, setToast] = useState({ show: false, type: 'info', message: '' })
   const hasRsvped = isRsvped(event.id)
@@ -25,6 +27,7 @@ function EventDetailSidebar({ event }) {
       } else {
         const result = await rsvpEvent(event.id)
         if (result.success) {
+          awardPoints(10, 'event_rsvp', 'RSVP to event')
           showToast('success', 'RSVP successful! Calendar file downloaded.')
 
           // Download ICS calendar file

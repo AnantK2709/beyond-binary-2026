@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { GamificationContext } from '../../context/GamificationContext'
 import Toast from '../common/Toast'
 
 const PRESET_HABITS = [
@@ -15,6 +16,7 @@ const PRESET_HABITS = [
 ]
 
 function HabitTracker({ onUpdate }) {
+  const { awardPoints } = useContext(GamificationContext)
   const [habits, setHabits] = useState([])
   const [completions, setCompletions] = useState({})
   const [showAddModal, setShowAddModal] = useState(false)
@@ -87,7 +89,8 @@ function HabitTracker({ onUpdate }) {
         [habitId]: [...habitCompletions, today]
       }
       const habit = habits.find(h => h.id === habitId)
-      showToast('success', `+${habit?.points || 10} points! Great job! 🎉`)
+      awardPoints(habit?.points || 10, 'habit_complete', habit?.name || 'Habit complete')
+      showToast('success', `+${habit?.points || 10} points! Great job!`)
     }
 
     setCompletions(updatedCompletions)

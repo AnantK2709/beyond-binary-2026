@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from 'react'
 import { ChatContext } from '../../../context/ChatContext'
 import { AuthContext } from '../../../context/AuthContext'
+import { GamificationContext } from '../../../context/GamificationContext'
 import { chatService } from '../../../services/chatService'
 import { simulateTimedMessages, generateDemoMessages } from '../../../utils/chatSimulator'
 import { useToast } from '../../../hooks/useToast'
@@ -10,6 +11,7 @@ import ChatInput from './ChatInput'
 function GroupChat({ communityId, isMember = false }) {
   const { messages, loading, loadMessages, sendMessage, updateMessage } = useContext(ChatContext)
   const { user } = useContext(AuthContext)
+  const { awardPoints } = useContext(GamificationContext)
   const { showToast } = useToast()
   const [displayedMessages, setDisplayedMessages] = useState([])
   const [isSimulating, setIsSimulating] = useState(false) // Disable simulation by default for now
@@ -194,6 +196,11 @@ function GroupChat({ communityId, isMember = false }) {
     
     // Also update context (if not already there)
     await sendMessage(communityId, newMessage)
+
+    // Award points for sending a message (rate-limited in GamificationContext)
+    if (newMessage.userId === user?.id) {
+      awardPoints(5, 'chat_message', 'Chat message')
+    }
 
     // Check if user sent "hello" (case insensitive) to trigger conversation flow
     const messageText = newMessage.text?.toLowerCase().trim()

@@ -23,7 +23,7 @@ function TextJournalEntry({ onSubmit, onStatusChange }) {
   };
 
   return (
-    <div className="text-entry-card">
+    <div className="text-entry-card animate-scale-in">
       <div className="text-entry-header">
         <h3>{status === "saved" ? "Your entry has been saved" : "Write your thoughts"}</h3>
       </div>

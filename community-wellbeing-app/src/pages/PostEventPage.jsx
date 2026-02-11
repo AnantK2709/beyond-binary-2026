@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { EventContext } from '../context/EventContext'
+import { GamificationContext } from '../context/GamificationContext'
 import { eventService } from '../services/eventService'
 import { aiService } from '../services/aiService'
 
@@ -23,6 +24,7 @@ function PostEventPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { isRsvped } = useContext(EventContext)
+  const { awardPoints } = useContext(GamificationContext)
 
   const [event, setEvent] = useState(null)
   const [userReview, setUserReview] = useState(null)
@@ -107,6 +109,7 @@ function PostEventPage() {
         recommend
       })
 
+      awardPoints(50, 'event_review', 'Event review')
       showToast('success', `Submitted! +${saved?.pointsEarned ?? 50} points ✨`)
 
       // Generate AI insight (rule-based)

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useAuth } from '../context/AuthContext';
+import { GamificationContext } from '../context/GamificationContext';
 import { journalService } from '../services/journalService.js';
 import { askQuestion } from "../services/aiInsightService.js"; 
 
@@ -14,6 +15,7 @@ import "../styles/journal/journal.css";
 export default function JournalPage() {
 
   const { user } = useAuth();
+  const { awardPoints } = useContext(GamificationContext);
   const userId = user?.id;
 
   const [activeTab, setActiveTab] = useState("voice");
@@ -40,6 +42,8 @@ export default function JournalPage() {
         content: content
       });
 
+      awardPoints(15, 'journal_entry', 'Journal entry');
+
       console.log(content)
       // Then analyze
       const result = await askQuestion(content);
@@ -54,11 +58,11 @@ export default function JournalPage() {
     <Navbar />
     <div className="container">
       <header className="header">
-        <h1>🎤 Journal</h1>
-        <p>Express yourself naturally and receive personalized insights</p>
+        <h1 className="journal-title">Journal</h1>
+          <p className="text-gray-600 text-lg">Express yourself naturally and receive personalized insights</p>
       </header>
 
-      <div className="journal-tabs">
+      <div className="journal-tabs animate-scale-in">
         {["voice", "text", "past"].map(tab => (
           <button
             key={tab}

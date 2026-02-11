@@ -49,7 +49,7 @@ export default function DashboardPage() {
             <WelcomeCard user={user} />
           </div>
           <div>
-            <PointsProgress user={user} />
+            <PointsProgress />
           </div>
         </div>
 

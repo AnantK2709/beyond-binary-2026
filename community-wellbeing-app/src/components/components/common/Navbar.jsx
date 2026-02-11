@@ -104,6 +104,7 @@ export default function Navbar() {
                       backdropFilter: 'blur(20px)',
                       border: '1px solid rgba(168, 213, 186, 0.3)',
                       boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+                      width: '224px',
                     }}
                   >
                     <Link

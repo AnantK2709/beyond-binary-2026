@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { useAuth } from '../../../context/AuthContext';
+import { GamificationContext } from '../../../context/GamificationContext';
 
 export default function QuickMoodWidget({ user, onComplete }) {
   const { updateUser } = useAuth();
+  const { awardPoints } = useContext(GamificationContext);
   const [moodScore, setMoodScore] = useState(3);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -48,8 +50,9 @@ export default function QuickMoodWidget({ user, onComplete }) {
     updateUser({
       moodHistory: updatedMoodHistory,
       currentStreak: newStreak,
-      totalPoints: (user?.totalPoints || 0) + 10,
     });
+
+    awardPoints(10, 'mood_checkin', 'Daily mood check-in');
 
     setTimeout(() => {
       setIsSubmitting(false);

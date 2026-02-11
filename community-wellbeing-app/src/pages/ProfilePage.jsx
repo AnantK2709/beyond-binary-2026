@@ -130,12 +130,12 @@ export default function ProfilePage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-6">
                   🏆 Achievements & Badges
                 </h3>
-                <BadgeDisplay user={user} />
+                <BadgeDisplay />
                 <div className="mt-6">
                   <h4 className="text-sm font-semibold text-gray-700 mb-4">
                     All Badges
                   </h4>
-                  <BadgeGrid user={user} />
+                  <BadgeGrid />
                 </div>
               </div>
             </div>

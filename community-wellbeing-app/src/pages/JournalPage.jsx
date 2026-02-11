@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useAuth } from '../context/AuthContext';
+import { GamificationContext } from '../context/GamificationContext';
 import { journalService } from '../services/journalService.js';
 import { askQuestion } from "../services/aiInsightService.js"; 
 
@@ -14,6 +15,7 @@ import "../styles/journal/journal.css";
 export default function JournalPage() {
 
   const { user } = useAuth();
+  const { awardPoints } = useContext(GamificationContext);
   const userId = user?.id;
 
   const [activeTab, setActiveTab] = useState("voice");
@@ -39,6 +41,8 @@ export default function JournalPage() {
         type: entryType,
         content: content
       });
+
+      awardPoints(15, 'journal_entry', 'Journal entry');
 
       console.log(content)
       // Then analyze

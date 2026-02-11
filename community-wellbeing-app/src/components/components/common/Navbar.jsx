@@ -75,6 +75,7 @@ export default function Navbar() {
                 style={{
                   background: 'rgba(168, 213, 186, 0.15)',
                   backdropFilter: 'blur(10px)',
+                  width: '200px'
                 }}
               >
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sage-500 to-sage-600 flex items-center justify-center text-white font-bold shadow-md">
@@ -103,6 +104,7 @@ export default function Navbar() {
                       backdropFilter: 'blur(20px)',
                       border: '1px solid rgba(168, 213, 186, 0.3)',
                       boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+                      width: '224px',
                     }}
                   >
                     <Link

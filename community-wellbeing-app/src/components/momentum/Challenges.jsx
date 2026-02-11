@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { GamificationContext } from '../../context/GamificationContext'
 import Toast from '../common/Toast'
 
 const COMMUNITY_CHALLENGES = [
@@ -77,6 +78,7 @@ const COMMUNITY_CHALLENGES = [
 ]
 
 function Challenges({ onUpdate }) {
+  const { awardPoints } = useContext(GamificationContext)
   const [activeChallenges, setActiveChallenges] = useState([])
   const [completedChallenges, setCompletedChallenges] = useState([])
   const [challengeProgress, setChallengeProgress] = useState({})
@@ -147,7 +149,8 @@ function Challenges({ onUpdate }) {
       // Award points
       const challenge = activeChallenges.find(c => c.id === challengeId)
       if (challenge) {
-        showToast('success', `+${challenge.pointsPerDay} points! Day ${dayIndex + 1} complete! 🎉`)
+        awardPoints(challenge.pointsPerDay, 'challenge_checkin', challenge.title)
+        showToast('success', `+${challenge.pointsPerDay} points! Day ${dayIndex + 1} complete!`)
       }
 
       // Check if challenge completed

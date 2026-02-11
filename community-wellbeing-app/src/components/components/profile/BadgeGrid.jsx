@@ -1,92 +1,55 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GamificationContext } from '../../../context/GamificationContext';
+import { ACHIEVEMENTS } from '../../../utils/gamification';
 
-export default function BadgeGrid({ user }) {
-  const allBadges = [
-    {
-      id: 'first-checkin',
-      icon: '🌟',
-      name: 'First Steps',
-      description: 'First mood check-in',
-      unlocked: user?.moodHistory?.length > 0,
-      color: 'from-yellow-400 to-orange-500',
-    },
-    {
-      id: '7-day-streak',
-      icon: '🔥',
-      name: 'Week Warrior',
-      description: '7-day streak',
-      unlocked: user?.currentStreak >= 7,
-      color: 'from-red-400 to-orange-600',
-    },
-    {
-      id: '30-day-streak',
-      icon: '💎',
-      name: 'Diamond Dedication',
-      description: '30-day streak',
-      unlocked: user?.currentStreak >= 30,
-      color: 'from-blue-400 to-cyan-600',
-    },
-    {
-      id: 'first-circle',
-      icon: '👥',
-      name: 'Circle Starter',
-      description: 'Joined first circle',
-      unlocked: user?.joinedCircles?.length > 0,
-      color: 'from-green-400 to-emerald-600',
-    },
-    {
-      id: 'social-butterfly',
-      icon: '🦋',
-      name: 'Social Butterfly',
-      description: 'Joined 5+ circles',
-      unlocked: user?.joinedCircles?.length >= 5,
-      color: 'from-pink-400 to-rose-600',
-    },
-    {
-      id: 'century-club',
-      icon: '💯',
-      name: 'Century Club',
-      description: '100+ points',
-      unlocked: user?.totalPoints >= 100,
-      color: 'from-purple-400 to-indigo-600',
-    },
-    {
-      id: 'level-3',
-      icon: '⭐',
-      name: 'Rising Star',
-      description: 'Level 3',
-      unlocked: user?.level >= 3,
-      color: 'from-yellow-300 to-yellow-600',
-    },
-    {
-      id: 'level-5',
-      icon: '👑',
-      name: 'Community Leader',
-      description: 'Level 5',
-      unlocked: user?.level >= 5,
-      color: 'from-amber-400 to-orange-600',
-    },
-    {
-      id: 'mood-master',
-      icon: '😊',
-      name: 'Mood Master',
-      description: '30 mood check-ins',
-      unlocked: user?.moodHistory?.length >= 30,
-      color: 'from-teal-400 to-cyan-600',
-    },
-    {
-      id: 'event-enthusiast',
-      icon: '🎉',
-      name: 'Event Enthusiast',
-      description: '10+ events attended',
-      unlocked: user?.attendedEvents?.length >= 10,
-      color: 'from-indigo-400 to-purple-600',
-    },
+export default function BadgeGrid() {
+  const { badges, achievements } = useContext(GamificationContext);
+
+  // Combine level-based badges and activity-based achievements into one grid
+  const allItems = [
+    // Level-based badges earned
+    ...badges.map(b => ({
+      id: b.id || `badge-${b.name}`,
+      icon: b.icon,
+      name: b.name,
+      description: b.description || `Level ${b.level} badge`,
+      unlocked: true,
+      color: {
+        sage: 'from-sage-400 to-sage-600',
+        ocean: 'from-ocean-400 to-ocean-600',
+        gold: 'from-yellow-400 to-orange-500',
+        orange: 'from-orange-400 to-orange-600',
+        purple: 'from-purple-400 to-purple-600',
+      }[b.color] || 'from-sage-400 to-sage-600',
+    })),
+    // Activity-based achievements
+    ...achievements.map(a => ({
+      id: a.id,
+      icon: a.icon,
+      name: a.name,
+      description: a.description,
+      unlocked: a.unlocked,
+      color: {
+        sage: 'from-sage-400 to-sage-600',
+        ocean: 'from-ocean-400 to-ocean-600',
+        gold: 'from-yellow-400 to-orange-500',
+        orange: 'from-orange-400 to-orange-600',
+        purple: 'from-purple-400 to-purple-600',
+      }[a.color] || 'from-sage-400 to-sage-600',
+    })),
   ];
+
+  // Remove duplicates (badges that are also achievements)
+  const seen = new Set();
+  const uniqueItems = allItems.filter(item => {
+    if (seen.has(item.id)) return false;
+    seen.add(item.id);
+    return true;
+  });
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-      {allBadges.map((badge) => (
+      {uniqueItems.map((badge) => (
         <div
           key={badge.id}
           className={`p-4 rounded-xl text-center transition-all ${

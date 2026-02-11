@@ -98,5 +98,15 @@
     "status": "accepted",
     "createdAt": "2026-02-10T17:15:19.517Z",
     "acceptedAt": "2026-02-10T17:15:23.616Z"
+  },
+  {
+    "id": "inv_1770793031085_t2jhhb89d",
+    "communityId": "c034",
+    "communityName": "qd",
+    "inviterId": "u001",
+    "userId": "u008",
+    "status": "accepted",
+    "createdAt": "2026-02-11T06:57:11.085Z",
+    "acceptedAt": "2026-02-11T06:57:14.330Z"
   }
 ]

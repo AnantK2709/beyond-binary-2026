@@ -45,7 +45,13 @@ function ChatInput({ communityId, isMember = false, onCreatePoll, onCreateEventP
       setShowOptions(false)
     } catch (error) {
       console.error('Error sending message:', error)
-      showToast('Failed to send message. Please try again.', 'error')
+      // Check if error is due to membership
+      const errorMessage = error?.response?.data?.error || error?.message || 'Failed to send message'
+      if (errorMessage.includes('member') || errorMessage.includes('must be a member') || error?.response?.status === 403) {
+        showToast('You must be a member of this community to send messages. Please join first.', 'error')
+      } else {
+        showToast(errorMessage || 'Failed to send message. Please try again.', 'error')
+      }
     } finally {
       setIsSending(false)
     }

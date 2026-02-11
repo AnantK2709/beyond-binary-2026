@@ -66,13 +66,8 @@
         "role": "member"
       },
       {
-        "id": "c032",
-        "name": "wvwv",
-        "role": "member"
-      },
-      {
-        "id": "c033",
-        "name": "3r",
+        "id": "c022",
+        "name": "Tech & Innovation",
         "role": "member"
       }
     ],
@@ -173,26 +168,6 @@
         "id": "c003",
         "name": "Creative Souls",
         "role": "organizer"
-      },
-      {
-        "id": "c030",
-        "name": "Prash club",
-        "role": "member"
-      },
-      {
-        "id": "c031",
-        "name": "Prash club",
-        "role": "member"
-      },
-      {
-        "id": "c032",
-        "name": "wvwv",
-        "role": "member"
-      },
-      {
-        "id": "c033",
-        "name": "3r",
-        "role": "member"
       }
     ],
     "attendedEvents": [
@@ -651,14 +626,55 @@
   },
   {
     "id": "u008",
-    "name": "Kelly Jan kalla",
-    "email": "u008@example.com",
+    "name": "jbjbjb",
+    "email": "ka@e.google.com",
     "joinedCircles": [
       {
-        "id": "c033",
-        "name": "3r",
-        "role": "admin"
+        "id": "c007",
+        "name": "Foodie Adventures",
+        "role": "member"
       }
-    ]
+    ],
+    "password": "1111111",
+    "age": 35,
+    "ageRange": "26-35",
+    "location": "Singapore",
+    "pronouns": "they/them",
+    "personalityType": "ambivert",
+    "bio": "",
+    "interests": [
+      "cooking",
+      "photography",
+      "yoga"
+    ],
+    "activityPreferences": {
+      "intellectual": true
+    },
+    "interactionPreferences": {},
+    "preferredModes": [
+      "virtual"
+    ],
+    "timePreferences": {
+      "preferredDays": [
+        "thursday"
+      ],
+      "preferredTimes": [
+        "afternoon"
+      ],
+      "frequency": "2+ times a week"
+    },
+    "goals": [],
+    "currentStreak": 0,
+    "totalPoints": 0,
+    "level": 1,
+    "attendedEvents": [],
+    "moodHistory": [
+      {
+        "date": "2026-02-11",
+        "score": 3,
+        "state": "seeking_connection"
+      }
+    ],
+    "created_at": "2026-02-11T08:59:05.445Z"
   }
 ]

@@ -12,7 +12,7 @@ import { MessageCircle, ClipboardList, Calendar, Users, Check, Target } from 'lu
 
 function CommunityDetailPage() {
   const { id } = useParams()
-  const { user } = useAuth()
+  const { user, updateUser } = useAuth()
   const { showToast } = useToast()
   const [community, setCommunity] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -62,9 +62,19 @@ function CommunityDetailPage() {
             if (user?.id) {
               const joinedCircles = user.joinedCircles || []
               const joinedIds = joinedCircles.map(c => typeof c === 'string' ? c : c.id)
-              setIsMember(joinedIds.includes(id))
+              const memberStatus = joinedIds.includes(id)
+              setIsMember(memberStatus)
+              
+              // If user is not a member and chat tab is active, switch to details tab
+              if (!memberStatus && activeTab === 'chat') {
+                setActiveTab('details')
+              }
             } else {
               setIsMember(false)
+              // If no user and chat tab is active, switch to details tab
+              if (activeTab === 'chat') {
+                setActiveTab('details')
+              }
             }
           }
         } catch (error) {
@@ -133,10 +143,10 @@ function CommunityDetailPage() {
   }
 
   const tabs = [
-    { id: 'chat', label: 'Chat' },
-    { id: 'details', label: 'Details' },
-    { id: 'events', label: 'Events' },
-    { id: 'members', label: 'Members' }
+    { id: 'chat', label: '💬 Chat', icon: '💬', requiresMembership: true },
+    { id: 'details', label: '📋 Details', icon: '📋', requiresMembership: false },
+    { id: 'events', label: '📅 Events', icon: '📅', requiresMembership: false },
+    { id: 'members', label: '👥 Members', icon: '👥', requiresMembership: false }
   ]
 
   return (
@@ -169,27 +179,83 @@ function CommunityDetailPage() {
         {/* Tabs */}
         <div className="bg-white rounded-lg shadow-sm border border-sage-200 mb-6">
           <div className="flex border-b border-sage-200">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === tab.id
-                    ? 'text-sage-700 border-b-2 border-sage-500 bg-sage-50'
-                    : 'text-gray-600 hover:text-sage-600 hover:bg-sage-50'
-                }`}
-              >
-                <span className="flex items-center gap-1.5">{tabIcons[tab.id]} {tab.label}</span>
-              </button>
-            ))}
+            {tabs.map((tab) => {
+              const isDisabled = tab.requiresMembership && !isMember;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    if (isDisabled) {
+                      showToast('Join this community to access chat', 'info');
+                      return;
+                    }
+                    setActiveTab(tab.id);
+                  }}
+                  disabled={isDisabled}
+                  className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
+                    activeTab === tab.id
+                      ? 'text-sage-700 border-b-2 border-sage-500 bg-sage-50'
+                      : isDisabled
+                      ? 'text-gray-400 cursor-not-allowed opacity-60'
+                      : 'text-gray-600 hover:text-sage-600 hover:bg-sage-50'
+                  }`}
+                  title={isDisabled ? 'Join this community to access chat' : ''}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
           </div>
 
           {/* Tab Content */}
           <div className="p-6">
             {activeTab === 'chat' && (
-              <div className="h-[600px]">
-                <GroupChat communityId={id} isMember={isMember} />
-              </div>
+              <>
+                {!isMember ? (
+                  <div className="h-[600px] flex flex-col items-center justify-center bg-sage-50 rounded-lg border border-sage-200">
+                    <div className="text-center max-w-md">
+                      <div className="text-6xl mb-4">🔒</div>
+                      <h3 className="text-2xl font-bold text-gray-800 mb-2">Join to Chat</h3>
+                      <p className="text-gray-600 mb-6">
+                        You need to be a member of this community to participate in the chat.
+                      </p>
+                      <button
+                        onClick={async () => {
+                          if (!user?.id) {
+                            showToast('Please sign in to join communities', 'error');
+                            return;
+                          }
+                          try {
+                            await communityService.joinCommunity(id, user.id);
+                            showToast('Successfully joined community!', 'success');
+                            // Reload user from localStorage to get updated joinedCircles
+                            const updatedUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+                            if (updatedUser.id) {
+                              const joinedCircles = updatedUser.joinedCircles || [];
+                              const joinedIds = joinedCircles.map(c => typeof c === 'string' ? c : c.id);
+                              setIsMember(joinedIds.includes(id));
+                              // Update AuthContext to sync user data everywhere
+                              if (updateUser) {
+                                updateUser({ joinedCircles: updatedUser.joinedCircles });
+                              }
+                            }
+                          } catch (error) {
+                            console.error('Error joining community:', error);
+                            showToast('Failed to join community', 'error');
+                          }
+                        }}
+                        className="px-6 py-3 bg-sage-600 text-white rounded-lg hover:bg-sage-700 transition-colors font-semibold"
+                      >
+                        Join Community
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="h-[600px]">
+                    <GroupChat communityId={id} isMember={isMember} />
+                  </div>
+                )}
+              </>
             )}
             {activeTab === 'details' && <CommunityDetail community={community} />}
             {activeTab === 'events' && <CommunityEvents communityId={id} />}

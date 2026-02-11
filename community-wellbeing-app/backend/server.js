@@ -59,9 +59,16 @@ try {
 // Speech to text consts
 const upload = multer({ dest: 'uploads/' });
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+// Initialize OpenAI only if API key is provided
+let openai = null;
+if (process.env.OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+  });
+  console.log('✅ OpenAI client initialized');
+} else {
+  console.warn('⚠️  OPENAI_API_KEY not found. AI features (transcription, chat) will be disabled.');
+}
 
 // ============================================
 // EVENTS API ENDPOINTS
@@ -254,6 +261,17 @@ app.get('/api/events/:id', (req, res) => {
 const { toFile } = require('openai/uploads');
 
 app.post('/api/transcribe', upload.single('audio'), async (req, res) => {
+  if (!openai) {
+    // Cleanup on error
+    if (req.file?.path) {
+      try { fs.unlinkSync(req.file.path); } catch { }
+    }
+    return res.status(503).json({
+      error: 'Transcription service unavailable',
+      message: 'OPENAI_API_KEY is not configured. Please set it in your .env file.'
+    });
+  }
+
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No audio file provided' });
@@ -298,11 +316,22 @@ app.post('/api/transcribe', upload.single('audio'), async (req, res) => {
   }
 });
 
-const SYSTEM_PROMPTS = require('./prompts.js');
-console.log("MYTHILI SYSTEM PROMPT")
-console.log(SYSTEM_PROMPTS.general)
+// Load system prompts (only if prompts.js exists)
+let SYSTEM_PROMPTS = { general: 'You are a helpful assistant.' };
+try {
+  SYSTEM_PROMPTS = require('./prompts.js');
+  console.log("✅ System prompts loaded");
+} catch (error) {
+  console.warn("⚠️  prompts.js not found, using default prompts");
+}
 
 app.post("/api/ask", express.json(), async (req, res) => {
+  if (!openai) {
+    return res.status(503).json({
+      error: 'AI service unavailable',
+      message: 'OPENAI_API_KEY is not configured. Please set it in your .env file.'
+    });
+  }
 
   try {
     
@@ -569,8 +598,13 @@ app.get('/api/users/search', (req, res) => {
 
   const query = (req.query.q || '').toLowerCase();
 
+  // If query is empty or less than 2 characters, return all users
   if (!query || query.length < 2) {
-    return res.json({ users: [] });
+    const allUsers = USERS.map(user => {
+      const { password, ...safeUser } = user;
+      return safeUser;
+    });
+    return res.json({ users: allUsers });
   }
 
   const filteredUsers = USERS.filter(user => {

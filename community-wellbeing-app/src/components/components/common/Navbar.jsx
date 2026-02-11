@@ -45,7 +45,7 @@ export default function Navbar() {
             </Link>
 
             {/* Search Bar */}
-            <div className="hidden md:block flex-1 max-w-md">
+            <div className="hidden md:block flex-1 max-w-md relative z-50">
               <SearchBar />
             </div>
 
@@ -75,6 +75,7 @@ export default function Navbar() {
                 style={{
                   background: 'rgba(168, 213, 186, 0.15)',
                   backdropFilter: 'blur(10px)',
+                  width: '200px'
                 }}
               >
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sage-500 to-sage-600 flex items-center justify-center text-white font-bold shadow-md">

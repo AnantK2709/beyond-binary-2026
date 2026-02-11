@@ -14,6 +14,7 @@ export default function CommunitiesPage() {
   const [allCommunities, setAllCommunities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [activeTab, setActiveTab] = useState('my'); // 'my' or 'all'
   const hasLoadedRef = useRef(false);
   const componentIdRef = useRef(Math.random().toString(36).substr(2, 9));
 
@@ -168,7 +169,8 @@ export default function CommunitiesPage() {
         // Finally by number of members (more popular first)
         return (b.members || 0) - (a.members || 0);
       })
-      .filter(c => c.matchScore > 0); // Only show communities with at least one matching interest
+      .filter(c => c.matchScore > 0) // Only show communities with at least one matching interest
+      .slice(0, 6); // Limit to top 6 recommended communities
 
     console.log('[CommunitiesPage] Recommended communities:', recommended.map(c => ({
       id: c.id,
@@ -247,84 +249,123 @@ export default function CommunitiesPage() {
           </button>
         </div>
 
-        {/* Your Communities Section */}
-        {joinedCommunities.length > 0 && (
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-              <span>👥</span>
-              <span>Your Communities</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {joinedCommunities.map((community) => (
-                <CommunityCard
-                  key={community.id}
-                  community={community}
-                  isJoined={true}
-                  onChatClick={() => handleChatClick(community.id)}
-                  onJoinClick={() => handleJoinCommunity(community.id)}
-                />
-              ))}
-            </div>
+        {/* Tabs */}
+        <div className="mb-8">
+          <div className="flex gap-4 border-b border-sage-200">
+            <button
+              onClick={() => setActiveTab('my')}
+              className={`px-6 py-3 font-semibold transition-colors border-b-2 ${
+                activeTab === 'my'
+                  ? 'text-sage-700 border-sage-600'
+                  : 'text-gray-500 border-transparent hover:text-sage-600'
+              }`}
+            >
+              👥 My Communities
+            </button>
+            <button
+              onClick={() => setActiveTab('all')}
+              className={`px-6 py-3 font-semibold transition-colors border-b-2 ${
+                activeTab === 'all'
+                  ? 'text-sage-700 border-sage-600'
+                  : 'text-gray-500 border-transparent hover:text-sage-600'
+              }`}
+            >
+              ✨ All Communities
+            </button>
           </div>
-        )}
-
-        {/* Recommended Communities Based on Your Interests */}
-        {recommendedCommunities.length > 0 && (
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-              <span>🌟</span>
-              <span>Recommended for You</span>
-            </h2>
-            <p className="text-gray-600 mb-6 text-sm">
-              Based on your interests: {user?.interests?.slice(0, 5).join(', ') || 'none'}
-              {user?.activityPreferences && Object.keys(user.activityPreferences).filter(k => user.activityPreferences[k]).length > 0 && (
-                <span className="ml-2">
-                  ({Object.keys(user.activityPreferences).filter(k => user.activityPreferences[k]).join(', ')})
-                </span>
-              )}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {recommendedCommunities.map((community) => (
-                <CommunityCard
-                  key={community.id}
-                  community={community}
-                  isJoined={false}
-                  onChatClick={() => handleChatClick(community.id)}
-                  onJoinClick={() => handleJoinCommunity(community.id)}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* All Communities Section */}
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-            <span>✨</span>
-            <span>{recommendedCommunities.length > 0 ? 'All Communities' : 'Communities You May Want to Join'}</span>
-          </h2>
-          {otherCommunities.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherCommunities.map((community) => (
-                <CommunityCard
-                  key={community.id}
-                  community={community}
-                  isJoined={false}
-                  onChatClick={() => handleChatClick(community.id)}
-                  onJoinClick={() => handleJoinCommunity(community.id)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-sage-200">
-              <p className="text-gray-500">
-                {recommendedCommunities.length > 0 
-                  ? "No more communities available. You've joined them all! 🎉"
-                  : "No communities available at the moment."}
-              </p>
-            </div>
-          )}
         </div>
+
+        {/* Tab Content */}
+        {activeTab === 'my' && (
+          <div>
+            {/* Your Joined Communities */}
+            {joinedCommunities.length > 0 && (
+              <div className="mb-12">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                  <span>👥</span>
+                  <span>Your Communities</span>
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {joinedCommunities.map((community) => (
+                    <CommunityCard
+                      key={community.id}
+                      community={community}
+                      isJoined={true}
+                      onChatClick={() => handleChatClick(community.id)}
+                      onJoinClick={() => handleJoinCommunity(community.id)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Recommended Communities Based on Your Interests */}
+            {recommendedCommunities.length > 0 && (
+              <div className="mb-12">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <span>🌟</span>
+                  <span>Recommended for You</span>
+                </h2>
+                <p className="text-gray-600 mb-6 text-sm">
+                  Based on your interests: {user?.interests?.slice(0, 5).join(', ') || 'none'}
+                  {user?.activityPreferences && Object.keys(user.activityPreferences).filter(k => user.activityPreferences[k]).length > 0 && (
+                    <span className="ml-2">
+                      ({Object.keys(user.activityPreferences).filter(k => user.activityPreferences[k]).join(', ')})
+                    </span>
+                  )}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {recommendedCommunities.map((community) => (
+                    <CommunityCard
+                      key={community.id}
+                      community={community}
+                      isJoined={false}
+                      onChatClick={() => handleChatClick(community.id)}
+                      onJoinClick={() => handleJoinCommunity(community.id)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Empty State for My Communities */}
+            {joinedCommunities.length === 0 && recommendedCommunities.length === 0 && (
+              <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-sage-200">
+                <p className="text-gray-500 mb-4">You haven't joined any communities yet.</p>
+                <p className="text-gray-400 text-sm">Check out "All Communities" to discover new ones!</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'all' && (
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <span>✨</span>
+              <span>All Communities</span>
+            </h2>
+            {allCommunities.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {allCommunities.map((community) => {
+                  const isJoined = joinedCommunityIds.includes(community.id);
+                  return (
+                    <CommunityCard
+                      key={community.id}
+                      community={community}
+                      isJoined={isJoined}
+                      onChatClick={() => handleChatClick(community.id)}
+                      onJoinClick={() => handleJoinCommunity(community.id)}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-sage-200">
+                <p className="text-gray-500">No communities available at the moment.</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Create Community Modal */}

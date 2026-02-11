@@ -79,7 +79,7 @@ export default function BadgeGrid() {
             {badge.unlocked ? (
               <IconRenderer name={badge.icon} size={28} className="text-white" />
             ) : (
-              <div className="w-6 h-6 rounded-full border border-gray-300/70 bg-white/60" aria-hidden="true" />
+              <Lock size={22} className="text-gray-400" />
             )}
           </div>
           {badge.unlocked ? (
@@ -96,8 +96,12 @@ export default function BadgeGrid() {
             </>
           ) : (
             <>
-              <span className="sr-only">Locked badge</span>
-              <div className="h-9" aria-hidden="true" />
+              <div className="font-semibold text-xs mb-1 text-gray-500">
+                {badge.name}
+              </div>
+              <div className="text-xs text-gray-400">
+                {badge.description}
+              </div>
             </>
           )}
         </div>

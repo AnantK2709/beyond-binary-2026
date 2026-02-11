@@ -464,5 +464,178 @@
       ],
       "totalVotes": 6
     }
+  },
+  {
+    "id": "msg1770796105600",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "hello",
+    "timestamp": "2026-02-11T07:48:25.601Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770796119623",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-11T07:48:39.623Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach",
+          "votes": 1,
+          "voters": [
+            "u005"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain",
+          "votes": 3,
+          "voters": [
+            "u006",
+            "u002",
+            "u008"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City",
+          "votes": 3,
+          "voters": [
+            "u002",
+            "u003",
+            "u007"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
+  },
+  {
+    "id": "msg1770796230027",
+    "communityId": "c001",
+    "userId": "u003",
+    "userName": "Priya Kumar",
+    "text": "hello",
+    "timestamp": "2026-02-11T07:50:30.027Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770796244047",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-11T07:50:44.047Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach",
+          "votes": 1,
+          "voters": [
+            "u008"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain",
+          "votes": 2,
+          "voters": [
+            "u006",
+            "u001"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City",
+          "votes": 3,
+          "voters": [
+            "u003",
+            "u005",
+            "u002"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 6
+    }
+  },
+  {
+    "id": "msg1770796732499",
+    "communityId": "c001",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "hello",
+    "timestamp": "2026-02-11T07:58:52.499Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770796746525",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-11T07:59:06.525Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach",
+          "votes": 3,
+          "voters": [
+            "u006",
+            "u008",
+            "u002"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain",
+          "votes": 3,
+          "voters": [
+            "u001",
+            "u005",
+            "u007"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City",
+          "votes": 1,
+          "voters": [
+            "u003"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
   }
 ]

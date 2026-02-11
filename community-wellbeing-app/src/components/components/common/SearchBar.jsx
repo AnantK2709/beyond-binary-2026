@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 import { searchService } from '../../../services/searchService';
 import { useDebounce } from '../../../hooks/useDebounce';
 
-function SearchBar() {
+function SearchBar({ onExpandChange }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
@@ -14,6 +14,10 @@ function SearchBar() {
   const navigate = useNavigate();
   const searchRef = useRef(null);
   const debouncedQuery = useDebounce(searchQuery, 300);
+
+  useEffect(() => {
+    onExpandChange?.(isExpanded);
+  }, [isExpanded, onExpandChange]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -113,7 +117,7 @@ function SearchBar() {
       ref={searchRef} 
       className={`relative transition-all duration-300 ${
         isExpanded 
-          ? 'absolute left-0 top-0 w-[500px] z-50' 
+          ? 'absolute left-0 top-0 w-[380px] z-50'
           : 'w-full'
       }`}
     >
@@ -141,7 +145,7 @@ function SearchBar() {
       {/* Dropdown - Shows when expanded/clicked */}
       {isExpanded && (
         <div
-          className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-lg border border-sage-200 z-50 overflow-y-auto transition-all duration-300 w-[500px]"
+          className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-lg border border-sage-200 z-50 overflow-y-auto transition-all duration-300 w-[380px]"
           style={{
             backdropFilter: 'blur(20px)',
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',

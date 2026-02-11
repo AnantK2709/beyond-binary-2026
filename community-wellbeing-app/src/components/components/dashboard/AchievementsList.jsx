@@ -1,4 +1,5 @@
 import React from 'react';
+import { Lock } from 'lucide-react';
 import IconRenderer from '../../common/IconRenderer';
 
 export default function AchievementsList({ user }) {
@@ -54,8 +55,10 @@ export default function AchievementsList({ user }) {
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <h4 className="font-bold text-gray-900">{achievement.title}</h4>
-              {achievement.unlocked && (
+              {achievement.unlocked ? (
                 <span className="badge-verified text-xs">Unlocked</span>
+              ) : (
+                <Lock size={14} className="text-gray-400" />
               )}
             </div>
             <p className="text-sm text-gray-600">{achievement.description}</p>

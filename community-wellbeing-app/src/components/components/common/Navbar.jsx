@@ -9,6 +9,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [searchExpanded, setSearchExpanded] = useState(false);
 
   const navItems = [
     { path: '/dashboard', label: 'Home', icon: Home },
@@ -49,17 +50,18 @@ export default function Navbar() {
 
             {/* Search Bar */}
             <div className="hidden md:block flex-1 max-w-md relative z-50">
-              <SearchBar />
+              <SearchBar onExpandChange={setSearchExpanded} />
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-6 flex-shrink-0">
+            <div className={`hidden md:flex items-center flex-shrink-0 transition-all duration-300 ${searchExpanded ? 'gap-2' : 'gap-6'}`}>
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
+                    title={item.label}
                     className={`flex items-center gap-2 px-3 py-2 rounded-xl font-medium transition-all ${
                       location.pathname === item.path
                         ? 'text-sage-700 bg-sage-500/10 shadow-sm'
@@ -67,7 +69,7 @@ export default function Navbar() {
                     }`}
                   >
                     <IconComponent size={18} strokeWidth={2.5} />
-                    <span>{item.label}</span>
+                    {!searchExpanded && <span>{item.label}</span>}
                   </Link>
                 );
               })}

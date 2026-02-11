@@ -801,5 +801,296 @@
       ],
       "totalVotes": 7
     }
+  },
+  {
+    "id": "msg1770800179570",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:56:19.570Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800182088-0",
+    "communityId": "c001",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Welcome! We were just planning our next adventure!",
+    "timestamp": "2026-02-11T08:56:22.094Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800185106-1",
+    "communityId": "c001",
+    "userId": "u003",
+    "userName": "Priya Kumar",
+    "text": "We were just discussing our next group activity. Want to help us decide?",
+    "timestamp": "2026-02-11T08:56:25.115Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800187124-2",
+    "communityId": "c001",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Yes! I think we should vote on where to go!",
+    "timestamp": "2026-02-11T08:56:27.129Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770800189151",
+    "communityId": "c001",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-11T08:56:29.151Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 2,
+          "voters": [
+            "u002",
+            "u001"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 2,
+          "voters": [
+            "u008",
+            "u003"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 2,
+          "voters": [
+            "u007",
+            "u005"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 6
+    }
+  },
+  {
+    "id": "msg1770800231950",
+    "communityId": "c022",
+    "userId": "u001",
+    "userName": "Sarah Chen",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:57:11.950Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800233967-0",
+    "communityId": "c022",
+    "userId": "u008",
+    "userName": "Lisa Chen",
+    "text": "Hi Sarah Chen! Welcome to our tech community! 💻",
+    "timestamp": "2026-02-11T08:57:13.971Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800236485-1",
+    "communityId": "c022",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "We were just planning our next tech meetup!",
+    "timestamp": "2026-02-11T08:57:16.489Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800239502-2",
+    "communityId": "c022",
+    "userId": "u008",
+    "userName": "Lisa Chen",
+    "text": "Help us decide on the topic.",
+    "timestamp": "2026-02-11T08:57:19.508Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800241519-3",
+    "communityId": "c022",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Let's vote on the tech topic!",
+    "timestamp": "2026-02-11T08:57:21.523Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800244032-4",
+    "communityId": "c022",
+    "userId": "u008",
+    "userName": "Lisa Chen",
+    "text": "Perfect! Let me create a poll.",
+    "timestamp": "2026-02-11T08:57:24.036Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770800246056",
+    "communityId": "c022",
+    "userId": "u008",
+    "userName": "Lisa Chen",
+    "text": "Poll: What tech topic should we discuss?",
+    "timestamp": "2026-02-11T08:57:26.056Z",
+    "type": "poll",
+    "poll": {
+      "question": "What tech topic should we discuss?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "AI & ML 🤖",
+          "votes": 4,
+          "voters": [
+            "u001",
+            "u005",
+            "u003",
+            "u006"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Web Dev 🌐",
+          "votes": 1,
+          "voters": [
+            "u002"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "Mobile Apps 📱",
+          "votes": 2,
+          "voters": [
+            "u001",
+            "u007"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Cloud Computing ☁️",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 7
+    }
+  },
+  {
+    "id": "msg1770800357708",
+    "communityId": "c007",
+    "userId": "u008",
+    "userName": "jbjbjb",
+    "text": "hello",
+    "timestamp": "2026-02-11T08:59:17.708Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800359720-0",
+    "communityId": "c007",
+    "userId": "u005",
+    "userName": "Alex Rivera",
+    "text": "Hey jbjbjb! Welcome to our foodie community! 🍳",
+    "timestamp": "2026-02-11T08:59:19.726Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800362236-1",
+    "communityId": "c007",
+    "userId": "u006",
+    "userName": "Emma Wilson",
+    "text": "We were just planning our next cooking event!",
+    "timestamp": "2026-02-11T08:59:22.242Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800365257-2",
+    "communityId": "c007",
+    "userId": "u005",
+    "userName": "Alex Rivera",
+    "text": "Perfect! Help us decide what cuisine to explore.",
+    "timestamp": "2026-02-11T08:59:25.263Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800367275-3",
+    "communityId": "c007",
+    "userId": "u006",
+    "userName": "Emma Wilson",
+    "text": "Let's vote on the cuisine type!",
+    "timestamp": "2026-02-11T08:59:27.280Z",
+    "type": "message"
+  },
+  {
+    "id": "conv-msg-1770800369795-4",
+    "communityId": "c007",
+    "userId": "u005",
+    "userName": "Alex Rivera",
+    "text": "Excellent! Let me create a poll.",
+    "timestamp": "2026-02-11T08:59:29.800Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770800371823",
+    "communityId": "c007",
+    "userId": "u005",
+    "userName": "Alex Rivera",
+    "text": "Poll: What cuisine should we explore next?",
+    "timestamp": "2026-02-11T08:59:31.823Z",
+    "type": "poll",
+    "poll": {
+      "question": "What cuisine should we explore next?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Italian 🍝",
+          "votes": 3,
+          "voters": [
+            "u001",
+            "u008",
+            "u005"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Asian Fusion 🥢",
+          "votes": 3,
+          "voters": [
+            "u008",
+            "u002",
+            "u007"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "Mediterranean 🥗",
+          "votes": 2,
+          "voters": [
+            "u006",
+            "u003"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Desserts 🍰",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 8
+    }
   }
 ]

@@ -76,14 +76,14 @@ function MomentumPage() {
             <div className="card p-8 animate-slide-up-fade">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-4xl font-bold text-gradient mb-3 flex items-center gap-2"><Rocket size={36} strokeWidth={2} /> Momentum</h1>
+                  <h1 className="text-4xl font-bold text-gradient mb-3 flex items-center gap-2"> Momentum</h1>
                   <p className="text-gray-600 text-lg">
                     Build lasting habits and track your personal growth journey
                   </p>
                 </div>
-                <div className="hidden lg:block animate-float">
+                {/* <div className="hidden lg:block animate-float">
                   <TrendingUp size={56} strokeWidth={1.5} />
-                </div>
+                </div> */}
               </div>
 
               {/* Quick Stats */}
@@ -117,8 +117,8 @@ function MomentumPage() {
           </div>
 
           {/* Tabs */}
-          <div className="mb-6">
-            <div className="card p-2">
+          <div className="mb-6 ">
+            <div className="card p-2 animate-slide-up-fade">
               <div className="flex gap-2">
                 <button
                   onClick={() => setActiveTab('habits')}

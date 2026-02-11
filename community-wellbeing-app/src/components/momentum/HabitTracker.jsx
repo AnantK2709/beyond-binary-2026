@@ -363,7 +363,7 @@ function HabitTracker({ onUpdate }) {
           {/* Modal */}
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div
-              className="bg-white rounded-2xl shadow-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto animate-scale-in "
+              className="bg-white rounded-2xl shadow-2xl p-6 max-w-[75vh] w-full max-h-[80vh] overflow-y-auto animate-scale-in "
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}

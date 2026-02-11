@@ -10,12 +10,12 @@ export default function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const navItems = [
-    { path: '/dashboard', label: 'Home', icon: '🏠' },
-    { path: '/events', label: 'Events', icon: '🗓️' },
-    { path: '/momentum', label: 'Momentum', icon: '🚀' },
-    { path: '/communities', label: 'Communities', icon: '👥' },
-    { path: '/journal', label: 'Journal', icon: '📔' },
-    { path: '/profile', label: 'Profile', icon: '👤' },
+    { path: '/dashboard', label: 'Home'},
+    { path: '/events', label: 'Events' },
+    { path: '/momentum', label: 'Momentum' },
+    { path: '/communities', label: 'Communities'},
+    { path: '/journal', label: 'Journal'},
+    { path: '/profile', label: 'Profile'},
   ];
 
   const handleSignOut = () => {
@@ -61,7 +61,7 @@ export default function Navbar() {
                       : 'text-gray-600 hover:text-sage-700 hover:bg-sage-500/5'
                   }`}
                 >
-                  <span>{item.icon}</span>
+                  {/* <span>{item.icon}</span> */}
                   <span>{item.label}</span>
                 </Link>
               ))}
@@ -112,23 +112,23 @@ export default function Navbar() {
                       className="block px-4 py-2 text-gray-900 hover:bg-sage-500/10 transition-colors rounded-xl mx-2"
                       onClick={() => setShowUserMenu(false)}
                     >
-                      <span className="mr-2">👤</span>
+                      {/* <span className="mr-2">👤</span> */}
                       Profile
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/recommendations"
                       className="block px-4 py-2 text-gray-900 hover:bg-sage-500/10 transition-colors rounded-xl mx-2"
                       onClick={() => setShowUserMenu(false)}
                     >
-                      <span className="mr-2">✨</span>
-                      Recommendations
-                    </Link>
+                      {/* <span className="mr-2">✨</span> */}
+                      {/* Recommendations }
+                    </Link> */}
                     <div className="border-t border-gray-200/50 my-2 mx-2" />
                     <button
                       onClick={handleSignOut}
                       className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition-colors rounded-xl mx-2"
                     >
-                      <span className="mr-2">🚪</span>
+                      {/* <span className="mr-2">🚪</span> */}
                       Sign Out
                     </button>
                   </div>
@@ -159,7 +159,6 @@ export default function Navbar() {
                   : 'text-gray-500'
               }`}
             >
-              <span className="text-xl">{item.icon}</span>
               <span className="text-xs font-medium">{item.label}</span>
             </Link>
           ))}

@@ -156,12 +156,12 @@ function EventsPage() {
                   onClick={() => navigate('/my-events')}
                   className="btn-secondary px-6 py-3 flex items-center gap-2"
                 >
-                  <span>📅</span>
+                  {/* <span>📅</span> */}
                   <span className="hidden sm:inline">My Events</span>
                 </button>
-                <div className="hidden lg:block text-6xl animate-float">
-                  🎉
-                </div>
+                {/* <div className="hidden lg:block text-6xl animate-float"> */}
+                  {/* 🎉
+                </div> */}
               </div>
             </div>
 

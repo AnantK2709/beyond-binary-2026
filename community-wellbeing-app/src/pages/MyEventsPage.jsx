@@ -72,9 +72,9 @@ function MyEventsPage() {
                   Track your event journey and stay connected with your community
                 </p>
               </div>
-              <div className="hidden lg:block text-6xl animate-float">
+              {/* <div className="hidden lg:block text-6xl animate-float">
                 🎟️
-              </div>
+              </div> */}
             </div>
 
             {/* Quick Stats */}
@@ -113,7 +113,7 @@ function MyEventsPage() {
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                <span className="mr-2">📅</span>
+                {/* <span className="mr-2">📅</span> */}
                 Upcoming Events
                 <span className="ml-2 text-sm">
                   ({events.filter(e => !isEventInPast(e.date, e.time)).length})
@@ -127,7 +127,7 @@ function MyEventsPage() {
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                <span className="mr-2">✅</span>
+                {/* <span className="mr-2">✅</span> */}
                 Past Events
                 <span className="ml-2 text-sm">
                   ({events.filter(e => isEventInPast(e.date, e.time)).length})
@@ -150,7 +150,7 @@ function MyEventsPage() {
         {/* Error State */}
         {error && !loading && (
           <div className="card p-8 text-center border-2 border-red-200 animate-slide-up-fade">
-            <div className="text-6xl mb-4">⚠️</div>
+            {/* <div className="text-6xl mb-4">⚠️</div> */}
             <h3 className="text-xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h3>
             <p className="text-gray-600 mb-6">{error}</p>
             <button
@@ -176,7 +176,7 @@ function MyEventsPage() {
                   </div>
                 ) : (
                   <div className="card p-12 text-center">
-                    <div className="text-6xl mb-4">📅</div>
+                    {/* <div className="text-6xl mb-4">📅</div> */}
                     <h3 className="text-2xl font-bold text-gray-900 mb-3">
                       No Upcoming Events
                     </h3>

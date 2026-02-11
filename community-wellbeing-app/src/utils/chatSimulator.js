@@ -86,11 +86,11 @@ export const generateDemoMessages = (communityId, count = 5) => {
   const messageTemplates = [
     { text: "Hey everyone! Who's up for the morning hike this Saturday?", type: 'message' },
     { text: "I'm in! What time are we meeting?", type: 'message' },
-    { text: "📢 New event announced: Morning Yoga in the Park", type: 'announcement' },
+    { text: "New event announced: Morning Yoga in the Park", type: 'announcement' },
     { text: "Who wants to organize a hike?", type: 'event_proposal' },
     { text: "Poll: Best time for the hike?", type: 'poll' },
-    { text: "🎉 Welcome to the community!", type: 'system' },
-    { text: "Just finished an amazing yoga session! 🧘‍♀️", type: 'message' },
+    { text: "Welcome to the community!", type: 'system' },
+    { text: "Just finished an amazing yoga session!", type: 'message' },
     { text: "Looking for a running buddy, anyone interested?", type: 'message' }
   ]
 

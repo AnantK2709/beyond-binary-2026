@@ -133,7 +133,7 @@ function EventDetailSidebar({ event }) {
             'Event Full'
           ) : (
             <>
-              <span className="mr-2">🎉</span>
+              <span className="mr-2"></span>
               RSVP for Event
             </>
           )}
@@ -157,7 +157,7 @@ function EventDetailSidebar({ event }) {
           <h3 className="font-bold text-gray-900 text-lg mb-4">Event Details</h3>
 
           <div className="flex items-start gap-3">
-            <span className="text-2xl">📅</span>
+            {/* <span className="text-2xl">📅</span> */}
             <div>
               <p className="text-sm text-gray-500">Date & Time</p>
               <p className="font-semibold text-gray-900">{formatDate(event.date)}</p>
@@ -166,7 +166,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            <span className="text-2xl">⏱️</span>
+            {/* <span className="text-2xl">⏱️</span> */}
             <div>
               <p className="text-sm text-gray-500">Duration</p>
               <p className="font-semibold text-gray-900">{formatDuration(event.duration)}</p>
@@ -174,7 +174,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            <span className="text-2xl">📍</span>
+            {/* <span className="text-2xl">📍</span> */}
             <div className="flex-1">
               <p className="text-sm text-gray-500">Location</p>
               <p className="font-semibold text-gray-900">{event.location}</p>
@@ -185,7 +185,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            <span className="text-2xl">🎯</span>
+            {/* <span className="text-2xl">🎯</span> */}
             <div>
               <p className="text-sm text-gray-500">Category</p>
               <span className="badge badge-primary text-sm px-3 py-1.5 mt-1 capitalize">
@@ -195,7 +195,7 @@ function EventDetailSidebar({ event }) {
           </div>
 
           <div className="flex items-start gap-3">
-            <span className="text-2xl">🏷️</span>
+            {/* <span className="text-2xl">🏷️</span> */}
             <div>
               <p className="text-sm text-gray-500">Age Group</p>
               <p className="font-semibold text-gray-900">{event.ageGroup}</p>

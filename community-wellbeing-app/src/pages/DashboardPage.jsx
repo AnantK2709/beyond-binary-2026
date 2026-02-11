@@ -102,7 +102,7 @@ export default function DashboardPage() {
           >
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-2xl font-bold mb-2">👥 Explore Communities</h3>
+                <h3 className="text-2xl font-bold mb-2">Explore Communities</h3>
                 <p className="text-sage-100">Join communities, chat with members, create polls, and organize events</p>
               </div>
               <button className="px-6 py-3 bg-white text-sage-600 rounded-lg hover:bg-sage-50 transition-colors font-semibold">

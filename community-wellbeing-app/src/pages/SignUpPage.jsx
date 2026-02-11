@@ -74,7 +74,7 @@ export default function SignUpPage() {
         {/* Logo */}
         <div className="text-center mb-8 animate-scale-in">
           <Link to="/" className="inline-flex items-center gap-2">
-            <span className="text-4xl">🌸</span>
+            {/* <span className="text-4xl">🌸</span> */}
             <span className="text-3xl font-bold text-gradient">MindfulCircles</span>
           </Link>
           <p className="text-gray-600 mt-2">Create your account</p>

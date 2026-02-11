@@ -27,22 +27,22 @@ export default function ProfileHeader({ user }) {
             </h2>
             {user.currentStreak >= 7 && (
               <span className="badge-new text-xs animate-bounce-gentle">
-                🔥 {user.currentStreak} Day Streak
+                {user.currentStreak} Day Streak
               </span>
             )}
             {user.level >= 5 && (
               <span className="badge-verified text-xs">
-                👑 Level {user.level}
+               Level {user.level}
               </span>
             )}
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-4">
-            <span>📧 {user.email}</span>
+            <span>{user.email}</span>
             <span className="hidden md:inline">•</span>
-            <span>📍 {user.location}</span>
+            <span>{user.location}</span>
             <span className="hidden md:inline">•</span>
-            <span>🎂 {user.age} years</span>
+            <span>{user.age} years</span>
             {user.pronouns && (
               <>
                 <span className="hidden md:inline">•</span>
@@ -53,7 +53,7 @@ export default function ProfileHeader({ user }) {
 
           {user.bio && (
             <p className="text-gray-700 mb-4 p-4 rounded-xl bg-gradient-to-br from-sage-50 to-blue-50">
-              💭 {user.bio}
+              {user.bio}
             </p>
           )}
 

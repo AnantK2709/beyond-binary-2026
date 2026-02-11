@@ -189,7 +189,7 @@ function HabitTracker({ onUpdate }) {
 
         {habits.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">🎯</div>
+            {/* <div className="text-6xl mb-4">✅</div> */}
             <h3 className="text-xl font-bold text-gray-900 mb-2">No Habits Yet</h3>
             <p className="text-gray-600 mb-6">
               Start building positive habits to track your progress!

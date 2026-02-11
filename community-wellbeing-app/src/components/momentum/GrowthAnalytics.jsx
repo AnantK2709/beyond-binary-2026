@@ -266,132 +266,165 @@ function GrowthAnalytics() {
           </div>
         ) : (
           <div className="space-y-4">
-            {/* Line Chart */}
-            <div className="relative h-80 bg-gradient-to-br from-sage-50/50 to-ocean-50/50 rounded-2xl p-6 border border-sage-200/50">
-              <svg className="w-full h-full" viewBox="0 0 800 300" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: '#6b8e7f', stopOpacity: 0.3 }} />
-                    <stop offset="100%" style={{ stopColor: '#6b8e7f', stopOpacity: 0.05 }} />
-                  </linearGradient>
-                </defs>
+{/* Line Chart */}
+<div className="relative h-80 bg-gradient-to-br from-sage-50/50 to-ocean-50/50 rounded-2xl p-6 border border-sage-200/50">
+  {(() => {
+    const n = streakData.length
 
-                {/* Grid lines */}
-                {[0, 25, 50, 75, 100].map((percent) => (
-                  <line
-                    key={percent}
-                    x1="0"
-                    y1={300 - (300 * percent / 100)}
-                    x2="800"
-                    y2={300 - (300 * percent / 100)}
-                    stroke="#e5e7eb"
-                    strokeWidth="1"
-                    strokeDasharray="5,5"
-                  />
-                ))}
+    // Chart sizing inside SVG
+    const CHART_W = 800
+    const CHART_H = 300
 
-                {/* Area under line */}
-                <path
-                  d={`
-                    M 0 300
-                    ${streakData.map((day, idx) => {
-                      const x = (idx / (streakData.length - 1)) * 800
-                      const heightPercent = day.completions > 0 ? (day.completions / maxCompletions) * 100 : 0
-                      const y = 300 - (300 * heightPercent / 100)
-                      return `L ${x} ${y}`
-                    }).join(' ')}
-                    L 800 300
-                    Z
-                  `}
-                  fill="url(#lineGradient)"
-                />
+    // Padding inside SVG so first/last points aren't stuck to the edge
+    const PADDING_X = 30
+    const PADDING_TOP = 20
+    const PADDING_BOTTOM = 70 // space for labels inside SVG
 
-                {/* Main line */}
-                <path
-                  d={`
-                    ${streakData.map((day, idx) => {
-                      const x = (idx / (streakData.length - 1)) * 800
-                      const heightPercent = day.completions > 0 ? (day.completions / maxCompletions) * 100 : 0
-                      const y = 300 - (300 * heightPercent / 100)
-                      return `${idx === 0 ? 'M' : 'L'} ${x} ${y}`
-                    }).join(' ')}
-                  `}
+    const plotW = CHART_W - 2 * PADDING_X
+    const plotH = CHART_H - PADDING_TOP - PADDING_BOTTOM
+
+    // Avoid divide-by-zero when n=1
+    const stepX = n > 1 ? plotW / (n - 1) : 0
+
+    const getX = (idx) => PADDING_X + idx * stepX
+    const getY = (completions) => {
+      const heightPercent = completions > 0 ? (completions / maxCompletions) : 0
+      return PADDING_TOP + (1 - heightPercent) * plotH
+    }
+
+    const todayDateString = getLocalDateString(new Date())
+
+    // Build line path
+    const linePath = streakData.map((day, idx) => {
+      const x = getX(idx)
+      const y = getY(day.completions)
+      return `${idx === 0 ? 'M' : 'L'} ${x} ${y}`
+    }).join(' ')
+
+    // Build area path
+    const areaPath = `
+      M ${getX(0)} ${PADDING_TOP + plotH}
+      ${streakData.map((day, idx) => `L ${getX(idx)} ${getY(day.completions)}`).join(' ')}
+      L ${getX(n - 1)} ${PADDING_TOP + plotH}
+      Z
+    `
+
+    return (
+      <svg className="w-full h-full" viewBox={`0 0 ${CHART_W} ${CHART_H}`} preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#6b8e7f', stopOpacity: 0.3 }} />
+            <stop offset="100%" style={{ stopColor: '#6b8e7f', stopOpacity: 0.05 }} />
+          </linearGradient>
+        </defs>
+
+        {/* Grid lines */}
+        {[0, 25, 50, 75, 100].map((percent) => {
+          const y = PADDING_TOP + plotH - (plotH * percent / 100)
+          return (
+            <line
+              key={percent}
+              x1={PADDING_X}
+              y1={y}
+              x2={CHART_W - PADDING_X}
+              y2={y}
+              stroke="#e5e7eb"
+              strokeWidth="1"
+              strokeDasharray="5,5"
+            />
+          )
+        })}
+
+        {/* Area */}
+        <path d={areaPath} fill="url(#lineGradient)" />
+
+        {/* Main line */}
+        <path
+          d={linePath}
+          fill="none"
+          stroke="#6b8e7f"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+
+        {/* Data points + labels */}
+        {streakData.map((day, idx) => {
+          const x = getX(idx)
+          const y = getY(day.completions)
+          const dateObj = new Date(day.date + 'T00:00:00')
+          const isToday = day.date === todayDateString
+
+          return (
+            <g key={idx}>
+              {/* Point */}
+              <circle
+                cx={x}
+                cy={y}
+                r="5"
+                fill={isToday ? '#f59e0b' : '#6b8e7f'}
+                stroke="white"
+                strokeWidth="2"
+              >
+                <title>{day.completions} completions</title>
+              </circle>
+
+              {/* Today ring */}
+              {isToday && (
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="10"
                   fill="none"
-                  stroke="#6b8e7f"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  stroke="#f59e0b"
+                  strokeWidth="2"
+                  opacity="0.5"
                 />
+              )}
 
-                {/* Data points */}
-                {streakData.map((day, idx) => {
-                  const x = (idx / (streakData.length - 1)) * 800
-                  const heightPercent = day.completions > 0 ? (day.completions / maxCompletions) * 100 : 0
-                  const y = 300 - (300 * heightPercent / 100)
-                  const date = new Date(day.date + 'T00:00:00')
-                  const today = new Date()
-                  const todayDateString = getLocalDateString(today)
-                  const isToday = day.date === todayDateString
+              {/* X-axis Labels INSIDE SVG */}
+              <text
+                x={x}
+                y={PADDING_TOP + plotH + 22}
+                textAnchor="middle"
+                fontSize="12"
+                fontWeight={isToday ? "700" : "600"}
+                fill={isToday ? "#b45309" : "#4b5563"}
+              >
+                {day.completions}
+              </text>
 
-                  return (
-                    <g key={idx}>
-                      <circle
-                        cx={x}
-                        cy={y}
-                        r="6"
-                        fill={isToday ? '#f59e0b' : '#6b8e7f'}
-                        stroke="white"
-                        strokeWidth="2"
-                        className="cursor-pointer hover:r-8 transition-all"
-                      >
-                        <title>{day.completions} completions</title>
-                      </circle>
-                      {isToday && (
-                        <circle
-                          cx={x}
-                          cy={y}
-                          r="10"
-                          fill="none"
-                          stroke="#f59e0b"
-                          strokeWidth="2"
-                          opacity="0.5"
-                        />
-                      )}
-                    </g>
-                  )
-                })}
-              </svg>
+              <text
+                x={x}
+                y={PADDING_TOP + plotH + 40}
+                textAnchor="middle"
+                fontSize="13"
+                fontWeight={isToday ? "650" : "550"}
+                fill={isToday ? "#9a3412" : "#374151"}
+                style={{ letterSpacing: "0.2px" }}
+              >
+                {dateObj.toLocaleDateString('en-US', { weekday: 'short' })}
+              </text>
 
-              {/* X-axis labels */}
-              <div className="flex justify-between mt-4 px-2">
-                {streakData.map((day, idx) => {
-                  const date = new Date(day.date + 'T00:00:00')
-                  const today = new Date()
-                  const todayDateString = getLocalDateString(today)
-                  const isToday = day.date === todayDateString
 
-                  return (
-                    <div key={idx} className="flex-1 text-center">
-                      <div className={`text-xs font-semibold ${
-                        isToday ? 'text-amber-700' : 'text-gray-600'
-                      }`}>
-                        {day.completions}
-                      </div>
-                      <div className={`text-xs ${
-                        isToday ? 'text-amber-700 font-bold' : 'text-gray-500'
-                      }`}>
-                        {date.toLocaleDateString('en-US', { weekday: 'short' })}
-                      </div>
-                      <div className={`text-xs ${
-                        isToday ? 'text-amber-600' : 'text-gray-400'
-                      }`}>
-                        {date.getDate()}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
+              <text
+                x={x}
+                y={PADDING_TOP + plotH + 58}
+                textAnchor="middle"
+                fontSize="12"
+                fontWeight={isToday ? "700" : "400"}
+                fill={isToday ? "#d97706" : "#9ca3af"}
+              >
+                {dateObj.getDate()}
+              </text>
+            </g>
+          )
+        })}
+      </svg>
+    )
+  })()}
+</div>
+
 
             {/* Legend */}
             <div className="flex items-center justify-center gap-6 pt-4">

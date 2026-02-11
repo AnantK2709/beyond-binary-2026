@@ -90,7 +90,7 @@ function VoiceJournalRecorder({ onTranscript, onStatusChange }) {
 
 
   return (
-    <div className="voice-recorder-card">
+    <div className="voice-recorder-card animate-scale-in">
       {status === "new" && (
         <>
           <div className="recorder-status">

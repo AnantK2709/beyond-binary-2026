@@ -54,11 +54,11 @@ export default function JournalPage() {
     <Navbar />
     <div className="container">
       <header className="header">
-        <h1>🎤 Journal</h1>
-        <p>Express yourself naturally and receive personalized insights</p>
+        <h1 className="journal-title">Journal</h1>
+          <p className="text-gray-600 text-lg">Express yourself naturally and receive personalized insights</p>
       </header>
 
-      <div className="journal-tabs">
+      <div className="journal-tabs animate-scale-in">
         {["voice", "text", "past"].map(tab => (
           <button
             key={tab}

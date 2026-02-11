@@ -101,7 +101,7 @@ function VoiceJournalRecorder({ onTranscript, onStatusChange }) {
             className="record-button"
             onClick={startRecording}
           >
-            Record
+            🎤
           </button>
         </>
       )}
@@ -155,7 +155,7 @@ function VoiceJournalRecorder({ onTranscript, onStatusChange }) {
             className="record-button"
             onClick={startRecording}
           >
-            Resume
+            🎤
           </button>
           {/* <TranscriptSection transcript={transcript} /> */}
 

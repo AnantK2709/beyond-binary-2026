@@ -128,7 +128,7 @@ export default function Navbar() {
                     >
                       <Sparkles size={16} strokeWidth={2.5} />
                       Recommendations
-                    </Link>
+                    </Link> */}
                     <div className="border-t border-gray-200/50 my-2 mx-2" />
                     <button
                       onClick={handleSignOut}

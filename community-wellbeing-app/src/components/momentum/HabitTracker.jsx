@@ -387,7 +387,7 @@ function HabitTracker({ onUpdate }) {
                       onClick={() => addHabit(habit)}
                       className="p-4 rounded-xl border-2 border-gray-200 hover:border-sage-400 hover:bg-sage-50 transition-all duration-300 text-left"
                     >
-                      <div className="text-2xl mb-2">{habit.icon}</div>
+                      <div className="mb-2"><IconRenderer name={habit.icon} size={24} /></div>
                       <div className="font-semibold text-gray-900 text-sm">{habit.name}</div>
                       <div className="text-xs text-gray-600 mt-1">+{habit.points} pts</div>
                     </button>
@@ -416,16 +416,16 @@ function HabitTracker({ onUpdate }) {
                       Icon (optional)
                     </label>
                     <div className="flex gap-2 flex-wrap">
-                      {['✅', '🎯', '💡', '🎨', '🎵', '📱', '💼', '🏃', '🎮', '📷'].map((icon) => (
+                      {['CheckCircle', 'Target', 'Lightbulb', 'Palette', 'Music', 'Smartphone', 'Briefcase', 'PersonStanding', 'Gamepad2', 'Camera'].map((icon) => (
                         <button
                           key={icon}
                           onClick={() => setSelectedIcon(icon)}
-                          className={`w-12 h-12 rounded-xl border-2 text-2xl transition-all ${selectedIcon === icon
+                          className={`w-12 h-12 rounded-xl border-2 flex items-center justify-center transition-all ${selectedIcon === icon
                               ? 'border-sage-500 bg-sage-50'
                               : 'border-gray-200 hover:border-sage-300'
                             }`}
                         >
-                          {icon}
+                          <IconRenderer name={icon} size={24} />
                         </button>
                       ))}
                     </div>

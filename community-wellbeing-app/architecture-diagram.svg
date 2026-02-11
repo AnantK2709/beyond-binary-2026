@@ -1,0 +1,980 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 2400" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e1a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0f1628;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0e1a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea" />
+      <stop offset="100%" style="stop-color:#764ba2" />
+    </linearGradient>
+    <linearGradient id="frontendGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1f3a" />
+      <stop offset="100%" style="stop-color:#141829" />
+    </linearGradient>
+    <linearGradient id="backendGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2a1f" />
+      <stop offset="100%" style="stop-color:#141f18" />
+    </linearGradient>
+    <linearGradient id="apiGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f093fb" />
+      <stop offset="100%" style="stop-color:#f5576c" />
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e" />
+      <stop offset="100%" style="stop-color:#16213e" />
+    </linearGradient>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a18cd1" />
+      <stop offset="100%" style="stop-color:#fbc2eb" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#11998e" />
+      <stop offset="100%" style="stop-color:#38ef7d" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fc4a1a" />
+      <stop offset="100%" style="stop-color:#f7b733" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4facfe" />
+      <stop offset="100%" style="stop-color:#00f2fe" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a18cd1" />
+      <stop offset="100%" style="stop-color:#fbc2eb" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0cebeb" />
+      <stop offset="100%" style="stop-color:#20e3b2" />
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f78ca0" />
+      <stop offset="100%" style="stop-color:#f9748f" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea" />
+      <stop offset="100%" style="stop-color:#764ba2" />
+    </linearGradient>
+    <linearGradient id="flowLine1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="50%" style="stop-color:#667eea;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="flowLine2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#38ef7d;stop-opacity:0.1" />
+      <stop offset="50%" style="stop-color:#38ef7d;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#11998e;stop-opacity:0.1" />
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="innerGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Patterns -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2040" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="0.8" fill="#2a3060" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1800" height="2400" fill="url(#bgGrad)"/>
+  <rect width="1800" height="2400" fill="url(#grid)" opacity="0.3"/>
+  <rect width="1800" height="2400" fill="url(#dots)" opacity="0.5"/>
+
+  <!-- Decorative circuit lines -->
+  <g opacity="0.15" stroke="#667eea" stroke-width="1" fill="none">
+    <path d="M0,200 Q200,180 400,200 T800,190 T1200,210 T1800,195"/>
+    <path d="M0,600 Q300,580 600,600 T1200,590 T1800,605"/>
+    <path d="M0,1000 Q250,980 500,1000 T1000,990 T1500,1010 T1800,995"/>
+    <path d="M0,1400 Q350,1380 700,1400 T1400,1390 T1800,1405"/>
+    <path d="M0,1800 Q200,1780 400,1800 T800,1790 T1200,1810 T1800,1795"/>
+    <circle cx="400" cy="200" r="3" fill="#667eea"/>
+    <circle cx="800" cy="190" r="3" fill="#667eea"/>
+    <circle cx="600" cy="600" r="3" fill="#667eea"/>
+    <circle cx="1200" cy="590" r="3" fill="#667eea"/>
+    <circle cx="500" cy="1000" r="3" fill="#38ef7d"/>
+    <circle cx="1000" cy="990" r="3" fill="#38ef7d"/>
+    <circle cx="700" cy="1400" r="3" fill="#f093fb"/>
+    <circle cx="1400" cy="1390" r="3" fill="#f093fb"/>
+  </g>
+
+  <!-- ========== -->
+  <!-- HEADER -->
+  <!-- ========== -->
+  <rect x="50" y="30" width="1700" height="100" rx="16" fill="url(#headerGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <text x="900" y="75" text-anchor="middle" fill="#fff" font-size="32" font-weight="700" letter-spacing="3">MINDFULCIRCLES</text>
+  <text x="900" y="105" text-anchor="middle" fill="#c4b5fd" font-size="16" font-weight="400" letter-spacing="6">SYSTEM ARCHITECTURE &amp; INFRASTRUCTURE</text>
+  <line x1="300" y1="115" x2="1500" y2="115" stroke="url(#flowLine1)" stroke-width="1"/>
+
+  <!-- ========== -->
+  <!-- CLIENT LAYER - Browser / User Devices -->
+  <!-- ========== -->
+  <rect x="50" y="155" width="1700" height="90" rx="12" fill="#111827" stroke="#374151" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="50" y="155" width="1700" height="30" rx="12" fill="#1f2937"/>
+  <rect x="50" y="173" width="1700" height="12" fill="#1f2937"/>
+  <text x="900" y="175" text-anchor="middle" fill="#9ca3af" font-size="12" font-weight="600" letter-spacing="3">CLIENT LAYER</text>
+
+  <!-- Browser icons -->
+  <g transform="translate(120,200)">
+    <rect width="90" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="45" y="21" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="600">Chrome</text>
+  </g>
+  <g transform="translate(230,200)">
+    <rect width="90" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="45" y="21" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="600">Firefox</text>
+  </g>
+  <g transform="translate(340,200)">
+    <rect width="90" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="45" y="21" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="600">Safari</text>
+  </g>
+  <g transform="translate(450,200)">
+    <rect width="90" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="45" y="21" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">Edge</text>
+  </g>
+  <g transform="translate(560,200)">
+    <rect width="110" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="55" y="21" text-anchor="middle" fill="#f472b6" font-size="11" font-weight="600">Mobile PWA</text>
+  </g>
+
+  <!-- Protocol badges -->
+  <g transform="translate(900,195)">
+    <rect width="80" height="24" rx="12" fill="none" stroke="#4facfe" stroke-width="1"/>
+    <text x="40" y="16" text-anchor="middle" fill="#4facfe" font-size="10" font-weight="600">HTTPS/2</text>
+  </g>
+  <g transform="translate(1000,195)">
+    <rect width="70" height="24" rx="12" fill="none" stroke="#38ef7d" stroke-width="1"/>
+    <text x="35" y="16" text-anchor="middle" fill="#38ef7d" font-size="10" font-weight="600">WSS</text>
+  </g>
+  <g transform="translate(1090,195)">
+    <rect width="80" height="24" rx="12" fill="none" stroke="#f093fb" stroke-width="1"/>
+    <text x="40" y="16" text-anchor="middle" fill="#f093fb" font-size="10" font-weight="600">REST API</text>
+  </g>
+  <g transform="translate(1190,195)">
+    <rect width="80" height="24" rx="12" fill="none" stroke="#fbbf24" stroke-width="1"/>
+    <text x="40" y="16" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">JSON/ICS</text>
+  </g>
+  <g transform="translate(1290,195)">
+    <rect width="100" height="24" rx="12" fill="none" stroke="#a78bfa" stroke-width="1"/>
+    <text x="50" y="16" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="600">WebAudio</text>
+  </g>
+  <g transform="translate(1410,195)">
+    <rect width="100" height="24" rx="12" fill="none" stroke="#fb7185" stroke-width="1"/>
+    <text x="50" y="16" text-anchor="middle" fill="#fb7185" font-size="10" font-weight="600">LocalStorage</text>
+  </g>
+  <g transform="translate(1530,195)">
+    <rect width="120" height="24" rx="12" fill="none" stroke="#34d399" stroke-width="1"/>
+    <text x="60" y="16" text-anchor="middle" fill="#34d399" font-size="10" font-weight="600">Service Worker</text>
+  </g>
+
+  <!-- Connection arrows from client to frontend -->
+  <g opacity="0.4">
+    <line x1="900" y1="245" x2="900" y2="280" stroke="#667eea" stroke-width="2" stroke-dasharray="4,4"/>
+    <polygon points="895,278 900,288 905,278" fill="#667eea"/>
+  </g>
+
+  <!-- ========== -->
+  <!-- FRONTEND ARCHITECTURE -->
+  <!-- ========== -->
+  <rect x="50" y="290" width="1700" height="620" rx="16" fill="url(#frontendGrad)" stroke="#2d3561" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Frontend header -->
+  <rect x="50" y="290" width="1700" height="40" rx="16" fill="#1e2745"/>
+  <rect x="50" y="314" width="1700" height="16" fill="#1e2745"/>
+  <circle cx="75" cy="310" r="6" fill="#ef4444"/>
+  <circle cx="95" cy="310" r="6" fill="#eab308"/>
+  <circle cx="115" cy="310" r="6" fill="#22c55e"/>
+  <text x="900" y="316" text-anchor="middle" fill="#818cf8" font-size="16" font-weight="700" letter-spacing="4">FRONTEND — React 18 + Vite 5 + Tailwind CSS 3</text>
+
+  <!-- Vite Dev Server badge -->
+  <rect x="1530" y="298" width="140" height="24" rx="12" fill="#7c3aed" opacity="0.3"/>
+  <text x="1600" y="315" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="600">Port 3000 (HMR)</text>
+
+  <!-- ROUTING LAYER -->
+  <rect x="80" y="345" width="1640" height="70" rx="10" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+  <text x="110" y="365" fill="#60a5fa" font-size="13" font-weight="700" letter-spacing="2">REACT ROUTER v6 — 23 ROUTES</text>
+
+  <!-- Route chips -->
+  <g font-size="9" font-weight="500">
+    <rect x="100" y="375" width="55" height="22" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="0.5"/>
+    <text x="128" y="390" text-anchor="middle" fill="#93c5fd">/</text>
+    <rect x="165" y="375" width="75" height="22" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="0.5"/>
+    <text x="203" y="390" text-anchor="middle" fill="#93c5fd">/signin</text>
+    <rect x="250" y="375" width="75" height="22" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="0.5"/>
+    <text x="288" y="390" text-anchor="middle" fill="#93c5fd">/signup</text>
+    <rect x="335" y="375" width="95" height="22" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="0.5"/>
+    <text x="383" y="390" text-anchor="middle" fill="#93c5fd">/onboarding</text>
+    <rect x="440" y="375" width="90" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="485" y="390" text-anchor="middle" fill="#c4b5fd">/dashboard</text>
+    <rect x="540" y="375" width="75" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="578" y="390" text-anchor="middle" fill="#c4b5fd">/events</text>
+    <rect x="625" y="375" width="85" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="668" y="390" text-anchor="middle" fill="#c4b5fd">/events/:id</text>
+    <rect x="720" y="375" width="90" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="765" y="390" text-anchor="middle" fill="#c4b5fd">/my-events</text>
+    <rect x="820" y="375" width="105" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="873" y="390" text-anchor="middle" fill="#c4b5fd">/communities</text>
+    <rect x="935" y="375" width="115" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="993" y="390" text-anchor="middle" fill="#c4b5fd">/communities/:id</text>
+    <rect x="1060" y="375" width="75" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="1098" y="390" text-anchor="middle" fill="#c4b5fd">/journal</text>
+    <rect x="1145" y="375" width="75" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="1183" y="390" text-anchor="middle" fill="#c4b5fd">/profile</text>
+    <rect x="1230" y="375" width="95" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="1278" y="390" text-anchor="middle" fill="#c4b5fd">/momentum</text>
+    <rect x="1335" y="375" width="85" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="1378" y="390" text-anchor="middle" fill="#c4b5fd">/users/:id</text>
+    <rect x="1430" y="375" width="90" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="1475" y="390" text-anchor="middle" fill="#c4b5fd">/search</text>
+    <rect x="1530" y="375" width="90" height="22" rx="4" fill="#3b1e5f" stroke="#a855f7" stroke-width="0.5"/>
+    <text x="1575" y="390" text-anchor="middle" fill="#c4b5fd">/messages</text>
+    <rect x="1630" y="375" width="75" height="22" rx="4" fill="#5f1e3b" stroke="#f43f5e" stroke-width="0.5"/>
+    <text x="1668" y="390" text-anchor="middle" fill="#fda4af">/reports</text>
+  </g>
+
+  <!-- Protected Route badge -->
+  <rect x="1450" y="348" width="130" height="20" rx="10" fill="#7f1d1d" opacity="0.6"/>
+  <text x="1515" y="362" text-anchor="middle" fill="#fca5a5" font-size="9" font-weight="600">ProtectedRoute Guard</text>
+
+  <!-- STATE MANAGEMENT -->
+  <rect x="80" y="425" width="800" height="195" rx="10" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+  <text x="110" y="448" fill="#a78bfa" font-size="13" font-weight="700" letter-spacing="2">STATE MANAGEMENT — React Context API (8 Providers)</text>
+
+  <!-- Context Provider boxes -->
+  <g font-size="10">
+    <!-- Row 1 -->
+    <rect x="100" y="460" width="175" height="50" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="188" y="480" text-anchor="middle" fill="#a5b4fc" font-weight="700" font-size="11">AuthContext</text>
+    <text x="188" y="498" text-anchor="middle" fill="#6b7280" font-size="9">Session / JWT / Login State</text>
+
+    <rect x="290" y="460" width="175" height="50" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="378" y="480" text-anchor="middle" fill="#a5b4fc" font-weight="700" font-size="11">UserContext</text>
+    <text x="378" y="498" text-anchor="middle" fill="#6b7280" font-size="9">Profile / Preferences / Settings</text>
+
+    <rect x="480" y="460" width="175" height="50" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="568" y="480" text-anchor="middle" fill="#a5b4fc" font-weight="700" font-size="11">EventContext</text>
+    <text x="568" y="498" text-anchor="middle" fill="#6b7280" font-size="9">Events / RSVP / Filters</text>
+
+    <rect x="670" y="460" width="175" height="50" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="758" y="480" text-anchor="middle" fill="#a5b4fc" font-weight="700" font-size="11">ChatContext</text>
+    <text x="758" y="498" text-anchor="middle" fill="#6b7280" font-size="9">Messages / Dedup / Polling</text>
+
+    <!-- Row 2 -->
+    <rect x="100" y="520" width="175" height="50" rx="6" fill="#1b1e4b" stroke="#818cf8" stroke-width="1"/>
+    <text x="188" y="540" text-anchor="middle" fill="#c4b5fd" font-weight="700" font-size="11">GamificationCtx</text>
+    <text x="188" y="558" text-anchor="middle" fill="#6b7280" font-size="9">Points / Levels / Badges</text>
+
+    <rect x="290" y="520" width="175" height="50" rx="6" fill="#1b1e4b" stroke="#818cf8" stroke-width="1"/>
+    <text x="378" y="540" text-anchor="middle" fill="#c4b5fd" font-weight="700" font-size="11">JournalContext</text>
+    <text x="378" y="558" text-anchor="middle" fill="#6b7280" font-size="9">Entries / Insights / Moods</text>
+
+    <rect x="480" y="520" width="175" height="50" rx="6" fill="#1b1e4b" stroke="#818cf8" stroke-width="1"/>
+    <text x="568" y="540" text-anchor="middle" fill="#c4b5fd" font-weight="700" font-size="11">CommunityContext</text>
+    <text x="568" y="558" text-anchor="middle" fill="#6b7280" font-size="9">Groups / Members / Invites</text>
+
+    <rect x="670" y="520" width="175" height="50" rx="6" fill="#1b1e4b" stroke="#818cf8" stroke-width="1"/>
+    <text x="758" y="540" text-anchor="middle" fill="#c4b5fd" font-weight="700" font-size="11">NotificationCtx</text>
+    <text x="758" y="558" text-anchor="middle" fill="#6b7280" font-size="9">Toast / Alerts / Push Queue</text>
+  </g>
+
+  <!-- Provider nesting indicator -->
+  <rect x="100" y="580" width="745" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.5"/>
+  <text x="473" y="600" text-anchor="middle" fill="#475569" font-size="9" font-weight="500">App → AuthProvider → GamificationProvider → UserProvider → EventProvider → ChatProvider → NotificationProvider → GamificationOverlay</text>
+
+  <!-- CUSTOM HOOKS -->
+  <rect x="900" y="425" width="820" height="85" rx="10" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+  <text x="930" y="448" fill="#34d399" font-size="13" font-weight="700" letter-spacing="2">CUSTOM HOOKS (8)</text>
+
+  <g font-size="9" font-weight="500">
+    <rect x="920" y="458" width="110" height="20" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="0.5"/>
+    <text x="975" y="472" text-anchor="middle" fill="#86efac">useAuth()</text>
+    <rect x="1040" y="458" width="140" height="20" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="0.5"/>
+    <text x="1110" y="472" text-anchor="middle" fill="#86efac">useAudioRecorder()</text>
+    <rect x="1190" y="458" width="110" height="20" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="0.5"/>
+    <text x="1245" y="472" text-anchor="middle" fill="#86efac">useToast()</text>
+    <rect x="1310" y="458" width="110" height="20" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="0.5"/>
+    <text x="1365" y="472" text-anchor="middle" fill="#86efac">useModal()</text>
+
+    <rect x="920" y="484" width="130" height="20" rx="4" fill="#052e16" stroke="#16a34a" stroke-width="0.5"/>
+    <text x="985" y="498" text-anchor="middle" fill="#86efac">useLocalStorage()</text>
+    <rect x="1060" y="484" width="120" height="20" rx="4" fill="#052e16" stroke="#16a34a" stroke-width="0.5"/>
+    <text x="1120" y="498" text-anchor="middle" fill="#86efac">useDebounce()</text>
+    <rect x="1190" y="484" width="140" height="20" rx="4" fill="#052e16" stroke="#16a34a" stroke-width="0.5"/>
+    <text x="1260" y="498" text-anchor="middle" fill="#86efac">useInfiniteScroll()</text>
+    <rect x="1340" y="484" width="130" height="20" rx="4" fill="#052e16" stroke="#16a34a" stroke-width="0.5"/>
+    <text x="1405" y="498" text-anchor="middle" fill="#86efac">useWebSocket()</text>
+  </g>
+
+  <!-- SERVICE LAYER -->
+  <rect x="900" y="520" width="820" height="95" rx="10" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+  <text x="930" y="543" fill="#f472b6" font-size="13" font-weight="700" letter-spacing="2">SERVICE LAYER — 18 API Services</text>
+
+  <g font-size="8.5" font-weight="500">
+    <rect x="920" y="552" width="85" height="18" rx="3" fill="#4a0e2e" stroke="#ec4899" stroke-width="0.5"/>
+    <text x="963" y="565" text-anchor="middle" fill="#f9a8d4">api.js</text>
+    <rect x="1015" y="552" width="100" height="18" rx="3" fill="#4a0e2e" stroke="#ec4899" stroke-width="0.5"/>
+    <text x="1065" y="565" text-anchor="middle" fill="#f9a8d4">authService</text>
+    <rect x="1125" y="552" width="100" height="18" rx="3" fill="#4a0e2e" stroke="#ec4899" stroke-width="0.5"/>
+    <text x="1175" y="565" text-anchor="middle" fill="#f9a8d4">userService</text>
+    <rect x="1235" y="552" width="100" height="18" rx="3" fill="#4a0e2e" stroke="#ec4899" stroke-width="0.5"/>
+    <text x="1285" y="565" text-anchor="middle" fill="#f9a8d4">eventService</text>
+    <rect x="1345" y="552" width="120" height="18" rx="3" fill="#4a0e2e" stroke="#ec4899" stroke-width="0.5"/>
+    <text x="1405" y="565" text-anchor="middle" fill="#f9a8d4">communityService</text>
+    <rect x="1475" y="552" width="100" height="18" rx="3" fill="#4a0e2e" stroke="#ec4899" stroke-width="0.5"/>
+    <text x="1525" y="565" text-anchor="middle" fill="#f9a8d4">chatService</text>
+    <rect x="1585" y="552" width="120" height="18" rx="3" fill="#4a0e2e" stroke="#ec4899" stroke-width="0.5"/>
+    <text x="1645" y="565" text-anchor="middle" fill="#f9a8d4">connectionService</text>
+
+    <rect x="920" y="576" width="105" height="18" rx="3" fill="#3b0e4a" stroke="#d946ef" stroke-width="0.5"/>
+    <text x="973" y="589" text-anchor="middle" fill="#e9a8f9">journalService</text>
+    <rect x="1035" y="576" width="130" height="18" rx="3" fill="#3b0e4a" stroke="#d946ef" stroke-width="0.5"/>
+    <text x="1100" y="589" text-anchor="middle" fill="#e9a8f9">transcriptionService</text>
+    <rect x="1175" y="576" width="130" height="18" rx="3" fill="#3b0e4a" stroke="#d946ef" stroke-width="0.5"/>
+    <text x="1240" y="589" text-anchor="middle" fill="#e9a8f9">gamificationService</text>
+    <rect x="1315" y="576" width="85" height="18" rx="3" fill="#3b0e4a" stroke="#d946ef" stroke-width="0.5"/>
+    <text x="1358" y="589" text-anchor="middle" fill="#e9a8f9">aiService</text>
+    <rect x="1410" y="576" width="105" height="18" rx="3" fill="#3b0e4a" stroke="#d946ef" stroke-width="0.5"/>
+    <text x="1463" y="589" text-anchor="middle" fill="#e9a8f9">aiInsightService</text>
+    <rect x="1525" y="576" width="95" height="18" rx="3" fill="#3b0e4a" stroke="#d946ef" stroke-width="0.5"/>
+    <text x="1573" y="589" text-anchor="middle" fill="#e9a8f9">moodService</text>
+    <rect x="1630" y="576" width="80" height="18" rx="3" fill="#3b0e4a" stroke="#d946ef" stroke-width="0.5"/>
+    <text x="1670" y="589" text-anchor="middle" fill="#e9a8f9">searchSvc</text>
+  </g>
+
+  <!-- COMPONENT ARCHITECTURE -->
+  <rect x="80" y="625" width="1640" height="275" rx="10" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+  <text x="110" y="648" fill="#fbbf24" font-size="13" font-weight="700" letter-spacing="2">COMPONENT ARCHITECTURE — 100+ Components</text>
+
+  <!-- Component categories -->
+  <!-- Layout -->
+  <rect x="100" y="660" width="200" height="110" rx="8" fill="#1a1500" stroke="#ca8a04" stroke-width="1"/>
+  <text x="200" y="680" text-anchor="middle" fill="#fde047" font-size="11" font-weight="700">Layout Components</text>
+  <text x="200" y="698" text-anchor="middle" fill="#a16207" font-size="9">Layout.jsx</text>
+  <text x="200" y="713" text-anchor="middle" fill="#a16207" font-size="9">Navbar.jsx</text>
+  <text x="200" y="728" text-anchor="middle" fill="#a16207" font-size="9">Footer.jsx</text>
+  <text x="200" y="743" text-anchor="middle" fill="#a16207" font-size="9">SearchBar.jsx</text>
+  <text x="200" y="758" text-anchor="middle" fill="#a16207" font-size="9">Toast.jsx / Spinner.jsx</text>
+
+  <!-- Events -->
+  <rect x="310" y="660" width="200" height="110" rx="8" fill="#001a1a" stroke="#0d9488" stroke-width="1"/>
+  <text x="410" y="680" text-anchor="middle" fill="#5eead4" font-size="11" font-weight="700">Events (10+)</text>
+  <text x="410" y="698" text-anchor="middle" fill="#115e59" font-size="9">EventCard / EventsList</text>
+  <text x="410" y="713" text-anchor="middle" fill="#115e59" font-size="9">EventFilters / EventDetail</text>
+  <text x="410" y="728" text-anchor="middle" fill="#115e59" font-size="9">EventRSVPButton</text>
+  <text x="410" y="743" text-anchor="middle" fill="#115e59" font-size="9">EventReviewForm</text>
+  <text x="410" y="758" text-anchor="middle" fill="#115e59" font-size="9">SimilarEvents / OrgBadge</text>
+
+  <!-- Communities -->
+  <rect x="520" y="660" width="200" height="110" rx="8" fill="#0a001a" stroke="#7c3aed" stroke-width="1"/>
+  <text x="620" y="680" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">Communities (12+)</text>
+  <text x="620" y="698" text-anchor="middle" fill="#5b21b6" font-size="9">CommunityCard / Detail</text>
+  <text x="620" y="713" text-anchor="middle" fill="#5b21b6" font-size="9">GroupChat / ChatInput</text>
+  <text x="620" y="728" text-anchor="middle" fill="#5b21b6" font-size="9">ChatMessage / PollWidget</text>
+  <text x="620" y="743" text-anchor="middle" fill="#5b21b6" font-size="9">EventProposal</text>
+  <text x="620" y="758" text-anchor="middle" fill="#5b21b6" font-size="9">Members / Invitations</text>
+
+  <!-- Journal -->
+  <rect x="730" y="660" width="200" height="110" rx="8" fill="#1a0a10" stroke="#db2777" stroke-width="1"/>
+  <text x="830" y="680" text-anchor="middle" fill="#f9a8d4" font-size="11" font-weight="700">Journal (8+)</text>
+  <text x="830" y="698" text-anchor="middle" fill="#9d174d" font-size="9">VoiceJournalRecorder</text>
+  <text x="830" y="713" text-anchor="middle" fill="#9d174d" font-size="9">TextJournalEntry</text>
+  <text x="830" y="728" text-anchor="middle" fill="#9d174d" font-size="9">AIInsights / Timeline</text>
+  <text x="830" y="743" text-anchor="middle" fill="#9d174d" font-size="9">TranscriptionSection</text>
+  <text x="830" y="758" text-anchor="middle" fill="#9d174d" font-size="9">RecordingAnimation</text>
+
+  <!-- Gamification -->
+  <rect x="940" y="660" width="200" height="110" rx="8" fill="#1a0f00" stroke="#ea580c" stroke-width="1"/>
+  <text x="1040" y="680" text-anchor="middle" fill="#fdba74" font-size="11" font-weight="700">Gamification (6+)</text>
+  <text x="1040" y="698" text-anchor="middle" fill="#9a3412" font-size="9">GamificationOverlay</text>
+  <text x="1040" y="713" text-anchor="middle" fill="#9a3412" font-size="9">LevelProgressBar</text>
+  <text x="1040" y="728" text-anchor="middle" fill="#9a3412" font-size="9">LevelUpModal</text>
+  <text x="1040" y="743" text-anchor="middle" fill="#9a3412" font-size="9">BadgeUnlock</text>
+  <text x="1040" y="758" text-anchor="middle" fill="#9a3412" font-size="9">PointsNotification</text>
+
+  <!-- Profile -->
+  <rect x="1150" y="660" width="200" height="110" rx="8" fill="#001a0a" stroke="#16a34a" stroke-width="1"/>
+  <text x="1250" y="680" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Profile (10+)</text>
+  <text x="1250" y="698" text-anchor="middle" fill="#166534" font-size="9">ProfileHeader / Stats</text>
+  <text x="1250" y="713" text-anchor="middle" fill="#166534" font-size="9">BadgeDisplay / BadgeGrid</text>
+  <text x="1250" y="728" text-anchor="middle" fill="#166534" font-size="9">ConnectionsList</text>
+  <text x="1250" y="743" text-anchor="middle" fill="#166534" font-size="9">MoodHistoryChart</text>
+  <text x="1250" y="758" text-anchor="middle" fill="#166534" font-size="9">EditProfile / Preferences</text>
+
+  <!-- Dashboard -->
+  <rect x="1360" y="660" width="200" height="110" rx="8" fill="#0a0a1a" stroke="#2563eb" stroke-width="1"/>
+  <text x="1460" y="680" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="700">Dashboard (9+)</text>
+  <text x="1460" y="698" text-anchor="middle" fill="#1e40af" font-size="9">StatsCard / WelcomeCard</text>
+  <text x="1460" y="713" text-anchor="middle" fill="#1e40af" font-size="9">RecommendedEvents</text>
+  <text x="1460" y="728" text-anchor="middle" fill="#1e40af" font-size="9">UpcomingEvents</text>
+  <text x="1460" y="743" text-anchor="middle" fill="#1e40af" font-size="9">PointsProgress</text>
+  <text x="1460" y="758" text-anchor="middle" fill="#1e40af" font-size="9">QuickMoodWidget</text>
+
+  <!-- UI Primitives row -->
+  <rect x="100" y="780" width="1460" height="35" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="120" y="802" fill="#64748b" font-size="11" font-weight="700">UI PRIMITIVES:</text>
+  <g font-size="9" fill="#475569">
+    <text x="240" y="802">Button</text>
+    <text x="290" y="802">Card</text>
+    <text x="330" y="802">Modal</text>
+    <text x="375" y="802">Input</text>
+    <text x="415" y="802">Badge</text>
+    <text x="460" y="802">ProgressBar</text>
+    <text x="540" y="802">StarRating</text>
+    <text x="620" y="802">Tabs</text>
+    <text x="660" y="802">Dropdown</text>
+    <text x="730" y="802">Avatar</text>
+    <text x="785" y="802">Tooltip</text>
+    <text x="840" y="802">Skeleton</text>
+    <text x="910" y="802">EmptyState</text>
+    <text x="990" y="802">ErrorBoundary</text>
+    <text x="1090" y="802">AnimatedCard</text>
+    <text x="1190" y="802">TagChip</text>
+    <text x="1250" y="802">DatePicker</text>
+    <text x="1340" y="802">FilterBar</text>
+    <text x="1410" y="802">InfiniteList</text>
+    <text x="1500" y="802">LoadMore</text>
+  </g>
+
+  <!-- Utility row -->
+  <rect x="100" y="822" width="1460" height="30" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="120" y="842" fill="#64748b" font-size="11" font-weight="700">UTILITIES:</text>
+  <g font-size="9" fill="#475569">
+    <text x="210" y="842">constants.js</text>
+    <text x="300" y="842">gamification.js</text>
+    <text x="410" y="842">validation.js</text>
+    <text x="510" y="842">dateUtils.js</text>
+    <text x="600" y="842">helpers.js</text>
+    <text x="680" y="842">recommendations.js</text>
+    <text x="810" y="842">chatSimulator.js</text>
+    <text x="940" y="842">voiceJournalSimulator.js</text>
+    <text x="1100" y="842">reportGenerator.js</text>
+    <text x="1240" y="842">mockData.js</text>
+  </g>
+
+  <!-- Tech stack badges -->
+  <g transform="translate(100,860)">
+    <rect width="80" height="22" rx="4" fill="#1e293b" stroke="#61dafb" stroke-width="1"/>
+    <text x="40" y="15" text-anchor="middle" fill="#61dafb" font-size="9" font-weight="700">React 18</text>
+  </g>
+  <g transform="translate(190,860)">
+    <rect width="70" height="22" rx="4" fill="#1e293b" stroke="#bd34fe" stroke-width="1"/>
+    <text x="35" y="15" text-anchor="middle" fill="#bd34fe" font-size="9" font-weight="700">Vite 5</text>
+  </g>
+  <g transform="translate(270,860)">
+    <rect width="100" height="22" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+    <text x="50" y="15" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="700">Tailwind 3</text>
+  </g>
+  <g transform="translate(380,860)">
+    <rect width="120" height="22" rx="4" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+    <text x="60" y="15" text-anchor="middle" fill="#f97316" font-size="9" font-weight="700">Framer Motion</text>
+  </g>
+  <g transform="translate(510,860)">
+    <rect width="90" height="22" rx="4" fill="#1e293b" stroke="#22d3ee" stroke-width="1"/>
+    <text x="45" y="15" text-anchor="middle" fill="#22d3ee" font-size="9" font-weight="700">Recharts</text>
+  </g>
+  <g transform="translate(610,860)">
+    <rect width="100" height="22" rx="4" fill="#1e293b" stroke="#e879f9" stroke-width="1"/>
+    <text x="50" y="15" text-anchor="middle" fill="#e879f9" font-size="9" font-weight="700">Lucide Icons</text>
+  </g>
+  <g transform="translate(720,860)">
+    <rect width="100" height="22" rx="4" fill="#1e293b" stroke="#74e0a2" stroke-width="1"/>
+    <text x="50" y="15" text-anchor="middle" fill="#74e0a2" font-size="9" font-weight="700">OpenAI SDK</text>
+  </g>
+  <g transform="translate(830,860)">
+    <rect width="80" height="22" rx="4" fill="#1e293b" stroke="#fb923c" stroke-width="1"/>
+    <text x="40" y="15" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">ESM</text>
+  </g>
+
+  <!-- ========== -->
+  <!-- API GATEWAY / MIDDLEWARE LAYER -->
+  <!-- ========== -->
+
+  <!-- Connection line -->
+  <g opacity="0.5">
+    <line x1="900" y1="910" x2="900" y2="935" stroke="url(#apiGrad)" stroke-width="3"/>
+    <rect x="810" y="915" width="180" height="24" rx="12" fill="#1a0a1e" stroke="#f093fb" stroke-width="1"/>
+    <text x="900" y="931" text-anchor="middle" fill="#f0abfc" font-size="10" font-weight="600">HTTP / REST / Fetch API</text>
+  </g>
+
+  <rect x="50" y="945" width="1700" height="100" rx="14" fill="#1a0e20" stroke="#7c3aed" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="50" y="945" width="1700" height="32" rx="14" fill="#2e1065" opacity="0.6"/>
+  <rect x="50" y="963" width="1700" height="14" fill="#2e1065" opacity="0.6"/>
+  <text x="900" y="967" text-anchor="middle" fill="#c4b5fd" font-size="15" font-weight="700" letter-spacing="4">API GATEWAY &amp; MIDDLEWARE PIPELINE</text>
+
+  <g font-size="10" font-weight="600">
+    <rect x="80" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="150" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">CORS Policy</text>
+    <text x="150" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">Origin Validation</text>
+
+    <rect x="240" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="310" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Rate Limiter</text>
+    <text x="310" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">Request Throttle</text>
+
+    <rect x="400" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="470" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Body Parser</text>
+    <text x="470" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">JSON / URL-encoded</text>
+
+    <rect x="560" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="630" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Multer Upload</text>
+    <text x="630" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">File Processing</text>
+
+    <rect x="720" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="790" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Auth Middleware</text>
+    <text x="790" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">Session Verify</text>
+
+    <rect x="880" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="950" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Request Logger</text>
+    <text x="950" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">Audit Trail</text>
+
+    <rect x="1040" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="1110" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Error Handler</text>
+    <text x="1110" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">Global Catch</text>
+
+    <rect x="1200" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="1270" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Validation</text>
+    <text x="1270" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">Schema Check</text>
+
+    <rect x="1360" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="1430" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Compression</text>
+    <text x="1430" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">gzip / brotli</text>
+
+    <rect x="1520" y="985" width="140" height="40" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="1590" y="1003" text-anchor="middle" fill="#a5b4fc" font-size="10">Static Files</text>
+    <text x="1590" y="1018" text-anchor="middle" fill="#6366f1" font-size="8">Express Static</text>
+  </g>
+
+  <!-- Pipeline flow arrows -->
+  <g opacity="0.3" stroke="#818cf8" stroke-width="1">
+    <line x1="220" y1="1005" x2="240" y2="1005"/>
+    <line x1="380" y1="1005" x2="400" y2="1005"/>
+    <line x1="540" y1="1005" x2="560" y2="1005"/>
+    <line x1="700" y1="1005" x2="720" y2="1005"/>
+    <line x1="860" y1="1005" x2="880" y2="1005"/>
+    <line x1="1020" y1="1005" x2="1040" y2="1005"/>
+    <line x1="1180" y1="1005" x2="1200" y2="1005"/>
+    <line x1="1340" y1="1005" x2="1360" y2="1005"/>
+    <line x1="1500" y1="1005" x2="1520" y2="1005"/>
+  </g>
+
+  <!-- ========== -->
+  <!-- BACKEND SERVER -->
+  <!-- ========== -->
+  <g opacity="0.5">
+    <line x1="900" y1="1045" x2="900" y2="1075" stroke="#38ef7d" stroke-width="2" stroke-dasharray="4,4"/>
+  </g>
+
+  <rect x="50" y="1075" width="1700" height="420" rx="16" fill="url(#backendGrad)" stroke="#2d6145" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Backend header -->
+  <rect x="50" y="1075" width="1700" height="40" rx="16" fill="#1a2e1f"/>
+  <rect x="50" y="1099" width="1700" height="16" fill="#1a2e1f"/>
+  <text x="900" y="1101" text-anchor="middle" fill="#4ade80" font-size="16" font-weight="700" letter-spacing="4">BACKEND — Express.js 4.18 + Node.js Runtime</text>
+  <rect x="1520" y="1083" width="150" height="24" rx="12" fill="#14532d" opacity="0.6"/>
+  <text x="1595" y="1100" text-anchor="middle" fill="#86efac" font-size="10" font-weight="600">Port 5001 (API)</text>
+
+  <!-- API Route Groups -->
+  <text x="110" y="1140" fill="#86efac" font-size="13" font-weight="700" letter-spacing="2">REST API ENDPOINTS — 30+ Routes</text>
+
+  <!-- Events API -->
+  <rect x="80" y="1155" width="310" height="155" rx="8" fill="#0f1a10" stroke="#22c55e" stroke-width="1"/>
+  <rect x="80" y="1155" width="310" height="28" rx="8" fill="#14532d" opacity="0.5"/>
+  <rect x="80" y="1171" width="310" height="12" fill="#14532d" opacity="0.5"/>
+  <text x="235" y="1175" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">/api/events</text>
+  <g font-size="9" fill="#6b7280">
+    <text x="100" y="1200"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /events — List + Filters + Personalization</text>
+    <text x="100" y="1215"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /events/:id — Detail + Similar Events</text>
+    <text x="100" y="1230"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /events/:id/rsvp — RSVP Toggle</text>
+    <text x="100" y="1245"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /events — Create Event</text>
+    <text x="100" y="1260"><tspan fill="#60a5fa" font-weight="600">PUT</tspan>  /events/:id — Update Event</text>
+    <text x="100" y="1275"><tspan fill="#f87171" font-weight="600">DEL</tspan>  /events/:id — Remove Event</text>
+    <text x="100" y="1295" fill="#374151" font-size="8">Filtering: category, time, search, verified, age, date</text>
+  </g>
+
+  <!-- Communities API -->
+  <rect x="405" y="1155" width="310" height="155" rx="8" fill="#0f1a10" stroke="#22c55e" stroke-width="1"/>
+  <rect x="405" y="1155" width="310" height="28" rx="8" fill="#14532d" opacity="0.5"/>
+  <rect x="405" y="1171" width="310" height="12" fill="#14532d" opacity="0.5"/>
+  <text x="560" y="1175" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">/api/communities</text>
+  <g font-size="9" fill="#6b7280">
+    <text x="425" y="1200"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /communities — List All</text>
+    <text x="425" y="1215"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /communities/:id — Detail + Members</text>
+    <text x="425" y="1230"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /communities — Create New</text>
+    <text x="425" y="1245"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /communities/:id/join — Join</text>
+    <text x="425" y="1260"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /communities/:id/invite — Invite</text>
+    <text x="425" y="1275"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /communities/:id/leave — Leave</text>
+    <text x="425" y="1295" fill="#374151" font-size="8">Membership / Invitation / Role Management</text>
+  </g>
+
+  <!-- Chat API -->
+  <rect x="730" y="1155" width="310" height="155" rx="8" fill="#0f1a10" stroke="#22c55e" stroke-width="1"/>
+  <rect x="730" y="1155" width="310" height="28" rx="8" fill="#14532d" opacity="0.5"/>
+  <rect x="730" y="1171" width="310" height="12" fill="#14532d" opacity="0.5"/>
+  <text x="885" y="1175" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">/api/chat</text>
+  <g font-size="9" fill="#6b7280">
+    <text x="750" y="1200"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /:id/messages — Fetch Messages</text>
+    <text x="750" y="1215"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /:id/messages — Send Message</text>
+    <text x="750" y="1230"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /:id/messages/:mid/vote — Poll Vote</text>
+    <text x="750" y="1260" fill="#374151" font-size="8">Types: text, poll, announcement, event_proposal</text>
+    <text x="750" y="1275" fill="#374151" font-size="8">Features: Duplicate dedup, polling, optimistic UI</text>
+    <text x="750" y="1295" fill="#374151" font-size="8">Poll voting with option tracking</text>
+  </g>
+
+  <!-- Users & Connections API -->
+  <rect x="1055" y="1155" width="310" height="155" rx="8" fill="#0f1a10" stroke="#22c55e" stroke-width="1"/>
+  <rect x="1055" y="1155" width="310" height="28" rx="8" fill="#14532d" opacity="0.5"/>
+  <rect x="1055" y="1171" width="310" height="12" fill="#14532d" opacity="0.5"/>
+  <text x="1210" y="1175" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">/api/users &amp; /api/connections</text>
+  <g font-size="9" fill="#6b7280">
+    <text x="1075" y="1200"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /users — Create / Update User</text>
+    <text x="1075" y="1215"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /users/:id — Profile (no password)</text>
+    <text x="1075" y="1230"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /users/search?q= — Search Users</text>
+    <text x="1075" y="1250"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /connections/status — Check Status</text>
+    <text x="1075" y="1265"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /connections/request — Send Request</text>
+    <text x="1075" y="1280"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /connections/:userId — Get All</text>
+    <text x="1075" y="1295" fill="#374151" font-size="8">User search / Connection graph / Bidirectional</text>
+  </g>
+
+  <!-- AI & Orgs API -->
+  <rect x="1380" y="1155" width="340" height="155" rx="8" fill="#0f1a10" stroke="#22c55e" stroke-width="1"/>
+  <rect x="1380" y="1155" width="340" height="28" rx="8" fill="#14532d" opacity="0.5"/>
+  <rect x="1380" y="1171" width="340" height="12" fill="#14532d" opacity="0.5"/>
+  <text x="1550" y="1175" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="700">/api/ai &amp; /api/organizations</text>
+  <g font-size="9" fill="#6b7280">
+    <text x="1400" y="1200"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /transcribe — Whisper Transcription</text>
+    <text x="1400" y="1215"><tspan fill="#fbbf24" font-weight="600">POST</tspan> /ask — GPT-4o-mini Chat</text>
+    <text x="1400" y="1235"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /organizations — List All</text>
+    <text x="1400" y="1250"><tspan fill="#22c55e" font-weight="600">GET</tspan>  /organizations/:id — Detail + Events</text>
+    <text x="1400" y="1275" fill="#374151" font-size="8">AI: Custom system prompts, audio processing</text>
+    <text x="1400" y="1290" fill="#374151" font-size="8">Multer: Temp file upload → Whisper → Cleanup</text>
+  </g>
+
+  <!-- Business Logic Layer -->
+  <rect x="80" y="1325" width="1640" height="155" rx="10" fill="#0a140c" stroke="#166534" stroke-width="1"/>
+  <text x="110" y="1350" fill="#4ade80" font-size="13" font-weight="700" letter-spacing="2">BUSINESS LOGIC &amp; PROCESSING ENGINE</text>
+
+  <!-- Logic modules -->
+  <rect x="100" y="1365" width="200" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <text x="200" y="1385" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Personalization Engine</text>
+  <text x="200" y="1400" text-anchor="middle" fill="#4ade80" font-size="8">Interest matching + Relevance scoring</text>
+  <text x="200" y="1412" text-anchor="middle" fill="#4ade80" font-size="8">Collaborative filtering algorithm</text>
+
+  <rect x="310" y="1365" width="200" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <text x="410" y="1385" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Gamification Engine</text>
+  <text x="410" y="1400" text-anchor="middle" fill="#4ade80" font-size="8">Points calculation / Level progression</text>
+  <text x="410" y="1412" text-anchor="middle" fill="#4ade80" font-size="8">Badge assignment / Achievement unlock</text>
+
+  <rect x="520" y="1365" width="200" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <text x="620" y="1385" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Event Processor</text>
+  <text x="620" y="1400" text-anchor="middle" fill="#4ade80" font-size="8">RSVP management / Capacity check</text>
+  <text x="620" y="1412" text-anchor="middle" fill="#4ade80" font-size="8">Similar event computation</text>
+
+  <rect x="730" y="1365" width="200" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <text x="830" y="1385" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Chat Processor</text>
+  <text x="830" y="1400" text-anchor="middle" fill="#4ade80" font-size="8">Message routing / Poll aggregation</text>
+  <text x="830" y="1412" text-anchor="middle" fill="#4ade80" font-size="8">Event proposals / Announcements</text>
+
+  <rect x="940" y="1365" width="200" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <text x="1040" y="1385" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Report Generator</text>
+  <text x="1040" y="1400" text-anchor="middle" fill="#4ade80" font-size="8">Monthly analytics aggregation</text>
+  <text x="1040" y="1412" text-anchor="middle" fill="#4ade80" font-size="8">Trend analysis / Insight extraction</text>
+
+  <rect x="1150" y="1365" width="200" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <text x="1250" y="1385" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Recommendation Svc</text>
+  <text x="1250" y="1400" text-anchor="middle" fill="#4ade80" font-size="8">Content-based filtering</text>
+  <text x="1250" y="1412" text-anchor="middle" fill="#4ade80" font-size="8">User behavior analysis</text>
+
+  <rect x="1360" y="1365" width="200" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <text x="1460" y="1385" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Search Engine</text>
+  <text x="1460" y="1400" text-anchor="middle" fill="#4ade80" font-size="8">Full-text search / Fuzzy matching</text>
+  <text x="1460" y="1412" text-anchor="middle" fill="#4ade80" font-size="8">Multi-entity query processing</text>
+
+  <!-- Validation & Security sublayer -->
+  <rect x="100" y="1430" width="1460" height="35" rx="6" fill="#052e16" stroke="#14532d" stroke-width="0.5"/>
+  <text x="120" y="1452" fill="#166534" font-size="11" font-weight="700">SECURITY:</text>
+  <g font-size="9" fill="#15803d">
+    <text x="210" y="1452">Input Sanitization</text>
+    <text x="340" y="1452">XSS Prevention</text>
+    <text x="460" y="1452">CSRF Tokens</text>
+    <text x="570" y="1452">Password Hashing</text>
+    <text x="710" y="1452">File Type Validation</text>
+    <text x="860" y="1452">Request Size Limits</text>
+    <text x="1010" y="1452">SQL Injection Guard</text>
+    <text x="1170" y="1452">Rate Limiting</text>
+    <text x="1290" y="1452">CORS Whitelist</text>
+    <text x="1410" y="1452">Helmet Headers</text>
+  </g>
+
+  <!-- ========== -->
+  <!-- DATA LAYER -->
+  <!-- ========== -->
+  <g opacity="0.5">
+    <line x1="900" y1="1495" x2="900" y2="1520" stroke="#f093fb" stroke-width="2" stroke-dasharray="4,4"/>
+  </g>
+
+  <rect x="50" y="1520" width="1100" height="260" rx="16" fill="url(#dbGrad)" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="50" y="1520" width="1100" height="35" rx="16" fill="#1e293b"/>
+  <rect x="50" y="1543" width="1100" height="12" fill="#1e293b"/>
+  <text x="600" y="1544" text-anchor="middle" fill="#94a3b8" font-size="15" font-weight="700" letter-spacing="4">DATA PERSISTENCE LAYER</text>
+
+  <!-- Database Tables -->
+  <text x="110" y="1580" fill="#e2e8f0" font-size="12" font-weight="700" letter-spacing="1">JSON Data Tables (8)</text>
+
+  <g font-size="9">
+    <rect x="80" y="1592" width="240" height="85" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+    <rect x="80" y="1592" width="240" height="22" rx="6" fill="#1e3a5f"/>
+    <rect x="80" y="1604" width="240" height="10" fill="#1e3a5f"/>
+    <text x="200" y="1608" text-anchor="middle" fill="#60a5fa" font-weight="700" font-size="10">users.json</text>
+    <text x="100" y="1628" fill="#64748b">id, email, password, name, age</text>
+    <text x="100" y="1642" fill="#64748b">location, pronouns, bio, interests</text>
+    <text x="100" y="1656" fill="#64748b">joinedCircles, points, level</text>
+    <text x="100" y="1670" fill="#64748b">achievements[], connections[]</text>
+
+    <rect x="335" y="1592" width="240" height="85" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+    <rect x="335" y="1592" width="240" height="22" rx="6" fill="#1e3a5f"/>
+    <rect x="335" y="1604" width="240" height="10" fill="#1e3a5f"/>
+    <text x="455" y="1608" text-anchor="middle" fill="#60a5fa" font-weight="700" font-size="10">events.json</text>
+    <text x="355" y="1628" fill="#64748b">title, description, date, time</text>
+    <text x="355" y="1642" fill="#64748b">location, category, type, tags</text>
+    <text x="355" y="1656" fill="#64748b">organizer, rsvpCount, duration</text>
+    <text x="355" y="1670" fill="#64748b">similarEvents[], ageGroups[]</text>
+
+    <rect x="590" y="1592" width="240" height="85" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+    <rect x="590" y="1592" width="240" height="22" rx="6" fill="#1e3a5f"/>
+    <rect x="590" y="1604" width="240" height="10" fill="#1e3a5f"/>
+    <text x="710" y="1608" text-anchor="middle" fill="#60a5fa" font-weight="700" font-size="10">communities.json</text>
+    <text x="610" y="1628" fill="#64748b">name, description, interests</text>
+    <text x="610" y="1642" fill="#64748b">members[], roles, creator</text>
+    <text x="610" y="1656" fill="#64748b">verified, tags, categories</text>
+    <text x="610" y="1670" fill="#64748b">activityMetrics, settings</text>
+
+    <rect x="845" y="1592" width="280" height="85" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+    <rect x="845" y="1592" width="280" height="22" rx="6" fill="#1e3a5f"/>
+    <rect x="845" y="1604" width="280" height="10" fill="#1e3a5f"/>
+    <text x="985" y="1608" text-anchor="middle" fill="#60a5fa" font-weight="700" font-size="10">chat-messages.json</text>
+    <text x="865" y="1628" fill="#64748b">messageId, communityId, userId</text>
+    <text x="865" y="1642" fill="#64748b">type: text|poll|announcement|proposal</text>
+    <text x="865" y="1656" fill="#64748b">pollData{options[], votes[], voters[]}</text>
+    <text x="865" y="1670" fill="#64748b">eventProposal{}, timestamp, flags</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g font-size="9">
+    <rect x="80" y="1690" width="240" height="65" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="80" y="1690" width="240" height="22" rx="6" fill="#1e293b"/>
+    <rect x="80" y="1702" width="240" height="10" fill="#1e293b"/>
+    <text x="200" y="1706" text-anchor="middle" fill="#94a3b8" font-weight="700" font-size="10">organizations.json</text>
+    <text x="100" y="1726" fill="#64748b">org details, verified status</text>
+    <text x="100" y="1740" fill="#64748b">contact, eventIds[], metadata</text>
+
+    <rect x="335" y="1690" width="240" height="65" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="335" y="1690" width="240" height="22" rx="6" fill="#1e293b"/>
+    <rect x="335" y="1702" width="240" height="10" fill="#1e293b"/>
+    <text x="455" y="1706" text-anchor="middle" fill="#94a3b8" font-weight="700" font-size="10">connections.json</text>
+    <text x="355" y="1726" fill="#64748b">userId pairs, connection status</text>
+    <text x="355" y="1740" fill="#64748b">timestamp, bidirectional graph</text>
+
+    <rect x="590" y="1690" width="240" height="65" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="590" y="1690" width="240" height="22" rx="6" fill="#1e293b"/>
+    <rect x="590" y="1702" width="240" height="10" fill="#1e293b"/>
+    <text x="710" y="1706" text-anchor="middle" fill="#94a3b8" font-weight="700" font-size="10">connection-requests.json</text>
+    <text x="610" y="1726" fill="#64748b">from, to, status, message</text>
+    <text x="610" y="1740" fill="#64748b">pending → accepted / rejected</text>
+
+    <rect x="845" y="1690" width="280" height="65" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <rect x="845" y="1690" width="280" height="22" rx="6" fill="#1e293b"/>
+    <rect x="845" y="1702" width="280" height="10" fill="#1e293b"/>
+    <text x="985" y="1706" text-anchor="middle" fill="#94a3b8" font-weight="700" font-size="10">community-invitations.json</text>
+    <text x="865" y="1726" fill="#64748b">inviterId, inviteeId, communityId</text>
+    <text x="865" y="1740" fill="#64748b">status, message, expiry</text>
+  </g>
+
+  <!-- ========== -->
+  <!-- EXTERNAL SERVICES / AI LAYER -->
+  <!-- ========== -->
+  <rect x="1170" y="1520" width="580" height="260" rx="16" fill="#1a0e20" stroke="#7c3aed" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="1170" y="1520" width="580" height="35" rx="16" fill="#2e1065" opacity="0.6"/>
+  <rect x="1170" y="1543" width="580" height="12" fill="#2e1065" opacity="0.6"/>
+  <text x="1460" y="1544" text-anchor="middle" fill="#c4b5fd" font-size="15" font-weight="700" letter-spacing="4">EXTERNAL SERVICES &amp; AI</text>
+
+  <!-- OpenAI -->
+  <rect x="1195" y="1570" width="250" height="95" rx="8" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1"/>
+  <text x="1320" y="1595" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="700">OpenAI API</text>
+  <rect x="1210" y="1605" width="110" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1265" y="1620" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">Whisper STT</text>
+  <rect x="1330" y="1605" width="100" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1380" y="1620" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">GPT-4o-mini</text>
+  <text x="1320" y="1648" text-anchor="middle" fill="#6b7280" font-size="8">Audio transcription + AI assistant</text>
+  <text x="1320" y="1660" text-anchor="middle" fill="#6b7280" font-size="8">Custom system prompts (prompts.js)</text>
+
+  <!-- File Storage -->
+  <rect x="1460" y="1570" width="265" height="95" rx="8" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1"/>
+  <text x="1593" y="1595" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="700">File Storage Engine</text>
+  <rect x="1475" y="1605" width="110" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1530" y="1620" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">Multer Upload</text>
+  <rect x="1595" y="1605" width="115" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1653" y="1620" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">Temp Storage</text>
+  <text x="1593" y="1648" text-anchor="middle" fill="#6b7280" font-size="8">Audio file processing pipeline</text>
+  <text x="1593" y="1660" text-anchor="middle" fill="#6b7280" font-size="8">Upload → Process → Cleanup cycle</text>
+
+  <!-- Client-side storage -->
+  <rect x="1195" y="1680" width="530" height="85" rx="8" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1"/>
+  <text x="1460" y="1705" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="700">Client-Side Persistence</text>
+
+  <rect x="1210" y="1715" width="115" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1268" y="1730" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">localStorage</text>
+  <rect x="1335" y="1715" width="115" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1393" y="1730" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">Session Data</text>
+  <rect x="1460" y="1715" width="115" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1518" y="1730" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">WebAudio API</text>
+  <rect x="1585" y="1715" width="115" height="22" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="1643" y="1730" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">IndexedDB</text>
+  <text x="1460" y="1755" text-anchor="middle" fill="#6b7280" font-size="8">Gamification state / Auth tokens / User preferences / Audio buffers / Offline cache</text>
+
+  <!-- ========== -->
+  <!-- DEPLOYMENT & INFRA -->
+  <!-- ========== -->
+  <rect x="50" y="1810" width="1700" height="140" rx="16" fill="#111827" stroke="#374151" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="50" y="1810" width="1700" height="35" rx="16" fill="#1f2937"/>
+  <rect x="50" y="1833" width="1700" height="12" fill="#1f2937"/>
+  <text x="900" y="1834" text-anchor="middle" fill="#9ca3af" font-size="15" font-weight="700" letter-spacing="4">DEPLOYMENT &amp; INFRASTRUCTURE</text>
+
+  <g font-size="10">
+    <rect x="80" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+    <text x="173" y="1878" text-anchor="middle" fill="#60a5fa" font-weight="700" font-size="11">Vite Build</text>
+    <text x="173" y="1895" text-anchor="middle" fill="#475569" font-size="9">ES Module bundling</text>
+    <text x="173" y="1910" text-anchor="middle" fill="#475569" font-size="9">Tree-shaking / Code-split</text>
+    <text x="173" y="1925" text-anchor="middle" fill="#475569" font-size="9">HMR Dev Server</text>
+
+    <rect x="280" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="373" y="1878" text-anchor="middle" fill="#a78bfa" font-weight="700" font-size="11">PostCSS Pipeline</text>
+    <text x="373" y="1895" text-anchor="middle" fill="#475569" font-size="9">Tailwind JIT compiler</text>
+    <text x="373" y="1910" text-anchor="middle" fill="#475569" font-size="9">Autoprefixer</text>
+    <text x="373" y="1925" text-anchor="middle" fill="#475569" font-size="9">CSS Minification</text>
+
+    <rect x="480" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#ec4899" stroke-width="1"/>
+    <text x="573" y="1878" text-anchor="middle" fill="#f472b6" font-weight="700" font-size="11">Static Assets</text>
+    <text x="573" y="1895" text-anchor="middle" fill="#475569" font-size="9">/public (images, audio)</text>
+    <text x="573" y="1910" text-anchor="middle" fill="#475569" font-size="9">Community media</text>
+    <text x="573" y="1925" text-anchor="middle" fill="#475569" font-size="9">Mock data fixtures</text>
+
+    <rect x="680" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#14b8a6" stroke-width="1"/>
+    <text x="773" y="1878" text-anchor="middle" fill="#2dd4bf" font-weight="700" font-size="11">Environment</text>
+    <text x="773" y="1895" text-anchor="middle" fill="#475569" font-size="9">.env (OPENAI_API_KEY)</text>
+    <text x="773" y="1910" text-anchor="middle" fill="#475569" font-size="9">VITE_API_URL config</text>
+    <text x="773" y="1925" text-anchor="middle" fill="#475569" font-size="9">dotenv runtime</text>
+
+    <rect x="880" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="973" y="1878" text-anchor="middle" fill="#fbbf24" font-weight="700" font-size="11">Node.js Runtime</text>
+    <text x="973" y="1895" text-anchor="middle" fill="#475569" font-size="9">Express.js server</text>
+    <text x="973" y="1910" text-anchor="middle" fill="#475569" font-size="9">Process management</text>
+    <text x="973" y="1925" text-anchor="middle" fill="#475569" font-size="9">npm scripts</text>
+
+    <rect x="1080" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+    <text x="1173" y="1878" text-anchor="middle" fill="#f87171" font-weight="700" font-size="11">Error Monitoring</text>
+    <text x="1173" y="1895" text-anchor="middle" fill="#475569" font-size="9">Global error boundaries</text>
+    <text x="1173" y="1910" text-anchor="middle" fill="#475569" font-size="9">API error handling</text>
+    <text x="1173" y="1925" text-anchor="middle" fill="#475569" font-size="9">Network retry logic</text>
+
+    <rect x="1280" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+    <text x="1373" y="1878" text-anchor="middle" fill="#4ade80" font-weight="700" font-size="11">Git &amp; CI/CD</text>
+    <text x="1373" y="1895" text-anchor="middle" fill="#475569" font-size="9">GitHub repository</text>
+    <text x="1373" y="1910" text-anchor="middle" fill="#475569" font-size="9">Branch: main</text>
+    <text x="1373" y="1925" text-anchor="middle" fill="#475569" font-size="9">PR workflow</text>
+
+    <rect x="1480" y="1855" width="185" height="75" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1"/>
+    <text x="1573" y="1878" text-anchor="middle" fill="#22d3ee" font-weight="700" font-size="11">Documentation</text>
+    <text x="1573" y="1895" text-anchor="middle" fill="#475569" font-size="9">8 markdown files</text>
+    <text x="1573" y="1910" text-anchor="middle" fill="#475569" font-size="9">API / Component docs</text>
+    <text x="1573" y="1925" text-anchor="middle" fill="#475569" font-size="9">Architecture guides</text>
+  </g>
+
+  <!-- ========== -->
+  <!-- DATA FLOW SECTION -->
+  <!-- ========== -->
+  <rect x="50" y="1975" width="1700" height="195" rx="16" fill="#111827" stroke="#374151" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="50" y="1975" width="1700" height="35" rx="16" fill="#1f2937"/>
+  <rect x="50" y="1998" width="1700" height="12" fill="#1f2937"/>
+  <text x="900" y="1999" text-anchor="middle" fill="#9ca3af" font-size="15" font-weight="700" letter-spacing="4">DATA FLOW &amp; KEY USER JOURNEYS</text>
+
+  <!-- Journey 1: Auth -->
+  <rect x="80" y="2020" width="380" height="60" rx="8" fill="#0f172a" stroke="#6366f1" stroke-width="1"/>
+  <text x="270" y="2040" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="700">Authentication Flow</text>
+  <text x="270" y="2058" text-anchor="middle" fill="#475569" font-size="8">SignIn → AuthContext → localStorage → API Sync</text>
+  <text x="270" y="2072" text-anchor="middle" fill="#475569" font-size="8">ProtectedRoute → Session Check → Redirect Guard</text>
+
+  <!-- Journey 2: Events -->
+  <rect x="475" y="2020" width="380" height="60" rx="8" fill="#0f172a" stroke="#0d9488" stroke-width="1"/>
+  <text x="665" y="2040" text-anchor="middle" fill="#5eead4" font-size="11" font-weight="700">Event Discovery Pipeline</text>
+  <text x="665" y="2058" text-anchor="middle" fill="#475569" font-size="8">Search → Filter → Personalize → Score → Rank → Display</text>
+  <text x="665" y="2072" text-anchor="middle" fill="#475569" font-size="8">RSVP → Points → Achievement Check → Notification</text>
+
+  <!-- Journey 3: Journal -->
+  <rect x="870" y="2020" width="380" height="60" rx="8" fill="#0f172a" stroke="#db2777" stroke-width="1"/>
+  <text x="1060" y="2040" text-anchor="middle" fill="#f9a8d4" font-size="11" font-weight="700">Voice Journal Pipeline</text>
+  <text x="1060" y="2058" text-anchor="middle" fill="#475569" font-size="8">Record → WebAudio → Multer → Whisper API → Text</text>
+  <text x="1060" y="2072" text-anchor="middle" fill="#475569" font-size="8">Transcription → AI Insight → Mood Track → Report</text>
+
+  <!-- Journey 4: Chat -->
+  <rect x="1265" y="2020" width="380" height="60" rx="8" fill="#0f172a" stroke="#7c3aed" stroke-width="1"/>
+  <text x="1455" y="2040" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">Community Chat Pipeline</text>
+  <text x="1455" y="2058" text-anchor="middle" fill="#475569" font-size="8">Input → Dedup → Route → Process → Broadcast</text>
+  <text x="1455" y="2072" text-anchor="middle" fill="#475569" font-size="8">Poll → Vote Aggregate → Results → Points Award</text>
+
+  <!-- Journey 5: Gamification -->
+  <rect x="80" y="2090" width="540" height="60" rx="8" fill="#0f172a" stroke="#ea580c" stroke-width="1"/>
+  <text x="350" y="2110" text-anchor="middle" fill="#fdba74" font-size="11" font-weight="700">Gamification Pipeline</text>
+  <text x="350" y="2128" text-anchor="middle" fill="#475569" font-size="8">Action → Points Calc → Level Check → Badge Assignment → Achievement Unlock → UI Animation → LocalStorage Persist</text>
+  <text x="350" y="2142" text-anchor="middle" fill="#475569" font-size="8">10pts RSVP | 50pts Attend | 25pts Review | 25pts Join | 15pts Journal | 20pts Connect | 5pts Chat | 30pts Profile</text>
+
+  <!-- Journey 6: Recommendation -->
+  <rect x="640" y="2090" width="540" height="60" rx="8" fill="#0f172a" stroke="#16a34a" stroke-width="1"/>
+  <text x="910" y="2110" text-anchor="middle" fill="#86efac" font-size="11" font-weight="700">Recommendation Engine Pipeline</text>
+  <text x="910" y="2128" text-anchor="middle" fill="#475569" font-size="8">User Interests → Content Filter → Collaborative Filter → Relevance Score → Rank → Personalized Feed</text>
+  <text x="910" y="2142" text-anchor="middle" fill="#475569" font-size="8">Behavioral signals: RSVP history, community membership, journal topics, mood patterns, connection graph</text>
+
+  <!-- Journey 7: Export -->
+  <rect x="1200" y="2090" width="445" height="60" rx="8" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+  <text x="1423" y="2110" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">Export &amp; Reporting Pipeline</text>
+  <text x="1423" y="2128" text-anchor="middle" fill="#475569" font-size="8">ICS Calendar Export | Monthly Report Generation</text>
+  <text x="1423" y="2142" text-anchor="middle" fill="#475569" font-size="8">Trend Analytics | Activity Aggregation | Insight Extraction</text>
+
+  <!-- ========== -->
+  <!-- FOOTER -->
+  <!-- ========== -->
+  <rect x="50" y="2195" width="1700" height="75" rx="12" fill="#111827" stroke="#1f2937" stroke-width="1"/>
+  <text x="900" y="2225" text-anchor="middle" fill="#6b7280" font-size="11" font-weight="500">MindfulCircles Platform Architecture v2.0 — Full-Stack Community Well-Being Application</text>
+  <text x="900" y="2245" text-anchor="middle" fill="#4b5563" font-size="10">React 18 + Vite 5 + Tailwind CSS 3 + Express.js 4.18 + Node.js + OpenAI API + Framer Motion + Recharts + 23 Pages + 100+ Components + 18 Services + 8 Contexts + 8 Hooks</text>
+  <text x="900" y="2260" text-anchor="middle" fill="#374151" font-size="9">Beyond Binary 2026 — Comprehensive Architecture Blueprint</text>
+
+  <!-- Decorative glow spots -->
+  <circle cx="200" cy="500" r="150" fill="#667eea" opacity="0.02"/>
+  <circle cx="1600" cy="800" r="200" fill="#764ba2" opacity="0.02"/>
+  <circle cx="900" cy="1200" r="250" fill="#38ef7d" opacity="0.015"/>
+  <circle cx="400" cy="1700" r="180" fill="#f093fb" opacity="0.02"/>
+  <circle cx="1400" cy="2000" r="200" fill="#4facfe" opacity="0.015"/>
+
+</svg>

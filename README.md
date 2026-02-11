@@ -39,6 +39,9 @@ A comprehensive community well-being platform that connects like-minded individu
 - **AI Integration**: OpenAI API for transcription and chat features
 - **File Upload**: Multer for handling audio file uploads
 
+![Architecture Diagram](community-wellbeing-app/architecture-diagram.svg)
+
+
 ## 📁 Project Structure
 
 ```

@@ -5,7 +5,7 @@ function TranscriptSection({ transcript }) {
 
   return (
     <div className="transcript-section">
-      <h3>📝 Transcription</h3>
+      <h3>Transcription</h3>
       <div className="transcript">
         {transcript}
       </div>

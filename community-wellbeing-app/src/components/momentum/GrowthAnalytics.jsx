@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { Flame, Star, BarChart3, Lightbulb } from 'lucide-react'
+import IconRenderer from '../common/IconRenderer'
 
 function GrowthAnalytics() {
   const [habits, setHabits] = useState([])
@@ -205,12 +207,12 @@ function GrowthAnalytics() {
         </div>
         <div className="card p-6">
           <div className="text-sm text-gray-600 mb-1">Best Streak</div>
-          <div className="text-3xl font-bold text-orange-600">{bestStreak} 🔥</div>
+          <div className="text-3xl font-bold text-orange-600 flex items-center gap-1">{bestStreak} <Flame size={24} /></div>
           <div className="text-xs text-gray-500 mt-1">Consecutive days</div>
         </div>
         <div className="card p-6">
           <div className="text-sm text-gray-600 mb-1">Total Points</div>
-          <div className="text-3xl font-bold text-amber-600">{getTotalPoints()} ⭐</div>
+          <div className="text-3xl font-bold text-amber-600 flex items-center gap-1">{getTotalPoints()} <Star size={24} /></div>
           <div className="text-xs text-gray-500 mt-1">From habits & challenges</div>
         </div>
         <div className="card p-6">
@@ -260,7 +262,7 @@ function GrowthAnalytics() {
 
         {!hasAnyData ? (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">📊</div>
+            <div className="mb-4"><BarChart3 size={56} className="text-gray-300 mx-auto" /></div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">No Data Yet</h3>
             <p className="text-gray-600">Complete some habits to see your progress!</p>
           </div>
@@ -459,7 +461,7 @@ function GrowthAnalytics() {
                 return (
                   <div key={habit.id} className="p-3 rounded-xl bg-gray-50">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl">{habit.icon}</span>
+                      <IconRenderer name={habit.icon} size={24} />
                       <div className="flex-1">
                         <div className="font-semibold text-gray-900 text-sm">{habit.name}</div>
                         <div className="text-xs text-gray-600">
@@ -483,7 +485,7 @@ function GrowthAnalytics() {
 
       {/* Insights */}
       <div className="card p-6 bg-gradient-to-br from-sage-50 to-ocean-50 border-2 border-sage-300/50">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">💡 Insights & Tips</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2"><Lightbulb size={24} /> Insights & Tips</h2>
         <div className="space-y-3">
           {totalHabitCompletions === 0 && (
             <p className="text-gray-700">
@@ -497,7 +499,7 @@ function GrowthAnalytics() {
           )}
           {bestStreak >= 7 && (
             <p className="text-gray-700">
-              <strong>Awesome streak! 🔥</strong> You've maintained a {bestStreak}-day streak. Research shows it takes 66 days on average to form a habit.
+              <strong>Awesome streak!</strong> You've maintained a {bestStreak}-day streak. Research shows it takes 66 days on average to form a habit.
             </p>
           )}
           {habits.length > 0 && habits.length < 5 && (

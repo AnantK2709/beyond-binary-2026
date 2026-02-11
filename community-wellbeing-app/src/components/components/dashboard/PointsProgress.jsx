@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GamificationContext } from '../../../context/GamificationContext';
+import IconRenderer from '../../common/IconRenderer';
 
 export default function PointsProgress() {
   const { points, level, pointsToNextLevel, progressPercentage, badges, getRecentHistory } =
@@ -42,8 +43,8 @@ export default function PointsProgress() {
           <div className="text-xs text-gray-600 mb-2">Badges Earned</div>
           <div className="flex gap-2 flex-wrap">
             {badges.slice(-3).map((badge) => (
-              <div key={badge.id} className="badge-verified text-xs">
-                {badge.icon} {badge.name}
+              <div key={badge.id} className="badge-verified text-xs flex items-center gap-1">
+                <IconRenderer name={badge.icon} size={14} /> {badge.name}
               </div>
             ))}
           </div>

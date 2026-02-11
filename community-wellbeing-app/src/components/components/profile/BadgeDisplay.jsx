@@ -1,6 +1,8 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import { Trophy } from 'lucide-react';
 import { GamificationContext } from '../../../context/GamificationContext';
 import { ACHIEVEMENTS } from '../../../utils/gamification';
+import IconRenderer from '../../common/IconRenderer';
 
 export default function BadgeDisplay() {
   const { badges, achievements, points, level } = useContext(GamificationContext);
@@ -21,7 +23,9 @@ export default function BadgeDisplay() {
   if (!featuredBadge) {
     return (
       <div className="text-center py-8">
-        <div className="text-5xl mb-4">🏆</div>
+        <div className="mb-4 flex justify-center">
+          <Trophy size={48} className="text-gray-300" />
+        </div>
         <h4 className="font-bold text-gray-900 mb-2">No badges yet</h4>
         <p className="text-gray-600">
           Complete actions to earn your first badge!
@@ -37,9 +41,9 @@ export default function BadgeDisplay() {
       {/* Featured Badge */}
       <div className="inline-block mb-4">
         <div
-          className={`w-32 h-32 rounded-full bg-gradient-to-br ${gradientClass} flex items-center justify-center text-6xl shadow-2xl`}
+          className={`w-32 h-32 rounded-full bg-gradient-to-br ${gradientClass} flex items-center justify-center shadow-2xl`}
         >
-          {featuredBadge.icon}
+          <IconRenderer name={featuredBadge.icon} size={56} className="text-white" />
         </div>
       </div>
       <h4 className="text-xl font-bold text-gray-900 mb-2">

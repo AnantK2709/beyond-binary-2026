@@ -1,3 +1,4 @@
+import { Search, Target, Calendar, PartyPopper } from 'lucide-react'
 import EventCard from './EventCard'
 
 function EventsList({ events, loading }) {
@@ -22,12 +23,12 @@ function EventsList({ events, loading }) {
   const EmptyState = () => (
     <div className="col-span-full flex flex-col items-center justify-center py-16 px-4">
       <div className="card p-12 text-center max-w-lg mx-auto">
-        <div className="text-8xl mb-6 animate-float">🔍</div>
+        <div className="mb-6 animate-float"><Search size={80} className="text-gray-300 mx-auto" /></div>
         <h3 className="text-2xl font-bold text-gray-900 mb-4">No Events Found</h3>
         <p className="text-gray-600 mb-6">
           We couldn't find any events matching your criteria. Try adjusting your filters or search terms.
         </p>
-        <div className="text-6xl opacity-20">🎯</div>
+        <div className="opacity-20"><Target size={56} className="text-gray-400 mx-auto" /></div>
       </div>
     </div>
   )
@@ -36,7 +37,7 @@ function EventsList({ events, loading }) {
   const NoUpcomingEvents = () => (
     <div className="col-span-full flex flex-col items-center justify-center py-16 px-4">
       <div className="card p-12 text-center max-w-lg mx-auto">
-        <div className="text-8xl mb-6 animate-float">📅</div>
+        <div className="mb-6 animate-float"><Calendar size={80} className="text-gray-300 mx-auto" /></div>
         <h3 className="text-2xl font-bold text-gray-900 mb-4">No Upcoming Events</h3>
         <p className="text-gray-600 mb-6">
           There are no upcoming events at the moment. Check back soon for new activities and experiences!
@@ -69,7 +70,7 @@ function EventsList({ events, loading }) {
         <div className="card p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">🎉</span>
+              <PartyPopper size={24} className="text-sage-600" />
               <div>
                 <h3 className="font-bold text-gray-900">
                   {events.length} {events.length === 1 ? 'Event' : 'Events'} Found

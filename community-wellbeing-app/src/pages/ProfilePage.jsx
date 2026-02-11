@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Pencil, BarChart3, CalendarDays, Settings, Trophy, Users, Smile, Calendar } from 'lucide-react';
 import Navbar from '../components/components/common/Navbar';
 
 // Import ALL profile components
@@ -57,7 +58,7 @@ export default function ProfilePage() {
             onClick={() => setShowEditModal(true)}
             className="btn-secondary w-full md:w-auto"
           >
-            ✏️ Edit Profile
+            <Pencil size={16} className="inline mr-1" /> Edit Profile
           </button>
         </div>
 
@@ -91,7 +92,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📊 Overview
+            <BarChart3 size={16} className="inline mr-1" /> Overview
           </button>
           <button
             onClick={() => setActiveTab('activity')}
@@ -101,7 +102,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📅 Activity
+            <CalendarDays size={16} className="inline mr-1" /> Activity
           </button>
           <button
             onClick={() => setActiveTab('settings')}
@@ -111,7 +112,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            ⚙️ Settings
+            <Settings size={16} className="inline mr-1" /> Settings
           </button>
         </div>
 
@@ -128,7 +129,7 @@ export default function ProfilePage() {
               {/* Badges */}
               <div className="card">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">
-                  🏆 Achievements & Badges
+                  <Trophy size={20} className="inline mr-1" /> Achievements & Badges
                 </h3>
                 <BadgeDisplay />
                 <div className="mt-6">
@@ -148,7 +149,7 @@ export default function ProfilePage() {
               {/* Connections */}
               <div className="card">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  👥 My Circles
+                  <Users size={20} className="inline mr-1" /> My Circles
                 </h3>
                 <ConnectionsList user={user} />
               </div>
@@ -164,7 +165,7 @@ export default function ProfilePage() {
             {/* Mood History */}
             <div className="card">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
-                😊 Mood History
+                <Smile size={20} className="inline mr-1" /> Mood History
               </h3>
               <MoodHistoryChart user={user} />
             </div>
@@ -172,7 +173,7 @@ export default function ProfilePage() {
             {/* Attended Events */}
             <div className="card">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
-                📅 Attended Events
+                <Calendar size={20} className="inline mr-1" /> Attended Events
               </h3>
               <AttendedEventsList user={user} />
             </div>

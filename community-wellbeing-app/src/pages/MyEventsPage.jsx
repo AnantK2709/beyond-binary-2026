@@ -5,6 +5,7 @@ import { eventService } from '../services/eventService'
 import EventCard from '../components/events/EventCard'
 import { formatEventDate, formatEventTime, isEventInPast } from '../utils/dateUtils'
 import Navbar from '../components/components/common/Navbar'
+import { Ticket, Calendar, CheckCircle, AlertTriangle, Clock, Star } from 'lucide-react'
 
 function MyEventsPage() {
   const navigate = useNavigate()
@@ -72,8 +73,8 @@ function MyEventsPage() {
                   Track your event journey and stay connected with your community
                 </p>
               </div>
-              <div className="hidden lg:block text-6xl animate-float">
-                🎟️
+              <div className="hidden lg:block animate-float">
+                <Ticket size={56} className="text-sage-500" />
               </div>
             </div>
 
@@ -113,7 +114,7 @@ function MyEventsPage() {
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                <span className="mr-2">📅</span>
+                <Calendar size={16} className="inline mr-2" />
                 Upcoming Events
                 <span className="ml-2 text-sm">
                   ({events.filter(e => !isEventInPast(e.date, e.time)).length})
@@ -127,7 +128,7 @@ function MyEventsPage() {
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                <span className="mr-2">✅</span>
+                <CheckCircle size={16} className="inline mr-2" />
                 Past Events
                 <span className="ml-2 text-sm">
                   ({events.filter(e => isEventInPast(e.date, e.time)).length})
@@ -150,7 +151,7 @@ function MyEventsPage() {
         {/* Error State */}
         {error && !loading && (
           <div className="card p-8 text-center border-2 border-red-200 animate-slide-up-fade">
-            <div className="text-6xl mb-4">⚠️</div>
+            <div className="flex justify-center mb-4"><AlertTriangle size={56} className="text-red-400" /></div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h3>
             <p className="text-gray-600 mb-6">{error}</p>
             <button
@@ -176,7 +177,7 @@ function MyEventsPage() {
                   </div>
                 ) : (
                   <div className="card p-12 text-center">
-                    <div className="text-6xl mb-4">📅</div>
+                    <div className="flex justify-center mb-4"><Calendar size={56} className="text-sage-400" /></div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-3">
                       No Upcoming Events
                     </h3>
@@ -212,8 +213,8 @@ function MyEventsPage() {
 
                           {/* Attended Badge */}
                           <div className="absolute top-4 right-4 z-10">
-                            <div className="badge bg-gradient-to-r from-ocean-500/90 to-ocean-600/90 text-white px-3 py-1.5 text-xs font-semibold shadow-lg border-white/40">
-                              ✓ Attended
+                            <div className="badge bg-gradient-to-r from-ocean-500/90 to-ocean-600/90 text-white px-3 py-1.5 text-xs font-semibold shadow-lg border-white/40 flex items-center gap-1">
+                              <CheckCircle size={12} /> Attended
                             </div>
                           </div>
 
@@ -224,7 +225,7 @@ function MyEventsPage() {
                                 onClick={() => handleLeaveReview(event.id)}
                                 className="w-full btn-primary py-3 px-6 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300"
                               >
-                                <span>⭐</span>
+                                <Star size={16} />
                                 <span>Leave a Review</span>
                               </button>
                             </div>
@@ -236,7 +237,7 @@ function MyEventsPage() {
                               <div className="card p-4 bg-gradient-to-r from-sage-50/50 to-ocean-50/50 border border-sage-300/30">
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-2">
-                                    <span>⭐</span>
+                                    <Star size={16} className="text-sage-600" />
                                     <span className="text-sm font-semibold text-sage-700">
                                       Review Submitted
                                     </span>
@@ -259,7 +260,7 @@ function MyEventsPage() {
                   </div>
                 ) : (
                   <div className="card p-12 text-center">
-                    <div className="text-6xl mb-4">🕐</div>
+                    <div className="flex justify-center mb-4"><Clock size={56} className="text-ocean-400" /></div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-3">
                       No Past Events
                     </h3>

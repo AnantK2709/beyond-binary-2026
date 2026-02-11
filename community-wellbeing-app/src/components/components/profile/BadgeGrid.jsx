@@ -1,6 +1,8 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import { Lock } from 'lucide-react';
 import { GamificationContext } from '../../../context/GamificationContext';
 import { ACHIEVEMENTS } from '../../../utils/gamification';
+import IconRenderer from '../../common/IconRenderer';
 
 export default function BadgeGrid() {
   const { badges, achievements } = useContext(GamificationContext);
@@ -55,29 +57,35 @@ export default function BadgeGrid() {
           className={`p-4 rounded-xl text-center transition-all ${
             badge.unlocked
               ? 'hover:scale-105 cursor-pointer'
-              : 'opacity-40 grayscale'
+              : ''
           }`}
           style={{
             background: badge.unlocked
               ? 'rgba(168, 213, 186, 0.1)'
-              : 'rgba(200, 200, 200, 0.1)',
+              : 'rgba(200, 200, 200, 0.06)',
             border: badge.unlocked
               ? '2px solid rgba(168, 213, 186, 0.3)'
-              : '2px solid rgba(200, 200, 200, 0.2)',
+              : '2px dashed rgba(200, 200, 200, 0.3)',
           }}
           title={badge.description}
         >
           <div
-            className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-br ${badge.color} flex items-center justify-center text-3xl mb-2 shadow-md ${
-              badge.unlocked ? '' : 'opacity-50'
+            className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-md ${
+              badge.unlocked
+                ? `bg-gradient-to-br ${badge.color}`
+                : 'bg-gray-200/40'
             }`}
           >
-            {badge.icon}
+            {badge.unlocked ? (
+              <IconRenderer name={badge.icon} size={28} className="text-white" />
+            ) : (
+              <Lock size={20} className="text-gray-400/60" />
+            )}
           </div>
-          <div className="font-semibold text-xs text-gray-900 mb-1">
+          <div className={`font-semibold text-xs mb-1 ${badge.unlocked ? 'text-gray-900' : 'text-gray-400'}`}>
             {badge.name}
           </div>
-          <div className="text-xs text-gray-600">
+          <div className={`text-xs ${badge.unlocked ? 'text-gray-600' : 'text-gray-400'}`}>
             {badge.description}
           </div>
           {badge.unlocked && (

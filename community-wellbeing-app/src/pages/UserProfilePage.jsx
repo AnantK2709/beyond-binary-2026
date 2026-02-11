@@ -5,6 +5,7 @@ import { searchService } from '../services/searchService';
 import { connectionService } from '../services/connectionService';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../hooks/useToast';
+import { MessageCircle, Clock, HeartHandshake, BarChart3, Calendar, Trophy, Users, Smile } from 'lucide-react';
 
 // Import profile components (same as ProfilePage)
 import ProfileHeader from '../components/components/profile/ProfileHeader';
@@ -98,7 +99,7 @@ export default function UserProfilePage() {
           
           if (wasPending && statusResult.status === 'connected') {
             console.log('[UserProfilePage] Connection accepted!')
-            showToast('Connection request accepted! You can now message each other. 🤝', 'success');
+            showToast('Connection request accepted! You can now message each other.', 'success');
           }
         } else {
           console.log('[UserProfilePage] Status unchanged:', statusResult.status)
@@ -216,7 +217,7 @@ export default function UserProfilePage() {
                   onClick={handleMessage}
                   className="px-6 py-3 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors font-medium flex items-center gap-2 shadow-md"
                 >
-                  <span>💬</span>
+                  <MessageCircle size={18} strokeWidth={2} />
                   <span>Message</span>
                 </button>
               ) : connectionStatus === 'pending' ? (
@@ -224,7 +225,7 @@ export default function UserProfilePage() {
                   disabled
                   className="px-6 py-3 bg-gray-300 text-gray-600 rounded-lg font-medium flex items-center gap-2 cursor-not-allowed"
                 >
-                  <span>⏳</span>
+                  <Clock size={18} strokeWidth={2} />
                   <span>Request Pending...</span>
                 </button>
               ) : (
@@ -233,7 +234,7 @@ export default function UserProfilePage() {
                   disabled={isSendingRequest}
                   className="px-6 py-3 bg-gradient-to-r from-sage-500 to-sage-600 text-white rounded-lg hover:from-sage-600 hover:to-sage-700 transition-all font-medium flex items-center gap-2 shadow-md disabled:opacity-50"
                 >
-                  <span>🤝</span>
+                  <HeartHandshake size={18} strokeWidth={2} />
                   <span>{isSendingRequest ? 'Sending...' : 'Reach Out'}</span>
                 </button>
               )}
@@ -271,7 +272,7 @@ export default function UserProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📊 Overview
+            <span className="flex items-center gap-1.5"><BarChart3 size={16} strokeWidth={2} /> Overview</span>
           </button>
           <button
             onClick={() => setActiveTab('activity')}
@@ -281,7 +282,7 @@ export default function UserProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📅 Activity
+            <span className="flex items-center gap-1.5"><Calendar size={16} strokeWidth={2} /> Activity</span>
           </button>
         </div>
 
@@ -298,7 +299,7 @@ export default function UserProfilePage() {
               {/* Badges */}
               <div className="card">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">
-                  🏆 Achievements & Badges
+                  <span className="flex items-center gap-2"><Trophy size={20} strokeWidth={2} /> Achievements & Badges</span>
                 </h3>
                 <BadgeDisplay user={profileUser} />
                 <div className="mt-6">
@@ -318,7 +319,7 @@ export default function UserProfilePage() {
               {/* Connections */}
               <div className="card">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  👥 Communities
+                  <span className="flex items-center gap-2"><Users size={20} strokeWidth={2} /> Communities</span>
                 </h3>
                 <ConnectionsList user={profileUser} />
               </div>
@@ -334,7 +335,7 @@ export default function UserProfilePage() {
             {/* Mood History */}
             <div className="card">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
-                😊 Mood History
+                <span className="flex items-center gap-2"><Smile size={20} strokeWidth={2} /> Mood History</span>
               </h3>
               <MoodHistoryChart user={profileUser} />
             </div>
@@ -342,7 +343,7 @@ export default function UserProfilePage() {
             {/* Attended Events */}
             <div className="card">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
-                📅 Attended Events
+                <span className="flex items-center gap-2"><Calendar size={20} strokeWidth={2} /> Attended Events</span>
               </h3>
               <AttendedEventsList user={profileUser} />
             </div>

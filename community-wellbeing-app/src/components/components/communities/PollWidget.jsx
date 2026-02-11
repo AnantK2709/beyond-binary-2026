@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
+import { AlertTriangle } from 'lucide-react'
 import { AuthContext } from '../../../context/AuthContext'
 import { ChatContext } from '../../../context/ChatContext'
 import { chatService } from '../../../services/chatService'
@@ -36,7 +37,7 @@ function PollWidget({ poll, messageId, communityId }) {
     console.warn('[PollWidget] Missing poll data:', { poll, messageId, communityId })
     return (
       <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <p className="text-sm text-yellow-800">⚠️ Poll data is missing or incomplete</p>
+        <p className="text-sm text-yellow-800 flex items-center gap-1"><AlertTriangle size={14} /> Poll data is missing or incomplete</p>
       </div>
     )
   }

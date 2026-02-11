@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react'
+import { FileText, CalendarPlus } from 'lucide-react'
 import { AuthContext } from '../../../context/AuthContext'
 import { chatService } from '../../../services/chatService'
 import { useToast } from '../../../hooks/useToast'
@@ -48,7 +49,7 @@ function EventProposal({ proposal, messageId, userName, timestamp }) {
   return (
     <div className="bg-white rounded-lg p-4 shadow-sm border border-sage-200">
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-lg">📝</span>
+        <FileText size={18} className="text-gray-600" />
         <span className="font-semibold text-gray-800">{userName}</span>
         <span className="text-xs text-gray-500">{formatTime(timestamp)}</span>
       </div>
@@ -70,7 +71,7 @@ function EventProposal({ proposal, messageId, userName, timestamp }) {
           onClick={() => setShowCreateForm(true)}
           className="w-full mt-3 px-4 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors text-sm font-medium"
         >
-          📅 Create Event from Discussion
+          <span className="flex items-center justify-center gap-2"><CalendarPlus size={14} /> Create Event from Discussion</span>
         </button>
       ) : (
         <form onSubmit={handleCreateEvent} className="mt-3 space-y-3">

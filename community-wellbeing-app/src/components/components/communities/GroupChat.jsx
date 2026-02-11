@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useContext } from 'react'
+import { MessageCircle } from 'lucide-react'
 import { ChatContext } from '../../../context/ChatContext'
 import { AuthContext } from '../../../context/AuthContext'
 import { GamificationContext } from '../../../context/GamificationContext'
@@ -42,7 +43,7 @@ function GroupChat({ communityId, isMember = false }) {
 
     if (communityId) {
       // Clear previous messages for fresh start
-      console.log(`[GroupChat-${componentIdRef.current}] 🧹 Clearing previous messages for fresh start`)
+      console.log(`[GroupChat-${componentIdRef.current}] [cleanup]Clearing previous messages for fresh start`)
       setDisplayedMessages([])
       displayedMessageIdsRef.current.clear()
       hasSimulatedRef.current.delete(communityId)
@@ -50,14 +51,14 @@ function GroupChat({ communityId, isMember = false }) {
       
       // Load fresh messages
       if (!loadedCommunitiesRef.current.has(communityId)) {
-        console.log(`[GroupChat-${componentIdRef.current}] ✅ Calling loadMessages(${communityId})`)
+        console.log(`[GroupChat-${componentIdRef.current}] [ok]Calling loadMessages(${communityId})`)
         loadedCommunitiesRef.current.add(communityId)
         loadMessages(communityId)
       }
     }
     
     return () => {
-      console.log(`[GroupChat-${componentIdRef.current}] 🧹 Cleanup function called (loadMessages)`, { communityId })
+      console.log(`[GroupChat-${componentIdRef.current}] [cleanup]Cleanup function called (loadMessages)`, { communityId })
     }
   }, [communityId, loadMessages])
 
@@ -76,7 +77,7 @@ function GroupChat({ communityId, isMember = false }) {
     });
 
     if (!communityId || !communityMessages || communityMessages.length === 0) {
-      console.log(`[GroupChat-${componentIdRef.current}] ⚠️ No messages to display`, {
+      console.log(`[GroupChat-${componentIdRef.current}] [warn]No messages to display`, {
         communityId,
         hasMessages: !!communityMessages,
         messagesCount: communityMessages?.length || 0
@@ -86,10 +87,10 @@ function GroupChat({ communityId, isMember = false }) {
 
     // If already simulated for this community, skip
     if (hasSimulatedRef.current.has(communityId)) {
-      console.log(`[GroupChat-${componentIdRef.current}] ⚠️ Already simulated for ${communityId}, skipping`);
+      console.log(`[GroupChat-${componentIdRef.current}] [warn]Already simulated for ${communityId}, skipping`);
       // But ensure displayedMessages has the messages (in case state was reset)
       if (displayedMessages.length === 0) {
-        console.log(`[GroupChat-${componentIdRef.current}] 🔄 Re-displaying messages (displayedMessages was empty)`);
+        console.log(`[GroupChat-${componentIdRef.current}] [refresh]Re-displaying messages (displayedMessages was empty)`);
         const allMessages = communityMessages;
         allMessages.forEach(msg => displayedMessageIdsRef.current.add(msg.id))
         setDisplayedMessages(allMessages)
@@ -97,11 +98,11 @@ function GroupChat({ communityId, isMember = false }) {
       return;
     }
 
-    console.log(`[GroupChat-${componentIdRef.current}] 📝 Processing ${communityMessages.length} messages for ${communityId}`);
+    console.log(`[GroupChat-${componentIdRef.current}] [processing]Processing ${communityMessages.length} messages for ${communityId}`);
 
     // If simulating, show messages with delay
     if (isSimulating) {
-      console.log(`[GroupChat-${componentIdRef.current}] 🎬 Starting simulation for ${communityId}`);
+      console.log(`[GroupChat-${componentIdRef.current}] [start]Starting simulation for ${communityId}`);
       hasSimulatedRef.current.add(communityId);
 
       // Generate demo messages if we don't have many
@@ -116,7 +117,7 @@ function GroupChat({ communityId, isMember = false }) {
       const cleanup = simulateTimedMessages(
         demoMessages,
         (message) => {
-          console.log(`[GroupChat-${componentIdRef.current}] 📨 Adding message to display:`, message.id);
+          console.log(`[GroupChat-${componentIdRef.current}] [msg]Adding message to display:`, message.id);
           setDisplayedMessages(prev => {
             // Only add if not already displayed
             if (!displayedMessageIdsRef.current.has(message.id)) {
@@ -131,19 +132,19 @@ function GroupChat({ communityId, isMember = false }) {
 
       // Stop simulation after all messages are shown
       setTimeout(() => {
-        console.log(`[GroupChat-${componentIdRef.current}] ✅ Simulation complete for ${communityId}`);
+        console.log(`[GroupChat-${componentIdRef.current}] [ok]Simulation complete for ${communityId}`);
         setIsSimulating(false)
       }, demoMessages.length * 2000 + 1000)
 
       return cleanup
     } else {
       // If not simulating, show all messages immediately
-      console.log(`[GroupChat-${componentIdRef.current}] ⚡ Showing all messages immediately for ${communityId}`);
+      console.log(`[GroupChat-${componentIdRef.current}] [instant]Showing all messages immediately for ${communityId}`);
       hasSimulatedRef.current.add(communityId);
       const allMessages = communityMessages;
       allMessages.forEach(msg => displayedMessageIdsRef.current.add(msg.id))
       setDisplayedMessages(allMessages)
-      console.log(`[GroupChat-${componentIdRef.current}] ✅ Set ${allMessages.length} messages to displayedMessages`, {
+      console.log(`[GroupChat-${componentIdRef.current}] [ok]Set ${allMessages.length} messages to displayedMessages`, {
         messageIds: allMessages.map(m => m.id)
       });
     }
@@ -167,7 +168,7 @@ function GroupChat({ communityId, isMember = false }) {
     )
     
     if (newMessages.length > 0) {
-      console.log(`[GroupChat-${componentIdRef.current}] 📬 Adding ${newMessages.length} new messages`);
+      console.log(`[GroupChat-${componentIdRef.current}] [new]Adding ${newMessages.length} new messages`);
       setDisplayedMessages(prev => {
         const updated = [...prev]
         newMessages.forEach(msg => {
@@ -186,7 +187,7 @@ function GroupChat({ communityId, isMember = false }) {
 
     // Check if message is already displayed (prevent duplicates)
     if (displayedMessageIdsRef.current.has(newMessage.id)) {
-      console.log(`[GroupChat-${componentIdRef.current}] ⚠️ Message ${newMessage.id} already displayed, skipping`)
+      console.log(`[GroupChat-${componentIdRef.current}] [warn]Message ${newMessage.id} already displayed, skipping`)
       return
     }
 
@@ -205,7 +206,7 @@ function GroupChat({ communityId, isMember = false }) {
     // Check if user sent "hello" (case insensitive) to trigger conversation flow
     const messageText = newMessage.text?.toLowerCase().trim()
     if ((messageText === 'hello' || messageText === 'hi' || messageText === 'hey') && newMessage.userId === user?.id) {
-      console.log(`[GroupChat-${componentIdRef.current}] 🎬 Triggering conversation flow after "hello"`)
+      console.log(`[GroupChat-${componentIdRef.current}] [start]Triggering conversation flow after "hello"`)
       // Use actual user name from AuthContext (fallback to message userName)
       const userName = user?.name || newMessage.userName || 'there'
       // Don't await - let it run in background
@@ -219,7 +220,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c001': { // Outdoor Enthusiasts
         conversation: [
           {
-            text: 'Hey {userName}! Great to see you here! 👋',
+            text: 'Hey {userName}! Great to see you here!',
             delay: 2000,
             userId: 'u002',
             userName: 'Marcus Johnson'
@@ -251,7 +252,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'Where should we go for our next group activity?',
-          options: ['Beach 🏖️', 'Mountain ⛰️', 'City 🏙️', 'Park 🌳'],
+          options: ['Beach', 'Mountain', 'City', 'Park'],
           creatorId: 'u002',
           creatorName: 'Marcus Johnson'
         }
@@ -259,7 +260,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c002': { // Wellness Warriors
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our wellness circle! 🧘‍♀️',
+            text: 'Hello {userName}! Welcome to our wellness circle!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -291,7 +292,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What type of wellness session should we have next?',
-          options: ['Yoga Flow 🧘', 'Meditation 🧘‍♀️', 'Breathwork 🌬️', 'Mindful Walking 🚶'],
+          options: ['Yoga Flow', 'Meditation', 'Breathwork', 'Mindful Walking'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -299,7 +300,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c003': { // Creative Souls
         conversation: [
           {
-            text: 'Hi {userName}! Welcome to our creative space! 🎨',
+            text: 'Hi {userName}! Welcome to our creative space!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -331,7 +332,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What creative activity should we do together next?',
-          options: ['Painting Workshop 🎨', 'Pottery Class 🏺', 'Photography Walk 📸', 'Writing Circle ✍️'],
+          options: ['Painting Workshop', 'Pottery Class', 'Photography Walk', 'Writing Circle'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -339,7 +340,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c004': { // Fitness Fanatics
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to the fitness community! 💪',
+            text: 'Hey {userName}! Welcome to the fitness community!',
             delay: 2000,
             userId: 'u007',
             userName: 'Jake Morrison'
@@ -371,7 +372,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What type of workout should we do next?',
-          options: ['HIIT Training 💥', 'Yoga Flow 🧘', 'Running Group 🏃', 'Strength Training 🏋️'],
+          options: ['HIIT Training', 'Yoga Flow', 'Running Group', 'Strength Training'],
           creatorId: 'u007',
           creatorName: 'Jake Morrison'
         }
@@ -379,7 +380,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c005': { // Book Lovers Circle
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our book club! 📚',
+            text: 'Hello {userName}! Welcome to our book club!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -411,7 +412,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What should we read next?',
-          options: ['Fiction Novel 📖', 'Non-Fiction 📘', 'Mystery/Thriller 🔍', 'Self-Help 💡'],
+          options: ['Fiction Novel', 'Non-Fiction', 'Mystery/Thriller', 'Self-Help'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -419,7 +420,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c006': { // Mental Health Support
         conversation: [
           {
-            text: 'Hi {userName}! Welcome to our supportive community! 💚',
+            text: 'Hi {userName}! Welcome to our supportive community!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -451,7 +452,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What topic should we discuss in our next session?',
-          options: ['Stress Management 🧘', 'Building Resilience 💪', 'Self-Care Practices 🌸', 'Mindfulness Techniques 🧠'],
+          options: ['Stress Management', 'Building Resilience', 'Self-Care Practices', 'Mindfulness Techniques'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -459,7 +460,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c007': { // Foodie Adventures
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to our foodie community! 🍳',
+            text: 'Hey {userName}! Welcome to our foodie community!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -491,7 +492,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What cuisine should we explore next?',
-          options: ['Italian 🍝', 'Asian Fusion 🥢', 'Mediterranean 🥗', 'Desserts 🍰'],
+          options: ['Italian', 'Asian Fusion', 'Mediterranean', 'Desserts'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -499,7 +500,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c008': { // Music Makers
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our music community! 🎵',
+            text: 'Hello {userName}! Welcome to our music community!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -531,7 +532,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What music style should we explore?',
-          options: ['Acoustic 🎸', 'Jazz 🎷', 'Electronic 🎹', 'Rock 🎸'],
+          options: ['Acoustic', 'Jazz', 'Electronic', 'Rock'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -539,7 +540,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c009': { // Tech Enthusiasts
         conversation: [
           {
-            text: 'Hi {userName}! Welcome to our tech community! 💻',
+            text: 'Hi {userName}! Welcome to our tech community!',
             delay: 2000,
             userId: 'u008',
             userName: 'Lisa Chen'
@@ -571,7 +572,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What tech topic should we discuss next?',
-          options: ['AI & Machine Learning 🤖', 'Web Development 🌐', 'Mobile Apps 📱', 'Cybersecurity 🔒'],
+          options: ['AI & Machine Learning', 'Web Development', 'Mobile Apps', 'Cybersecurity'],
           creatorId: 'u008',
           creatorName: 'Lisa Chen'
         }
@@ -579,7 +580,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c010': { // Gaming Guild
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to our gaming community! 🎮',
+            text: 'Hey {userName}! Welcome to our gaming community!',
             delay: 2000,
             userId: 'u007',
             userName: 'Jake Morrison'
@@ -611,7 +612,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What type of game should we play?',
-          options: ['Co-op Games 🤝', 'Strategy Games 🎯', 'RPG Games ⚔️', 'Casual Games 🎲'],
+          options: ['Co-op Games', 'Strategy Games', 'RPG Games', 'Casual Games'],
           creatorId: 'u007',
           creatorName: 'Jake Morrison'
         }
@@ -619,7 +620,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c011': { // Travel Explorers
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our travel community! ✈️',
+            text: 'Hello {userName}! Welcome to our travel community!',
             delay: 2000,
             userId: 'u002',
             userName: 'Marcus Johnson'
@@ -651,7 +652,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'Where should we plan our next group trip?',
-          options: ['Beach Destination 🏖️', 'Mountain Retreat ⛰️', 'City Exploration 🏙️', 'Nature Adventure 🌲'],
+          options: ['Beach Destination', 'Mountain Retreat', 'City Exploration', 'Nature Adventure'],
           creatorId: 'u002',
           creatorName: 'Marcus Johnson'
         }
@@ -659,7 +660,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c012': { // Parenting Circle
         conversation: [
           {
-            text: 'Hi {userName}! Welcome to our parenting community! 👶',
+            text: 'Hi {userName}! Welcome to our parenting community!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -691,7 +692,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What activity should we organize next?',
-          options: ['Playdate at Park 🎈', 'Parent Support Group 💬', 'Educational Workshop 📚', 'Family Picnic 🧺'],
+          options: ['Playdate at Park', 'Parent Support Group', 'Educational Workshop', 'Family Picnic'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -699,7 +700,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c013': { // Yoga & Mindfulness
         conversation: [
           {
-            text: 'Namaste {userName}! Welcome to our yoga community! 🧘',
+            text: 'Namaste {userName}! Welcome to our yoga community!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -731,7 +732,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What yoga style should we practice?',
-          options: ['Hatha Yoga 🧘', 'Vinyasa Flow 🌊', 'Yin Yoga 🌙', 'Power Yoga 💪'],
+          options: ['Hatha Yoga', 'Vinyasa Flow', 'Yin Yoga', 'Power Yoga'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -739,7 +740,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c014': { // Photography Enthusiasts
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to our photography community! 📸',
+            text: 'Hey {userName}! Welcome to our photography community!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -771,7 +772,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'Where should we go for our next photo walk?',
-          options: ['City Streets 🏙️', 'Nature Park 🌳', 'Beach Sunset 🌅', 'Urban Architecture 🏛️'],
+          options: ['City Streets', 'Nature Park', 'Beach Sunset', 'Urban Architecture'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -779,7 +780,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c015': { // Cooking & Recipes
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our cooking community! 🍳',
+            text: 'Hello {userName}! Welcome to our cooking community!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -811,7 +812,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What should we cook together next?',
-          options: ['Pasta Night 🍝', 'Asian Fusion 🥢', 'Baking Workshop 🍰', 'BBQ Party 🍖'],
+          options: ['Pasta Night', 'Asian Fusion', 'Baking Workshop', 'BBQ Party'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -819,7 +820,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c016': { // Art & Crafts
         conversation: [
           {
-            text: 'Hi {userName}! Welcome to our art community! 🎨',
+            text: 'Hi {userName}! Welcome to our art community!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -851,7 +852,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What art form should we explore?',
-          options: ['Watercolor Painting 🎨', 'Pottery Making 🏺', 'Sketching ✏️', 'Digital Art 💻'],
+          options: ['Watercolor Painting', 'Pottery Making', 'Sketching', 'Digital Art'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -859,7 +860,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c017': { // Nature Lovers
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to our nature community! 🌿',
+            text: 'Hey {userName}! Welcome to our nature community!',
             delay: 2000,
             userId: 'u002',
             userName: 'Marcus Johnson'
@@ -891,7 +892,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What nature activity should we do?',
-          options: ['Bird Watching 🦅', 'Nature Photography 📸', 'Forest Walk 🌲', 'Wildlife Spotting 🦌'],
+          options: ['Bird Watching', 'Nature Photography', 'Forest Walk', 'Wildlife Spotting'],
           creatorId: 'u002',
           creatorName: 'Marcus Johnson'
         }
@@ -899,7 +900,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c018': { // Hiking Adventures
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our hiking community! 🥾',
+            text: 'Hello {userName}! Welcome to our hiking community!',
             delay: 2000,
             userId: 'u002',
             userName: 'Marcus Johnson'
@@ -931,7 +932,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What type of hike should we do?',
-          options: ['Easy Trail 🚶', 'Moderate Hike ⛰️', 'Challenging Climb 🧗', 'Multi-day Trek 🏕️'],
+          options: ['Easy Trail', 'Moderate Hike', 'Challenging Climb', 'Multi-day Trek'],
           creatorId: 'u002',
           creatorName: 'Marcus Johnson'
         }
@@ -939,7 +940,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c019': { // Meditation Circle
         conversation: [
           {
-            text: 'Welcome {userName}! Welcome to our meditation circle! 🧘‍♀️',
+            text: 'Welcome {userName}! Welcome to our meditation circle!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -971,7 +972,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What meditation practice should we do?',
-          options: ['Mindfulness 🧠', 'Loving-Kindness 💚', 'Body Scan 🧘', 'Breathwork 🌬️'],
+          options: ['Mindfulness', 'Loving-Kindness', 'Body Scan', 'Breathwork'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -979,7 +980,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c020': { // Food & Dining
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to our foodie community! 🍔',
+            text: 'Hey {userName}! Welcome to our foodie community!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -1011,7 +1012,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What type of restaurant should we try?',
-          options: ['Fine Dining 🍽️', 'Casual Eatery 🍕', 'Street Food 🥟', 'Cafe & Brunch ☕'],
+          options: ['Fine Dining', 'Casual Eatery', 'Street Food', 'Cafe & Brunch'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -1019,7 +1020,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c021': { // Music Lovers
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our music community! 🎵',
+            text: 'Hello {userName}! Welcome to our music community!',
             delay: 2000,
             userId: 'u005',
             userName: 'Alex Rivera'
@@ -1051,7 +1052,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What music event should we organize?',
-          options: ['Concert Night 🎤', 'Open Mic 🎙️', 'Music Festival 🎪', 'Album Listening Party 🎧'],
+          options: ['Concert Night', 'Open Mic', 'Music Festival', 'Album Listening Party'],
           creatorId: 'u005',
           creatorName: 'Alex Rivera'
         }
@@ -1059,7 +1060,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c022': { // Tech & Innovation
         conversation: [
           {
-            text: 'Hi {userName}! Welcome to our tech community! 💻',
+            text: 'Hi {userName}! Welcome to our tech community!',
             delay: 2000,
             userId: 'u008',
             userName: 'Lisa Chen'
@@ -1091,7 +1092,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What tech topic should we discuss?',
-          options: ['AI & ML 🤖', 'Web Dev 🌐', 'Mobile Apps 📱', 'Cloud Computing ☁️'],
+          options: ['AI & ML', 'Web Dev', 'Mobile Apps', 'Cloud Computing'],
           creatorId: 'u008',
           creatorName: 'Lisa Chen'
         }
@@ -1099,7 +1100,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c023': { // Gaming Community
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to our gaming community! 🎮',
+            text: 'Hey {userName}! Welcome to our gaming community!',
             delay: 2000,
             userId: 'u007',
             userName: 'Jake Morrison'
@@ -1131,7 +1132,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What type of game should we play?',
-          options: ['Co-op Games 🤝', 'Battle Royale 🎯', 'RPG Adventure ⚔️', 'Puzzle Games 🧩'],
+          options: ['Co-op Games', 'Battle Royale', 'RPG Adventure', 'Puzzle Games'],
           creatorId: 'u007',
           creatorName: 'Jake Morrison'
         }
@@ -1139,7 +1140,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c024': { // Travel & Adventure
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our travel community! ✈️',
+            text: 'Hello {userName}! Welcome to our travel community!',
             delay: 2000,
             userId: 'u002',
             userName: 'Marcus Johnson'
@@ -1171,7 +1172,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What type of destination should we visit?',
-          options: ['Tropical Beach 🏖️', 'Mountain Retreat ⛰️', 'Historic City 🏛️', 'Adventure Park 🎢'],
+          options: ['Tropical Beach', 'Mountain Retreat', 'Historic City', 'Adventure Park'],
           creatorId: 'u002',
           creatorName: 'Marcus Johnson'
         }
@@ -1179,7 +1180,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c025': { // Parenting Support
         conversation: [
           {
-            text: 'Hi {userName}! Welcome to our parenting community! 👶',
+            text: 'Hi {userName}! Welcome to our parenting community!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -1211,7 +1212,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What should we organize next?',
-          options: ['Kids Playdate 🎈', 'Parent Workshop 📚', 'Family Activity 👨‍👩‍👧', 'Support Group 💬'],
+          options: ['Kids Playdate', 'Parent Workshop', 'Family Activity', 'Support Group'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -1219,7 +1220,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c026': { // Reading Club
         conversation: [
           {
-            text: 'Hello {userName}! Welcome to our book club! 📚',
+            text: 'Hello {userName}! Welcome to our book club!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -1251,7 +1252,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What genre should we read next?',
-          options: ['Fiction 📖', 'Mystery 🔍', 'Biography 📘', 'Self-Help 💡'],
+          options: ['Fiction', 'Mystery', 'Biography', 'Self-Help'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -1259,7 +1260,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c027': { // Mental Wellness
         conversation: [
           {
-            text: 'Welcome {userName}! Welcome to our wellness community! 💚',
+            text: 'Welcome {userName}! Welcome to our wellness community!',
             delay: 2000,
             userId: 'u001',
             userName: 'Sarah Chen'
@@ -1291,7 +1292,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What wellness topic should we focus on?',
-          options: ['Stress Relief 🧘', 'Emotional Health 💚', 'Self-Care 🌸', 'Mindfulness 🧠'],
+          options: ['Stress Relief', 'Emotional Health', 'Self-Care', 'Mindfulness'],
           creatorId: 'u001',
           creatorName: 'Sarah Chen'
         }
@@ -1299,7 +1300,7 @@ function GroupChat({ communityId, isMember = false }) {
       'c028': { // Active Lifestyle
         conversation: [
           {
-            text: 'Hey {userName}! Welcome to our active community! 🏃',
+            text: 'Hey {userName}! Welcome to our active community!',
             delay: 2000,
             userId: 'u007',
             userName: 'Jake Morrison'
@@ -1331,7 +1332,7 @@ function GroupChat({ communityId, isMember = false }) {
         ],
         poll: {
           question: 'What fitness challenge should we do?',
-          options: ['30-Day Challenge 💪', 'Running Group 🏃', 'Strength Training 🏋️', 'Yoga Challenge 🧘'],
+          options: ['30-Day Challenge', 'Running Group', 'Strength Training', 'Yoga Challenge'],
           creatorId: 'u007',
           creatorName: 'Jake Morrison'
         }
@@ -1375,7 +1376,7 @@ function GroupChat({ communityId, isMember = false }) {
     await new Promise(resolve => setTimeout(resolve, 2000))
     
     try {
-      console.log(`[GroupChat-${componentIdRef.current}] 📊 Creating poll for community ${communityId}...`)
+      console.log(`[GroupChat-${componentIdRef.current}] [poll]Creating poll for community ${communityId}...`)
       const pollMessage = await chatService.createPoll(
         communityId,
         config.poll.question,
@@ -1384,15 +1385,15 @@ function GroupChat({ communityId, isMember = false }) {
         config.poll.creatorName
       )
 
-      console.log(`[GroupChat-${componentIdRef.current}] 📊 Poll creation response:`, JSON.stringify(pollMessage, null, 2))
+      console.log(`[GroupChat-${componentIdRef.current}] [poll]Poll creation response:`, JSON.stringify(pollMessage, null, 2))
 
       if (!pollMessage) {
-        console.error(`[GroupChat-${componentIdRef.current}] ❌ Poll creation returned null/undefined`)
+        console.error(`[GroupChat-${componentIdRef.current}] [error]Poll creation returned null/undefined`)
         return
       }
 
       if (!pollMessage.poll) {
-        console.error(`[GroupChat-${componentIdRef.current}] ❌ Poll message missing poll data!`, {
+        console.error(`[GroupChat-${componentIdRef.current}] [error]Poll message missing poll data!`, {
           messageId: pollMessage.id,
           messageType: pollMessage.type,
           hasPoll: !!pollMessage.poll,
@@ -1400,7 +1401,7 @@ function GroupChat({ communityId, isMember = false }) {
         })
         // Try to fix it by adding poll data manually
         if (pollMessage.type === 'poll') {
-          console.log(`[GroupChat-${componentIdRef.current}] 🔧 Attempting to fix poll data...`)
+          console.log(`[GroupChat-${componentIdRef.current}] [fix]Attempting to fix poll data...`)
           const fallbackConfig = getCommunityConfig(communityId)
           pollMessage.poll = {
             question: fallbackConfig.poll.question,
@@ -1412,33 +1413,33 @@ function GroupChat({ communityId, isMember = false }) {
             })),
             totalVotes: 0
           }
-          console.log(`[GroupChat-${componentIdRef.current}] ✅ Fixed poll data`)
+          console.log(`[GroupChat-${componentIdRef.current}] [ok]Fixed poll data`)
         }
       }
 
       if (pollMessage && pollMessage.poll) {
-        console.log(`[GroupChat-${componentIdRef.current}] ✅ Poll created successfully with poll data`)
+        console.log(`[GroupChat-${componentIdRef.current}] [ok]Poll created successfully with poll data`)
         // Mark as displayed and add to context
         displayedMessageIdsRef.current.add(pollMessage.id)
         setDisplayedMessages(prev => [...prev, pollMessage])
         await sendMessage(communityId, pollMessage)
-        console.log(`[GroupChat-${componentIdRef.current}] ✅ Poll displayed in chat`)
+        console.log(`[GroupChat-${componentIdRef.current}] [ok]Poll displayed in chat`)
         
         // Simulate votes from multiple users after a short delay
         setTimeout(() => {
           simulatePollVotes(pollMessage.id, pollMessage.poll)
         }, 3000) // Start simulating votes 3 seconds after poll is created
       } else {
-        console.error(`[GroupChat-${componentIdRef.current}] ❌ Still missing poll data after fix attempt`)
+        console.error(`[GroupChat-${componentIdRef.current}] [error]Still missing poll data after fix attempt`)
       }
     } catch (error) {
-      console.error(`[GroupChat-${componentIdRef.current}] ❌ Error creating poll:`, error)
+      console.error(`[GroupChat-${componentIdRef.current}] [error]Error creating poll:`, error)
     }
   }
 
   // Simulate votes from multiple users on a poll
   const simulatePollVotes = async (pollMessageId, pollData) => {
-    console.log(`[GroupChat-${componentIdRef.current}] 🗳️ Starting to simulate votes for poll ${pollMessageId}`)
+    console.log(`[GroupChat-${componentIdRef.current}] [vote]Starting to simulate votes for poll ${pollMessageId}`)
     
     // List of simulated users who will vote
     const simulatedUsers = [
@@ -1454,7 +1455,7 @@ function GroupChat({ communityId, isMember = false }) {
     // Randomly assign votes to different options
     const options = pollData.options || []
     if (options.length === 0) {
-      console.error(`[GroupChat-${componentIdRef.current}] ❌ No options in poll data`)
+      console.error(`[GroupChat-${componentIdRef.current}] [error]No options in poll data`)
       return
     }
 
@@ -1472,7 +1473,7 @@ function GroupChat({ communityId, isMember = false }) {
       const selectedOption = options[optionIndex]
       
       try {
-        console.log(`[GroupChat-${componentIdRef.current}] 🗳️ Simulating vote: ${shuffledUsers[i].name} votes for ${selectedOption.text}`)
+        console.log(`[GroupChat-${componentIdRef.current}] [vote]Simulating vote: ${shuffledUsers[i].name} votes for ${selectedOption.text}`)
         const updatedMessage = await chatService.voteOnPoll(communityId, pollMessageId, selectedOption.id, shuffledUsers[i].id)
         
         if (updatedMessage && updatedMessage.poll) {
@@ -1490,11 +1491,11 @@ function GroupChat({ communityId, isMember = false }) {
           }))
         }
       } catch (error) {
-        console.error(`[GroupChat-${componentIdRef.current}] ❌ Error simulating vote:`, error)
+        console.error(`[GroupChat-${componentIdRef.current}] [error]Error simulating vote:`, error)
       }
     }
     
-    console.log(`[GroupChat-${componentIdRef.current}] ✅ Finished simulating votes`)
+    console.log(`[GroupChat-${componentIdRef.current}] [ok]Finished simulating votes`)
   }
 
   const handleCreatePoll = async () => {
@@ -1568,7 +1569,7 @@ function GroupChat({ communityId, isMember = false }) {
       <div className="px-4 py-3 border-b border-sage-200 bg-sage-50">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-gray-800">💬 Community Chat</h3>
+            <h3 className="font-semibold text-gray-800 flex items-center gap-2"><MessageCircle size={16} /> Community Chat</h3>
             <p className="text-xs text-gray-600">Real-time discussion</p>
           </div>
           {isSimulating && (
@@ -1589,7 +1590,7 @@ function GroupChat({ communityId, isMember = false }) {
         {displayedMessages.length === 0 ? (
           <div className="flex items-center justify-center h-full text-gray-500">
             <div className="text-center">
-              <p className="text-lg mb-2">💬</p>
+              <MessageCircle size={24} className="mx-auto mb-2 text-gray-400" />
               <p>No messages yet. Start the conversation!</p>
             </div>
           </div>

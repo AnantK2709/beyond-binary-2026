@@ -16,11 +16,11 @@ export const EVENT_TYPES = {
 }
 
 export const MOOD_OPTIONS = [
-  { value: 'amazing', label: 'Amazing', emoji: '🤩', color: 'green' },
-  { value: 'happy', label: 'Happy', emoji: '😊', color: 'sage' },
-  { value: 'neutral', label: 'Neutral', emoji: '😐', color: 'gray' },
-  { value: 'sad', label: 'Sad', emoji: '😔', color: 'blue' },
-  { value: 'stressed', label: 'Stressed', emoji: '😰', color: 'orange' }
+  { value: 'amazing', label: 'Amazing', icon: 'Star', color: 'green' },
+  { value: 'happy', label: 'Happy', icon: 'Smile', color: 'sage' },
+  { value: 'neutral', label: 'Neutral', icon: 'Meh', color: 'gray' },
+  { value: 'sad', label: 'Sad', icon: 'Frown', color: 'blue' },
+  { value: 'stressed', label: 'Stressed', icon: 'AlertTriangle', color: 'orange' }
 ]
 
 export const TIME_OF_DAY = {
@@ -40,14 +40,14 @@ export const POINT_REWARDS = {
 }
 
 export const INTERESTS = [
-  { id: 'wellness', label: 'Wellness', icon: '🧘‍♀️' },
-  { id: 'fitness', label: 'Fitness', icon: '💪' },
-  { id: 'outdoors', label: 'Outdoors', icon: '🌲' },
-  { id: 'creative', label: 'Creative Arts', icon: '🎨' },
-  { id: 'social', label: 'Social', icon: '👥' },
-  { id: 'learning', label: 'Learning', icon: '📚' },
-  { id: 'meditation', label: 'Meditation', icon: '🧘' },
-  { id: 'yoga', label: 'Yoga', icon: '🧘‍♀️' },
-  { id: 'music', label: 'Music', icon: '🎵' },
-  { id: 'cooking', label: 'Cooking', icon: '👨‍🍳' }
+  { id: 'wellness', label: 'Wellness', icon: 'Heart' },
+  { id: 'fitness', label: 'Fitness', icon: 'Dumbbell' },
+  { id: 'outdoors', label: 'Outdoors', icon: 'Trees' },
+  { id: 'creative', label: 'Creative Arts', icon: 'Palette' },
+  { id: 'social', label: 'Social', icon: 'Users' },
+  { id: 'learning', label: 'Learning', icon: 'BookOpen' },
+  { id: 'meditation', label: 'Meditation', icon: 'Brain' },
+  { id: 'yoga', label: 'Yoga', icon: 'Flower2' },
+  { id: 'music', label: 'Music', icon: 'Music' },
+  { id: 'cooking', label: 'Cooking', icon: 'ChefHat' }
 ]

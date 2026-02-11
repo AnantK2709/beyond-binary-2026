@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { MOCK_USERS } from '../utils/mockData';
+import { Flower2, Briefcase, Users, Star } from 'lucide-react';
 
 export default function SignInPage() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ export default function SignInPage() {
         {/* Logo */}
         <div className="text-center mb-8 animate-scale-in">
           <Link to="/" className="inline-flex items-center gap-2">
-            <span className="text-4xl">🌸</span>
+            <Flower2 size={36} className="text-sage-500" />
             <span className="text-3xl font-bold text-gradient">MindfulCircles</span>
           </Link>
           <p className="text-gray-600 mt-2">Welcome back!</p>
@@ -136,7 +137,7 @@ export default function SignInPage() {
                 }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">👩‍💼</span>
+                  <Briefcase size={24} className="text-sage-600" />
                   <div>
                     <div className="font-semibold text-gray-900 text-sm">Sarah Chen</div>
                     <div className="text-xs text-gray-600">Tech professional, 28</div>
@@ -154,7 +155,7 @@ export default function SignInPage() {
                 }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">👨‍👧</span>
+                  <Users size={24} className="text-sage-600" />
                   <div>
                     <div className="font-semibold text-gray-900 text-sm">Marcus Johnson</div>
                     <div className="text-xs text-gray-600">Parent, 42</div>
@@ -172,7 +173,7 @@ export default function SignInPage() {
                 }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">🌟</span>
+                  <Star size={24} className="text-sage-600" />
                   <div>
                     <div className="font-semibold text-gray-900 text-sm">Priya Kumar</div>
                     <div className="text-xs text-gray-600">Recent grad, 24</div>

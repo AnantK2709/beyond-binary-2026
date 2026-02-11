@@ -1,10 +1,11 @@
 import React from 'react';
+import IconRenderer from '../../common/IconRenderer';
 
 export default function AchievementsList({ user }) {
   const achievements = [
     {
       id: 1,
-      icon: '🔥',
+      icon: 'Flame',
       title: '7-Day Streak',
       description: 'Checked in for 7 consecutive days',
       unlocked: user?.currentStreak >= 7,
@@ -12,7 +13,7 @@ export default function AchievementsList({ user }) {
     },
     {
       id: 2,
-      icon: '👥',
+      icon: 'Users',
       title: 'Social Butterfly',
       description: 'Joined 3 different circles',
       unlocked: (user?.joinedCircles?.length || 0) >= 3,
@@ -20,7 +21,7 @@ export default function AchievementsList({ user }) {
     },
     {
       id: 3,
-      icon: '🎯',
+      icon: 'Target',
       title: 'Century Club',
       description: 'Earned 100 points',
       unlocked: (user?.totalPoints || 0) >= 100,
@@ -28,7 +29,7 @@ export default function AchievementsList({ user }) {
     },
     {
       id: 4,
-      icon: '📈',
+      icon: 'TrendingUp',
       title: 'Level Up',
       description: 'Reached Level 3',
       unlocked: (user?.level || 1) >= 3,
@@ -47,8 +48,8 @@ export default function AchievementsList({ user }) {
               : 'opacity-50 grayscale'
           }`}
         >
-          <div className={`text-4xl ${achievement.unlocked ? 'animate-bounce-gentle' : ''}`}>
-            {achievement.icon}
+          <div className={`${achievement.unlocked ? 'animate-bounce-gentle' : ''}`}>
+            <IconRenderer name={achievement.icon} size={36} />
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">

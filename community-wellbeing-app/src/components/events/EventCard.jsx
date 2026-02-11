@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
+import { Calendar, MapPin, Users, Building2 } from 'lucide-react'
+import IconRenderer from '../common/IconRenderer'
 import { EventContext } from '../../context/EventContext'
 import { eventService } from '../../services/eventService'
 
@@ -59,14 +61,14 @@ function EventCard({ event }) {
 
   const getCategoryIcon = (category) => {
     const icons = {
-      wellness: '🧘‍♀️',
-      outdoors: '🏞️',
-      arts: '🎨',
-      social: '👥',
-      sports: '⚽',
-      workshops: '🛠️'
+      wellness: 'HeartPulse',
+      outdoors: 'Mountain',
+      arts: 'Palette',
+      social: 'Users',
+      sports: 'Trophy',
+      workshops: 'Wrench'
     }
-    return icons[category] || '🎯'
+    return icons[category] || 'Target'
   }
 
   const formatTime = (time) => {
@@ -97,7 +99,7 @@ function EventCard({ event }) {
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
         ) : (
-          <span className="animate-float">{getCategoryIcon(event.category)}</span>
+          <span className="animate-float"><IconRenderer name={getCategoryIcon(event.category)} size={64} className="text-sage-600" /></span>
         )}
 
         {/* Verified Badge */}
@@ -132,15 +134,15 @@ function EventCard({ event }) {
         {/* Event Details */}
         <div className="space-y-2 text-sm text-gray-700">
           <div className="flex items-center gap-2">
-            <span className="text-base">📅</span>
+            <Calendar size={16} className="text-gray-500 flex-shrink-0" />
             <span className="font-medium">{formatDate(event.date)} • {formatTime(event.time)}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-base">📍</span>
+            <MapPin size={16} className="text-gray-500 flex-shrink-0" />
             <span className="truncate">{event.location}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-base">👥</span>
+            <Users size={16} className="text-gray-500 flex-shrink-0" />
             <span>
               {event.participants}/{event.maxParticipants} participants
               {event.participants >= event.maxParticipants * 0.8 && (
@@ -150,7 +152,7 @@ function EventCard({ event }) {
           </div>
           {event.organizer && (
             <div className="flex items-center gap-2">
-              <span className="text-base">🏢</span>
+              <Building2 size={16} className="text-gray-500 flex-shrink-0" />
               <span className="truncate font-medium text-sage-700">{event.organizer.name}</span>
             </div>
           )}

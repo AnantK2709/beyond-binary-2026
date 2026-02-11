@@ -48,7 +48,9 @@ export default {
         darkGray: '#2C3E3F',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif']
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        heading: ['Outfit', 'system-ui', 'sans-serif'],
+        body: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'soft': '0 4px 15px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
@@ -57,7 +59,10 @@ export default {
         'glow': '0 0 20px rgba(168, 213, 186, 0.3), 0 0 40px rgba(168, 213, 186, 0.2)',
         'glow-strong': '0 0 30px rgba(168, 213, 186, 0.5), 0 0 60px rgba(137, 207, 240, 0.3)',
         'glass': '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
-        'inner-glow': 'inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 1px 0 rgba(255, 255, 255, 0.8)'
+        'inner-glow': 'inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 1px 0 rgba(255, 255, 255, 0.8)',
+        'pop': '4px 4px 0px 0px rgba(30, 56, 48, 0.15)',
+        'pop-hover': '6px 6px 0px 0px rgba(30, 56, 48, 0.2)',
+        'pop-active': '2px 2px 0px 0px rgba(30, 56, 48, 0.15)'
       },
       backdropBlur: {
         'xs': '2px',

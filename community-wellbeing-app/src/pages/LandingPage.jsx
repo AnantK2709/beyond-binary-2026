@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useEffect, useRef } from 'react';
+import { Mic, ShieldCheck, Bot, MessageCircle, Gamepad2, BarChart3 } from 'lucide-react';
+
+const iconMap = { Mic, ShieldCheck, Bot, MessageCircle, Gamepad2, BarChart3 };
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -31,7 +34,7 @@ function LandingPage() {
 
   const features = [
     {
-      icon: '🎤',
+      icon: 'Mic',
       title: 'Voice Journaling',
       description: 'Express yourself naturally. Our AI analyzes your reflections and suggests personalized events.',
       color: 'from-sage-400/20 to-sage-600/20',
@@ -39,7 +42,7 @@ function LandingPage() {
       isNew: true,
     },
     {
-      icon: '✓',
+      icon: 'ShieldCheck',
       title: 'Verified Events',
       description: 'Join activities organized by trusted partners. Every event is vetted for safety and quality.',
       color: 'from-ocean-400/20 to-ocean-600/20',
@@ -47,7 +50,7 @@ function LandingPage() {
       isNew: false,
     },
     {
-      icon: '🤖',
+      icon: 'Bot',
       title: 'AI Recommendations',
       description: 'Get personalized suggestions based on your interests, mood, and behavior patterns.',
       color: 'from-calm-400/20 to-calm-600/20',
@@ -55,7 +58,7 @@ function LandingPage() {
       isNew: true,
     },
     {
-      icon: '💬',
+      icon: 'MessageCircle',
       title: 'Real-Time Chat',
       description: 'Connect instantly with community members. Organize events and build relationships.',
       color: 'from-sage-500/20 to-ocean-500/20',
@@ -63,7 +66,7 @@ function LandingPage() {
       isNew: true,
     },
     {
-      icon: '🎮',
+      icon: 'Gamepad2',
       title: 'Gamified Journey',
       description: 'Earn points, unlock badges, and level up as you attend events and build connections.',
       color: 'from-ocean-500/20 to-calm-500/20',
@@ -71,7 +74,7 @@ function LandingPage() {
       isNew: false,
     },
     {
-      icon: '📊',
+      icon: 'BarChart3',
       title: 'Monthly Reports',
       description: 'Track your emotional journey and social growth with personalized insights.',
       color: 'from-calm-500/20 to-sage-500/20',
@@ -100,11 +103,19 @@ function LandingPage() {
 
         {/* Main Hero Content */}
         <div className="relative z-10 text-center max-w-5xl mx-auto">
-          {/* Animated Icon Cluster */}
+          {/* Animated Geometric Cluster */}
           <div className="mb-12 relative h-32 flex items-center justify-center">
-            <span className="absolute text-7xl animate-float inline-block" style={{ animationDelay: '0s' }}>🌸</span>
-            <span className="absolute text-5xl animate-float inline-block opacity-60" style={{ left: '-60px', top: '20px', animationDelay: '0.5s' }}>✨</span>
-            <span className="absolute text-5xl animate-float inline-block opacity-60" style={{ right: '-60px', top: '20px', animationDelay: '1s' }}>💚</span>
+            <svg className="absolute animate-float" style={{ animationDelay: '0s' }} width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="36" fill="none" stroke="#A8D5BA" strokeWidth="3" opacity="0.8" />
+              <circle cx="40" cy="40" r="20" fill="#A8D5BA" opacity="0.3" />
+            </svg>
+            <svg className="absolute animate-float opacity-60" style={{ left: '-60px', top: '20px', animationDelay: '0.5s' }} width="56" height="56" viewBox="0 0 56 56">
+              <polygon points="28,4 52,48 4,48" fill="none" stroke="#5F9C8D" strokeWidth="2.5" opacity="0.7" />
+            </svg>
+            <svg className="absolute animate-float opacity-60" style={{ right: '-60px', top: '20px', animationDelay: '1s' }} width="56" height="56" viewBox="0 0 56 56">
+              <circle cx="28" cy="28" r="24" fill="#89CFF0" opacity="0.25" />
+              <circle cx="28" cy="28" r="14" fill="none" stroke="#89CFF0" strokeWidth="2" opacity="0.6" />
+            </svg>
           </div>
 
           <h1 className="text-6xl md:text-8xl font-bold mb-8 animate-scale-in">
@@ -201,8 +212,11 @@ function LandingPage() {
                   <div className="relative mb-8 flex justify-center">
                     <div className="relative">
                       <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-full blur-2xl animate-glow-pulse`}></div>
-                      <div className="relative text-8xl animate-float transform transition-transform duration-500 group-hover:scale-110">
-                        {feature.icon}
+                      <div className="relative w-24 h-24 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 flex items-center justify-center animate-float transform transition-transform duration-500 group-hover:scale-110">
+                        {(() => {
+                          const FeatureIcon = iconMap[feature.icon];
+                          return FeatureIcon ? <FeatureIcon size={48} strokeWidth={2} className="text-sage-600" /> : null;
+                        })()}
                       </div>
                     </div>
                   </div>

@@ -407,5 +407,62 @@
       ],
       "totalVotes": 7
     }
+  },
+  {
+    "id": "msg1770787473081",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Hello",
+    "timestamp": "2026-02-11T05:24:33.081Z",
+    "type": "message"
+  },
+  {
+    "id": "msg1770787487121",
+    "communityId": "c001",
+    "userId": "u002",
+    "userName": "Marcus Johnson",
+    "text": "Poll: Where should we go for our next group activity?",
+    "timestamp": "2026-02-11T05:24:47.121Z",
+    "type": "poll",
+    "poll": {
+      "question": "Where should we go for our next group activity?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "Beach 🏖️",
+          "votes": 2,
+          "voters": [
+            "u005",
+            "u008"
+          ]
+        },
+        {
+          "id": "opt2",
+          "text": "Mountain ⛰️",
+          "votes": 1,
+          "voters": [
+            "u007"
+          ]
+        },
+        {
+          "id": "opt3",
+          "text": "City 🏙️",
+          "votes": 3,
+          "voters": [
+            "u001",
+            "u002",
+            "u006"
+          ]
+        },
+        {
+          "id": "opt4",
+          "text": "Park 🌳",
+          "votes": 0,
+          "voters": []
+        }
+      ],
+      "totalVotes": 6
+    }
   }
 ]

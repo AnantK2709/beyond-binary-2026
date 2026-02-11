@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Users } from 'lucide-react';
 
 // ADD extra "components/" to ALL these imports
 import Navbar from '../components/components/common/Navbar';
@@ -67,19 +68,19 @@ export default function DashboardPage() {
         {/* Stats Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <StatsCard
-            icon="👥"
+            icon="Users"
             label="Circles Joined"
             value={user?.joinedCircles?.length || 0}
             color="from-sage-400 to-sage-600"
           />
           <StatsCard
-            icon="📅"
+            icon="Calendar"
             label="Sessions Attended"
             value={user?.attendedEvents?.length || 0}
             color="from-ocean-400 to-ocean-600"
           />
           <StatsCard
-            icon="😊"
+            icon="Smile"
             label="Avg Mood"
             value={user?.moodHistory?.length > 0
               ? (user.moodHistory.reduce((sum, m) => sum + m.score, 0) / user.moodHistory.length).toFixed(1)
@@ -87,7 +88,7 @@ export default function DashboardPage() {
             color="from-orange-400 to-orange-600"
           />
           <StatsCard
-            icon="🎯"
+            icon="Target"
             label="Total Points"
             value={user?.totalPoints || 0}
             color="from-purple-400 to-purple-600"
@@ -102,7 +103,7 @@ export default function DashboardPage() {
           >
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-2xl font-bold mb-2">👥 Explore Communities</h3>
+                <h3 className="text-2xl font-bold mb-2 font-heading flex items-center gap-2"><Users size={24} /> Explore Communities</h3>
                 <p className="text-sage-100">Join communities, chat with members, create polls, and organize events</p>
               </div>
               <button className="px-6 py-3 bg-white text-sage-600 rounded-lg hover:bg-sage-50 transition-colors font-semibold">

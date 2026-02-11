@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Star, ThumbsUp, ThumbsDown, Gift, AlertTriangle, CheckCircle } from 'lucide-react'
 import { eventService } from '../../services/eventService'
 import StarRating from '../common/StarRating'
 import LevelUpModal from './LevelUpModal'
@@ -95,7 +96,7 @@ function PostEventModal({ event, onClose, onSubmit }) {
           <>
             {/* Header */}
             <div className="text-center mb-6">
-              <div className="text-5xl mb-3">⭐</div>
+              <div className="mb-3"><Star size={48} className="text-amber-400 mx-auto" /></div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 How was your experience?
               </h2>
@@ -156,7 +157,7 @@ function PostEventModal({ event, onClose, onSubmit }) {
                         : 'bg-white/50 border-2 border-gray-300 text-gray-700 hover:border-sage-400 hover:bg-sage-50'
                     }`}
                   >
-                    <div className="text-2xl mb-1">👍</div>
+                    <div className="mb-1"><ThumbsUp size={24} className="mx-auto" /></div>
                     Yes
                   </button>
                   <button
@@ -168,7 +169,7 @@ function PostEventModal({ event, onClose, onSubmit }) {
                         : 'bg-white/50 border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50'
                     }`}
                   >
-                    <div className="text-2xl mb-1">👎</div>
+                    <div className="mb-1"><ThumbsDown size={24} className="mx-auto" /></div>
                     No
                   </button>
                 </div>
@@ -178,7 +179,7 @@ function PostEventModal({ event, onClose, onSubmit }) {
               <div className="bg-gradient-to-r from-sage-400/20 to-ocean-400/20 rounded-2xl p-4 border border-sage-300/30">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl">🎁</span>
+                    <Gift size={24} className="text-sage-600" />
                     <span className="font-semibold text-gray-800">Bonus Reward</span>
                   </div>
                   <span className="text-2xl font-bold text-sage-700">+50 pts</span>
@@ -188,7 +189,7 @@ function PostEventModal({ event, onClose, onSubmit }) {
               {/* Error Message */}
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-start gap-3 animate-shake">
-                  <span className="text-red-600 text-xl">⚠️</span>
+                  <AlertTriangle size={20} className="text-red-600 flex-shrink-0" />
                   <p className="text-sm text-red-700 font-medium">{error}</p>
                 </div>
               )}
@@ -227,7 +228,7 @@ function PostEventModal({ event, onClose, onSubmit }) {
           // Success Animation
           <div className="text-center py-12 animate-scale-up">
             <div className="relative inline-block mb-6">
-              <div className="text-8xl animate-bounce-gentle">✓</div>
+              <CheckCircle size={80} className="text-sage-500 mx-auto animate-bounce-gentle" />
               <div className="absolute inset-0 bg-sage-400/30 rounded-full blur-3xl animate-pulse"></div>
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-3">

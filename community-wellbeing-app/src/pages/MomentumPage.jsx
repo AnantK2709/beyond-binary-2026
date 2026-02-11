@@ -4,6 +4,7 @@ import Navbar from '../components/components/common/Navbar'
 import HabitTracker from '../components/momentum/HabitTracker'
 import Challenges from '../components/momentum/Challenges'
 import GrowthAnalytics from '../components/momentum/GrowthAnalytics'
+import { Rocket, TrendingUp, Flame, CheckSquare, Target, Star, BarChart3 } from 'lucide-react'
 
 function MomentumPage() {
   const { user } = useAuth()
@@ -75,13 +76,13 @@ function MomentumPage() {
             <div className="card p-8 animate-slide-up-fade">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-4xl font-bold text-gradient mb-3">🚀 Momentum</h1>
+                  <h1 className="text-4xl font-bold text-gradient mb-3 flex items-center gap-2"><Rocket size={36} strokeWidth={2} /> Momentum</h1>
                   <p className="text-gray-600 text-lg">
                     Build lasting habits and track your personal growth journey
                   </p>
                 </div>
-                <div className="hidden lg:block text-6xl animate-float">
-                  📈
+                <div className="hidden lg:block animate-float">
+                  <TrendingUp size={56} strokeWidth={1.5} />
                 </div>
               </div>
 
@@ -91,25 +92,25 @@ function MomentumPage() {
                   <div className="text-3xl font-bold text-sage-700">
                     {stats.currentStreak}
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Day Streak 🔥</div>
+                  <div className="text-sm text-gray-600 mt-1 flex items-center gap-1">Day Streak <Flame size={14} strokeWidth={2} /></div>
                 </div>
                 <div className="bg-gradient-to-br from-ocean-400/20 to-ocean-500/20 rounded-2xl p-4 border border-ocean-300/30">
                   <div className="text-3xl font-bold text-ocean-600">
                     {stats.habitsCompleted}
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Habits Done ✅</div>
+                  <div className="text-sm text-gray-600 mt-1 flex items-center gap-1">Habits Done <CheckSquare size={14} strokeWidth={2} /></div>
                 </div>
                 <div className="bg-gradient-to-br from-amber-400/20 to-amber-500/20 rounded-2xl p-4 border border-amber-300/30">
                   <div className="text-3xl font-bold text-amber-700">
                     {stats.challengesActive}
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Active Challenges 🎯</div>
+                  <div className="text-sm text-gray-600 mt-1 flex items-center gap-1">Active Challenges <Target size={14} strokeWidth={2} /></div>
                 </div>
                 <div className="bg-gradient-to-br from-sage-300/20 to-ocean-400/20 rounded-2xl p-4 border border-sage-300/30">
                   <div className="text-3xl font-bold text-sage-700">
                     {stats.totalPoints}
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Total Points ⭐</div>
+                  <div className="text-sm text-gray-600 mt-1 flex items-center gap-1">Total Points <Star size={14} strokeWidth={2} /></div>
                 </div>
               </div>
             </div>
@@ -127,7 +128,7 @@ function MomentumPage() {
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  <span className="mr-2">✅</span>
+                  <CheckSquare size={16} strokeWidth={2} className="mr-2 inline" />
                   Daily Habits
                 </button>
                 <button
@@ -138,7 +139,7 @@ function MomentumPage() {
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  <span className="mr-2">🎯</span>
+                  <Target size={16} strokeWidth={2} className="mr-2 inline" />
                   30-Day Challenges
                 </button>
                 <button
@@ -149,7 +150,7 @@ function MomentumPage() {
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  <span className="mr-2">📊</span>
+                  <BarChart3 size={16} strokeWidth={2} className="mr-2 inline" />
                   Growth Analytics
                 </button>
               </div>

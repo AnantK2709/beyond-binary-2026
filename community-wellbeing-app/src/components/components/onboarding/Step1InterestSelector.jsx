@@ -32,7 +32,7 @@ export default function Step1InterestSelector({ data, updateData, onNext }) {
     <div className="space-y-8">
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          What interests you? ✨
+          What interests you?
         </h2>
         <p className="text-gray-600 mb-6">
           Select all that apply. This helps us match you with the right circles.

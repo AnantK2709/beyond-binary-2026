@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import IconRenderer from '../../common/IconRenderer';
 
 import { MOCK_CIRCLES } from '../../../utils/mockData';
 export default function AIInsightBanner({ user }) {
@@ -14,11 +15,11 @@ export default function AIInsightBanner({ user }) {
       const recentMoods = user?.moodHistory?.slice(0, 7) || [];
       if (recentMoods.length > 0) {
         const avgMood = recentMoods.reduce((sum, m) => sum + m.score, 0) / recentMoods.length;
-        
+
         if (avgMood >= 4) {
           insights.push({
             type: 'positive',
-            icon: '✨',
+            icon: 'Sparkles',
             message: `Your mood has been consistently positive this week! Keep attending circles to maintain this momentum.`,
             action: 'View Analytics',
             actionLink: '/profile',
@@ -26,7 +27,7 @@ export default function AIInsightBanner({ user }) {
         } else if (avgMood < 3) {
           insights.push({
             type: 'supportive',
-            icon: '💙',
+            icon: 'Heart',
             message: `We've noticed you've been feeling low lately. Would you like to join a support circle?`,
             action: 'Find Support',
             actionLink: '/events',
@@ -38,7 +39,7 @@ export default function AIInsightBanner({ user }) {
       if (user?.interests?.includes('fitness') && user?.joinedCircles?.length < 2) {
         insights.push({
           type: 'recommendation',
-          icon: '🏃',
+          icon: 'Activity',
           message: `You love fitness! We found ${MOCK_CIRCLES.filter(c => c.tags.includes('fitness') || c.tags.includes('active')).length} new active circles that match your schedule.`,
           action: 'Explore Circles',
           actionLink: '/events',
@@ -49,7 +50,7 @@ export default function AIInsightBanner({ user }) {
       if (user?.currentStreak >= 7) {
         insights.push({
           type: 'celebration',
-          icon: '🎉',
+          icon: 'PartyPopper',
           message: `Amazing! You've maintained a ${user.currentStreak}-day streak. You're in the top 20% of our community!`,
           action: 'Share Achievement',
           actionLink: '/communities',
@@ -60,7 +61,7 @@ export default function AIInsightBanner({ user }) {
       if (insights.length === 0) {
         insights.push({
           type: 'general',
-          icon: '🌸',
+          icon: 'Flower2',
           message: `Based on your profile, we've curated ${MOCK_CIRCLES.length} circles perfect for you.`,
           action: 'Explore Circles',
           actionLink: '/events',
@@ -93,14 +94,16 @@ export default function AIInsightBanner({ user }) {
   };
 
   return (
-    <div 
+    <div
       className={`rounded-2xl border-2 p-6 mb-8 bg-gradient-to-r ${bgGradients[insight.type]} ${borderColors[insight.type]} animate-slide-up-fade`}
       style={{
         backdropFilter: 'blur(10px)',
       }}
     >
       <div className="flex items-start gap-4">
-        <div className="text-4xl animate-float">{insight.icon}</div>
+        <div className="animate-float">
+          <IconRenderer name={insight.icon} size={36} />
+        </div>
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
             <span className="badge-verified text-xs">

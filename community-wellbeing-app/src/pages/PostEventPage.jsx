@@ -4,20 +4,21 @@ import { EventContext } from '../context/EventContext'
 import { GamificationContext } from '../context/GamificationContext'
 import { eventService } from '../services/eventService'
 import { aiService } from '../services/aiService'
+import { Frown, Lock, CheckCircle, XCircle, Hourglass, Star, Sparkles } from 'lucide-react'
 
 import StarRating from '../components/common/StarRating'
 import Toast from '../components/common/Toast'
 import Navbar from '../components/components/common/Navbar'
 
 const MOODS = [
-  { value: 'happy', label: '😊 Happy' },
-  { value: 'energized', label: '⚡ Energized' },
-  { value: 'calm', label: '🧘 Calm' },
-  { value: 'neutral', label: '😐 Neutral' },
-  { value: 'stressed', label: '😰 Stressed' },
-  { value: 'anxious', label: '😟 Anxious' },
-  { value: 'lonely', label: '🥺 Lonely' },
-  { value: 'sad', label: '😔 Sad' }
+  { value: 'happy', label: 'Happy' },
+  { value: 'energized', label: 'Energized' },
+  { value: 'calm', label: 'Calm' },
+  { value: 'neutral', label: 'Neutral' },
+  { value: 'stressed', label: 'Stressed' },
+  { value: 'anxious', label: 'Anxious' },
+  { value: 'lonely', label: 'Lonely' },
+  { value: 'sad', label: 'Sad' }
 ]
 
 function PostEventPage() {
@@ -110,7 +111,7 @@ function PostEventPage() {
       })
 
       awardPoints(50, 'event_review', 'Event review')
-      showToast('success', `Submitted! +${saved?.pointsEarned ?? 50} points ✨`)
+      showToast('success', `Submitted! +${saved?.pointsEarned ?? 50} points`)
 
       // Generate AI insight (rule-based)
       const insightObj = await aiService.generateEventInsight(
@@ -151,7 +152,7 @@ function PostEventPage() {
         <Navbar />
         <div className="max-w-4xl mx-auto px-4 py-10">
           <div className="card p-8 text-center">
-            <div className="text-6xl mb-4">😕</div>
+            <div className="flex justify-center mb-4"><Frown size={56} className="text-gray-400" /></div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Event Not Found</h2>
             <p className="text-gray-600 mb-6">{error || 'The event you are looking for does not exist.'}</p>
             <Link to="/events" className="btn-primary px-6 py-3 inline-block">
@@ -182,7 +183,7 @@ function PostEventPage() {
 
           <div className="card p-8">
             <div className="text-center mb-6">
-              <div className="text-6xl mb-4">🔒</div>
+              <div className="flex justify-center mb-4"><Lock size={56} className="text-gray-400" /></div>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">Post-Event Feedback</h1>
               <p className="text-gray-600">
                 This form unlocks after you RSVP and the event has ended.
@@ -192,7 +193,7 @@ function PostEventPage() {
             <div className="space-y-4 mb-6">
               <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{hasRsvp ? '✅' : '❌'}</span>
+                  {hasRsvp ? <CheckCircle size={24} className="text-green-500" /> : <XCircle size={24} className="text-red-500" />}
                   <span className="font-medium text-gray-700">RSVP Status</span>
                 </div>
                 <span className={`font-semibold ${hasRsvp ? 'text-green-600' : 'text-red-600'}`}>
@@ -202,7 +203,7 @@ function PostEventPage() {
 
               <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{isEventPast ? '✅' : '⏳'}</span>
+                  {isEventPast ? <CheckCircle size={24} className="text-green-500" /> : <Hourglass size={24} className="text-orange-400" />}
                   <span className="font-medium text-gray-700">Event Status</span>
                 </div>
                 <span className={`font-semibold ${isEventPast ? 'text-green-600' : 'text-orange-600'}`}>
@@ -212,7 +213,7 @@ function PostEventPage() {
 
               <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{userReview ? '✅' : '⭐'}</span>
+                  {userReview ? <CheckCircle size={24} className="text-green-500" /> : <Star size={24} className="text-gray-400" />}
                   <span className="font-medium text-gray-700">Review Status</span>
                 </div>
                 <span className={`font-semibold ${userReview ? 'text-green-600' : 'text-gray-600'}`}>
@@ -276,7 +277,7 @@ function PostEventPage() {
         <button onClick={() => navigate(`/events/${event.id}`)} className="text-[#5F9C8D] underline">
           ← Back to Event
         </button>
-        <div className="text-sm text-gray-600">Earn points for feedback ✨</div>
+        <div className="text-sm text-gray-600 flex items-center gap-1">Earn points for feedback <Sparkles size={14} className="text-sage-500" /></div>
       </div>
 
       <div className="rounded-2xl border border-[#7AB5A3]/40 bg-white p-6">

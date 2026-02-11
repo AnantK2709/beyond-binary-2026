@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { PartyPopper, Sparkles } from 'lucide-react'
+import IconRenderer from '../common/IconRenderer'
 
 function LevelUpModal({ levelUpData, onClose }) {
   const [showContent, setShowContent] = useState(false)
@@ -8,7 +10,7 @@ function LevelUpModal({ levelUpData, onClose }) {
   const { oldLevel, newLevel, badge, message } = levelUpData || {
     oldLevel: 1,
     newLevel: 2,
-    badge: { name: 'Engagement Champion', icon: '🏆' },
+    badge: { name: 'Engagement Champion', icon: 'Trophy' },
     message: 'You\'ve reached a new level!'
   }
 
@@ -56,7 +58,7 @@ function LevelUpModal({ levelUpData, onClose }) {
                   animationDelay: `${Math.random() * 2}s`
                 }}
               >
-                {['⭐', '✨', '🌟', '💫'][Math.floor(Math.random() * 4)]}
+                <Sparkles size={24} className="text-yellow-300" />
               </div>
             </div>
           ))}
@@ -126,7 +128,7 @@ function LevelUpModal({ levelUpData, onClose }) {
         <div className="relative z-10 space-y-8">
           {/* Title */}
           <div className="space-y-2">
-            <div className="text-6xl mb-4 animate-bounce-gentle">🎉</div>
+            <div className="mb-4 animate-bounce-gentle"><PartyPopper size={56} className="text-sage-600 mx-auto" /></div>
             <h2 className="text-5xl font-bold text-gradient animate-slide-down">
               Level Up!
             </h2>
@@ -179,7 +181,7 @@ function LevelUpModal({ levelUpData, onClose }) {
               style={{ animationDelay: '600ms' }}
             >
               <div className="flex items-center justify-center gap-4">
-                <div className="text-5xl animate-bounce-gentle">{badge.icon}</div>
+                <div className="animate-bounce-gentle"><IconRenderer name={badge.icon} size={48} /></div>
                 <div className="text-left">
                   <p className="text-sm text-gray-600 font-medium mb-1">Badge Unlocked!</p>
                   <h3 className="text-2xl font-bold text-gray-900">{badge.name}</h3>

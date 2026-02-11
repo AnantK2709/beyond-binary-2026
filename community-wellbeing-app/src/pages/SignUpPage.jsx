@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Flower2 } from 'lucide-react';
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ export default function SignUpPage() {
         {/* Logo */}
         <div className="text-center mb-8 animate-scale-in">
           <Link to="/" className="inline-flex items-center gap-2">
-            <span className="text-4xl">🌸</span>
+            <Flower2 size={36} className="text-sage-500" />
             <span className="text-3xl font-bold text-gradient">MindfulCircles</span>
           </Link>
           <p className="text-gray-600 mt-2">Create your account</p>

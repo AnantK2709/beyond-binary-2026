@@ -25,7 +25,7 @@ function AIAnalysisSection({ insight }) {
 
   return (
     <div className="ai-block">
-      <h4>🤖 AI Insight</h4>
+      <h4>AI Insight</h4>
 
       {detected_emotions.length > 0 && (
         <div className="insight-section">

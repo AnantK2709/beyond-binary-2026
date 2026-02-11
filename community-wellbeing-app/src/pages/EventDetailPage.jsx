@@ -4,6 +4,7 @@ import { EventContext } from '../context/EventContext'
 import { eventService } from '../services/eventService'
 import EventDetailSidebar from '../components/events/EventDetailSidebar'
 import PostEventModal from '../components/events/PostEventModal'
+import { Frown, Star, Check, X, Backpack, Users, Target, Dumbbell, Palette, BookOpen } from 'lucide-react'
 
 function EventDetailPage() {
   const { id } = useParams()
@@ -85,15 +86,15 @@ const isEventPast = () => {
     return `${displayHour}:${minutes} ${ampm}`
   }
 
-  const getCategoryIcon = (category) => {
-    const icons = {
-      wellness: '🧘‍♀️',
-      fitness: '💪',
-      creative: '🎨',
-      social: '👥',
-      learning: '📚'
+  const getCategoryIcon = (category, size = 48) => {
+    const iconMap = {
+      wellness: <Target size={size} strokeWidth={1.5} />,
+      fitness: <Dumbbell size={size} strokeWidth={1.5} />,
+      creative: <Palette size={size} strokeWidth={1.5} />,
+      social: <Users size={size} strokeWidth={1.5} />,
+      learning: <BookOpen size={size} strokeWidth={1.5} />
     }
-    return icons[category] || '🎯'
+    return iconMap[category] || <Target size={size} strokeWidth={1.5} />
   }
 
   if (loading) {
@@ -111,7 +112,7 @@ const isEventPast = () => {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="card p-8 text-center max-w-md">
-          <div className="text-6xl mb-4">😕</div>
+          <div className="text-6xl mb-4"><Frown size={64} strokeWidth={1.5} className="mx-auto text-gray-400" /></div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Event Not Found</h2>
           <p className="text-gray-600 mb-6">{error || 'The event you are looking for does not exist.'}</p>
           <button
@@ -156,7 +157,7 @@ const isEventPast = () => {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content - Left Column */}
-          <div className="lg:col-span-2 space-y-6 lg:max-h-[calc(100vh-12rem)] lg:overflow-y-auto lg:pr-4 scrollbar-thin scrollbar-thumb-sage-400 scrollbar-track-gray-100">
+          <div className="lg:col-span-2 space-y-6">
             {/* Hero Image Section */}
             <div className="card overflow-hidden p-0">
               <div className="relative h-96 bg-gradient-to-br from-sage-300/40 to-ocean-400/40">
@@ -167,8 +168,8 @@ const isEventPast = () => {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-9xl">
-                    {getCategoryIcon(event.category)}
+                  <div className="w-full h-full flex items-center justify-center">
+                    {getCategoryIcon(event.category, 96)}
                   </div>
                 )}
 
@@ -182,8 +183,8 @@ const isEventPast = () => {
                       {event.category}
                     </span>
                     {event.organizer?.verified && (
-                      <span className="badge badge-success px-3 py-1.5 text-sm">
-                        ✓ Verified
+                      <span className="badge badge-success px-3 py-1.5 text-sm flex items-center gap-1">
+                        <Check size={14} strokeWidth={3} /> Verified
                       </span>
                     )}
                     {isEventPast() && (
@@ -207,7 +208,7 @@ const isEventPast = () => {
               <div className="card p-6 bg-gradient-to-r from-amber-400/20 to-orange-400/20 border-2 border-amber-400/50 animate-slide-up-fade">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3">
-                    <span className="text-3xl">⭐</span>
+                    <Star size={30} strokeWidth={2} className="text-amber-500 flex-shrink-0" />
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 mb-1">
                         How was your experience?
@@ -231,7 +232,7 @@ const isEventPast = () => {
             {userReview && (
               <div className="card p-6 border-2 border-sage-400/40">
                 <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <span>✓</span>
+                  <Check size={20} strokeWidth={2.5} />
                   Your Review
                 </h3>
                 <div className="space-y-3">
@@ -256,8 +257,8 @@ const isEventPast = () => {
                     <p className="text-gray-700">{userReview.text}</p>
                   )}
                   {userReview.wouldRecommend !== undefined && (
-                    <p className="text-sm text-gray-600">
-                      {userReview.wouldRecommend ? '✓ Would recommend' : '✗ Would not recommend'}
+                    <p className="text-sm text-gray-600 flex items-center gap-1">
+                      {userReview.wouldRecommend ? <><Check size={14} strokeWidth={2.5} /> Would recommend</> : <><X size={14} strokeWidth={2.5} /> Would not recommend</>}
                     </p>
                   )}
                 </div>
@@ -283,7 +284,7 @@ const isEventPast = () => {
             {event.whatToBring && event.whatToBring.length > 0 && (
               <div className="card p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <span>🎒</span>
+                  <Backpack size={24} strokeWidth={2} />
                   What to Bring
                 </h2>
                 <ul className="space-y-3">
@@ -333,8 +334,8 @@ const isEventPast = () => {
                       className="card card-hover p-4 cursor-pointer group"
                     >
                       <div className="flex gap-4">
-                        <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-sage-300/40 to-ocean-400/40 flex items-center justify-center text-3xl flex-shrink-0">
-                          {getCategoryIcon(similarEvent.category)}
+                        <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-sage-300/40 to-ocean-400/40 flex items-center justify-center flex-shrink-0">
+                          {getCategoryIcon(similarEvent.category, 32)}
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="font-bold text-gray-900 group-hover:text-sage-600 transition-colors line-clamp-2 mb-1">

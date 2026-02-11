@@ -8,6 +8,7 @@ import CommunityDetail from '../components/components/communities/CommunityDetai
 import CommunityEvents from '../components/components/communities/CommunityEvents'
 import CommunityMembers from '../components/components/communities/CommunityMembers'
 import { useToast } from '../hooks/useToast'
+import { MessageCircle, ClipboardList, Calendar, Users, Check, Target } from 'lucide-react'
 
 function CommunityDetailPage() {
   const { id } = useParams()
@@ -37,21 +38,21 @@ function CommunityDetailPage() {
 
     // Only load if we don't have this community loaded or if id changed
     if (id && loadedCommunityRef.current !== id) {
-      console.log(`[CommunityDetailPage-${componentIdRef.current}] ✅ Loading community ${id}`, {
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] Loading community ${id}`, {
         previousId: loadedCommunityRef.current
       });
       loadedCommunityRef.current = id
       
       const loadCommunity = async () => {
         try {
-          console.log(`[CommunityDetailPage-${componentIdRef.current}] 📡 Calling getCommunityById(${id})`)
+          console.log(`[CommunityDetailPage-${componentIdRef.current}] Calling getCommunityById(${id})`)
           const data = await communityService.getCommunityById(id)
-          console.log(`[CommunityDetailPage-${componentIdRef.current}] ✅ Received community data:`, {
+          console.log(`[CommunityDetailPage-${componentIdRef.current}] Received community data:`, {
             name: data?.name,
             id: data?.id
           })
           if (data && data.error) {
-            console.error(`[CommunityDetailPage-${componentIdRef.current}] ❌ API returned error:`, data.error)
+            console.error(`[CommunityDetailPage-${componentIdRef.current}] API returned error:`, data.error)
             setCommunity(null)
             setIsMember(false)
           } else {
@@ -67,7 +68,7 @@ function CommunityDetailPage() {
             }
           }
         } catch (error) {
-          console.error(`[CommunityDetailPage-${componentIdRef.current}] ❌ Error loading community:`, error)
+          console.error(`[CommunityDetailPage-${componentIdRef.current}] Error loading community:`, error)
           console.error('Error details:', {
             message: error.message,
             stack: error.stack,
@@ -82,9 +83,9 @@ function CommunityDetailPage() {
 
       loadCommunity()
     } else if (id && loadedCommunityRef.current === id) {
-      console.log(`[CommunityDetailPage-${componentIdRef.current}] ⚠️ Community ${id} already loaded, skipping`)
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] Community ${id} already loaded, skipping`)
     } else if (!id) {
-      console.log(`[CommunityDetailPage-${componentIdRef.current}] 🧹 Resetting (no id)`)
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] Resetting (no id)`)
       // Reset if no id
       loadedCommunityRef.current = null
       setCommunity(null)
@@ -92,7 +93,7 @@ function CommunityDetailPage() {
     }
 
     return () => {
-      console.log(`[CommunityDetailPage-${componentIdRef.current}] 🧹 Cleanup function called`, { id })
+      console.log(`[CommunityDetailPage-${componentIdRef.current}] Cleanup function called`, { id })
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, user]) // Depend on id and user to check membership when user changes
@@ -124,11 +125,18 @@ function CommunityDetailPage() {
     )
   }
 
+  const tabIcons = {
+    chat: <MessageCircle size={16} strokeWidth={2} />,
+    details: <ClipboardList size={16} strokeWidth={2} />,
+    events: <Calendar size={16} strokeWidth={2} />,
+    members: <Users size={16} strokeWidth={2} />
+  }
+
   const tabs = [
-    { id: 'chat', label: '💬 Chat', icon: '💬' },
-    { id: 'details', label: '📋 Details', icon: '📋' },
-    { id: 'events', label: '📅 Events', icon: '📅' },
-    { id: 'members', label: '👥 Members', icon: '👥' }
+    { id: 'chat', label: 'Chat' },
+    { id: 'details', label: 'Details' },
+    { id: 'events', label: 'Events' },
+    { id: 'members', label: 'Members' }
   ]
 
   return (
@@ -143,16 +151,16 @@ function CommunityDetailPage() {
               <div className="flex items-center gap-3 mb-2">
                 <h1 className="text-3xl font-bold text-gray-800">{community.name}</h1>
                 {community.verified && (
-                  <span className="px-2 py-1 bg-sage-100 text-sage-700 rounded-full text-xs font-semibold">
-                    ✓ Verified
+                  <span className="px-2 py-1 bg-sage-100 text-sage-700 rounded-full text-xs font-semibold flex items-center gap-1">
+                    <Check size={12} strokeWidth={3} /> Verified
                   </span>
                 )}
               </div>
               <p className="text-gray-600 mb-4">{community.description}</p>
               <div className="flex items-center gap-4 text-sm text-gray-600">
-                <span>👥 {community.members} members</span>
+                <span className="flex items-center gap-1"><Users size={14} strokeWidth={2} /> {community.members} members</span>
                 <span>•</span>
-                <span>🎯 {community.interests?.join(', ') || 'Various interests'}</span>
+                <span className="flex items-center gap-1"><Target size={14} strokeWidth={2} /> {community.interests?.join(', ') || 'Various interests'}</span>
               </div>
             </div>
           </div>
@@ -171,7 +179,7 @@ function CommunityDetailPage() {
                     : 'text-gray-600 hover:text-sage-600 hover:bg-sage-50'
                 }`}
               >
-                {tab.label}
+                <span className="flex items-center gap-1.5">{tabIcons[tab.id]} {tab.label}</span>
               </button>
             ))}
           </div>

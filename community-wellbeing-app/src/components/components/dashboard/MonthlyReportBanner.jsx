@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BarChart3 } from 'lucide-react';
 
 export default function MonthlyReportBanner() {
   const currentMonth = new Date().toLocaleDateString('en-US', { month: 'long' });
@@ -12,7 +13,9 @@ export default function MonthlyReportBanner() {
       }}
     >
       <div className="flex items-start gap-4">
-        <div className="text-5xl animate-float">📊</div>
+        <div className="animate-float">
+          <BarChart3 size={40} className="text-blue-500" />
+        </div>
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
             <h3 className="text-xl font-bold text-gray-900">

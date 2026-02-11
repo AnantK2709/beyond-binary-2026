@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import IconRenderer from '../../common/IconRenderer';
 
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 const TIMES = [
-  { value: 'morning', label: 'Morning', emoji: '🌅', time: '6am-11am' },
-  { value: 'afternoon', label: 'Afternoon', emoji: '☀️', time: '12pm-5pm' },
-  { value: 'evening', label: 'Evening', emoji: '🌆', time: '6pm-9pm' },
+  { value: 'morning', label: 'Morning', icon: 'Sunrise', time: '6am-11am' },
+  { value: 'afternoon', label: 'Afternoon', icon: 'Sun', time: '12pm-5pm' },
+  { value: 'evening', label: 'Evening', icon: 'Sunset', time: '6pm-9pm' },
 ];
 
 export default function Step2AvailabilityForm({ data, updateData, onNext, onBack }) {
@@ -112,7 +113,7 @@ export default function Step2AvailabilityForm({ data, updateData, onNext, onBack
                     : '2px solid rgba(168, 213, 186, 0.2)',
                 }}
               >
-                <div className="text-3xl mb-2">{time.emoji}</div>
+                <div className="mb-2"><IconRenderer name={time.icon} size={28} /></div>
                 <div className="font-semibold text-gray-900">{time.label}</div>
                 <div className="text-sm text-gray-600">{time.time}</div>
               </button>
@@ -159,10 +160,10 @@ export default function Step2AvailabilityForm({ data, updateData, onNext, onBack
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
-              { value: 'virtual', label: 'Virtual', icon: '💻', desc: 'Video calls' },
-              { value: 'in-person', label: 'In-Person', icon: '📍', desc: 'Meet-ups' },
-              { value: 'walk-talk', label: 'Walk & Talk', icon: '🚶', desc: 'Active meetings' },
-              { value: 'async', label: 'Async', icon: '💬', desc: 'Message-based' },
+              { value: 'virtual', label: 'Virtual', icon: 'Monitor', desc: 'Video calls' },
+              { value: 'in-person', label: 'In-Person', icon: 'MapPin', desc: 'Meet-ups' },
+              { value: 'walk-talk', label: 'Walk & Talk', icon: 'Footprints', desc: 'Active meetings' },
+              { value: 'async', label: 'Async', icon: 'MessageCircle', desc: 'Message-based' },
             ].map((mode) => (
               <button
                 key={mode.value}
@@ -182,7 +183,7 @@ export default function Step2AvailabilityForm({ data, updateData, onNext, onBack
                     : '2px solid rgba(168, 213, 186, 0.2)',
                 }}
               >
-                <div className="text-2xl mb-2">{mode.icon}</div>
+                <div className="mb-2"><IconRenderer name={mode.icon} size={24} /></div>
                 <div className="font-semibold text-gray-900">{mode.label}</div>
                 <div className="text-sm text-gray-600">{mode.desc}</div>
               </button>

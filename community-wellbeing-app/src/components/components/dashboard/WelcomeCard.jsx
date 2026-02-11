@@ -28,7 +28,7 @@ export default function WelcomeCard({ user }) {
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-3xl font-bold mb-2">
-            {getGreeting()}, {user?.name?.split(' ')[0]}! 👋
+            {getGreeting()}, {user?.name?.split(' ')[0]}!
           </h1>
           <p className="text-white/90 text-lg">
             {getMotivationalMessage()}
@@ -37,7 +37,7 @@ export default function WelcomeCard({ user }) {
         <div className="text-right">
           <div className="text-sm text-white/80 mb-1">Current Streak</div>
           <div className="text-4xl font-bold">
-            {user?.currentStreak || 0} 🔥
+            {user?.currentStreak || 0}
           </div>
         </div>
       </div>

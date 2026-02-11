@@ -148,7 +148,7 @@ export default function ProfilePage() {
               {/* Connections */}
               <div className="card">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  👥 My Circles
+                  My Circles
                 </h3>
                 <ConnectionsList user={user} />
               </div>

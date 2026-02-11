@@ -159,9 +159,9 @@ function EventsPage() {
                   {/* <span>📅</span> */}
                   <span className="hidden sm:inline">My Events</span>
                 </button>
-                <div className="hidden lg:block text-6xl animate-float">
-                  🎉
-                </div>
+                {/* <div className="hidden lg:block text-6xl animate-float"> */}
+                  {/* 🎉
+                </div> */}
               </div>
             </div>
 

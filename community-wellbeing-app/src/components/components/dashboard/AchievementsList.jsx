@@ -47,9 +47,9 @@ export default function AchievementsList({ user }) {
               : 'opacity-50 grayscale'
           }`}
         >
-          <div className={`text-4xl ${achievement.unlocked ? 'animate-bounce-gentle' : ''}`}>
+          {/* <div className={`text-4xl ${achievement.unlocked ? 'animate-bounce-gentle' : ''}`}>
             {achievement.icon}
-          </div>
+          </div> */}
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <h4 className="font-bold text-gray-900">{achievement.title}</h4>

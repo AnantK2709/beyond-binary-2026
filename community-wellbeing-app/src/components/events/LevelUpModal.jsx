@@ -126,7 +126,7 @@ function LevelUpModal({ levelUpData, onClose }) {
         <div className="relative z-10 space-y-8">
           {/* Title */}
           <div className="space-y-2">
-            <div className="text-6xl mb-4 animate-bounce-gentle">🎉</div>
+            {/* <div className="text-6xl mb-4 animate-bounce-gentle">🎉</div> */}
             <h2 className="text-5xl font-bold text-gradient animate-slide-down">
               Level Up!
             </h2>

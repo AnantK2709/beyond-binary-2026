@@ -136,7 +136,7 @@ function EventFilters({ filters, onFilterChange }) {
                     onChange={() => handleCategoryChange(cat.id)}
                     className="hidden"
                   />
-                  <span className="text-xl">{cat.icon}</span>
+                  {/* <span className="text-xl">{cat.icon}</span> */}
                   <span className="text-sm font-medium text-gray-700">{cat.label}</span>
                 </label>
               ))}
@@ -209,7 +209,7 @@ function EventFilters({ filters, onFilterChange }) {
                     onChange={() => handleTimeChange(time.id)}
                     className="hidden"
                   />
-                  <span className="text-xl">{time.icon}</span>
+                  {/* <span className="text-xl">{time.icon}</span> */}
                   <span className="text-sm font-medium text-gray-700">{time.label}</span>
                 </label>
               ))}

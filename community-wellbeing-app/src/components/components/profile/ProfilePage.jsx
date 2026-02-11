@@ -88,7 +88,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📊 Overview
+            Overview
           </button>
           <button
             onClick={() => setActiveTab('activity')}
@@ -98,7 +98,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            📅 Activity
+            Activity
           </button>
           <button
             onClick={() => setActiveTab('settings')}
@@ -108,7 +108,7 @@ export default function ProfilePage() {
                 : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
-            ⚙️ Settings
+            Settings
           </button>
         </div>
 
@@ -122,7 +122,7 @@ export default function ProfilePage() {
               {/* Badges */}
               <div className="card">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">
-                  🏆 Achievements & Badges
+                  Achievements & Badges
                 </h3>
                 <BadgeDisplay user={user} />
                 <div className="mt-6">
@@ -139,7 +139,7 @@ export default function ProfilePage() {
               {/* Connections */}
               <div className="card">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  👥 My Circles
+                  My Circles
                 </h3>
                 <ConnectionsList user={user} />
               </div>
@@ -152,7 +152,7 @@ export default function ProfilePage() {
             {/* Mood History */}
             <div className="card">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
-                😊 Mood History
+               Mood History
               </h3>
               <MoodHistoryChart user={user} />
             </div>
@@ -160,7 +160,7 @@ export default function ProfilePage() {
             {/* Attended Events */}
             <div className="card">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
-                📅 Attended Events
+                Attended Events
               </h3>
               <AttendedEventsList user={user} />
             </div>

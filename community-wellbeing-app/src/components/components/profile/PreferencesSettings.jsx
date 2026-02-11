@@ -16,12 +16,12 @@ export default function PreferencesSettings({ user }) {
       {/* Personality */}
       <div className="card">
         <h3 className="text-xl font-bold text-gray-900 mb-4">
-          🧠 Personality Type
+          Personality Type
         </h3>
         {personality ? (
           <div className="p-6 rounded-xl bg-gradient-to-br from-purple-50 to-indigo-50">
             <div className="flex items-start gap-4">
-              <div className="text-5xl">{personality.emoji}</div>
+              {/* <div className="text-5xl">{personality.emoji}</div> */}
               <div>
                 <h4 className="text-2xl font-bold text-gray-900 mb-2">
                   {personality.label}
@@ -38,7 +38,7 @@ export default function PreferencesSettings({ user }) {
       {/* Goals */}
       <div className="card">
         <h3 className="text-xl font-bold text-gray-900 mb-4">
-          🎯 Goals
+          Goals
         </h3>
         {user.goals?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -47,7 +47,7 @@ export default function PreferencesSettings({ user }) {
                 key={idx}
                 className="p-4 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 font-medium text-gray-900 capitalize flex items-center gap-2"
               >
-                <span className="text-xl">✓</span>
+                {/* <span className="text-xl">✓</span> */}
                 {goal.replace(/-/g, ' ')}
               </div>
             ))}
@@ -60,7 +60,7 @@ export default function PreferencesSettings({ user }) {
       {/* Availability */}
       <div className="card">
         <h3 className="text-xl font-bold text-gray-900 mb-4">
-          📅 Availability
+          Availability
         </h3>
         <div className="space-y-4">
           {/* Days */}
@@ -94,9 +94,9 @@ export default function PreferencesSettings({ user }) {
                     key={time}
                     className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium capitalize"
                   >
-                    {time === 'morning' && '🌅'}
-                    {time === 'afternoon' && '☀️'}
-                    {time === 'evening' && '🌆'}
+                    {time === 'morning' }
+                    {time === 'afternoon' }
+                    {time === 'evening'}
                     {' '}
                     {time}
                   </span>
@@ -105,24 +105,24 @@ export default function PreferencesSettings({ user }) {
             </div>
           )}
 
-          {/* Frequency */}
+          {/* Frequency
           {timePrefs.frequency && (
             <div>
               <h4 className="text-sm font-semibold text-gray-700 mb-2">
                 Frequency
               </h4>
-              <div className="p-4 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 text-gray-900 font-medium">
-                📊 {timePrefs.frequency}
-              </div>
+              {/* <div className="p-4 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 text-gray-900 font-medium">
+                 {timePrefs.frequency}
+              </div> }
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
       {/* Preferred Modes */}
       <div className="card">
         <h3 className="text-xl font-bold text-gray-900 mb-4">
-          💬 Preferred Modes
+          Preferred Modes
         </h3>
         {user.preferredModes?.length > 0 ? (
           <div className="grid grid-cols-2 gap-3">
@@ -131,11 +131,11 @@ export default function PreferencesSettings({ user }) {
                 key={mode}
                 className="p-4 rounded-xl bg-white border-2 border-sage-200 text-center font-medium text-gray-900"
               >
-                <div className="text-3xl mb-2">
-                  {mode === 'virtual' && '💻'}
-                  {mode === 'in-person' && '📍'}
-                  {mode === 'walk-talk' && '🚶'}
-                  {mode === 'async' && '💬'}
+                <div >
+                  {mode === 'virtual'}
+                  {mode === 'in-person'}
+                  {mode === 'walk-talk'}
+                  {mode === 'async'}
                 </div>
                 <div className="capitalize text-sm">
                   {mode.replace('-', ' & ')}
@@ -152,7 +152,7 @@ export default function PreferencesSettings({ user }) {
       {Object.keys(interactionPrefs).length > 0 && (
         <div className="card">
           <h3 className="text-xl font-bold text-gray-900 mb-4">
-            ✨ Ideal Vibe
+            Ideal Vibe
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {interactionPrefs.energyLevel && (

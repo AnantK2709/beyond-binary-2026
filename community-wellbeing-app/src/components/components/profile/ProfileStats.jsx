@@ -42,7 +42,7 @@ export default function ProfileStats({ user }) {
         >
           <div className="flex items-center gap-4">
             <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center text-2xl shadow-md flex-shrink-0`}>
-              {stat.icon}
+              {/* {stat.icon} */}
             </div>
             <div>
               <div className="text-2xl font-bold text-gray-900">

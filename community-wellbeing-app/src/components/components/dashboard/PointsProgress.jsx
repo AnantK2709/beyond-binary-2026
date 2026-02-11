@@ -43,7 +43,7 @@ export default function PointsProgress() {
           <div className="flex gap-2 flex-wrap">
             {badges.slice(-3).map((badge) => (
               <div key={badge.id} className="badge-verified text-xs">
-                {badge.icon} {badge.name}
+                {badge.name}
               </div>
             ))}
           </div>

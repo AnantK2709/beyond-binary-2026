@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
-import { Home, Calendar, TrendingUp, Users, BookOpen, User, Sparkles, LogOut, Flower2 } from 'lucide-react';
+import { Home, Calendar, TrendingUp, Users, BookOpen, User, Sparkles, LogOut } from 'lucide-react';
 import SearchBar from './SearchBar';
 
 export default function Navbar() {
@@ -40,9 +40,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-16 gap-4">
             {/* Logo */}
             <Link to="/dashboard" className="flex items-center gap-2 flex-shrink-0">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sage-500 to-sage-600 flex items-center justify-center shadow-md">
-                <Flower2 className="w-5 h-5 text-white" strokeWidth={2.5} />
-              </div>
+              <img src="/logo.png" alt="MindfulCircles" className="h-9 w-9 rounded-xl object-contain" />
               <span className="text-xl font-bold text-gradient hidden sm:inline font-heading">
                 MindfulCircles
               </span>

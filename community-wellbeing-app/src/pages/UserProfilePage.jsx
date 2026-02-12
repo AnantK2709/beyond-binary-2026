@@ -195,7 +195,8 @@ export default function UserProfilePage() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+        <div className={`flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 ${isFromSearch ? 'max-w-4xl mx-auto' : ''
+          }`}>
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
               {profileUser.name}'s Profile
@@ -242,112 +243,128 @@ export default function UserProfilePage() {
           )}
         </div>
 
-        {/* Quick Stats Banner */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="card text-center">
-            <div className="text-3xl font-bold text-sage-600">{profileUser.totalPoints || 0}</div>
-            <div className="text-xs text-gray-600 mt-1">Total Points</div>
-          </div>
-          <div className="card text-center">
-            <div className="text-3xl font-bold text-orange-600">{profileUser.currentStreak || 0}</div>
-            <div className="text-xs text-gray-600 mt-1">Day Streak</div>
-          </div>
-          <div className="card text-center">
-            <div className="text-3xl font-bold text-green-600">{totalCircles}</div>
-            <div className="text-xs text-gray-600 mt-1">Circles</div>
-          </div>
-          <div className="card text-center">
-            <div className="text-3xl font-bold text-blue-600">{avgMood}</div>
-            <div className="text-xs text-gray-600 mt-1">Avg Mood</div>
-          </div>
-        </div>
-
-        {/* Tab Navigation */}
-        <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
-          <button
-            onClick={() => setActiveTab('overview')}
-            className={`px-6 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${
-              activeTab === 'overview'
-                ? 'bg-sage-600 text-white shadow-lg'
-                : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
-            }`}
-          >
-            <span className="flex items-center gap-1.5"><BarChart3 size={16} strokeWidth={2} /> Overview</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('activity')}
-            className={`px-6 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${
-              activeTab === 'activity'
-                ? 'bg-sage-600 text-white shadow-lg'
-                : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
-            }`}
-          >
-            <span className="flex items-center gap-1.5"><Calendar size={16} strokeWidth={2} /> Activity</span>
-          </button>
-        </div>
-
-        {/* Tab Content */}
-        {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left Column */}
-            <div className="lg:col-span-2 space-y-6">
-              <ProfileHeader user={profileUser} />
-              
-              {/* Interests */}
-              <ProfileInterests user={profileUser} />
-              
-              {/* Badges */}
-              <div className="card">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">
-                  <span className="flex items-center gap-2"><Trophy size={20} strokeWidth={2} /> Achievements & Badges</span>
-                </h3>
-                <BadgeDisplay user={profileUser} />
-                <div className="mt-6">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-4">
-                    All Badges
-                  </h4>
-                  <BadgeGrid user={profileUser} />
-                </div>
-              </div>
+        {/* Quick Stats Banner - Only show if not from search */}
+        {!isFromSearch && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="card text-center">
+              <div className="text-3xl font-bold text-sage-600">{profileUser.totalPoints || 0}</div>
+              <div className="text-xs text-gray-600 mt-1">Total Points</div>
             </div>
-
-            {/* Right Column */}
-            <div className="space-y-6">
-              {/* Stats */}
-              <ProfileStats user={profileUser} />
-              
-              {/* Connections */}
-              <div className="card">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  <span className="flex items-center gap-2"><Users size={20} strokeWidth={2} /> Communities</span>
-                </h3>
-                <ConnectionsList user={profileUser} />
-              </div>
-
-              {/* Recent Activity */}
-              <ProfileActivity user={profileUser} />
+            <div className="card text-center">
+              <div className="text-3xl font-bold text-orange-600">{profileUser.currentStreak || 0}</div>
+              <div className="text-xs text-gray-600 mt-1">Day Streak</div>
+            </div>
+            <div className="card text-center">
+              <div className="text-3xl font-bold text-green-600">{totalCircles}</div>
+              <div className="text-xs text-gray-600 mt-1">Circles</div>
+            </div>
+            <div className="card text-center">
+              <div className="text-3xl font-bold text-blue-600">{avgMood}</div>
+              <div className="text-xs text-gray-600 mt-1">Avg Mood</div>
             </div>
           </div>
         )}
 
-        {activeTab === 'activity' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Mood History */}
-            <div className="card">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">
-                <span className="flex items-center gap-2"><Smile size={20} strokeWidth={2} /> Mood History</span>
-              </h3>
-              <MoodHistoryChart user={profileUser} />
-            </div>
+        {/* Tab Navigation - Only show if not from search */}
+        {!isFromSearch && (
+          <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${activeTab === 'overview'
+                  ? 'bg-sage-600 text-white shadow-lg'
+                  : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
+                }`}
+            >
+              <span className="flex items-center gap-1.5"><BarChart3 size={16} strokeWidth={2} /> Overview</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('activity')}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${activeTab === 'activity'
+                  ? 'bg-sage-600 text-white shadow-lg'
+                  : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200'
+                }`}
+            >
+              <span className="flex items-center gap-1.5"><Calendar size={16} strokeWidth={2} /> Activity</span>
+            </button>
+          </div>
+        )}
 
-            {/* Attended Events */}
-            <div className="card">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">
-                <span className="flex items-center gap-2"><Calendar size={20} strokeWidth={2} /> Attended Events</span>
-              </h3>
-              <AttendedEventsList user={profileUser} />
+
+        {isFromSearch ? (
+          // Limited view for search access - centered layout
+          <div className="flex justify-center">
+            <div className="w-full max-w-4xl space-y-6">
+              <ProfileHeader user={profileUser} isFromSearch />
+              <ProfileInterests user={profileUser} />
             </div>
           </div>
+        ) : (
+          // Full view for direct access
+          <>
+            {activeTab === 'overview' && (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Left Column */}
+                <div className="lg:col-span-2 space-y-6">
+                  <ProfileHeader user={profileUser} />
+
+                  {/* Interests */}
+                  <ProfileInterests user={profileUser} />
+
+                  {/* Badges */}
+                  <div className="card">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6">
+                      <span className="flex items-center gap-2"><Trophy size={20} strokeWidth={2} /> Achievements & Badges</span>
+                    </h3>
+                    <BadgeDisplay user={profileUser} />
+                    <div className="mt-6">
+                      <h4 className="text-sm font-semibold text-gray-700 mb-4">
+                        All Badges
+                      </h4>
+                      <BadgeGrid user={profileUser} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="space-y-6">
+                  {/* Stats */}
+                  <ProfileStats user={profileUser} />
+
+                  {/* Connections */}
+                  <div className="card">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">
+                      <span className="flex items-center gap-2"><Users size={20} strokeWidth={2} /> Communities</span>
+                    </h3>
+                    <ConnectionsList user={profileUser} />
+                  </div>
+
+                  {/* Recent Activity */}
+                  <ProfileActivity user={profileUser} />
+                </div>
+              </div>
+              
+            )}      
+
+            {activeTab === 'activity' && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Mood History */}
+                <div className="card">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">
+                    <span className="flex items-center gap-2"><Smile size={20} strokeWidth={2} /> Mood History</span>
+                  </h3>
+                  <MoodHistoryChart user={profileUser} />
+                </div>
+
+                {/* Attended Events */}
+                <div className="card">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">
+                    <span className="flex items-center gap-2"><Calendar size={20} strokeWidth={2} /> Attended Events</span>
+                  </h3>
+                  <AttendedEventsList user={profileUser} />
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

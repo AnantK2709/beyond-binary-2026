@@ -193,7 +193,7 @@ const isEventPast = () => {
                       </span>
                     )}
                   </div>
-                  <h1 className="text-4xl md:text-5xl font-bold mb-2 drop-shadow-lg">
+                  <h1 className="text-4xl md:text-5xl font-bold mb-2 drop-shadow-lg text-white">
                     {event.title}
                   </h1>
                   <p className="text-lg text-white/90 drop-shadow">
